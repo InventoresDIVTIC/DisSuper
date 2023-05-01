@@ -12,8 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('profesores', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->int("N_Acta")->unique()->require();
+            $table->string("Nombre")->require();
+            $table->timestamps("Fecha");
+            $table->string("Observaciones");
         });
     }
 
