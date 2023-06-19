@@ -16,7 +16,6 @@ class AcademicoController extends Controller
         
         return view('academicos.index',compact('academico'));
     }
-
     /**
      * Show the form for creating a new resource.
      */
