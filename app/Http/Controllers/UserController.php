@@ -74,4 +74,31 @@ class UserController extends Controller
     {
         //
     }
+
+
+
+
+
+
+
+
+
+    
+    public function login(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            // Autenticación exitosa, redireccionar a una página de bienvenida o a la página principal
+            return redirect('/index');
+        } else {
+            // Autenticación fallida, redireccionar de nuevo al formulario de inicio de sesión con un mensaje de error
+            return redirect()->back()->withInput()->withErrors([
+                'email' => 'Credenciales inválidas',
+            ]);
+        }
+    }
 }

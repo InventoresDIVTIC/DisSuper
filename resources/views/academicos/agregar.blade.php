@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Crear productos</h1>
-    <form action="/academico" method="post">
+    <form action="/academico/{{ $academico}}" method="post">
     @csrf
         <label for="nombrep">Nombre:</label><br>
         <input type="text" name = "nombrep" id = "nombrep" value ="{{old('nombrep')}}"><br><br>

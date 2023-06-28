@@ -17,7 +17,6 @@
         @error('nombrep')
             <h5>{{ $message }}</h5>
         @enderror
-
         <br>
 
         <label for="fecha">Fecha:</label><br>

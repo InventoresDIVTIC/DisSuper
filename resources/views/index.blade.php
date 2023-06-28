@@ -182,6 +182,7 @@
           <div class="user-profile">
             <img src="dist/img/user2-160x160.jpg" alt="Perfil de usuario" class="profile-image">
             <div class="profile-options">
+              
               <a href="ruta-del-perfil">Ver perfil</a>
               <form action="/logout" method="POST">
                 @csrf <!-- Agrega el campo CSRF para protección contra ataques CSRF -->
@@ -194,7 +195,7 @@
           @if(Auth::check())
             <h3><p class="d-block"> {{ Auth::user()->name }}</p></h4>
           @else
-            <a href="/registrar" class="d-block">Iniciar sesion</a>
+            <a href="/login" class="d-block">Iniciar sesion</a>
           @endif
         </div>
       </div>
