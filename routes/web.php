@@ -13,7 +13,6 @@ Route::get('/index', function () {
 Route::get('/', function () {
     return view('welcome');
 });
-
 Route::resource('academico', AcademicoController::class);
 
 Route::resource('registrar', UserController::class);
