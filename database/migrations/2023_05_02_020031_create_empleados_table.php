@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('academicos', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-            $table->string("nombrep")->require();
-            $table->date('fecha')->require();
-            $table->string("observaciones");
-            $table->integer("no_acta")->require();
+        Schema::create('empleados', function (Blueprint $table) {
+            $table->char("RPE_Empleado", 8)->unique()->require();
+            $table->string('nombre_Empleado')->require();
+            $table->date('fecha_ingreso')->require();
         });
     }
 
@@ -27,6 +24,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('academicos');
+        Schema::dropIfExists('empleados');
     }
+
+    
 };
