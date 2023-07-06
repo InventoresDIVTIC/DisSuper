@@ -32,11 +32,17 @@ class RegisterController extends Controller
 
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+    
+        $token = app('auth.password.broker')->createToken($user);
+        $user->remember_token = $token;
+        $user->save();
+    
+    
+        return $user;
     }
 }
-

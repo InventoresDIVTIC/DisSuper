@@ -13,7 +13,6 @@
   <link rel="stylesheet" href="{{ asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
@@ -40,41 +39,6 @@
           <!-- /.col -->
         </div>
       </form>
-
-      <script>
-        document.querySelector('form').addEventListener('submit', function(event) {
-          event.preventDefault(); // Evita el envío del formulario por defecto
-
-          fetch(event.target.action, { method: 'POST', body: new FormData(event.target) })
-            .then(function(response) {
-              if (response.ok) {
-                Swal.fire({
-                  icon: 'success',
-                  title: 'Correo enviado',
-                  text: 'Se ha enviado un correo para restablecer tu contraseña.',
-                  confirmButtonText: 'Aceptar'
-                });
-              } else {
-                Swal.fire({
-                  icon: 'error',
-                  title: 'Error',
-                  text: 'Ha ocurrido un error al enviar el correo.',
-                  confirmButtonText: 'Aceptar'
-                });
-              }
-            })
-            .catch(function(error) {
-              Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'Ha ocurrido un error al enviar el correo.',
-                confirmButtonText: 'Aceptar'
-              });
-              console.error(error);
-            });
-        });
-      </script>
-
       <p class="mt-3 mb-1">
         <a href="{{ url('/login') }}">Iniciar sesión</a>
       </p>

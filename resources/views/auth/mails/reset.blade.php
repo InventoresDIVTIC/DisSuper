@@ -66,7 +66,7 @@
     <h2>Recuperación de Contraseña <span style="color: #ff0000;">DisSuper</span></h2>
     <p>Estimado(a) Usuario(a),</p>
     <p>Hemos recibido una solicitud para restablecer tu contraseña en <span style="color: #ff0000;">DisSuper</span>. Haz clic en el enlace de abajo para cambiar tu contraseña:</p>
-    <p><a href="{{ route('password.email') }}" class="btn">Restablecer <span>Contraseña</span></a></p>
+    <p><a href="{{ $resetLink }}">{{ $resetLink }}</a></p>
     <p>Si no has solicitado un restablecimiento de contraseña, puedes ignorar este correo electrónico.</p>
     <p>Gracias,</p>
     <p>El equipo de <span style="color: #ff0000;">DisSuper</span></p>
