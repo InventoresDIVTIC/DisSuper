@@ -1,41 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | General Form Elements</title>
 
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.1.0/css/adminlte.min.css">
-  
-  <!-- SweetAlert -->
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  
-  <style>
-    body {
-      background-color: #343a40; /* Cambiar el color de fondo según tus preferencias */
-    }
-    .container {
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .card {
-      background-color: #fff;
-    }
-    .card-body {
-      width: 500px; /* Ajusta el ancho de la tarjeta según tus necesidades */
-      margin: 0 auto;
-    }
-  </style>
 
-</head>
-
+@extends('layouts.nav')
+@section('content')
+<link rel="stylesheet" href="{{ asset('dist/css/form_empleado.css') }}">
 <body class="hold-transition sidebar-mini">
   <div class="container">
     <section class="content">
@@ -123,5 +90,4 @@
       });
     });
   </script>
-</body>
-</html>
+  @endsection
