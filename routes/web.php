@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\EmpleadoController;
+use App\Http\Controllers\RoleController;
 
 
 Route::get('/index', function () {
@@ -18,6 +19,7 @@ Route::get('/', function () {
 });
 Route::resource('empleado', EmpleadoController::class);
 Route::resource('registrar', UserController::class);
+Route::resource('roles', RoleController::class);
 
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
