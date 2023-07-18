@@ -1,8 +1,10 @@
-
-
 @extends('layouts.nav')
+
 @section('content')
 <link rel="stylesheet" href="{{ asset('dist/css/form_empleado.css') }}">
+<!-- CSS de SweetAlert -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.css">
+
 <body class="hold-transition sidebar-mini">
   <div class="container">
     <section class="content">
@@ -25,12 +27,7 @@
                 </div>
                 <div class="form-group">
                   <label>Fecha Ingreso:</label>
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
-                    </div>
-                    <input type="text" class="form-control" name="fecha_ingreso" id="fecha_ingreso" readonly required>
-                  </div>
+                  <input type="date" class="form-control" name="fecha_ingreso" id="fecha_ingreso" required>
                 </div>
               </div>
               <div class="card-footer">
@@ -43,31 +40,24 @@
     </section>
   </div>
 
+  <!-- JS de SweetAlert -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+
   <!-- Agregar esta sección antes de la etiqueta </body> -->
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       var formEmpleado = document.getElementById("form-empleado");
-      var fechaIngresoInput = document.getElementById("fecha_ingreso");
-      
-      // Obtener laFecha actual del sistema
-      var fechaActual = new Date();
-      var dia = String(fechaActual.getDate()).padStart(2, '0');
-      var mes = String(fechaActual.getMonth() + 1).padStart(2, '0');
-      var anio = fechaActual.getFullYear();
-      var fechaFormateada = anio + '-' + mes + '-' + dia;
-      
-      // Establecer la fecha actual en el campo de fecha de ingreso
-      fechaIngresoInput.value = fechaFormateada;
-      
+
       formEmpleado.addEventListener("submit", function(event) {
         event.preventDefault();
 
         // Validar el formulario y mostrar la alerta de éxito
         var rpeInput = document.getElementById("RPE_Empleado");
         var nombreInput = document.getElementById("nombre_Empleado");
-        
-        if (rpeInput.value === "" || nombreInput.value === "") {
-          Swal.fire({
+        var fechaIngresoInput = document.getElementById("fecha_ingreso");
+
+        if (rpeInput.value === "" || nombreInput.value === "" || fechaIngresoInput.value === "") {
+          swal({
             icon: 'error',
             title: 'Error',
             text: 'Por favor, complete todos los campos',
@@ -79,15 +69,14 @@
         formEmpleado.submit();
 
         // Mostrar alerta de éxito
-        Swal.fire({
-            icon: 'success',
-            title: 'Éxito',
-            text: 'El formulario se envió correctamente',
-            timer: 3000,  // Duración en milisegundos
-            timerProgressBar: true,  // Mostrar barra de progreso
-            showConfirmButton: false  // Ocultar botón de confirmación
+        swal({
+          icon: 'success',
+          title: 'Éxito',
+          text: 'El formulario se envió correctamente',
+          timer: 3000,
+          buttons: false
         });
       });
     });
   </script>
-  @endsection
+@endsection
