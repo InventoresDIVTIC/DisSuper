@@ -63,14 +63,7 @@
                   </div>
               </div>
           </div>
-          <div class="input-group mb-3">
-              <select class="form-control" name="role">
-                  <option value="" selected disabled>Seleccione un rol</option>
-                  @foreach ($roles as $role)
-                      <option value="{{ $role->id }}">{{ $role->name }}</option>
-                  @endforeach
-              </select>
-          </div>
+          
           @if ($errors->has('password'))
               <span class="error-message">{{ $errors->first('password') }}</span>
           @endif

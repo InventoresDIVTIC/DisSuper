@@ -41,10 +41,6 @@ class RegisterController extends Controller
             'role_id' => $data['role'], // Assuming your User model has a "role_id" column for the role relationship
         ]);
 
-        $role = Role::find($data['role']); // Obtén el rol seleccionado
-
-        $user->roles()->attach($role); // Asigna el rol al usuario
-
         return $user;
     }
     public function showRegistrationForm()
