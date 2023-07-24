@@ -93,3 +93,4 @@ class EmpleadoController extends Controller
         return redirect('/index')->with('success', 'Empleado eliminado exitosamente.');
     }
 }
+ 

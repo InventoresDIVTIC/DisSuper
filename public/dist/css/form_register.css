@@ -1,0 +1,7 @@
+/* public/dist/css/form_register.css */
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}

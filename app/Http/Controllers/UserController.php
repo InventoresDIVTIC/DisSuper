@@ -28,18 +28,19 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:40', 'min:1', ],
-            'email' => ['required', ],
-            'password' => ['required', 'string', 'required'],
+            'name' => ['required', 'string', 'max:40', 'min:1'],
+            'email' => ['required', 'email', 'unique:users'],
+            'password' => ['required', 'string', 'min:8'],
         ]);
 
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = $request->password;
-       
+        $user->password = Hash::make($request->password); // Asegúrate de que la contraseña se guarde correctamente hasheada
+
         $user->save();
-        Auth::login($user);
+        // No inicies sesión manualmente con Auth::login($user);
+        // El usuario no se logueará automáticamente después de registrarse
         return redirect('index');
     }
 

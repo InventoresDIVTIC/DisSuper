@@ -25,6 +25,20 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.1.0/css/adminlte.min.css">
   
+
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="{{ asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
+
+
+  
+
   <!-- SweetAlert -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
@@ -127,9 +141,9 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-      <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+    <a href="index" class="brand-link">
+      <img src="{{ asset('dist/img/D.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">isSuper</span>
     </a>
 
       <!-- Sidebar -->
@@ -174,11 +188,42 @@
 <!-- Sidebar Menu -->
 <nav class="mt-2">
   <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-    <!-- Add icons to the links using the .nav-icon class
-         with font-awesome or any other icon font library -->
+   
+  
+  
+  <li class="nav-item menu-open">
+      <a href="#" class="nav-link active">
+        <i class="nav-icon fas fa-user"></i> <!-- Cambia la clase de icono aquí para Usuarios -->
+        <p>
+          Usuarios
+          <i class="right fas fa-angle-left"></i>
+        </p>
+      </a>
+      <ul class="nav nav-treeview">
+        <li class="nav-item">
+          <a href="#" class="nav-link {{ Request::is('index') ? 'active' : '' }}">
+            <i class="fas fa-list-ul nav-icon"></i>
+            <p>Listado</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/register" class="nav-link {{ Request::is('empleado/*') && !Request::is('empleado/create*') ? 'active' : '' }}">
+            <i class="fas fa-user nav-icon"></i> <!-- Cambia la clase de icono aquí para esta opción -->
+            <p>Registrar usuario</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link {{ Request::is('empleado/create*') ? 'active' : '' }}">
+            <i class="fas fa-tag nav-icon"></i>
+            <p>Modificar Usuario</p>
+          </a>
+        </li>
+      </ul>
+    </li>
+  
     <li class="nav-item menu-open">
       <a href="#" class="nav-link active">
-        <i class="nav-icon fas fa-users"></i> <!-- Reemplaza la clase aquí -->
+        <i class="nav-icon fas fa-users"></i> <!-- Cambia la clase de icono aquí para Empleados -->
         <p>
           Empleados
           <i class="right fas fa-angle-left"></i>
@@ -205,6 +250,9 @@
         </li>
       </ul>
     </li>
+
+  
+    
   </ul>
 </nav>
 <!-- /.sidebar-menu -->
@@ -292,6 +340,21 @@
 
     // Agregar clase "active" al enlace del perfil
     $('#perfil-link').addClass('active');
+  });
+</script>
+<script>
+  window.addEventListener("beforeunload", function (e) {
+    e.preventDefault(); // Cancela el evento predeterminado para evitar que el navegador cierre la ventana inmediatamente
+    fetch('/logout', {
+      method: 'POST', // Realiza una solicitud POST para cerrar la sesión
+      credentials: 'same-origin', // Importante para enviar las cookies de sesión
+      headers: {
+        'X-CSRF-TOKEN': '{{ csrf_token() }}', // Si utilizas protección CSRF
+      },
+    }).then(() => {
+      // Redirige a la página de inicio de sesión después de cerrar sesión
+      window.location.href = '/login'; // Cambia '/login' por la ruta de tu página de inicio de sesión
+    });
   });
 </script>
 </body>

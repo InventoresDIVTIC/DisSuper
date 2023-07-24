@@ -1,13 +1,13 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
+
 
 class LoginController extends Controller
 {
@@ -38,8 +38,9 @@ class LoginController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/index');
+        return redirect('/');
     }
+
     protected function attemptLogin(Request $request)
     {
         // Agrega la opción 'remember' al intento de inicio de sesión
@@ -48,6 +49,7 @@ class LoginController extends Controller
             $request->filled('remember')
         );
     }
+
     protected function validateLogin(Request $request)
     {
         $request->validate([
@@ -55,4 +57,6 @@ class LoginController extends Controller
             'password' => 'required|string',
         ]);
     }
+    
 }
+
