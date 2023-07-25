@@ -11,12 +11,12 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\AdminController;
 
 
-Route::get('/index', function () {
-    return view('index');
-});
 
 Route::get('/', function () {
     return view('welcome');
+});
+Route::get('/index', function () {
+    return view('index');
 });
 Route::resource('empleado', EmpleadoController::class);
 

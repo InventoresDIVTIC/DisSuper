@@ -342,20 +342,6 @@
     $('#perfil-link').addClass('active');
   });
 </script>
-<script>
-  window.addEventListener("beforeunload", function (e) {
-    e.preventDefault(); // Cancela el evento predeterminado para evitar que el navegador cierre la ventana inmediatamente
-    fetch('/logout', {
-      method: 'POST', // Realiza una solicitud POST para cerrar la sesión
-      credentials: 'same-origin', // Importante para enviar las cookies de sesión
-      headers: {
-        'X-CSRF-TOKEN': '{{ csrf_token() }}', // Si utilizas protección CSRF
-      },
-    }).then(() => {
-      // Redirige a la página de inicio de sesión después de cerrar sesión
-      window.location.href = '/login'; // Cambia '/login' por la ruta de tu página de inicio de sesión
-    });
-  });
-</script>
+
 </body>
 </html>
