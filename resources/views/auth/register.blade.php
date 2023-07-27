@@ -16,66 +16,6 @@
                         <form action="{{ route('register') }}" method="post" id="form-registro">
                             @csrf
 
-<<<<<<< HEAD
-      <form action="{{ route('register') }}" method="post">
-          @csrf
-          <div class="input-group mb-3">
-              <input type="text" class="form-control" name="name" placeholder="Nombre completo" value="{{ old('name') }}">
-              <div class="input-group-append">
-                  <div class="input-group-text">
-                      <span class="fas fa-user"></span>
-                  </div>
-              </div>
-          </div>
-          @if ($errors->has('name'))
-              <span class="error-message">{{ $errors->first('name') }}</span>
-          @endif
-          <div class="input-group mb-3">
-              <input type="email" class="form-control" name="email" placeholder="Correo Electronico" value="{{ old('email') }}">
-              <div class="input-group-append">
-                  <div class="input-group-text">
-                      <span class="fas fa-envelope"></span>
-                  </div>
-              </div>
-          </div>
-          @if ($errors->has('email'))
-              <span class="error-message">{{ $errors->first('email') }}</span>
-          @endif
-          <div class="input-group mb-3">
-              <input type="password" class="form-control" name="password" placeholder="Contraseña">
-              <div class="input-group-append">
-                  <div class="input-group-text">
-                      <span class="fas fa-lock"></span>
-                  </div>
-              </div>
-          </div>
-          <div class="input-group mb-3">
-              <input type="password" class="form-control" name="password_confirmation" placeholder="Confirmar Contraseña">
-              <div class="input-group-append">
-                  <div class="input-group-text">
-                      <span class="fas fa-lock"></span>
-                  </div>
-              </div>
-          </div>
-          
-          @if ($errors->has('password'))
-              <span class="error-message">{{ $errors->first('password') }}</span>
-          @endif
-          <div class="row">
-              <div class="col-8">
-                  <div class="icheck-primary">
-                      <input type="checkbox" id="agreeTerms" name="terms" value="agree">
-                      <label for="agreeTerms">
-                          Acepto los  <a href="#">terminos</a>
-                      </label>
-                  </div>
-              </div>
-              <div class="col-4">
-                  <button type="submit" class="btn btn-primary btn-block" id="submitButton" disabled>Registrar</button>
-              </div>
-          </div>
-      </form>
-=======
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control" name="name" placeholder="Nombre completo" value="{{ old('name') }}">
                                 <div class="input-group-append">
@@ -87,7 +27,6 @@
                             @if ($errors->has('name'))
                                 <span class="error-message">{{ $errors->first('name') }}</span>
                             @endif
->>>>>>> 3cad327cb71fda0e90eb1ea23b218fc3bd1858b8
 
                             <div class="input-group mb-3">
                                 <input type="email" class="form-control" name="email" placeholder="Correo Electronico" value="{{ old('email') }}">

@@ -318,29 +318,28 @@
 <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.colVis.min.js"></script>
 <!-- Page specific script -->
 <script>
-  $(function () {
-    $("#example1").DataTable({
-      "responsive": true,
-"lengthChange": false,
-      "autoWidth": false,
-      "buttons": [
+    $(function () {
+      $("#example1").DataTable({
+        "responsive": true,
+        "lengthChange": false,
+        "autoWidth": false,
+        "buttons": [
         "excel", "pdf", "print"
-      ]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
-    });
+        ]
+      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+      
+      $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+      });
 
-    // Agregar clase "active" al enlace del perfil
-    $('#perfil-link').addClass('active');
-  });
+      
+    });
 </script>
 
 </body>

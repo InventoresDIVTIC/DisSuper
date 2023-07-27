@@ -31,6 +31,7 @@ class RegisterController extends Controller
         ]);
     }
 
+
     protected function create(array $data)
     {
         $user = User::create([
@@ -39,13 +40,10 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 
-<<<<<<< HEAD
-=======
         // Asignar el rol seleccionado al nuevo usuario
         $role = Role::find($data['role']);
         $user->roles()->attach($role);
 
->>>>>>> 3cad327cb71fda0e90eb1ea23b218fc3bd1858b8
         return $user;
     }
 
