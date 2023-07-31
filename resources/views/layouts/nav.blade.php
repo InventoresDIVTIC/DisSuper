@@ -25,6 +25,20 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.1.0/css/adminlte.min.css">
   
+
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="{{ asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
+
+
+  
+
   <!-- SweetAlert -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
@@ -127,9 +141,9 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-      <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+    <a href="index" class="brand-link">
+      <img src="{{ asset('dist/img/D.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">isSuper</span>
     </a>
 
       <!-- Sidebar -->
@@ -174,11 +188,42 @@
 <!-- Sidebar Menu -->
 <nav class="mt-2">
   <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-    <!-- Add icons to the links using the .nav-icon class
-         with font-awesome or any other icon font library -->
+   
+  
+  
+  <li class="nav-item menu-open">
+      <a href="#" class="nav-link active">
+        <i class="nav-icon fas fa-user"></i> <!-- Cambia la clase de icono aquí para Usuarios -->
+        <p>
+          Usuarios
+          <i class="right fas fa-angle-left"></i>
+        </p>
+      </a>
+      <ul class="nav nav-treeview">
+        <li class="nav-item">
+          <a href="#" class="nav-link {{ Request::is('index') ? 'active' : '' }}">
+            <i class="fas fa-list-ul nav-icon"></i>
+            <p>Listado</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/register" class="nav-link {{ Request::is('empleado/*') && !Request::is('empleado/create*') ? 'active' : '' }}">
+            <i class="fas fa-user nav-icon"></i> <!-- Cambia la clase de icono aquí para esta opción -->
+            <p>Registrar usuario</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link {{ Request::is('empleado/create*') ? 'active' : '' }}">
+            <i class="fas fa-tag nav-icon"></i>
+            <p>Modificar Usuario</p>
+          </a>
+        </li>
+      </ul>
+    </li>
+  
     <li class="nav-item menu-open">
       <a href="#" class="nav-link active">
-        <i class="nav-icon fas fa-users"></i> <!-- Reemplaza la clase aquí -->
+        <i class="nav-icon fas fa-users"></i> <!-- Cambia la clase de icono aquí para Empleados -->
         <p>
           Empleados
           <i class="right fas fa-angle-left"></i>
@@ -205,6 +250,9 @@
         </li>
       </ul>
     </li>
+
+  
+    
   </ul>
 </nav>
 <!-- /.sidebar-menu -->
@@ -270,29 +318,29 @@
 <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.colVis.min.js"></script>
 <!-- Page specific script -->
 <script>
-  $(function () {
-    $("#example1").DataTable({
-      "responsive": true,
-"lengthChange": false,
-      "autoWidth": false,
-      "buttons": [
+    $(function () {
+      $("#example1").DataTable({
+        "responsive": true,
+        "lengthChange": false,
+        "autoWidth": false,
+        "buttons": [
         "excel", "pdf", "print"
-      ]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
-    });
+        ]
+      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+      
+      $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+      });
 
-    // Agregar clase "active" al enlace del perfil
-    $('#perfil-link').addClass('active');
-  });
+      
+    });
 </script>
+
 </body>
 </html>

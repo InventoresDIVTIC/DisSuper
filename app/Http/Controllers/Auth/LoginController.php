@@ -1,9 +1,7 @@
 <?php
-
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,13 +31,12 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
         $this->guard()->logout();
-
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
 
         return redirect('/index');
     }
+
     protected function attemptLogin(Request $request)
     {
         // Agrega la opción 'remember' al intento de inicio de sesión
@@ -48,11 +45,20 @@ class LoginController extends Controller
             $request->filled('remember')
         );
     }
+
     protected function validateLogin(Request $request)
     {
         $request->validate([
             $this->username() => 'required|string',
             'password' => 'required|string',
         ]);
+    }
+
+    // Nueva función para cerrar sesión al cerrar el navegador
+    public function closeSessionOnBrowserClose(Request $request)
+    {
+        $this->guard()->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
     }
 }

@@ -19,7 +19,7 @@
   <!-- /.login-logo -->
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="/index" class="h1"><b>Dis</b>Super</a>
+      <h1><b>Dis</b>Super</a></h1>
     </div>
     <div class="card-body">
       <p class="login-box-msg">Inicia sesión para utilizar el sistema</p>
@@ -67,12 +67,8 @@
       </form>
 
 
-      <p class="mb-1">
-        <a href="/password/reset">Olvide mi contraseña</a>
-      </p>
-      <p class="mb-0">
-        <a href="/register" class="text-center">Registrarme </a>
-      </p>
+      
+      
     </div>
     <!-- /.card-body -->
   </div>
