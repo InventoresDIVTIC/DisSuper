@@ -34,13 +34,15 @@ class EmpleadoController extends Controller
             'RPE_Empleado' => ['required', 'unique:empleados',],
             'nombre_Empleado' => ['required', ],
             'fecha_ingreso' => ['required', ],
-            
+            //Modificaciones de Lalo
+            'id_zona' => [],
         ]);
 
         $empleado = new Empleado();
         $empleado->RPE_Empleado = $request->RPE_Empleado;
         $empleado->nombre_Empleado = $request->nombre_Empleado;
         $empleado->fecha_ingreso = $request->fecha_ingreso;
+        $empleado->id_zona = 1;
        
 
         $empleado->save();

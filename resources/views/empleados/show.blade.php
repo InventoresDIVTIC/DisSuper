@@ -60,12 +60,13 @@
           
 
 
-          <!-- /.col -->
+          <!-- Contenido Principal -->
           <div class="col-md-9">
             <div class="card">
               <div class="card-header p-2">
                 <ul class="nav nav-pills">
                   <li class="nav-item"><a class="nav-link active" href="#InformacionGeneral" data-toggle="tab">Información General</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#ListadoDocumentos" data-toggle="tab">Listado de Documentos</a></li>
                   <li class="nav-item"><a class="nav-link" href="#GenerarRC" data-toggle="tab">Rendición de Cuentas</a></li>
                   <li class="nav-item"><a class="nav-link" href="#GenerarLlA" data-toggle="tab">Llamada de Atención</a></li>
                   <li class="nav-item"><a class="nav-link" href="#GenerarAA" data-toggle="tab">Acta Administrativa</a></li>
@@ -76,59 +77,110 @@
             <!-- Tabla -->
               <div class="card-body">
                 <div class="tab-content">
+
+                  {{-- Informacion General --}}
                   <div class="active tab-pane" id="InformacionGeneral">
+                    <div class="card-body">
+
+                      {{-- Contador de Documentos --}}
+                      <div class="row">
+                        <div class="col-12 col-sm-4">
+                          <div class="info-box bg-light">
+                            <div class="info-box-content">
+                              <span class="info-box-text text-center text-muted">Rendición de Cuentas</span>
+                              <span class="info-box-number text-center text-muted mb-0">0</span>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div class="col-12 col-sm-4">
+                          <div class="info-box bg-light">
+                            <div class="info-box-content">
+                              <span class="info-box-text text-center text-muted">Llamadas de Atención</span>
+                              <span class="info-box-number text-center text-muted mb-0">0</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-12 col-sm-4">
+                          <div class="info-box bg-light">
+                            <div class="info-box-content">
+                              <span class="info-box-text text-center text-muted"><a>Actas Administrativas</a></span>
+                              <span class="info-box-number text-center text-muted mb-0">0</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    <div class="row">
+                      <div class="col-12 col-sm-4">
+                        
+                      </div>
+                    </div>
+                  </div>
                     
-                      <!-- /.card-header -->
-                      <div class="card-body p-0">
-                        <table class="table">
-                          <thead>
-                            <tr>
-                              <th style="width: 120px">N. Doc</th>
-                              <th style="width: 180px">Fecha</th>
-                              <th>Tipo Documento</th>
-                              <th>Emitido por</th>
-                              
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>4</td>
+                      
+                  </div>
+
+                  {{-- Listado de Documentos --}}
+                  <div class="tab-pane" id="ListadoDocumentos">
+                    
+                    <!-- /.card-header -->
+                    <div class="card-body p-0">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th style="width: 120px">N. Doc</th>
+                            <th style="width: 180px">Fecha</th>
+                            <th>Tipo Documento</th>
+                            <th>Emitido por</th>
+                            <th>Estado</th>
+                            
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>4</td>
+                            <td>11-7-2014</td>
+                            <td>Rendición de Cuentas</td>
+                            <td>El Admin</td>
+                            <td>Por Revisar</td>
+                          </tr>
+                          <tr>
+                              <td>3</td>
+                              <td>11-7-2014</td>
+                              <td>Acta Administrativa</td>
+                              <td>El Admin</td>
+                              <td>Revisado</td>
+                          </tr>
+                          <tr>
+                            <td>2</td>
+                            <td>11-7-2014</td>
+                            <td>Llamada de Atención</td>
+                            <td>El Admin</td>
+                            <td>Cancelado</td>
+                          </tr>
+                          <tr>
+                              <td>1</td>
                               <td>11-7-2014</td>
                               <td>Rendición de Cuentas</td>
                               <td>El Admin</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>11-7-2014</td>
-                                <td>Acta Administrativa</td>
-                                <td>El Admin</td>
-                            </tr>
-                            <tr>
-                              <td>2</td>
-                              <td>11-7-2014</td>
-                              <td>Llamada de Atención</td>
-                              <td>El Admin</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>11-7-2014</td>
-                                <td>Rendición de Cuentas</td>
-                                <td>El Admin</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-
-                    <div class="card-tools">
-                        <ul class="pagination pagination-sm float-right">
-                        <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-                        </ul>
+                              <td>Revisado</td>
+                          </tr>
+                        </tbody>
+                      </table>
                     </div>
+
+                  <div class="card-tools">
+                      <ul class="pagination pagination-sm float-right">
+                      <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+                      <li class="page-item"><a class="page-link" href="#">1</a></li>
+                      <li class="page-item"><a class="page-link" href="#">2</a></li>
+                      <li class="page-item"><a class="page-link" href="#">3</a></li>
+                      <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+                      </ul>
                   </div>
+                </div>
 
 
                   <!-- /.tab-pane -->
