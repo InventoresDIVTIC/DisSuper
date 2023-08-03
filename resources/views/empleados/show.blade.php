@@ -34,7 +34,7 @@
               </div>
               <!-- /.card-body -->
             </div>
-            <div class="card card-primary">
+            {{-- <div class="card card-primary">
                 <div class="card-header">
                   <h3 class="card-title">Documentos</h3>
                 </div>
@@ -53,7 +53,7 @@
                       </ul>
                 </div>
                 <!-- /.card-body -->
-              </div>
+              </div> --}}
             <!-- /.card -->
           </div>
 
@@ -65,12 +65,12 @@
             <div class="card">
               <div class="card-header p-2">
                 <ul class="nav nav-pills">
-                  <li class="nav-item"><a class="nav-link active" href="#InformacionGeneral" data-toggle="tab">Información General</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#ListadoDocumentos" data-toggle="tab">Listado de Documentos</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#GenerarRC" data-toggle="tab">Rendición de Cuentas</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#GenerarLlA" data-toggle="tab">Llamada de Atención</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#GenerarAA" data-toggle="tab">Acta Administrativa</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#ModInfo" data-toggle="tab">Modificar</a></li>
+                  <li class="nav-item" style="width: 15%"><a class="nav-link active text-center" href="#InformacionGeneral" data-toggle="tab">Información General</a></li>
+                  <li class="nav-item" style="width: 18%"><a class="nav-link text-center" href="#ListadoDocumentos" data-toggle="tab">Listado de Documentos</a></li>
+                  <li class="nav-item" style="width: 18%"><a class="nav-link text-center" href="#GenerarRC" data-toggle="tab">Rendición de Cuentas</a></li>
+                  <li class="nav-item" style="width: 18%"><a class="nav-link text-center" href="#GenerarLlA" data-toggle="tab">Llamada de Atención</a></li>
+                  <li class="nav-item" style="width: 18%"><a class="nav-link text-center" href="#GenerarAA" data-toggle="tab">Acta Administrativa</a></li>
+                  <li class="nav-item" style="width: 13%"><a class="nav-link text-center" href="#ModInfo" data-toggle="tab">Modificar</a></li>
                 </ul>
               </div><!-- /.card-header -->
 
@@ -113,9 +113,51 @@
                       </div>
 
                     <div class="row">
-                      <div class="col-12 col-sm-4">
-                        
+                      <div class="col-sm-12">
+                        {{-- <div class="color-palette-set">
+                          <div class="bg-gray color-palette"> --}}
+                            <h4 class="text-center">Ultimos Documentos Registrados</h4>
+                          {{-- </div>
+                        </div> --}}
                       </div>
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            
+                            <th style="width: 180px">Fecha</th>
+                            <th>Tipo Documento</th>
+                            <th>Emitido por</th>
+                            <th>Estado</th>
+                            <th style="width: 120px"></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            
+                            <td>11-7-2014</td>
+                            <td>Rendición de Cuentas</td>
+                            <td>El Admin</td>
+                            <td>Por Revisar</td>
+                            <td><button type="button" class="btn btn-block btn-primary btn-sm">Abrir</button></td>
+                          </tr>
+                          <tr>
+                              
+                              <td>11-7-2014</td>
+                              <td>Acta Administrativa</td>
+                              <td>El Admin</td>
+                              <td>Revisado</td>
+                              <td><button type="button" class="btn btn-block btn-primary btn-sm">Abrir</button></td>
+                          </tr>
+                          <tr>
+                            
+                            <td>11-7-2014</td>
+                            <td>Llamada de Atención</td>
+                            <td>El Admin</td>
+                            <td>Cancelado</td>
+                            <td><button type="button" class="btn btn-block btn-primary btn-sm">Abrir</button></td>
+                          </tr>
+                        </tbody>
+                      </table>
                     </div>
                   </div>
                     
@@ -130,42 +172,42 @@
                       <table class="table">
                         <thead>
                           <tr>
-                            <th style="width: 120px">N. Doc</th>
+                            
                             <th style="width: 180px">Fecha</th>
                             <th>Tipo Documento</th>
                             <th>Emitido por</th>
                             <th>Estado</th>
-                            
+                            <th style="width: 120px"></th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr>
-                            <td>4</td>
                             <td>11-7-2014</td>
                             <td>Rendición de Cuentas</td>
                             <td>El Admin</td>
                             <td>Por Revisar</td>
+                            <td><button type="button" class="btn btn-block btn-primary btn-sm">Abrir</button></td>
                           </tr>
                           <tr>
-                              <td>3</td>
                               <td>11-7-2014</td>
                               <td>Acta Administrativa</td>
                               <td>El Admin</td>
                               <td>Revisado</td>
+                              <td><button type="button" class="btn btn-block btn-primary btn-sm">Abrir</button></td>
                           </tr>
                           <tr>
-                            <td>2</td>
                             <td>11-7-2014</td>
                             <td>Llamada de Atención</td>
                             <td>El Admin</td>
                             <td>Cancelado</td>
+                            <td><button type="button" class="btn btn-block btn-primary btn-sm">Abrir</button></td>
                           </tr>
                           <tr>
-                              <td>1</td>
                               <td>11-7-2014</td>
                               <td>Rendición de Cuentas</td>
                               <td>El Admin</td>
                               <td>Revisado</td>
+                              <td><button type="button" class="btn btn-block btn-primary btn-sm">Abrir</button></td>
                           </tr>
                         </tbody>
                       </table>
