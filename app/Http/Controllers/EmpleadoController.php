@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Empleado;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EmpleadoController extends Controller
 {
@@ -12,9 +13,13 @@ class EmpleadoController extends Controller
      */
     public function index()
     {
-        $empleado = Empleado::all();
-        
-        return view('index',compact('empleado'));
+
+        $user = Auth::user();
+
+        // Obtener los empleados asociados al usuario autenticado
+        $empleados = $user->empleados;
+
+        return view('index', compact('empleado'));
     }
 
     /**
@@ -44,6 +49,9 @@ class EmpleadoController extends Controller
        
 
         $empleado->save();
+        // Asignar automáticamente el usuario autenticado al empleado creado
+        $user = Auth::user();
+        $empleado->users()->attach($user);
 
         return redirect('/index');
     }

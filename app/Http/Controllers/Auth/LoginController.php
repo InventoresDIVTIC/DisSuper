@@ -34,7 +34,7 @@ class LoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/index');
+        return redirect('/login');
     }
 
     protected function attemptLogin(Request $request)

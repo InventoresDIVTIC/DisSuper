@@ -36,7 +36,9 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
 
-
+  <link rel="stylesheet" href="{{ asset('dist/css/form_register.css') }}">
+  <!-- CSS de SweetAlert -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.css">
   
 
   <!-- SweetAlert -->
@@ -201,13 +203,13 @@
       </a>
       <ul class="nav nav-treeview">
         <li class="nav-item">
-          <a href="#" class="nav-link {{ Request::is('index') ? 'active' : '' }}">
+          <a href="{{ route('usuario.index') }}" class="nav-link {{ Request::is('usuarios/index') ? 'active' : '' }}">
             <i class="fas fa-list-ul nav-icon"></i>
-            <p>Listado</p>
+            <p>Listado de usuarios</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="/register" class="nav-link {{ Request::is('empleado/*') && !Request::is('empleado/create*') ? 'active' : '' }}">
+          <a href="/register" class="nav-link {{ Request::is('register') ? 'active' : '' }}">
             <i class="fas fa-user nav-icon"></i> <!-- Cambia la clase de icono aquí para esta opción -->
             <p>Registrar usuario</p>
           </a>
