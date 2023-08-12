@@ -1,0 +1,31 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('indicadores', function (Blueprint $table) {
+            $table->id('id_indicador');
+            $table->timestamps();
+            $table->string('Nombre_Indicador');
+            $table->float('Valor_Ideal');
+            $table->float('Valor_Alcanzado');
+            //Insertar Campo para Imagen
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('indicadores');
+    }
+};
