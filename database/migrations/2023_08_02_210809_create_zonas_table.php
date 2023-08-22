@@ -42,8 +42,9 @@ return new class extends Migration
     {
         
         Schema::table('empleados', function (Blueprint $table){
-            $table->dropForeign('id_zona');
+            $table->dropForeign('id_zona'); //Aqui esta el error, se necesita corregir el nombre de la llave foránea con la nomenclatura correcta
         });
+        
         Schema::dropIfExists('zonas');
     }
 };

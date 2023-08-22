@@ -18,6 +18,9 @@ return new class extends Migration
             $table->float('Valor_Ideal');
             $table->float('Valor_Alcanzado');
             //Insertar Campo para Imagen
+
+            $table->unsignedBigInteger('id_actividad');
+            $table->foreign('id_actividad')->references('id_actividad')->on('actividades')->onDelete('cascade');
         });
     }
 
