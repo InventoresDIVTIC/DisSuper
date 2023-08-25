@@ -201,13 +201,13 @@
       </a>
       <ul class="nav nav-treeview">
         <li class="nav-item">
-          <a href="#" class="nav-link {{ Request::is('index') ? 'active' : '' }}">
+        <a href="{{ route('usuarios.index') }}" class="nav-link {{ Request::is('usuario') ? 'active' : '' }}">
             <i class="fas fa-list-ul nav-icon"></i>
             <p>Listado</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="/register" class="nav-link {{ Request::is('empleado/*') && !Request::is('empleado/create*') ? 'active' : '' }}">
+          <a href="/register" class="nav-link {{ Request::is('register/*') ? 'active' : '' }}">
             <i class="fas fa-user nav-icon"></i> <!-- Cambia la clase de icono aquí para esta opción -->
             <p>Registrar usuario</p>
           </a>
@@ -219,9 +219,9 @@
           </a>
         </li>
       </ul>
-    </li>
+  </li>
   
-    <li class="nav-item menu-open">
+  <li class="nav-item menu-open">
       <a href="#" class="nav-link active">
         <i class="nav-icon fas fa-users"></i> <!-- Cambia la clase de icono aquí para Empleados -->
         <p>
@@ -249,9 +249,26 @@
           </a>
         </li>
       </ul>
-    </li>
+  </li>
 
-  
+  <li class="nav-item menu-open">
+      <a href="#" class="nav-link active">
+        <i class="nav-icon fas fa-users"></i> <!-- Cambia la clase de icono aquí para Empleados -->
+        <p>
+          Administrador
+          <i class="right fas fa-angle-left"></i>
+        </p>
+      </a>
+      <ul class="nav nav-treeview">
+        <li class="nav-item">
+          <a href="/zonas" class="nav-link {{ Request::is('zonas') ? 'active' : '' }}">
+            <i class="fas fa-list-ul nav-icon"></i>
+            <p>Zonas</p>
+          </a>
+        </li>
+        
+      </ul>
+  </li>
     
   </ul>
 </nav>

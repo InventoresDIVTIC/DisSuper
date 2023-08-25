@@ -34,6 +34,8 @@
             <tbody>
                <tr>
                 <td>1</td>
+                <td>Juan</td>
+                <td>Alberto</td>
                </tr>
             </tbody>
         </table>
