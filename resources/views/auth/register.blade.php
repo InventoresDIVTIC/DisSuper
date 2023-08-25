@@ -10,7 +10,7 @@
                             <a href="{{ url('/index') }}" class="h1"><b>Dis</b>Super</a>
                         </div>
                         <div class="card-body">
-                            <p class="login-box-msg">Registrate como miembro</p>
+                            <p class="login-box-msg">Registrar nuevo miembro</p>
                             <form action="{{ route('register') }}" method="post" id="form-registro">
                                 @csrf
 
@@ -52,9 +52,8 @@
                                     <span class="error-message">{{ $errors->first('RPE_Empleado') }}</span>
                                 @endif
 
-
                                 <div class="input-group mb-3">
-                                    <input type="date" class="form-control" name="fecha_registro"  placeholder="Fecha de ingreso" value="{{ old('fecha_registro') }}" required>
+                                    <input type="date" class="form-control" name="fecha_registro" placeholder="Fecha de ingreso" value="{{ old('fecha_registro') }}" required>
                                     <div class="input-group-append">
                                         <div class="input-group-text">
                                             <span class="fas fa-envelope"></span>
@@ -66,8 +65,23 @@
                                 @endif
 
 
-
-
+                                <div class="input-group mb-3">
+                                    <select name="contrato" id="contrato" class="form-control">
+                                        @foreach($contratos as $contrato)
+                                        <option value="{{ $contrato->id }}">{{ $contrato->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <span class="fas fa-envelope"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                @if ($errors->has('contrato'))
+                                    <span class="error-message">{{ $errors->first('contrato') }}</span>
+                                @endif
+                              
+        
                                 <div class="input-group mb-3">
                                     <input type="password" class="form-control" name="password" placeholder="Contraseña">
                                     <div class="input-group-append">

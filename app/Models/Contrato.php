@@ -16,4 +16,8 @@ class Contrato extends Model
     {
         return $this->hasMany(Empleado::class);
     }
+    public function usuarios()
+    {
+        return $this->hasMany(User::class);
+    }
 }
