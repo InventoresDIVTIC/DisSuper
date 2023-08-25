@@ -17,10 +17,16 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->char('RPE_Empleado', 5)->unique()->nullable();
+            $table->date('fecha_registro')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+
+
+            // Campos adicionales para empleados
+            
         });
         
 

@@ -14,7 +14,7 @@ class RegisterController extends Controller
 {
     use RegistersUsers;
 
-    protected $redirectTo = '/index';
+    protected $redirectTo = '/usuario';
 
     public function __construct()
     {
@@ -28,24 +28,34 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'role' => ['required', 'exists:roles,id'], // Validar que el rol seleccionado existe en la tabla roles
+            'RPE_Empleado' => ['required',  'string'],
+            'fecha_registro' => ['required','string',],
+
         ]);
     }
 
 
     protected function create(array $data)
     {
+        
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'RPE_Empleado' => $data['RPE_Empleado'],
+            'fecha_registro' => $data['fecha_registro'],
+            
         ]);
-
+        dd($data);
+   
         // Asignar el rol seleccionado al nuevo usuario
         $role = Role::find($data['role']);
         $user->roles()->attach($role);
-
         return $user;
+
     }
+
+
 
     // Sobrescribe el método register para evitar el inicio de sesión automático
     public function register(Request $request)
@@ -53,7 +63,7 @@ class RegisterController extends Controller
         $this->validator($request->all())->validate();
 
         $user = $this->create($request->all());
-
+     
         return redirect($this->redirectPath())
             ->with('status', 'Usuario creado correctamente'); // Puedes ajustar el mensaje de éxito según tus necesidades
     }

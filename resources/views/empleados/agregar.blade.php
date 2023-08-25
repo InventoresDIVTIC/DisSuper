@@ -26,6 +26,14 @@
                   <input type="text" class="form-control" id="nombre_Empleado" name="nombre_Empleado" placeholder="Nombre">
                 </div>
                 <div class="form-group">
+                  <label>Contrato:</label>
+                  <select name="contrato_id" id="contrato_id" class="form-control">
+                    @foreach($contratos as $contrato)
+                      <option value="{{ $contrato->id }}">{{ $contrato->name }}</option>
+                    @endforeach
+                  </select>
+                </div>
+                <div class="form-group">
                   <label>Fecha Ingreso:</label>
                   <input type="date" class="form-control" name="fecha_ingreso" id="fecha_ingreso" required>
                 </div>

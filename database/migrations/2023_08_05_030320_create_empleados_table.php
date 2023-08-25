@@ -16,6 +16,12 @@ return new class extends Migration
             $table->char("RPE_Empleado", 8)->unique()->nullable(false);
             $table->string('nombre_Empleado')->nullable(false);
             $table->date('fecha_ingreso')->nullable(false);
+
+
+            $table->unsignedBigInteger('contrato_id')->nullable(); // Agrega la columna contrato_id
+            $table->foreign('contrato_id')->references('id')->on('contratos'); // Agrega la relación
+
+            
             $table->timestamps();
         });
     }

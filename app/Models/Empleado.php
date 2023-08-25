@@ -13,4 +13,12 @@ class Empleado extends Model
     {
         return $this->belongsToMany(User::class, 'empleado_user', 'empleado_id', 'user_id');
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+    public function contrato()
+    {
+        return $this->belongsTo(Contrato::class);
+    }
 }

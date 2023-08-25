@@ -15,30 +15,18 @@ use App\Http\Controllers\AdminController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/index', function () {
-    return view('index');
-});
+Route::get('/index', [EmpleadoController::class, 'index']);
 Route::resource('empleado', EmpleadoController::class);
 Route::resource('usuario', UserController::class);
-
-
-
-
 
 
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 
 
-
 Route::get('/registro', [RegisterController::class, 'showRegistrationForm'])->name('registro');
 Route::post('/registro', [RegisterController::class, 'register'])->name('register');
 
-
-
-//Lalo estuvo Aqui
-Route::get('/newRol', [RoleController::class, 'showRoleTable'])->name('roles.view');
-Route::post('/newRol', [RoleController::class, 'registerRole']);
 
 Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
 Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');

@@ -24,3 +24,4 @@ class ResetPasswordController extends Controller
         );
     }
 }
+

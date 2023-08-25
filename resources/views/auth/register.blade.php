@@ -38,6 +38,36 @@
                                     <span class="error-message">{{ $errors->first('email') }}</span>
                                 @endif
 
+
+
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" name="RPE_Empleado" placeholder="RPE" value="{{ old('RPE_Empleado') }}">
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <span class="fas fa-envelope"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                @if ($errors->has('RPE_Empleado'))
+                                    <span class="error-message">{{ $errors->first('RPE_Empleado') }}</span>
+                                @endif
+
+
+                                <div class="input-group mb-3">
+                                    <input type="date" class="form-control" name="fecha_registro"  placeholder="Fecha de ingreso" value="{{ old('fecha_registro') }}" required>
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <span class="fas fa-envelope"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                @if ($errors->has('fecha_registro'))
+                                    <span class="error-message">{{ $errors->first('fecha_registro') }}</span>
+                                @endif
+
+
+
+
                                 <div class="input-group mb-3">
                                     <input type="password" class="form-control" name="password" placeholder="Contraseña">
                                     <div class="input-group-append">

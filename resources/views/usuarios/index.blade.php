@@ -28,6 +28,9 @@
                     <th>Email</th>
                     <th>Rol</th>
                     <th>Fecha de registro</th>
+                    <th>RPE</th>
+                    <th>Fecha de ingreso</th>
+
                     <th class="text-center">Opciones</th>
                 </tr>
             </thead>
@@ -38,6 +41,7 @@
                             <td class="text-center">{{ $user->id }}</td>
                             <td class="text-center">{{ $user->name }}</td>
                             <td class="text-center">{{ $user->email }}</td>
+                            
                             <td class="text-center">
                                 @if ($user->roles->count() > 0)
                                     {{ $user->roles->first()->name }}
@@ -45,6 +49,10 @@
                                     Sin rol asignado
                                 @endif
                             </td>
+                            <td class="text-center">{{ $user->fecha_registro}}</td>
+                            <td class="text-center">{{ $user->RPE_Empleado }}</td>
+                            
+
                             <td class="text-center">{{ $user->created_at }}</td>
                             <td class="text-center">
                                 <div class="btn-group">

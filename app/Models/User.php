@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -19,6 +20,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'RPE_Empleado', // Agrega el campo RPE_Empleado
         
     ];
 
@@ -58,4 +60,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Empleado::class, 'empleado_user', 'user_id', 'empleado_id');
     }
+    public function empleado()
+    {
+        return $this->hasOne(Empleado::class, 'user_id');
+    }
+
 }
