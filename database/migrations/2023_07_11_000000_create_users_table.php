@@ -24,7 +24,10 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
 
-            // Campos adicionales para empleados
+
+            $table->unsignedBigInteger('contrato_id')->nullable();  // Agrega la columna contrato_id
+            $table->foreign('contrato_id')->references('id')->on('contratos'); // Agrega la relación
+            // Campos adicionales para usuarios
             
         });
     }

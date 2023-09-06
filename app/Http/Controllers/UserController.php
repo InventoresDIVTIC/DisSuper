@@ -85,11 +85,11 @@ class UserController extends Controller
          if (auth()->user()->hasRole('admin')) {
              // Elimina el usuario y redirecciona a la vista de listado de usuarios
              $usuario->delete();
-             return redirect()->route('usuarios.index')->with('success', 'Usuario eliminado exitosamente.');
+             return redirect()->route('usuario.index')->with('success', 'Usuario eliminado exitosamente.');
          }
  
          // Si el usuario autenticado no es 'admin', muestra un mensaje de error y redirecciona al listado de usuarios
-         return redirect()->route('usuarios.index')->with('error', 'No tienes permiso para eliminar usuarios.');
+         return redirect()->route('usuario.index')->with('error', 'No tienes permiso para eliminar usuarios.');
      }
 
     public function login(Request $request)

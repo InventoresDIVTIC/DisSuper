@@ -27,7 +27,8 @@
                     <th>Nombre</th>
                     <th>Email</th>
                     <th>Rol</th>
-                    <th>Fecha de registro</th>
+                    <th>Tipo de contrato</th>
+                    <th>Fecha de Registro</th>
                     <th>RPE</th>
                     <th>Fecha de ingreso</th>
 
@@ -41,7 +42,13 @@
                             <td class="text-center">{{ $user->id }}</td>
                             <td class="text-center">{{ $user->name }}</td>
                             <td class="text-center">{{ $user->email }}</td>
-                            
+                            <td class="text-center">
+                                @if ($user->contrato)
+                                    {{ $user->contrato->name }}
+                                @else
+                                    Sin contrato asignado
+                                @endif
+                            </td>
                             <td class="text-center">
                                 @if ($user->roles->count() > 0)
                                     {{ $user->roles->first()->name }}
@@ -49,7 +56,8 @@
                                     Sin rol asignado
                                 @endif
                             </td>
-                            <td class="text-center">{{ $user->fecha_registro}}</td>
+                            <td class="text-center">{{ $user->fecha_registro }}</td>
+
                             <td class="text-center">{{ $user->RPE_Empleado }}</td>
                             
 
