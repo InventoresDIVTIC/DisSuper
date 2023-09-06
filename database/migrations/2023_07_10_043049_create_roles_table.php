@@ -39,11 +39,15 @@ return new class extends Migration
         $gerenteDivisionalRole = Role::create([
             'name' => 'Gerente_divisional',
         ]);
+        
     }
+
 
     /**
      * Reverse the migrations.
      */
+
+
     public function down(): void
     {
         Schema::dropIfExists('roles');

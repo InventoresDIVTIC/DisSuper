@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Empleado;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Contrato;
 
 class EmpleadoController extends Controller
 {
@@ -12,17 +14,22 @@ class EmpleadoController extends Controller
      */
     public function index()
     {
-        $empleado = Empleado::all();
-        
-        return view('index',compact('empleado'));
+        // Obtener el usuario autenticado actualmente
+        $user = Auth::user();
+
+        // Obtener los empleados asociados al usuario autenticado
+        $empleados = $user->empleados;
+        return view('index', compact('empleados'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
+    
     public function create()
     {
-        return view('empleados.agregar');
+        $contratos = Contrato::all();
+        return view('empleados.agregar', compact('contratos'));
     }
 
     /**
@@ -34,7 +41,7 @@ class EmpleadoController extends Controller
             'RPE_Empleado' => ['required', 'unique:empleados',],
             'nombre_Empleado' => ['required', ],
             'fecha_ingreso' => ['required', ],
-            //Modificaciones de Lalo
+            'contrato_id' => ['required', 'exists:contratos,id'], // Agrega la validación para el contrato//Modificaciones de Lalo
             'id_zona' => [],
         ]);
 
@@ -42,11 +49,17 @@ class EmpleadoController extends Controller
         $empleado->RPE_Empleado = $request->RPE_Empleado;
         $empleado->nombre_Empleado = $request->nombre_Empleado;
         $empleado->fecha_ingreso = $request->fecha_ingreso;
-        $empleado->id_zona = 1;
+         $empleado->id_zona = 1;
+       
        
 
+        // Asociar el contrato seleccionado al empleado
+        $empleado->contrato_id = $request->contrato_id;
         $empleado->save();
-
+        // Asignar automáticamente el usuario autenticado al empleado creado
+        $user = Auth::user();
+        $empleado->users()->attach($user);
+        
         return redirect('/index');
     }
 
@@ -55,7 +68,7 @@ class EmpleadoController extends Controller
      */
     public function show(Empleado $empleado)
     {
-        return view('empleados.show',compact('empleado')); 
+        return view('empleados.show',compact('empleado'));
     }
 
     /**

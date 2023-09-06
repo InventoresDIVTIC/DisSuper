@@ -30,7 +30,7 @@ return new class extends Migration
         Schema::table('empleados', function (Blueprint $table) {
             $table->unsignedBigInteger('id_zona')->default(0)->nullable();
 
-            $table->foreign('id_zona')->references('id_zona')->on('zonas')->onDelete('cascade');
+            $table->foreign('id_zona', 'fk_idZona_empleados')->references('id_zona')->on('zonas')->onDelete('cascade');
         });
 
     }
@@ -42,7 +42,7 @@ return new class extends Migration
     {
         
         Schema::table('empleados', function (Blueprint $table){
-            $table->dropForeign('id_zona'); //Aqui esta el error, se necesita corregir el nombre de la llave foránea con la nomenclatura correcta
+            $table->dropForeign('fk_idZona_empleados'); 
         });
         
         Schema::dropIfExists('zonas');

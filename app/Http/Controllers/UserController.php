@@ -6,25 +6,27 @@ use Illuminate\Http\Request;
 use App\Models\User;
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+   
     public function index()
     {
-        return view('sesion.register');
+        
+        // Obtener todos los usuarios con sus roles
+        $users = User::with('roles')->get();
+
+        return view('usuarios.index', compact('users'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
+
     public function create()
     {
-        return view('sesion.register');
+        
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+   
+
     public function store(Request $request)
     {
         $request->validate([
@@ -36,23 +38,28 @@ class UserController extends Controller
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = Hash::make($request->password); // Asegúrate de que la contraseña se guarde correctamente hasheada
+        $user->password = Hash::make($request->password); // La contraseña se guarda correctamente hasheada
 
         $user->save();
         // No inicies sesión manualmente con Auth::login($user);
         // El usuario no se logueará automáticamente después de registrarse
-        return redirect('index');
+        return redirect('login');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        //
-    }
 
-    /**
+     public function show(string $id)
+     {
+         // Lógica para obtener el usuario específico basado en el ID
+         $user = User::findOrFail($id);
+     
+         // Pasar el usuario a la vista usuarios.show
+         return view('usuarios.show', compact('user'));
+     }
+
+    /**s
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
@@ -71,26 +78,27 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
-    }
 
+     public function destroy(User $usuario)
+     {
+         // Verifica si el usuario autenticado tiene el rol 'admin'
+         if (auth()->user()->hasRole('admin')) {
+             // Elimina el usuario y redirecciona a la vista de listado de usuarios
+             $usuario->delete();
+             return redirect()->route('usuarios.index')->with('success', 'Usuario eliminado exitosamente.');
+         }
+ 
+         // Si el usuario autenticado no es 'admin', muestra un mensaje de error y redirecciona al listado de usuarios
+         return redirect()->route('usuarios.index')->with('error', 'No tienes permiso para eliminar usuarios.');
+     }
 
-
-
-
-
-
-
-
-    
     public function login(Request $request)
     {
         $credentials = $request->validate([
             'email' => 'required',
             'password' => 'required',
         ]);
+
 
         if (Auth::attempt($credentials)) {
             // Autenticación exitosa, redireccionar a una página de bienvenida o a la página principal
@@ -103,3 +111,8 @@ class UserController extends Controller
         }
     }
 }
+
+
+
+
+
