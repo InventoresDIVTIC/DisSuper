@@ -49,7 +49,7 @@ class RegisterController extends Controller
         $user->fecha_registro = $data['fecha_registro']; // Asegúrate de que $data['fecha_registro'] esté en formato 'YYYY-MM-DD'
 
         // Asociar el contrato seleccionado al empleado
-        $user->contrato_id = $data['contrato']; // Usar 'contrato' en lugar de 'contrato_id'
+        $user->contrato_id = $data['contrato']; 
         $user->save();
 
         // Asignar el rol seleccionado al nuevo usuario

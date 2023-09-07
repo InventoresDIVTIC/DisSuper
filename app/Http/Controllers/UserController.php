@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Contrato;
+use App\Models\Role;
 class UserController extends Controller
 {
    
@@ -50,34 +52,57 @@ class UserController extends Controller
      * Display the specified resource.
      */
 
-     public function show(string $id)
-     {
-         // Lógica para obtener el usuario específico basado en el ID
-         $user = User::findOrFail($id);
-     
-         // Pasar el usuario a la vista usuarios.show
-         return view('usuarios.show', compact('user'));
-     }
+     public function show($id)
+    {
+        $usuario = User::findOrFail($id); // Suponiendo que estás buscando un usuario por su ID
+        $contratos = Contrato::all();
+        $roles = Role::all();
+        return view('usuarios.show', compact('usuario', 'contratos','roles'));
+    }
 
-    /**s
+    /**
      * Show the form for editing the specified resource.
      */
+
     public function edit(string $id)
     {
-        //
+        $usuario = User::findOrFail($id);
+        $contratos = Contrato::all();
+        return view('usuarios.show', compact('usuario', 'contratos'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+     public function update(Request $request, $id)
+     {
+        
+   
+    
+      // Obtener el usuario que deseas actualizar
+      $usuario = User::findOrFail($id);
+      
+      // Actualizar los campos con los nuevos valores del formulario
+    $usuario->name = $request->input('name');
+    $usuario->email = $request->input('email');
+    $usuario->RPE_Empleado = $request->input('RPE_Empleado');
+    $usuario->fecha_registro = $request->input('fecha_registro');
+    // Actualizar el contrato
+    $usuario->contrato()->associate($request->input('contrato'));
+    
+    // Actualizar los roles
+    $usuario->roles()->sync($request->input('rol'));
+    // Actualizar otros campos si es necesario
+    
+    // Guardar los cambios en la base de datos
+    $usuario->save();
+
+    // Redirigir a una página de confirmación o de detalles del usuario
+    return redirect()->route('usuario.show', $id)->with('success', 'Los cambios se han guardado correctamente.');
+     }
+
+
 
      public function destroy(User $usuario)
      {

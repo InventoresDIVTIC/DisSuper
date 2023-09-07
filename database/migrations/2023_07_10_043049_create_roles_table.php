@@ -22,22 +22,22 @@ return new class extends Migration
             'name' => 'Admin',
         ]);
         $jefaturaInmediataRole = Role::create([
-            'name' => 'Jefatura_inmediata',
+            'name' => 'Jefatura inmediata',
         ]);
         $jefaturaZonalProcesoRole = Role::create([
-            'name' => 'Jefatura_zonal_de_proceso',
+            'name' => 'Jefatura zonal de proceso',
         ]);
         $jefaturaZonalProcesoTrabajoRole = Role::create([
-            'name' => 'Jefatura_zonal_de_proceso_de_trabajo',
+            'name' => 'Jefatura zonal de proceso de trabajo',
         ]);
         $superintendenteZonaRole = Role::create([
-            'name' => 'Superintendente_de_zona',
+            'name' => 'Superintendente de zona',
         ]);
         $subjerenteTrabajoRole = Role::create([
-            'name' => 'Subjerente_de_trabajo',
+            'name' => 'Subjerente de trabajo',
         ]);
         $gerenteDivisionalRole = Role::create([
-            'name' => 'Gerente_divisional',
+            'name' => 'Gerente divisional',
         ]);
         
     }
