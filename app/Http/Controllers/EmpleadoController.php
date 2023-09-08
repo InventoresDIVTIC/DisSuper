@@ -65,8 +65,10 @@ class EmpleadoController extends Controller
      * Display the specified resource.
      */
     public function show(Empleado $empleado)
-    {
-        return view('empleados.show',compact('empleado'));
+    { 
+        
+        $contratos = Contrato::all();
+        return view('empleados.show',compact('empleado','contratos'));
     }
 
     /**
@@ -81,21 +83,32 @@ class EmpleadoController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, Empleado $empleado)
-{
+{ // Validar los datos del formulario
+    // Validar los datos del formulario
     $request->validate([
-        'RPE_Empleado' => ['required','numeric', 'digits:8', 'unique:empleados,RPE_Empleado,'.$empleado->id],
-        'nombre_Empleado' => ['required'],
-        'fecha_ingreso' => ['required'],
+        'RPE_Empleado' => 'required|max:5',
+        'nombre_Empleado' => 'required|string|max:255',
+        'contrato' => 'required|exists:contratos,id',
+        'fecha_ingreso' => 'required|date',
     ]);
 
-    $empleado->RPE_Empleado = $request->RPE_Empleado;
-    $empleado->nombre_Empleado = $request->nombre_Empleado;
-    $empleado->fecha_ingreso = $request->fecha_ingreso;
+    // Actualizar los campos con los nuevos valores del formulario
+    $empleado->RPE_Empleado = $request->input('RPE_Empleado');
+    $empleado->nombre_Empleado = $request->input('nombre_Empleado');
 
+    // Actualizar el contrato
+    $empleado->contrato()->associate($request->input('contrato'));
+
+    $empleado->fecha_ingreso = $request->input('fecha_ingreso');
+
+    // Guardar los cambios en la base de datos
     $empleado->save();
 
-    return redirect('/empleado');
-}
+    // Redirigir a una página de confirmación o de detalles del usuario
+    return redirect()->route('empleado.show', $empleado->id)->with('success', 'Los cambios se han guardado correctamente.');
+    }
+
+
 
     /**
      * Remove the specified resource from storage.

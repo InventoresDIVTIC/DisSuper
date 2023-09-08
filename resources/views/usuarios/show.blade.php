@@ -1,5 +1,9 @@
 @extends('layouts.nav')
   @section('content')
+
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="{{ asset('js/user_confirmation.js') }}"></script>
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
@@ -263,10 +267,11 @@
                       </form>
                   </div>
                   <!-- /.tab-pane -->
-
+                 
                   <div class="tab-pane" id="ModInfo">
                   <h2>Modificar Usuario: {{ strtoupper($usuario->name) }}</h2><br><br>
-                  <form method="POST" action="{{ route('usuario.update', $usuario->id) }}">
+                  <form method="POST" id="tuFormularioId2" action="{{ route('usuario.update', $usuario->id) }}">
+                  
                     @csrf
                     @method('PATCH')
                     <label for="contrato_id"><i ></i> Nombre:</label><br>
@@ -360,7 +365,7 @@
                         
                             
                             <div class="col-4">
-                                <button type="submit" class="btn btn-primary btn-block" id="submitButton" enable>Guardar Cambios</button>
+                              <button type="submit" id="submitButton2" class="btn btn-danger">Guardar cambios</button>
                             </div>
                         </div>
                     </form>
@@ -378,3 +383,6 @@
       </div><!-- /.container-fluid -->
     </section>
      @endsection
+     @section('scripts')
+    <script src="{{ asset('js/usuario/modificar_alert.js') }}"></script>
+    @endsection
