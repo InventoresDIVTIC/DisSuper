@@ -10,14 +10,20 @@
         <div class="row">
           <div class="col-md-3">
 
-            <!-- Profile Image -->
-            <div class="card card-primary card-outline">
-              <div class="card-body box-profile">
-                <div class="text-center">
-                  <img class="profile-user-img img-fluid img-circle"
-                       src="../../dist/img/user4-128x128.jpg"
-                       alt="User profile picture">
-                </div>
+          <div class="card card-primary card-outline">
+                    <div class="card-body box-profile">
+                        <div class="text-center">
+                        @if($usuario->photo)
+                            <img id="profile-image" class="profile-user-img img-fluid img-circle"
+                                
+                                src="data:image/jpeg;base64,{{ $usuario->photo }}"
+                                alt="Foto de perfil">
+                        @else
+                            <img id="profile-image" class="profile-user-img img-fluid img-circle"
+                                src="{{ asset('dist/img/D.png') }}"
+                                alt="Foto de perfil por defecto">
+                        @endif
+                        </div>
 
                 <h3 class="profile-username text-center">Nombre: {{ $usuario->name }}</h3> <!-- Agregar "Nombre:" aquí -->
 
@@ -270,10 +276,23 @@
                  
                   <div class="tab-pane" id="ModInfo">
                   <h2>Modificar Usuario: {{ strtoupper($usuario->name) }}</h2><br><br>
-                  <form method="POST" id="tuFormularioId2" action="{{ route('usuario.update', $usuario->id) }}">
+                  <form method="POST" id="tuFormularioId2" action="{{ route('usuario.update', $usuario->id) }}" enctype="multipart/form-data">
                   
                     @csrf
                     @method('PATCH')
+
+
+                    <label for="contrato_id"><i ></i> Foto de perfil:</label><br>
+                        <div class="input-group mb-3">
+                        <input type="file" name="photo" id="photo" accept="image/*" value="{{ $usuario->pho }}">
+
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-user"></span>
+                                </div>
+                            </div>
+                        </div>
+
                     <label for="contrato_id"><i ></i> Nombre:</label><br>
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" name="name" placeholder="Nombre completo"  value="{{ $usuario->name }}">

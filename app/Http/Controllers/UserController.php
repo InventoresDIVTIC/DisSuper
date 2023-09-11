@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 use App\Models\Contrato;
 use App\Models\Role;
@@ -78,8 +79,19 @@ class UserController extends Controller
      public function update(Request $request, $id)
      {
         
-   
-    
+     // Validación de datos
+     $validator = Validator::make($request->all(), [
+        // ... otras reglas de validación ...
+
+        'photo' => 'nullable|image|max:5000',
+    ]);
+
+    if ($validator->fails()) {
+        return redirect()->back()
+            ->withErrors($validator)
+            ->withInput();
+    }
+
       // Obtener el usuario que deseas actualizar
       $usuario = User::findOrFail($id);
       
@@ -94,13 +106,32 @@ class UserController extends Controller
     // Actualizar los roles
     $usuario->roles()->sync($request->input('rol'));
     // Actualizar otros campos si es necesario
-    
+
+     // Actualizar la foto de perfil si se proporciona una nueva
+     
+    // Actualizar la foto de perfil si se proporciona una nueva
+    if ($request->hasFile('photo')) {
+        $photo = $request->file('photo');
+
+        // Verifica si hay errores en la carga del archivo
+        if ($photo->isValid()) {
+            // El archivo es válido, procede con el procesamiento y almacenamiento
+            $photoData = base64_encode(file_get_contents($photo->getRealPath()));
+            $usuario->photo = $photoData;
+        } else {
+            // El archivo no es válido, maneja el error apropiadamente
+            return redirect()->back()->withInput()->withErrors([
+                'photo' => 'El archivo de foto no es válido.',
+            ]);
+        }
+    }
+
     // Guardar los cambios en la base de datos
     $usuario->save();
 
     // Redirigir a una página de confirmación o de detalles del usuario
     return redirect()->route('usuario.show', $id)->with('success', 'Los cambios se han guardado correctamente.');
-     }
+}
 
 
 
@@ -135,6 +166,8 @@ class UserController extends Controller
             ]);
         }
     }
+      
+    
 }
 
 

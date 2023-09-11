@@ -20,6 +20,9 @@ Route::resource('empleado', EmpleadoController::class);
 Route::resource('usuario', UserController::class);
 
 
+
+
+
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 
