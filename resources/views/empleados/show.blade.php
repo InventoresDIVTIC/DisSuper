@@ -1,5 +1,6 @@
 @extends('layouts.nav')
   @section('content')
+  @vite(['resources/js/newIndicador.js'])
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
@@ -33,27 +34,6 @@
               </div>
               <!-- /.card-body -->
             </div>
-            {{-- <div class="card card-primary">
-                <div class="card-header">
-                  <h3 class="card-title">Documentos</h3>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                    <ul class="list-group list-group-unbordered mb-3">
-                        <li class="list-group-item">
-                          <b>Rendición de Cuentas</b> <a class="float-right">0</a>
-                        </li>
-                        <li class="list-group-item">
-                          <b>Llamadas de Atención</b> <a class="float-right">0</a>
-                        </li>
-                        <li class="list-group-item">
-                          <b>Actas Administrativas</b> <a class="float-right">0</a>
-                        </li>
-                      </ul>
-                </div>
-                <!-- /.card-body -->
-              </div> --}}
-            <!-- /.card -->
           </div>
 
           
@@ -224,35 +204,129 @@
                 </div>
 
 
-                  <!-- /.tab-pane -->
+                  <!-- Generar rendición de cuentas -->
                   <div class="tab-pane" id="GenerarRC">
                     <form class="form-horizontal">
+                      <div class="form-group row">
+                        <div class="text-primary col-md-12"> 
+                          <label class="col-sm-12 text-center"> Generar Llamada de Atención</label>
+                        </div>
+                      </div>
+
                         <div class="form-group row">
-                          <label for="inputName" class="col-sm-2 col-form-label">Indicador</label>
-                          <div class="col-sm-10">
-                            <input type="string" class="form-control" id="inputIndicador" placeholder="Nombre del Indicador">
+
+                          <label class="col-sm-1.8 col-form-label">N. Llamada</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control" id="inputNLlamada" placeholder="N. llamada">
                           </div>
+
+                          <label class="col-sm-1.5 col-form-label">Ciclo</label>
+                          <div class="col-sm-3">
+                            <input type="number" class="form-control" id="inputCiclo" placeholder="Ciclo">
+                          </div>
+
+                          <label class="col-sm-1.5 col-form-label">Fecha</label>
+                          <div class="col-sm-3">
+                            <input type="date" class="form-control" id="inputDate" placeholder="Fecha">
+                          </div>
+                          
                         </div>
   
                         <div class="form-group row">
-                          <label for="inputCargo" class="col-sm-2 col-form-label">Texto</label>
-                          <div class="col-sm-10">
-                            <textarea class="form-control" rows="3" placeholder="Explique el Fallo del Indicador"></textarea>
+                          <label for="inputCargo" class="col-sm-12 col-form-label">Motivo de la Rendición de Cuentas</label>
+                          <div class="col-sm-12">
+                            <textarea class="form-control" rows="3" placeholder="Explique el Motivo de la Rendición de Cuentas"></textarea>
                           </div>
                         </div>
 
                         <div class="form-group row">
-                            <!-- <label for="customFile">Custom File</label> -->
-                            <label for="inputCargo" class="col-sm-2 col-form-label">Evidencia</label>
-                            <div class="col-sm-10">
-                                <div class="input-group">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="customFile">
-                                        <label class="custom-file-label" for="customFile">Imagen de Evidencia</label>
-                                    </div>
-                                </div>
+                          <!-- <label for="customFile">Custom File</label> -->
+                          <label for="inputCargo" class="col-sm-2 col-form-label">Evidencia</label>
+                          <div class="col-sm-10">
+                              <div class="input-group">
+                                  <div class="custom-file">
+                                      <input type="file" class="custom-file-input" id="ImagenMotivo">
+                                      <label class="custom-file-label" for="customFile">Evidencia del Motivo de la Rendición de Cuentas</label>
+                                  </div>
+                              </div>
+                          </div>
+                        </div>
+
+                        <div class="form-group row">
+                          <label for="inputCargo" class="col-sm-12 col-form-label">Fundamento de la Rendición de Cuentas</label>
+                          <div class="col-sm-12">
+                            <textarea class="form-control" rows="3" placeholder="Explique su Fundamento"></textarea>
+                          </div>
+                        </div>
+
+                        <div class="form-group row">
+                          <!-- <label for="customFile">Custom File</label> -->
+                          <label for="inputCargo" class="col-sm-2 col-form-label">Evidencia</label>
+                          <div class="col-sm-10">
+                              <div class="input-group">
+                                  <div class="custom-file">
+                                      <input type="file" class="custom-file-input" id="imagenFundamento">
+                                      <label class="custom-file-label" for="customFile">Evidencia del Fundamento</label>
+                                  </div>
+                              </div>
+                          </div>
+                        </div>
+
+                        <div class="form-group row">
+                          <label class="col-md-11 text-center col-form-label">Indicadores</label>
+                          <div class="row text-right">
+                            <div class="col-md-2">
+                              <button class="btn add-btn btn-info" id="addIndicador">+</button>
                             </div>
                           </div>
+                        </div>
+
+                          <div class="Indicadores">
+
+                            <div class="form-group row">
+                              <label class="col-sm-3 col-form-label"> Nombre del Indicador 1</label>
+                              <div class="col-md-9">
+                                <input type="string" class="form-control" placeholder="Nombre del Indicador">
+                                
+                              </div>
+                            </div>
+
+                            <div class="form-group row">
+                              <label class="col-sm-3 col-form-label"> Actividad</label>
+                              <div class="col-md-9">
+                                <textarea rows="3" class="form-control" placeholder="Explique la actividad a realizar"> </textarea>
+                              </div>
+                            </div>
+
+                            <div class="form-group row">
+                              <label class="col-sm-3 col-form-label"> Hallazgo</label>
+                              <div class="col-md-9">
+                                <textarea rows="3" class="form-control" placeholder="Explique sus Hallazgos"> </textarea>
+                              </div>
+                            </div>
+
+                            <div class="form-group row">
+                              <div class="text-info col-md-12"> 
+                                <label class="col-sm-12 text-center"> Proximamente se incluirán Sistemas de Referencia y las Normas Incumplidas por indicador</label>
+                              </div>
+                            </div>
+
+                          </div>
+
+                          <div class="form-group row">
+                            <label for="inputCargo" class="col-sm-4 col-form-label">Usuario a mandar a revisión</label>
+                            <div class="col-sm-8">
+                              <div class="form-group">
+                                <select class="form-control">
+                                  <option>Juan Mecanico</option>
+                                  <option>Doctor Bonilla</option>
+                                  <option>Eduardo Quintero</option>
+                                  <option>David Guadalupe</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                          
   
                         <div class="form-group row">
                           <div class="offset-sm-2 col-sm-10">
@@ -323,4 +397,6 @@
         <!-- /.row -->
       </div><!-- /.container-fluid -->
     </section>
-     @endsection
+
+<script src="js/newIndicador.js"></script>
+@endsection
