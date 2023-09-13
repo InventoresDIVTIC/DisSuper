@@ -22,21 +22,15 @@ return new class extends Migration
             $table->date('fecha_registro')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->binary('photo')->nullable();
+            $table->string('photo')->nullable(); // Nuevo campo para almacenar la ruta de la imagen
             $table->rememberToken();
             $table->timestamps();
-
             $table->unsignedBigInteger('contrato_id')->nullable(); // Agrega la columna contrato_id
             $table->foreign('contrato_id')->references('id')->on('contratos'); // Agrega la relación
             // Campos adicionales para usuarios
             
         });
-        
-
-
-
-      
-        
+ 
     }
 
     /**

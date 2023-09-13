@@ -155,7 +155,8 @@
         <div class="image">
           <!--<img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">-->
           <div class="user-profile">
-            <img src="{{ asset('dist/img/user2-160x160.jpg') }}" alt="Perfil de usuario" class="profile-image">
+            <img src="{{ $photoUrl }}" alt="Foto de perfil" class="profile-image">
+            
             <div class="profile-options">
               <a href="ruta-del-perfil" id="perfil-link">Ver perfil</a>
               <form action="/logout" method="POST">

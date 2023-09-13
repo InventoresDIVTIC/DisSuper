@@ -15,7 +15,7 @@ class UserController extends Controller
         
         // Obtener todos los usuarios con sus roles
         $users = User::with('roles')->get();
-
+       
         return view('usuarios.index', compact('users'));
     }
 
@@ -58,7 +58,9 @@ class UserController extends Controller
         $usuario = User::findOrFail($id); // Suponiendo que estás buscando un usuario por su ID
         $contratos = Contrato::all();
         $roles = Role::all();
-        return view('usuarios.show', compact('usuario', 'contratos','roles'));
+        $photoUrl = asset( $usuario->photo); // Obtener la URL de la foto
+        
+        return view('usuarios.show', compact('usuario', 'contratos','roles','photoUrl'));
     }
 
     /**
@@ -77,12 +79,10 @@ class UserController extends Controller
      */
 
      public function update(Request $request, $id)
-     {
-        
-     // Validación de datos
-     $validator = Validator::make($request->all(), [
+{
+    // Validación de datos
+    $validator = Validator::make($request->all(), [
         // ... otras reglas de validación ...
-
         'photo' => 'nullable|image|max:5000',
     ]);
 
@@ -92,34 +92,36 @@ class UserController extends Controller
             ->withInput();
     }
 
-      // Obtener el usuario que deseas actualizar
-      $usuario = User::findOrFail($id);
-      
-      // Actualizar los campos con los nuevos valores del formulario
+    // Obtener el usuario que deseas actualizar
+    $usuario = User::findOrFail($id);
+
+    // Almacenar la ruta de la foto anterior (si existe)
+    $oldPhotoPath = $usuario->photo;
+
+    // Actualizar los campos con los nuevos valores del formulario
     $usuario->name = $request->input('name');
     $usuario->email = $request->input('email');
     $usuario->RPE_Empleado = $request->input('RPE_Empleado');
     $usuario->fecha_registro = $request->input('fecha_registro');
-    // Actualizar el contrato
     $usuario->contrato()->associate($request->input('contrato'));
-    
-    // Actualizar los roles
     $usuario->roles()->sync($request->input('rol'));
-    // Actualizar otros campos si es necesario
 
-     // Actualizar la foto de perfil si se proporciona una nueva
-     
     // Actualizar la foto de perfil si se proporciona una nueva
     if ($request->hasFile('photo')) {
         $photo = $request->file('photo');
 
-        // Verifica si hay errores en la carga del archivo
         if ($photo->isValid()) {
-            // El archivo es válido, procede con el procesamiento y almacenamiento
-            $photoData = base64_encode(file_get_contents($photo->getRealPath()));
-            $usuario->photo = $photoData;
+            $imageName = time() . '.' . $photo->getClientOriginalExtension();
+
+            $photo->move(public_path('dist/img/photo_users'), $imageName);
+
+            $usuario->photo = 'dist/img/photo_users/' . $imageName;
+
+            // Eliminar la foto de perfil anterior si existe
+            if ($oldPhotoPath && file_exists(public_path($oldPhotoPath))) {
+                unlink(public_path($oldPhotoPath));
+            }
         } else {
-            // El archivo no es válido, maneja el error apropiadamente
             return redirect()->back()->withInput()->withErrors([
                 'photo' => 'El archivo de foto no es válido.',
             ]);
@@ -132,6 +134,7 @@ class UserController extends Controller
     // Redirigir a una página de confirmación o de detalles del usuario
     return redirect()->route('usuario.show', $id)->with('success', 'Los cambios se han guardado correctamente.');
 }
+     
 
 
 

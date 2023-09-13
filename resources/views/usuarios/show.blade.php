@@ -12,18 +12,17 @@
 
           <div class="card card-primary card-outline">
                     <div class="card-body box-profile">
-                        <div class="text-center">
-                        @if($usuario->photo)
-                            <img id="profile-image" class="profile-user-img img-fluid img-circle"
-                                
-                                src="data:image/jpeg;base64,{{ $usuario->photo }}"
-                                alt="Foto de perfil">
-                        @else
-                            <img id="profile-image" class="profile-user-img img-fluid img-circle"
-                                src="{{ asset('dist/img/D.png') }}"
-                                alt="Foto de perfil por defecto">
-                        @endif
-                        </div>
+                      <div class="text-center">
+
+                      @if ($usuario->photo)
+                          <img id="profile-image" class="profile-user-img img-fluid img-circle"
+                        src="{{ $photoUrl }}" alt="Foto de perfil">
+                      @else
+                          <img id="profile-image" class="profile-user-img img-fluid img-circle"
+                              src="{{ asset('dist/img/D.png') }}" alt="Foto de perfil por defecto">
+                      @endif
+
+                      </div>
 
                 <h3 class="profile-username text-center">Nombre: {{ $usuario->name }}</h3> <!-- Agregar "Nombre:" aquí -->
 
