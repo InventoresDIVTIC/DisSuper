@@ -13,6 +13,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -21,6 +22,7 @@ return new class extends Migration
             $table->date('fecha_registro')->nullable(false)->default(today());
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('photo')->nullable(); // Nuevo campo para almacenar la ruta de la imagen
             $table->rememberToken();
             $table->timestamps();
 

@@ -1,5 +1,7 @@
 @extends('layouts.nav')
   @section('content')
+
+  <script src="{{ asset('js/empleado_confirmation.js') }}"></script>
   @vite(['resources/js/newIndicador.js'])
     <!-- Main content -->
     <section class="content">
@@ -339,47 +341,40 @@
                   <!-- /.tab-pane -->
 
                   <div class="tab-pane" id="ModInfo">
-                    <form class="form-horizontal">
-                      <div class="form-group row">
-                        <label for="inputName" class="col-sm-2 col-form-label">Nombre</label>
-                        <div class="col-sm-10">
-                          <input type="string" class="form-control" id="inputName" placeholder="Nombre">
-                        </div>
+                 
+                  <form method="POST"id="tuFormularioId" action="{{ route('empleado.update', $empleado->id) }}">
+                    @csrf
+                    @method('PATCH')
+                      <div class="form-group">
+                        <label for="RPE_Empleado"><i class="fas fa-id-card"></i> RPE:</label>
+                        <input type="text" class="form-control" id="RPE_Empleado" maxlength="5" value="{{ $empleado->RPE_Empleado }}" name="RPE_Empleado" placeholder="RPE">
                       </div>
 
-                      <div class="form-group row">
-                        <label for="inputCargo" class="col-sm-2 col-form-label">Cargo</label>
-                        <div class="col-sm-10">
-                          <div class="form-group">
-                            <select class="form-control">
-                              <option>option 1</option>
-                              <option>option 2</option>
-                              <option>option 3</option>
-                              <option>option 4</option>
-                              <option>option 5</option>
-                            </select>
-                          </div>
-                        </div>
+                      <div class="form-group">
+                        <label for="nombre_Empleado"><i class="fas fa-user"></i> Nombre:</label>
+                        <input type="text" class="form-control" id="nombre_Empleado" name="nombre_Empleado"value="{{ $empleado->nombre_Empleado }}" placeholder="Nombre">
                       </div>
 
-                      <div class="form-group row">
-                        <label for="inputZona" class="col-sm-2 col-form-label">Zona</label>
-                        <div class="col-sm-10">
-                            <div class="form-group">
-                                <select class="form-control">
-                                  <option>option 1</option>
-                                  <option>option 2</option>
-                                  <option>option 3</option>
-                                  <option>option 4</option>
-                                  <option>option 5</option>
-                                </select>
-                              </div>
-                        </div>
+                      <div class="form-group">
+                        <label for="contrato_id"><i class="fas fa-file-contract"></i> Contrato:</label>
+                        <select name="contrato" id="contrato" class="form-control">
+                              @foreach($contratos as $contrato)
+                                  <option value="{{ $contrato->id }}" {{ $empleado->contrato_id == $contrato->id ? 'selected' : '' }}>
+                                      {{ $contrato->name }}
+                                  </option>
+                              @endforeach
+                          </select>
                       </div>
+
+                      <div class="form-group">
+                        <label for="fecha_ingreso"><i class="fas fa-calendar"></i> Fecha Ingreso:</label>
+                        <input type="date" class="form-control" name="fecha_ingreso" id="fecha_ingreso"value="{{ $empleado->fecha_ingreso }}" required>
+                      </div>
+
 
                       <div class="form-group row">
                         <div class="offset-sm-2 col-sm-10">
-                          <button type="submit" class="btn btn-danger">Submit</button>
+                        <button type="submit" class="btn btn-danger" id="submitButton">Guardar cambios</button>
                         </div>
                       </div>
 

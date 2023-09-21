@@ -1,23 +1,32 @@
 @extends('layouts.nav')
   @section('content')
+
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="{{ asset('js/user_confirmation.js') }}"></script>
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-3">
 
-            <!-- Profile Image -->
-            <div class="card card-primary card-outline">
-              <div class="card-body box-profile">
-                <div class="text-center">
-                  <img class="profile-user-img img-fluid img-circle"
-                       src="../../dist/img/user4-128x128.jpg"
-                       alt="User profile picture">
-                </div>
+          <div class="card card-primary card-outline">
+                    <div class="card-body box-profile">
+                      <div class="text-center">
 
-                <h3 class="profile-username text-center">Nombre Empleado</h3>
+                      @if ($usuario->photo)
+                          <img id="profile-image" class="profile-user-img img-fluid img-circle"
+                        src="{{ $photoUrl }}" alt="Foto de perfil">
+                      @else
+                          <img id="profile-image" class="profile-user-img img-fluid img-circle"
+                              src="{{ asset('dist/img/D.png') }}" alt="Foto de perfil por defecto">
+                      @endif
 
-                <p class="text-muted text-center">Cargo Actual</p>
+                      </div>
+
+                <h3 class="profile-username text-center">Nombre: {{ $usuario->name }}</h3> <!-- Agregar "Nombre:" aquí -->
+
+                <p class="text-muted text-center">Rol: {{ $usuario->roles->first()->name }}</p> <!-- Mostrar el primer rol del usuario -->
 
                 <ul class="list-group list-group-unbordered mb-3">
                   <li class="list-group-item">
@@ -27,7 +36,7 @@
                     <b>Encargado de la Zona</b> 
                   </li>
                   <li class="list-group-item">
-                    <b>Fecha de Ingreso</b> 
+                    <b>Fecha de Ingreso: {{ $usuario->fecha_registro }}</b> <!-- Muestra la fecha de ingreso -->
                   </li>
                 </ul>
               </div>
@@ -263,52 +272,120 @@
                       </form>
                   </div>
                   <!-- /.tab-pane -->
-
+                 
                   <div class="tab-pane" id="ModInfo">
-                    <form class="form-horizontal">
-                      <div class="form-group row">
-                        <label for="inputName" class="col-sm-2 col-form-label">Nombre</label>
-                        <div class="col-sm-10">
-                          <input type="string" class="form-control" id="inputName" placeholder="Nombre">
-                        </div>
-                      </div>
+                  <h2>Modificar Usuario: {{ strtoupper($usuario->name) }}</h2><br><br>
+                  <form method="POST" id="tuFormularioId2" action="{{ route('usuario.update', $usuario->id) }}" enctype="multipart/form-data">
+                  
+                    @csrf
+                    @method('PATCH')
 
-                      <div class="form-group row">
-                        <label for="inputCargo" class="col-sm-2 col-form-label">Cargo</label>
-                        <div class="col-sm-10">
-                          <div class="form-group">
-                            <select class="form-control">
-                              <option>option 1</option>
-                              <option>option 2</option>
-                              <option>option 3</option>
-                              <option>option 4</option>
-                              <option>option 5</option>
-                            </select>
-                          </div>
-                        </div>
-                      </div>
 
-                      <div class="form-group row">
-                        <label for="inputZona" class="col-sm-2 col-form-label">Zona</label>
-                        <div class="col-sm-10">
-                            <div class="form-group">
-                                <select class="form-control">
-                                  <option>option 1</option>
-                                  <option>option 2</option>
-                                  <option>option 3</option>
-                                  <option>option 4</option>
-                                  <option>option 5</option>
-                                </select>
-                              </div>
-                        </div>
-                      </div>
+                    <label for="contrato_id"><i ></i> Foto de perfil:</label><br>
+                        <div class="input-group mb-3">
+                        <input type="file" name="photo" id="photo" accept="image/*" value="{{ $usuario->pho }}">
 
-                      <div class="form-group row">
-                        <div class="offset-sm-2 col-sm-10">
-                          <button type="submit" class="btn btn-danger">Submit</button>
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-user"></span>
+                                </div>
+                            </div>
                         </div>
-                      </div>
 
+                    <label for="contrato_id"><i ></i> Nombre:</label><br>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" name="name" placeholder="Nombre completo"  value="{{ $usuario->name }}">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-user"></span>
+                                </div>
+                            </div>
+                        </div>
+                        @if ($errors->has('name'))
+                            <span class="error-message">{{ $errors->first('name') }}</span>
+                        @endif
+
+                        <label for="contrato_id"><i ></i> Email:</label><br>
+                        <div class="input-group mb-3">
+                            <input type="email" class="form-control" name="email" placeholder="Correo Electrónico"  value="{{ $usuario->email }}">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-envelope"></span>
+                                </div>
+                            </div>
+                        </div>
+                        @if ($errors->has('email'))
+                            <span class="error-message">{{ $errors->first('email') }}</span>
+                        @endif
+                        <label for="contrato_id"><i ></i> RPE:</label><br>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" name="RPE_Empleado" placeholder="RPE (max. 5 caracteres)" maxlength="5" value="{{ $usuario->RPE_Empleado }}">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-id-card"></span>
+                                </div>
+                            </div>
+                        </div>
+                        @if ($errors->has('RPE_Empleado'))
+                            <span class="error-message">{{ $errors->first('RPE_Empleado') }}</span>
+                        @endif
+                        <label for="contrato_id"><i ></i> Fecha de registro:</label><br>
+                        <div class="input-group mb-3">
+                            <input type="date" class="form-control" name="fecha_registro" placeholder="Fecha de ingreso"  value="{{ $usuario->fecha_registro }}" required>
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-calendar"></span>
+                                </div>
+                            </div>
+                        </div>
+                        @if ($errors->has('fecha_registro'))
+                            <span class="error-message">{{ $errors->first('fecha_registro') }}</span>
+                        @endif
+                        <label for="contrato_id"><i></i> Tipo de contrato:</label><br>
+                        <div class="input-group mb-3">
+                        <select name="contrato" id="contrato" class="form-control">
+                              @foreach($contratos as $contrato)
+                                  <option value="{{ $contrato->id }}" {{ $usuario->contrato_id == $contrato->id ? 'selected' : '' }}>
+                                      {{ $contrato->name }}
+                                  </option>
+                              @endforeach
+                          </select>
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-file-contract"></span>
+                                </div>
+                            </div>
+                        </div>
+                        @if ($errors->has('contrato'))
+                            <span class="error-message">{{ $errors->first('contrato') }}</span>
+                        @endif
+
+                       
+                        <label for="contrato_id"><i ></i> Tipo de rol:</label><br>
+                        <div class="input-group mb-3">
+                        <select name="rol" id="rol" class="form-control">
+                                  @foreach($roles as $rol)
+                                      <option value="{{ $rol->id }}" {{ $usuario->roles->contains('id', $rol->id) ? 'selected' : '' }}>
+                                          {{ $rol->name }}
+                                      </option>
+                                  @endforeach
+                              </select>
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-users"></span>
+                                </div>
+                            </div>
+                        </div>
+                        @if ($errors->has('role'))
+                            <span class="error-message">{{ $errors->first('role') }}</span>
+                        @endif
+
+                        
+                            
+                            <div class="col-4">
+                              <button type="submit" id="submitButton2" class="btn btn-danger">Guardar cambios</button>
+                            </div>
+                        </div>
                     </form>
                   </div>
                   <!-- /.tab-pane -->
@@ -324,3 +401,6 @@
       </div><!-- /.container-fluid -->
     </section>
      @endsection
+     @section('scripts')
+    <script src="{{ asset('js/usuario/modificar_alert.js') }}"></script>
+    @endsection

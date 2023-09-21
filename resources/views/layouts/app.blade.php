@@ -12,7 +12,10 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- archivo de confirmacion de modificar empleado -->
+    <script src="{{ asset('js/empleado_confirmation.js') }}"></script>
+    
     <!-- Styles -->
     <style>
         .btn-primary {

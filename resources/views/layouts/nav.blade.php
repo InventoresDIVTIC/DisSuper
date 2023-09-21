@@ -155,7 +155,8 @@
         <div class="image">
           <!--<img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">-->
           <div class="user-profile">
-            <img src="{{ asset('dist/img/user2-160x160.jpg') }}" alt="Perfil de usuario" class="profile-image">
+            <img src="#" alt="Foto de perfil" class="profile-image">
+            
             <div class="profile-options">
               <a href="ruta-del-perfil" id="perfil-link">Ver perfil</a>
               <form action="/logout" method="POST">
@@ -215,7 +216,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link {{ Request::is('empleado/create*') ? 'active' : '' }}">
+          <a href="#" class="nav-link {{ Request::is('usuario/*') && !Request::is('usuario/create*') ? 'active' : '' }}">
             <i class="fas fa-tag nav-icon"></i>
             <p>Modificar Usuario</p>
           </a>

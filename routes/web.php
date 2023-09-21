@@ -14,6 +14,7 @@ use App\Http\Controllers\ZonasController;
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::get('/index', [EmpleadoController::class, 'index']);
 Route::resource('empleado', EmpleadoController::class);
 Route::resource('usuario', UserController::class);
@@ -40,9 +41,7 @@ Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::get('admin/roles', [AdminController::class, 'roles'])->name('admin.roles');
-Route::put('admin/roles/{id}', [AdminController::class, 'updateRole'])->name('admin.updateRole');
-Route::get('/admin/create', 'AdminController@createAdmin');
+
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
