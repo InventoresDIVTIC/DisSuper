@@ -14,15 +14,24 @@ return new class extends Migration
         Schema::create('rendicion_cuentas', function (Blueprint $table) {
             $table->id("id_RC");
             $table->string('status');
-            $table->date('Fecha_Actividad');
             $table->timestamps();//Fecha de Rendicion
+
+            $table->integer("N_Llamada");
+            $table->string("ciclo", 12);
+            $table->date('Fecha_Actividad');
+            $table->string("Motivo_Rendicion");
+            $table->string("Fundamento_Rendición");
+
+            $table->unsignedBigInteger("Usuario_Revision");
+            $table->foreign('Usuario_Revision')->references('id_usuario')->on('users')->onDelete('cascade');
 
             $table->string('RPE_Empleado');
             $table->foreign('RPE_Empleado')->references('RPE_Empleado')->on('empleados')->onDelete('cascade');
 
-            $table->unsignedBigInteger('id_actividad');
-            $table->foreign('id_actividad')->references('id_actividad')->on('actividades')->onDelete('cascade');
+            //$table->unsignedBigInteger('id_actividad');
+            //$table->foreign('id_actividad')->references('id_actividad')->on('actividades')->onDelete('cascade');
 
+            
         });
     }
 
