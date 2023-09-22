@@ -1,0 +1,17 @@
+
+body {
+    background-color: #343a40; /* Cambiar el color de fondo según tus preferencias */
+}
+.container {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.card {
+    background-color: #fff;
+}
+.card-body {
+    width: 500px; /* Ajusta el ancho de la tarjeta según tus necesidades */
+    margin: 0 auto;
+}
