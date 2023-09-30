@@ -5,7 +5,7 @@
     <div class="card-header">
         <div class="row">
             <div class="col-md-12 text-center text-info">
-                <h3>Roles<h3>
+                <h3>Contratos<h3>
             </div>
         </div>
     </div>
@@ -15,7 +15,7 @@
                 <!-- Botón de agregar centrado -->
                 <a href="/contrato/create">
                     <button class="btn btn-primary btn-block" type="button">
-                        <i class="fas fa-plus"></i> Agregar nuevo rol
+                        <i class="fas fa-plus"></i> Agregar contrato
                     </button>
                 </a>
             </div>
@@ -24,14 +24,14 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Nombre Rol</th>
+                    <th>Nombre</th>
                     <th class="text-center">Opciones</th>
                 </tr>
             </thead>
             <tbody>
                     <tr>
-                        <td class="text-center">ID ROL</td>
-                        <td class="text-center">NOMBRE ROL</td> <!-- Mostrar el tipo de contrato -->
+                        <td class="text-center">ID CONTRATO</td>
+                        <td class="text-center">NOMBRE CONTRATO</td> <!-- Mostrar el tipo de contrato -->
                         <td class="text-center">
                             <div class="btn-group">
                                 <form action="" method="POST" style="display: inline-block;">

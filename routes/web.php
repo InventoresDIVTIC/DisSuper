@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ContratoController;
 use App\Http\Controllers\ZonasController;
 
 Route::get('/', function () {
@@ -32,7 +33,9 @@ Route::post('/registro', [RegisterController::class, 'register'])->name('registe
 //Lalo estuvo Aqui
 Route::get('/zonas', [ZonasController::class, 'index'])->name('zonas');
 
+Route::get('/contratos', [ContratoController::class, 'index'])->name('contratos');
 
+Route::get('/roles', [RoleController::class, 'index'])->name('roles');
 
 Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
 Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');

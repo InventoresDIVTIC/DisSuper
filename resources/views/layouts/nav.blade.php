@@ -269,6 +269,20 @@
             <p>Zonas</p>
           </a>
         </li>
+
+        <li class="nav-item">
+          <a href="/contratos" class="nav-link {{ Request::is('contratos') ? 'active' : '' }}">
+            <i class="fas fa-list-ul nav-icon"></i>
+            <p>Contratos</p>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a href="/roles" class="nav-link {{ Request::is('roles') ? 'active' : '' }}">
+            <i class="fas fa-list-ul nav-icon"></i>
+            <p>Roles</p>
+          </a>
+        </li>
         
       </ul>
   </li>
