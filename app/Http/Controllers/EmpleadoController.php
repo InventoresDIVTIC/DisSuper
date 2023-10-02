@@ -19,7 +19,15 @@ class EmpleadoController extends Controller
 
         // Obtener los empleados asociados al usuario autenticado
         $empleados = $user->empleados;
-        return view('index', compact('empleados'));
+
+
+         // Obtener los empleados que no tienen usuarios relacionados
+        $empleadosSinUsuario = Empleado::whereNotIn('id', function ($query) {
+            $query->select('empleado_id')
+                ->from('empleado_user'); 
+        })->get();
+
+        return view('index', compact('empleados', 'empleadosSinUsuario'));
     }
 
     /**
@@ -42,14 +50,14 @@ class EmpleadoController extends Controller
             'nombre_Empleado' => ['required', ],
             'fecha_ingreso' => ['required', ],
             'contrato_id' => ['required', 'exists:contratos,id'], // Agrega la validación para el contrato//Modificaciones de Lalo
-            'id_zona' => [],
+            
         ]);
 
         $empleado = new Empleado();
         $empleado->RPE_Empleado = $request->RPE_Empleado;
         $empleado->nombre_Empleado = $request->nombre_Empleado;
         $empleado->fecha_ingreso = $request->fecha_ingreso;
-         $empleado->id_zona = 1;
+        
        
        
 
