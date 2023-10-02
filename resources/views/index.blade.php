@@ -61,6 +61,60 @@
                 @endforelse
             </tbody>
         </table>
+
+
+        <div style="text-align: center; font-size: 28px; font-weight: bold; color: #0CA7EB; padding: 10px;">
+            Listado de empleados sin asociar a usuarios
+        </div>
+        <table id="example1" class="table table-bordered table-striped">
+        
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>RPE</th>
+                    <th>Nombre</th>
+                    <th>Tipo de contrato</th>
+                    <th>Fecha de ingreso</th>
+                    <th class="text-center">Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($empleadosSinUsuario as $empleado)
+                    <tr>
+                        <td class="text-center">{{ $empleado->id }}</td>
+                        <td class="text-center">{{ $empleado->RPE_Empleado }}</td>
+                        <td class="text-center">{{ $empleado->nombre_Empleado }}</td>
+                        <td class="text-center">
+                            @if ($empleado->contrato)
+                                {{ $empleado->contrato->name }}
+                            @else
+                                Sin contrato
+                            @endif
+                        </td>
+                        <td class="text-center">{{ $empleado->fecha_ingreso }}</td>
+                        <td class="text-center">
+                            <div class="btn-group">
+                                <a href="/empleado/{{ $empleado->id }}" type="button" class="btn btn-primary btn-sm">
+                                    <i class="fas fa-eye"></i> Ver perfil
+                                </a>
+                                <form action="/empleado/{{ $empleado->id }}" method="POST" style="display: inline-block;">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button class="btn btn-danger btn-sm" type="submit" onclick="return confirm('¿Estás seguro de que deseas eliminar este empleado?')">
+                                        <i class="fas fa-trash"></i> Eliminar
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="5" class="text-center">No se encontraron empleados.</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+        
         <br><br><br>
     </div>
 </div>

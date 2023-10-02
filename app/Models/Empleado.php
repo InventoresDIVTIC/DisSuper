@@ -17,8 +17,13 @@ class Empleado extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+    
     public function contrato()
     {
         return $this->belongsTo(Contrato::class);
+    }
+    public function user_EMPLEADO()
+    {
+        return $this->belongsTo(User::class);
     }
 }

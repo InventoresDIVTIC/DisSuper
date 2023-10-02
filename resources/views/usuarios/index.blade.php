@@ -26,8 +26,8 @@
                     <th>ID</th>
                     <th>Nombre</th>
                     <th>Email</th>
-                    <th>Rol</th>
                     <th>Tipo de contrato</th>
+                    <th>Rol</th>
                     <th>Fecha de Registro</th>
                     <th>RPE</th>
                     <th>Fecha de ingreso</th>

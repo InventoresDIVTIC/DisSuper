@@ -233,10 +233,11 @@
         </p>
       </a>
       <ul class="nav nav-treeview">
+      
         <li class="nav-item">
           <a href="/index" class="nav-link {{ Request::is('index') ? 'active' : '' }}">
             <i class="fas fa-list-ul nav-icon"></i>
-            <p>Listado</p>
+            <p>Mi listado</p>
           </a>
         </li>
         <li class="nav-item">
