@@ -49,7 +49,7 @@ class EmpleadoController extends Controller
         $empleado->RPE_Empleado = $request->RPE_Empleado;
         $empleado->nombre_Empleado = $request->nombre_Empleado;
         $empleado->fecha_ingreso = $request->fecha_ingreso;
-         $empleado->id_zona = 1;
+        $empleado->id_zona = 1;
        
        
 
