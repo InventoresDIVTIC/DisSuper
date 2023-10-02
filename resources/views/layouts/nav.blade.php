@@ -256,9 +256,9 @@
 
   <li class="nav-item menu-open">
       <a href="#" class="nav-link active">
-        <i class="nav-icon fas fa-users"></i> <!-- Cambia la clase de icono aquí para Empleados -->
+        <i class="nav-icon fas fa-users"></i> 
         <p>
-          Administrador
+          Otros
           <i class="right fas fa-angle-left"></i>
         </p>
       </a>

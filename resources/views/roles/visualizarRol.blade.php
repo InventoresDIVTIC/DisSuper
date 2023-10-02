@@ -13,11 +13,15 @@
         <div class="row">
             <div class="col-md-6 offset-md-3 text-center">
                 <!-- Botón de agregar centrado -->
-                <a href="/contrato/create">
-                    <button class="btn btn-primary btn-block" type="button">
-                        <i class="fas fa-plus"></i> Agregar nuevo rol
-                    </button>
-                </a>
+                <div class="input-group">
+                    <input class="form-control" id="nombreNuevoRol" placeholder="Nombre del Nuevo Rol">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary btn-block" type="button">
+                            <i class="fas fa-plus"></i> Agregar Nuevo Rol
+                        </button>
+                    </div>
+
+                </div>
             </div>
         </div>
         <table id="example1" class="table table-bordered table-striped">
