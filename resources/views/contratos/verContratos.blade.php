@@ -25,7 +25,20 @@
                 
             </div>
         </div>
-        <table id="example1" class="table table-bordered table-striped">
+        <br>
+
+        <div class="d-flex justify-content-end">
+            <div class="input-group input-group-sm text-right" style="width: 150px;">
+                <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-default">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <br>
+        <table id="tablContratos" class="table table-bordered table-striped">
             <thead>
                 <tr>
                     <th>ID</th>
