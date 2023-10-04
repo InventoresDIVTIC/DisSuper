@@ -72,6 +72,12 @@ class User extends Authenticatable
     {
         return $this->hasOne(Empleado::class);
     }
+    public function zonasEncargado()
+    {
+        return $this->hasMany(Zona::class, 'Encargado'); // Mantén 'Encargado' aquí
+    }
+    
+   
    
 
 }

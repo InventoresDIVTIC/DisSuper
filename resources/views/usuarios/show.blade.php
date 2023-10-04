@@ -1,7 +1,9 @@
 @extends('layouts.nav')
   @section('content')
-
-
+  <script src="../../plugins/bs-stepper/js/bs-stepper.min.js"></script>
+  <script src="../../plugins/dropzone/min/dropzone.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/min/dropzone.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/min/dropzone.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="{{ asset('js/user_confirmation.js') }}"></script>
     <!-- Main content -->
@@ -292,6 +294,8 @@
                             </div>
                         </div>
 
+
+
                     <label for="contrato_id"><i ></i> Nombre:</label><br>
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" name="name" placeholder="Nombre completo"  value="{{ $usuario->name }}">
@@ -402,5 +406,5 @@
     </section>
      @endsection
      @section('scripts')
-    <script src="{{ asset('js/usuario/modificar_alert.js') }}"></script>
+    <script src="{{ asset('dist/js/subir_archivos.js') }}"></script>
     @endsection

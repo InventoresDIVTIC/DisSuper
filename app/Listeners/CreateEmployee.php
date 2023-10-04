@@ -16,7 +16,6 @@ class CreateEmployee implements ShouldQueue
     public function handle(UserCreated $event)
     {
         $user = $event->user; // Obtén el usuario que se acaba de crear
-
         // Crear y guardar un nuevo empleado relacionado con el usuario
         $empleado = new Empleado();
         $empleado->RPE_Empleado = $user->RPE_Empleado;
@@ -24,7 +23,5 @@ class CreateEmployee implements ShouldQueue
         $empleado->contrato_id = $user->contrato_id;
         $empleado->fecha_ingreso = Carbon::now(); // Utiliza Carbon::now() para obtener la fecha y hora actual
         $empleado->save();
-
-
     }
 }

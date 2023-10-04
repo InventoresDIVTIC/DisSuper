@@ -12,27 +12,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-
         Schema::create('zonas', function (Blueprint $table) {
-            $table->id('id_zona')->unique()->required();
+            $table->id()->unique();
             $table->string('nombre_zona');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('Encargado'); // Clave foránea a la tabla de usuarios
             $table->timestamps();
         });
 
-        DB::table('zonas')->insert([
-            'id_zona' => 1,
-            'nombre_zona' => 'Sin Zona',
-            'user_id' => 1,
-        ]);
-
-
-        Schema::table('empleados', function (Blueprint $table) {
-            $table->unsignedBigInteger('id_zona')->default(0)->nullable();
-
-            $table->foreign('id_zona', 'fk_idZona_empleados')->references('id_zona')->on('zonas')->onDelete('cascade');
+        // Agregar la restricción de clave foránea
+        Schema::table('zonas', function (Blueprint $table) {
+            $table->foreign('Encargado')->references('id')->on('users'); // Corrige 'user_id' por 'Empleado'
         });
-
     }
 
     /**
@@ -40,9 +30,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-
-        Schema::table('empleados', function (Blueprint $table){
-            $table->dropForeign('fk_idZona_empleados'); 
+        // Eliminar la restricción de clave foránea primero
+        Schema::table('zonas', function (Blueprint $table) {
+            $table->dropForeign(['Empleado']); // Corrige 'user_id' por 'Empleado'
         });
 
         Schema::dropIfExists('zonas');

@@ -53,10 +53,6 @@ class RegisterController extends Controller
         // Asociar el contrato seleccionado al empleado
         $user->contrato_id = $data['contrato']; 
         $user->save();
-        
-
-
-
 
         // Asignar el rol seleccionado al nuevo usuario
         $role = Role::find($data['role']);

@@ -19,6 +19,7 @@ Route::get('/', function () {
 Route::get('/index', [EmpleadoController::class, 'index']);
 Route::resource('empleado', EmpleadoController::class);
 Route::resource('usuario', UserController::class);
+Route::resource('zonas', ZonasController::class);
 
 
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
@@ -30,8 +31,7 @@ Route::post('/registro', [RegisterController::class, 'register'])->name('registe
 
 
 
-//Lalo estuvo Aqui
-Route::get('/zonas', [ZonasController::class, 'index'])->name('zonas');
+
 
 Route::get('/contratos', [ContratoController::class, 'index'])->name('contratos');
 
