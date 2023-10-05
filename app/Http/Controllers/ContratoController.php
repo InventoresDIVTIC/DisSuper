@@ -13,7 +13,9 @@ class ContratoController extends Controller
      */
     public function index()
     {
-        return view('contratos.verContratos');
+        $contratos = Contrato::all(); 
+
+        return view('contratos.verContratos', ['contratos' => $contratos]);
     }
 
     /**
@@ -29,7 +31,17 @@ class ContratoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validación de los datos del formulario
+        $request->validate([
+            'nombreNuevoContrato' => 'required|string|max:255', // Puedes ajustar las reglas de validación según tus necesidades
+        ]);
+
+        // Crear un nuevo contrato
+        $contrato = new Contrato();
+        $contrato->name = $request->input('nombreNuevoContrato');
+        $contrato->save();
+
+        return redirect()->route('contratos.index')->with('success', 'Contrato agregado correctamente.');
     }
 
     /**
@@ -61,6 +73,16 @@ class ContratoController extends Controller
      */
     public function destroy(Contrato $contrato)
     {
-        //
+            // Verificar si se encontró el contrato (ya tienes el contrato como parámetro)
+
+        if (!$contrato) {
+            return redirect()->back()->with('error', 'El contrato no existe.');
+        }
+
+        // Eliminar el contrato
+        $contrato->delete();
+
+        // Redirigir de regreso con un mensaje de éxito
+        return redirect()->route('contratos.index')->with('success', 'Contrato eliminado correctamente.');
     }
 }

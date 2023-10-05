@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 use App\Models\Contrato;
 use App\Models\Role;
+use App\Models\Zonas;
 class UserController extends Controller
 {
    
@@ -58,6 +59,7 @@ class UserController extends Controller
         $usuario = User::findOrFail($id); // Suponiendo que estás buscando un usuario por su ID
         $contratos = Contrato::all();
         $roles = Role::all();
+  
         $photoUrl = asset( $usuario->photo); // Obtener la URL de la foto
         
         return view('usuarios.show', compact('usuario', 'contratos','roles','photoUrl'));

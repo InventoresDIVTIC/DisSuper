@@ -31,12 +31,27 @@
                 <p class="text-muted text-center">Rol: {{ $usuario->roles->first()->name }}</p> <!-- Mostrar el primer rol del usuario -->
 
                 <ul class="list-group list-group-unbordered mb-3">
-                  <li class="list-group-item">
-                    <b>Zona de Trabajo</b>
-                  </li>
-                  <li class="list-group-item">
-                    <b>Encargado de la Zona</b> 
-                  </li>
+                <li class="list-group-item">
+        <b>Zona de Trabajo:</b>
+        @if ($usuario->zonas->count() > 0)
+            @foreach ($usuario->zonas as $zona)
+                {{ $zona->nombre_zona }}
+                @if (!$loop->last)
+                    ,
+                @endif
+            @endforeach
+        @else
+            Sin zona asignada
+        @endif
+    </li>
+    <li class="list-group-item">
+        <b>Encargado de la Zona:</b>
+        @if ($usuario->zonas->count() > 0 && $usuario->zonas->first()->encargado)
+            {{ $usuario->zonas->first()->encargado->name }}
+        @else
+            Sin encargado asignado
+        @endif
+    </li>
                   <li class="list-group-item">
                     <b>Fecha de Ingreso: {{ $usuario->fecha_registro }}</b> <!-- Muestra la fecha de ingreso -->
                   </li>

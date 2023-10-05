@@ -20,6 +20,8 @@ Route::get('/index', [EmpleadoController::class, 'index']);
 Route::resource('empleado', EmpleadoController::class);
 Route::resource('usuario', UserController::class);
 Route::resource('zonas', ZonasController::class);
+Route::resource('contratos', ContratoController::class);
+Route::resource('roles', RoleController::class);
 
 
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
@@ -33,17 +35,7 @@ Route::post('/registro', [RegisterController::class, 'register'])->name('registe
 
 
 
-Route::get('/contratos', [ContratoController::class, 'index'])->name('contratos');
-
-Route::get('/roles', [RoleController::class, 'index'])->name('roles');
-
-Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
-Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
-Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
-Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
-
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-
 
 
 Auth::routes();

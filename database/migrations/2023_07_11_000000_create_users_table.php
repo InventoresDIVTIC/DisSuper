@@ -30,6 +30,8 @@ return new class extends Migration
             $table->unsignedBigInteger('contrato_id')->nullable();  // Agrega la columna contrato_id
             $table->foreign('contrato_id')->references('id')->on('contratos'); // Agrega la relación
             // Campos adicionales para usuarios
+
+          
             
         });
     }

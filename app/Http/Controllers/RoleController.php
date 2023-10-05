@@ -12,7 +12,7 @@ class RoleController extends Controller
     {
         $user = Auth::user();
         $empleados = $user->empleados;
-        $roles = Role::all();
+        $roles = Role::whereNotIn('id', [1])->get();
         return view('roles.visualizarRol', compact('roles'));
     }
 
@@ -24,29 +24,27 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         $role = new Role();
-        $role->name = $request->input('name');
+        $role->name = $request->input('NombreNuevoRol');
         $role->save();
 
-        return redirect()->route('roles.index')->with('success', 'Role created successfully');
+        return redirect()->route('roles.index')->with('Exito', 'Role creado con Exito.');
+        
     }
 
     public function edit(Role $role)
     {
-        return view('roles.edit', compact('role'));
+       //
     }
 
     public function update(Request $request, Role $role)
     {
-        $role->name = $request->input('name');
-        $role->save();
-
-        return redirect()->route('roles.index')->with('success', 'Role updated successfully');
+       //
     }
 
     public function destroy(Role $role)
     {
         $role->delete();
 
-        return redirect()->route('roles.index')->with('success', 'Role deleted successfully');
+        return redirect()->route('roles.index')->with('success', 'Role eliminado con Exito');
     }
 }
