@@ -25,7 +25,7 @@
             </div>
         </div>
 
-        <br><
+        <br>
 
         <div class="d-flex justify-content-end">
             <div class="input-group input-group-sm text-right" style="width: 150px;">
