@@ -40,16 +40,16 @@
 
                 
                 <div class="form-group">
-                  <label>Zona:</label>
-                  <select class="form-control select2" style="width:100%" name="id_zona" id="id_zona" required>
-                    <option selected="selected">default</option>
-                    {{-- @foreach($zonas as $zona)
-                      <option value="{{ $zona->id_zona }}" {{ old('zona') == $zona->id_zona ? 'selected' : '' }}>
-                          {{ $zona->nombre_zona }}
-                      </option>
-                    @endforeach --}}
-                  </select>
+                    <label for="id_zona">Zona:</label>
+                    <select class="form-control" name="id_zona" id="id_zona" required>
+                        @foreach ($zonas as $zona)
+                        <option value="{{ $zona->id }}">{{ $zona->nombre_zona }}</option>
+                        @endforeach
+                    </select>
                 </div>
+
+
+
               </div>
               <div class="card-footer">
                 <button type="submit" class="btn btn-primary"><i class="fas fa-check"></i> Enviar</button>

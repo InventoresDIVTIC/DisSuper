@@ -117,10 +117,10 @@
 
                         <div class="input-group mb-3">
                             <select id="zonas" name="zonas" class="form-control @error('zonas') is-invalid @enderror">
-                                        @foreach ($zonas as $zona)
-                                            <option value="{{ $zona->id }}">{{ $zona->nombre_zona }}</option>
-                                        @endforeach
-                                    </select>
+                                @foreach ($zonas as $zona)
+                                    <option value="{{ $zona->id }}">{{ $zona->nombre_zona }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         @if ($errors->has('zona_id'))
                             <span class="error-message">{{ $errors->first('zona_id') }}</span>

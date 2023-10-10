@@ -13,6 +13,7 @@ class Empleado extends Model
     {
         return $this->belongsToMany(User::class, 'empleado_user', 'empleado_id', 'user_id');
     }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
@@ -22,8 +23,17 @@ class Empleado extends Model
     {
         return $this->belongsTo(Contrato::class);
     }
-    public function user_EMPLEADO()
+    public function user_and_empleado()
     {
         return $this->belongsTo(User::class);
     }
+
+    public function zonas()
+    {
+        return $this->belongsToMany(Zona::class, 'empleado_zona');
+    }
+   
+   
+   
+
 }

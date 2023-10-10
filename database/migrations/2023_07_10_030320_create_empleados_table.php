@@ -12,15 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('empleados', function (Blueprint $table) {
-            $table->id();
+            $table->id()->unique();
+            $table->unsignedBigInteger('user_id')->nullable(true); // Agrega esta línea para user_id
             $table->char("RPE_Empleado", 8)->unique()->nullable(false);
             $table->string('nombre_Empleado')->nullable(false);
             $table->date('fecha_ingreso')->nullable(false);
             
 
-
             $table->unsignedBigInteger('contrato_id')->nullable(); // Agrega la columna contrato_id
-            $table->foreign('contrato_id')->references('id')->on('contratos'); // Agrega la relación
+            $table->foreign('contrato_id')->references('id')->on('contratos')->onDelete('cascade'); // Agrega la relación
 
             
             $table->timestamps();

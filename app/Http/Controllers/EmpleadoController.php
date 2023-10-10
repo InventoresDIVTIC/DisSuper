@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Empleado;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Events\EmpleadoUpdated;
 use App\Models\Contrato;
+use App\Models\Zona;
+use App\Models\User;
 
 class EmpleadoController extends Controller
 {
@@ -36,8 +39,9 @@ class EmpleadoController extends Controller
     
     public function create()
     {
+        $zonas = Zona::all();
         $contratos = Contrato::all();
-        return view('empleados.agregar', compact('contratos'));
+        return view('empleados.agregar', compact('contratos','zonas'));
     }
 
     /**
@@ -50,20 +54,24 @@ class EmpleadoController extends Controller
             'nombre_Empleado' => ['required', ],
             'fecha_ingreso' => ['required', ],
             'contrato_id' => ['required', 'exists:contratos,id'], // Agrega la validación para el contrato//Modificaciones de Lalo
-            
+            'id_zona' => ['required', 'exists:zonas,id'], // Valida que el ID de la zona exista en la tabla 'zonas'
         ]);
 
         $empleado = new Empleado();
         $empleado->RPE_Empleado = $request->RPE_Empleado;
         $empleado->nombre_Empleado = $request->nombre_Empleado;
         $empleado->fecha_ingreso = $request->fecha_ingreso;
-        $empleado->id_zona = 1;
-       
-       
 
         // Asociar el contrato seleccionado al empleado
         $empleado->contrato_id = $request->contrato_id;
+    
         $empleado->save();
+
+        // Asigna la zona seleccionada al empleado
+        $zona = Zona::find($request->input('id_zona'));
+        $empleado->zonas()->attach($zona);
+
+
         // Asignar automáticamente el usuario autenticado al empleado creado
         $user = Auth::user();
         $empleado->users()->attach($user);
@@ -76,9 +84,10 @@ class EmpleadoController extends Controller
      */
     public function show(Empleado $empleado)
     { 
-        
+        $zonas = Zona::all();
         $contratos = Contrato::all();
-        return view('empleados.show',compact('empleado','contratos'));
+       
+        return view('empleados.show',compact('empleado','contratos','zonas'));
     }
 
     /**
@@ -93,30 +102,42 @@ class EmpleadoController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, Empleado $empleado)
-{ // Validar los datos del formulario
-    // Validar los datos del formulario
-    $request->validate([
-        'RPE_Empleado' => 'required|max:5',
-        'nombre_Empleado' => 'required|string|max:255',
-        'contrato' => 'required|exists:contratos,id',
-        'fecha_ingreso' => 'required|date',
-    ]);
+    { // Validar los datos del formulario
+        // Validar los datos del formulario
+        $request->validate([
+            'RPE_Empleado' => 'required|max:5',
+            'nombre_Empleado' => 'required|string|max:255',
+            'contrato' => 'required|exists:contratos,id',
+            'fecha_ingreso' => 'required|date',
+        ]);
 
-    // Actualizar los campos con los nuevos valores del formulario
-    $empleado->RPE_Empleado = $request->input('RPE_Empleado');
-    $empleado->nombre_Empleado = $request->input('nombre_Empleado');
+        // Actualizar los campos con los nuevos valores del formulario
+        $empleado->RPE_Empleado = $request->input('RPE_Empleado');
+        $empleado->nombre_Empleado = $request->input('nombre_Empleado');
 
-    // Actualizar el contrato
-    $empleado->contrato()->associate($request->input('contrato'));
+        // Actualizar el contrato
+        $empleado->contrato()->associate($request->input('contrato'));
 
-    $empleado->fecha_ingreso = $request->input('fecha_ingreso');
+        $empleado->fecha_ingreso = $request->input('fecha_ingreso');
 
-    // Guardar los cambios en la base de datos
-    $empleado->save();
+       
+         // Obtener las zonas seleccionadas del formulario
+        $zonaIds = $request->input('zonas', []);
+        
+        // Sincronizar las zonas del empleado con las seleccionadas
+        $empleado->zonas()->sync($zonaIds);
 
-    // Redirigir a una página de confirmación o de detalles del usuario
-    return redirect()->route('empleado.show', $empleado->id)->with('success', 'Los cambios se han guardado correctamente.');
-    }
+
+
+
+        // Guardar los cambios en la base de datos
+        $empleado->save();
+        event(new EmpleadoUpdated($empleado));
+
+       
+        // Redirigir a una página de confirmación o de detalles del usuario
+        return redirect()->route('empleado.show', $empleado->id)->with('success', 'Los cambios se han guardado correctamente.');
+        }
 
 
 

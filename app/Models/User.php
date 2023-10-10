@@ -68,10 +68,6 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Contrato::class);
     }
-    public function empleado_USER()
-    {
-        return $this->hasOne(Empleado::class);
-    }
     public function zonasEncargado()
     {
         return $this->hasMany(Zona::class, 'Encargado');
@@ -84,6 +80,19 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Zona::class, 'zonas_users');
     }
+    public function empleado_and_user()
+    {
+        return $this->hasOne(Empleado::class);
+    }
+    public function empleado2()
+    {
+        return $this->hasOne(Empleado::class, 'user_id');
+    }
+    public function usuario2()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+   
     
    
    

@@ -31,7 +31,8 @@ return new class extends Migration
             $table->foreign('contrato_id')->references('id')->on('contratos'); // Agrega la relación
             // Campos adicionales para usuarios
 
-          
+            $table->unsignedBigInteger('empleado_id')->nullable(true);
+            $table->foreign('empleado_id')->references('id')->on('empleados');
             
         });
     }

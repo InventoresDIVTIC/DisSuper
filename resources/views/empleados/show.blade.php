@@ -384,6 +384,29 @@
                           </select>
                       </div>
 
+
+                      <label for="zonas"><i ></i> Selecciona una Zona:</label><br>
+                        <div class="input-group mb-3">
+                            <select id="zonas" name="zonas[]" class="form-control @error('zona') is-invalid @enderror">
+                                @foreach ($zonas as $zona)
+                                <option value="{{ $zona->id }}" {{ in_array($zona->id, $empleado->zonas->pluck('id')->toArray()) ? 'selected' : '' }}>
+                                    {{ $zona->nombre_zona }}
+                                </option>
+                                @endforeach
+                            </select>
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-users"></span>
+                                </div>
+                            </div>
+                        </div>
+                        @if ($errors->has('zona'))
+                            <span class="error-message">{{ $errors->first('zona') }}</span>
+                        @endif
+
+
+
+
                       <div class="form-group">
                         <label for="fecha_ingreso"><i class="fas fa-calendar"></i> Fecha Ingreso:</label>
                         <input type="date" class="form-control" name="fecha_ingreso" id="fecha_ingreso"value="{{ $empleado->fecha_ingreso }}" required>

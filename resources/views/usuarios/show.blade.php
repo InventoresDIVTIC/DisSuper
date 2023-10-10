@@ -32,26 +32,26 @@
 
                 <ul class="list-group list-group-unbordered mb-3">
                 <li class="list-group-item">
-        <b>Zona de Trabajo:</b>
-        @if ($usuario->zonas->count() > 0)
-            @foreach ($usuario->zonas as $zona)
-                {{ $zona->nombre_zona }}
-                @if (!$loop->last)
-                    ,
-                @endif
-            @endforeach
-        @else
-            Sin zona asignada
-        @endif
-    </li>
-    <li class="list-group-item">
-        <b>Encargado de la Zona:</b>
-        @if ($usuario->zonas->count() > 0 && $usuario->zonas->first()->encargado)
-            {{ $usuario->zonas->first()->encargado->name }}
-        @else
-            Sin encargado asignado
-        @endif
-    </li>
+                  <b>Zona de Trabajo:</b>
+                  @if ($usuario->zonas->count() > 0)
+                      @foreach ($usuario->zonas as $zona)
+                          {{ $zona->nombre_zona }}
+                          @if (!$loop->last)
+                              ,
+                          @endif
+                      @endforeach
+                  @else
+                      Sin zona asignada
+                  @endif
+              </li>
+              <li class="list-group-item">
+                  <b>Encargado de la Zona:</b>
+                  @if ($usuario->zonas->count() > 0 && $usuario->zonas->first()->encargado)
+                      {{ $usuario->zonas->first()->encargado->name }}
+                  @else
+                      Sin encargado asignado
+                  @endif
+              </li>
                   <li class="list-group-item">
                     <b>Fecha de Ingreso: {{ $usuario->fecha_registro }}</b> <!-- Muestra la fecha de ingreso -->
                   </li>
@@ -397,6 +397,27 @@
                         </div>
                         @if ($errors->has('role'))
                             <span class="error-message">{{ $errors->first('role') }}</span>
+                        @endif
+
+
+
+                        <label for="zonas"><i ></i> Selecciona una Zona:</label><br>
+                        <div class="input-group mb-3">
+                            <select id="zonas" name="zonas[]" class="form-control @error('zona') is-invalid @enderror">
+                                @foreach ($zonas as $zona)
+                                <option value="{{ $zona->id }}" {{ in_array($zona->id, $usuario->zonas->pluck('id')->toArray()) ? 'selected' : '' }}>
+                                    {{ $zona->nombre_zona }}
+                                </option>
+                                @endforeach
+                            </select>
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-users"></span>
+                                </div>
+                            </div>
+                        </div>
+                        @if ($errors->has('zona'))
+                            <span class="error-message">{{ $errors->first('zona') }}</span>
                         @endif
 
                         

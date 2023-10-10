@@ -9,12 +9,22 @@ class Zona extends Model
 {
     use HasFactory;
     protected $fillable = ['name'];
+
     public function encargado()
     {
         return $this->belongsTo(User::class, 'Encargado'); 
     }
+
     public function users()
     {
         return $this->belongsToMany(User::class, 'zonas_users');
     }
+
+    public function empleados()
+    {
+        return $this->belongsToMany(Empleado::class, 'empleado_zona');
+    }
 }
+
+
+

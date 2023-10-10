@@ -50,7 +50,7 @@ class RegisterController extends Controller
         $user->email = $data['email'];
         $user->password = Hash::make($data['password']);
         $user->RPE_Empleado = $data['RPE_Empleado'];
-        $user->fecha_registro = $data['fecha_registro']; // Asegúrate de que $data['fecha_registro'] esté en formato 'YYYY-MM-DD'
+        $user->fecha_registro = $data['fecha_registro']; // Asegurate de que $data['fecha_registro'] esté en formato 'YYYY-MM-DD'
         // Asociar el contrato seleccionado al empleado
         $user->contrato_id = $data['contrato']; 
         $user->save();
