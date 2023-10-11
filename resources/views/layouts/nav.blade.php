@@ -265,14 +265,14 @@
       </a>
       <ul class="nav nav-treeview">
         <li class="nav-item">
-          <a href="/puestos" class="nav-link {{ Request::is('puestos') ? 'active' : '' }}">
+          <a href="/puestos/show" class="nav-link {{ Request::is('puestos/show') ? 'active' : '' }}">
             <i class="fas fa-list-ul nav-icon"></i>
             <p>Listado de Puestos</p>
           </a>
         </li>
 
         <li class="nav-item">
-          <a href="/addPuestos" class="nav-link {{ Request::is('addPuestos') ? 'active' : '' }}">
+          <a href="/puestos" class="nav-link {{ Request::is('puestos') ? 'active' : '' }}">
             <i class="fas fa-list-ul nav-icon"></i>
             <p>Añadir Puestos</p>
           </a>

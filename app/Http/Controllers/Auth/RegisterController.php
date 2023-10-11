@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Events\UserCreated;
 use App\Models\User;
 use App\Models\Role;
+use App\Models\Zona;
 use App\Models\Contrato;
 use App\Models\Empleado;
 
@@ -49,18 +50,19 @@ class RegisterController extends Controller
         $user->email = $data['email'];
         $user->password = Hash::make($data['password']);
         $user->RPE_Empleado = $data['RPE_Empleado'];
-        $user->fecha_registro = $data['fecha_registro']; // Asegúrate de que $data['fecha_registro'] esté en formato 'YYYY-MM-DD'
+        $user->fecha_registro = $data['fecha_registro']; // Asegurate de que $data['fecha_registro'] esté en formato 'YYYY-MM-DD'
         // Asociar el contrato seleccionado al empleado
         $user->contrato_id = $data['contrato']; 
         $user->save();
-        
-
-
-
 
         // Asignar el rol seleccionado al nuevo usuario
         $role = Role::find($data['role']);
         $user->roles()->attach($role);
+
+         // Asociar el usuario a la zona seleccionada
+         $zona = Zona::find($data['zonas']);
+         $user->zonas()->attach($zona);
+
         event(new UserCreated($user));
         return $user;
     }
@@ -86,12 +88,13 @@ class RegisterController extends Controller
     
         $adminRole = Role::where('name', 'Admin')->first();
         $user = auth()->user();
-
+        
         if ($user && $user->roles->contains($adminRole)){
             // Obtener todos los roles disponibles de la base de datos
             $roles = Role::all();
             $contratos = Contrato::all();
-            return view('auth.register', compact('roles', 'contratos')); // Pasar los roles a la vista
+            $zonas = Zona::all();
+            return view('auth.register', compact('roles', 'contratos','zonas')); // Pasar los roles a la vista
         } else {
             abort(403); // Retorna un error 403 Forbidden si el usuario no tiene permisos de administrador
         }

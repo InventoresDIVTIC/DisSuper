@@ -24,13 +24,13 @@
             <thead>
                 <tr>
                     <th>ID</th>
+                    <th>RPE</th>
                     <th>Nombre</th>
                     <th>Email</th>
                     <th>Tipo de contrato</th>
                     <th>Rol</th>
+                    <th>Zona</th>
                     <th>Fecha de Registro</th>
-                    <th>RPE</th>
-                    <th>Fecha de ingreso</th>
 
                     <th class="text-center">Opciones</th>
                 </tr>
@@ -40,6 +40,7 @@
                     @foreach ($users as $index => $user)
                         <tr>
                             <td class="text-center">{{ $user->id }}</td>
+                            <td class="text-center">{{ $user->RPE_Empleado }}</td>
                             <td class="text-center">{{ $user->name }}</td>
                             <td class="text-center">{{ $user->email }}</td>
                             <td class="text-center">
@@ -56,12 +57,22 @@
                                     Sin rol asignado
                                 @endif
                             </td>
+                           
+
+                           
+                            <td class="text-center">
+                                @if ($user->zonas->count() > 0)
+                                    @foreach ($user->zonas as $zona)
+                                        {{ $zona->nombre_zona }}
+                                        @if (!$loop->last),
+                                        @endif
+                                    @endforeach
+                                @else
+                                    Sin zonas asignadas
+                                @endif
+                            </td>
                             <td class="text-center">{{ $user->fecha_registro }}</td>
-
-                            <td class="text-center">{{ $user->RPE_Empleado }}</td>
-                            
-
-                            <td class="text-center">{{ $user->created_at }}</td>
+                          
                             <td class="text-center">
                                 <div class="btn-group">
                                     @php

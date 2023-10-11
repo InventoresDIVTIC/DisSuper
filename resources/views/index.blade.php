@@ -27,6 +27,7 @@
                     <th>RPE</th>
                     <th>Nombre</th>
                     <th>Tipo de contrato</th>
+                    <th>Zona</th>
                     <th>Fecha de ingreso</th>
                     <th class="text-center">Opciones</th>
                 </tr>
@@ -38,6 +39,11 @@
                         <td class="text-center">{{ $empleado->RPE_Empleado }}</td>
                         <td class="text-center">{{ $empleado->nombre_Empleado }}</td>
                         <td class="text-center">{{ $empleado->contrato->name }}</td> <!-- Mostrar el tipo de contrato -->
+                        <td class="text-center">
+                            @foreach ($empleado->zonas as $zona)
+                                {{ $zona->nombre_zona }}
+                            @endforeach
+                        </td>
                         <td class="text-center">{{ $empleado->fecha_ingreso }}</td>
                         <td class="text-center">
                             <div class="btn-group">
@@ -74,6 +80,7 @@
                     <th>RPE</th>
                     <th>Nombre</th>
                     <th>Tipo de contrato</th>
+                    <th>Zona</th>
                     <th>Fecha de ingreso</th>
                     <th class="text-center">Opciones</th>
                 </tr>
@@ -90,6 +97,11 @@
                             @else
                                 Sin contrato
                             @endif
+                        </td>
+                        <td class="text-center">
+                            @foreach ($empleado->zonas as $zona)
+                                {{ $zona->nombre_zona }}
+                            @endforeach
                         </td>
                         <td class="text-center">{{ $empleado->fecha_ingreso }}</td>
                         <td class="text-center">

@@ -7,7 +7,12 @@ use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
 use App\Events\UserCreated;
+use App\Events\UserUpdated;
+use App\Events\EmpleadoUpdated;
 use App\Listeners\CreateEmployee;
+use App\Listeners\UpdateEmployeeProfile;
+use App\Listeners\UpdateUserFromEmpleado;
+
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -23,6 +28,15 @@ class EventServiceProvider extends ServiceProvider
         UserCreated::class => [
             CreateEmployee::class,
         ],
+        UserUpdated::class => [
+            UpdateEmployeeProfile::class,
+        ],
+      
+        EmpleadoUpdated::class => [
+            UpdateUserFromEmpleado::class,
+        ],
+        
+    
     ];
 
     /**

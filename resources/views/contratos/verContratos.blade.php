@@ -13,57 +13,54 @@
         <div class="row">
             <div class="col-md-6 offset-md-3 text-center">
                 <!-- Botón de agregar centrado -->
-                <div class="input-group">
-                    <input class="form-control" id="nombreNuevoContrato" placeholder="Nombre del Nuevo Contrato">
-                    <div class="input-group-append">
-                        <button class="btn btn-primary btn-block" type="button">
-                            <i class="fas fa-plus"></i> Agregar contrato
-                        </button>
-                    </div>
-
+                <div class="text-center">
+                    <form action="{{ route('contratos.store') }}" method="POST" class="form-inline">
+                        @csrf
+                        <div class="input-group">
+                            <input class="form-control" id="nombreNuevoContrato" name="nombreNuevoContrato" placeholder="Nombre del Nuevo Contrato" style="width: 500px;">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="submit">
+                                    <i class="fas fa-plus"></i> Agregar contrato
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
                 
             </div>
         </div>
         <br>
 
-        <div class="d-flex justify-content-end">
-            <div class="input-group input-group-sm text-right" style="width: 150px;">
-                <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-                <div class="input-group-append">
-                    <button type="submit" class="btn btn-default">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
+        
         <br>
         <table id="tablContratos" class="table table-bordered table-striped">
-            <thead>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th class="text-center">Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($contratos as $contrato)
                 <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th class="text-center">Opciones</th>
+                    <td class="text-center">{{ $contrato->id }}</td>
+                    <td class="text-center">{{ $contrato->name }}</td>
+                    <td class="text-center">
+                        <div class="btn-group">
+                            <form action="{{ route('contratos.destroy', $contrato->id) }}" method="POST" style="display: inline-block;">
+                                @method('DELETE')
+                                @csrf
+                                <button class="btn btn-danger btn-sm" type="submit" onclick="return confirm('¿Estás seguro de que deseas eliminar este contrato?')">
+                                    <i class="fas fa-trash"></i> Eliminar
+                                </button>
+                            </form>
+                        </div>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                    <tr>
-                        <td class="text-center">ID CONTRATO</td>
-                        <td class="text-center">NOMBRE CONTRATO</td> <!-- Mostrar el tipo de contrato -->
-                        <td class="text-center">
-                            <div class="btn-group">
-                                <form action="" method="POST" style="display: inline-block;">
-                                    @method('DELETE')
-                                    @csrf
-                                    <button class="btn btn-danger btn-sm" type="submit" onclick="return confirm('¿Estás seguro de que deseas eliminar este empleado?')">
-                                        <i class="fas fa-trash"></i> Eliminar
-                                    </button>
-                                </form>
-                            </div>
-                        </td>
-                    </tr>
-            </tbody>
-        </table>
+            @endforeach
+        </tbody>
+    </table>
         <br><br><br>
     </div>
 </div>

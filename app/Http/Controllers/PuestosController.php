@@ -9,11 +9,6 @@ class PuestosController extends Controller
 {
     public function index()
     {
-        return view('puestos.viewPuestos');
-    }
-
-    public function add()
-    {
         return view('puestos.addPuestos');
     }
 
@@ -22,7 +17,7 @@ class PuestosController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -38,7 +33,7 @@ class PuestosController extends Controller
      */
     public function show(Puestos $puestos)
     {
-        //
+        return view('puestos.viewPuestos');
     }
 
     /**

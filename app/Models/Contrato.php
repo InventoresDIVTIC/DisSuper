@@ -20,4 +20,8 @@ class Contrato extends Model
     {
         return $this->hasMany(User::class);
     }
+    public function setNameAttribute($value)//convierte el tenxto ingresado de nuevo contrato a mayusculas
+    {
+        $this->attributes['name'] = strtoupper($value);
+    }
 }
