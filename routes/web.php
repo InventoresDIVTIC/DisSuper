@@ -10,6 +10,7 @@ use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ContratoController;
+use App\Http\Controllers\PuestosController;
 use App\Http\Controllers\ZonasController;
 
 Route::get('/', function () {
@@ -32,6 +33,9 @@ Route::post('/registro', [RegisterController::class, 'register'])->name('registe
 
 //Lalo estuvo Aqui
 Route::get('/zonas', [ZonasController::class, 'index'])->name('zonas');
+
+Route::get('/puestos', [PuestosController::class, 'index'])->name('puestos');
+Route::get('/addPuestos', [PuestosController::class, 'add'])->name('addPuestos');
 
 Route::get('/contratos', [ContratoController::class, 'index'])->name('contratos');
 

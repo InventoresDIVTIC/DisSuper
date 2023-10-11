@@ -259,34 +259,60 @@
       <a href="#" class="nav-link active">
         <i class="nav-icon fas fa-users"></i> 
         <p>
-          Otros
+          Puestos
           <i class="right fas fa-angle-left"></i>
         </p>
       </a>
       <ul class="nav nav-treeview">
         <li class="nav-item">
-          <a href="/zonas" class="nav-link {{ Request::is('zonas') ? 'active' : '' }}">
+          <a href="/puestos" class="nav-link {{ Request::is('puestos') ? 'active' : '' }}">
             <i class="fas fa-list-ul nav-icon"></i>
-            <p>Zonas</p>
+            <p>Listado de Puestos</p>
           </a>
         </li>
 
         <li class="nav-item">
-          <a href="/contratos" class="nav-link {{ Request::is('contratos') ? 'active' : '' }}">
+          <a href="/addPuestos" class="nav-link {{ Request::is('addPuestos') ? 'active' : '' }}">
             <i class="fas fa-list-ul nav-icon"></i>
-            <p>Contratos</p>
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a href="/roles" class="nav-link {{ Request::is('roles') ? 'active' : '' }}">
-            <i class="fas fa-list-ul nav-icon"></i>
-            <p>Roles</p>
+            <p>Añadir Puestos</p>
           </a>
         </li>
         
       </ul>
   </li>
+
+  <li class="nav-item menu-open">
+    <a href="#" class="nav-link active">
+      <i class="nav-icon fas fa-users"></i> 
+      <p>
+        Otros
+        <i class="right fas fa-angle-left"></i>
+      </p>
+    </a>
+    <ul class="nav nav-treeview">
+      <li class="nav-item">
+        <a href="/zonas" class="nav-link {{ Request::is('zonas') ? 'active' : '' }}">
+          <i class="fas fa-list-ul nav-icon"></i>
+          <p>Zonas</p>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="/contratos" class="nav-link {{ Request::is('contratos') ? 'active' : '' }}">
+          <i class="fas fa-list-ul nav-icon"></i>
+          <p>Contratos</p>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="/roles" class="nav-link {{ Request::is('roles') ? 'active' : '' }}">
+          <i class="fas fa-list-ul nav-icon"></i>
+          <p>Roles</p>
+        </a>
+      </li>
+      
+    </ul>
+</li>
     
   </ul>
 </nav>

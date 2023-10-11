@@ -11,7 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('puestos', function (Blueprint $table) {
+            $table->id('id_puesto');
+            $table->string('Nombre_Puesto');
+            $table->string('Empresa-Proceso');
+            $table->string('Area de Responsabilidad');
+            $table->string('Rama de Actividad');
+            $table->string('Especialidad');
+
+            $table->unsignedBigInteger('id_zona');
+            $table->foreign('id_zona')->references('id_zona')->on('zonas')->onDelete('cascade');
+        });
     }
 
     /**
@@ -19,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('puestos');
     }
 };
