@@ -257,7 +257,7 @@
 
   <li class="nav-item menu-open">
       <a href="#" class="nav-link active">
-        <i class="nav-icon fas fa-users"></i> 
+        <i class="nav-icon fas fa-id-card"></i> 
         <p>
           Puestos
           <i class="right fas fa-angle-left"></i>
@@ -273,7 +273,7 @@
 
         <li class="nav-item">
           <a href="/puestos" class="nav-link {{ Request::is('puestos') ? 'active' : '' }}">
-            <i class="fas fa-list-ul nav-icon"></i>
+            <i class="fas fa-user-plus"></i>
             <p>Añadir Puestos</p>
           </a>
         </li>
@@ -298,6 +298,13 @@
       </li>
 
       <li class="nav-item">
+        <a href="/zonas/create" class="nav-link {{ Request::is('zonas/create') ? 'active' : '' }}">
+          <i class="fas fa-list-ul nav-icon"></i>
+          <p>Modificar Zonas</p>
+        </a>
+      </li>
+
+      <li class="nav-item">
         <a href="/contratos" class="nav-link {{ Request::is('contratos') ? 'active' : '' }}">
           <i class="fas fa-list-ul nav-icon"></i>
           <p>Contratos</p>
@@ -308,6 +315,13 @@
         <a href="/roles" class="nav-link {{ Request::is('roles') ? 'active' : '' }}">
           <i class="fas fa-list-ul nav-icon"></i>
           <p>Roles</p>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="/jefaturas" class="nav-link {{ Request::is('jefaturas') ? 'active' : '' }}">
+          <i class="fas fa-list-ul nav-icon"></i>
+          <p>Jefaturas</p>
         </a>
       </li>
       

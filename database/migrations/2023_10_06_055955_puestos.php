@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('puestos', function (Blueprint $table) {
             $table->id();
-            $table->string('RPE');
+            $table->string('ClavePuesto');
             $table->string('Nombre_Puesto');
             $table->string('Empresa-Proceso');
             $table->string('Area de Responsabilidad');

@@ -23,7 +23,7 @@ class ZonasController extends Controller
      */
     public function create()
     {
-        //
+        return view('zonas.modificarZonas');
     }
     /**
      * Store a newly created resource in storage.
@@ -61,7 +61,7 @@ class ZonasController extends Controller
      */
     public function edit(Zonas $zonas)
     {
-        //
+        
     }
 
     /**
