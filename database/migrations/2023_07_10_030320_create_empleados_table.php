@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('empleados', function (Blueprint $table) {
             $table->id()->unique();
             $table->unsignedBigInteger('user_id')->nullable(true); // Agrega esta línea para user_id
-            $table->char("RPE_Empleado", 8)->unique()->nullable(false);
+            $table->char("RPE_Empleado", 5)->unique()->nullable(false);
             $table->string('nombre_Empleado')->nullable(false);
             $table->date('fecha_ingreso')->nullable(false);
             

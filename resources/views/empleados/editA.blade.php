@@ -45,7 +45,9 @@
             <div class="card-header">
               <h3 class="card-title">Registrar Empleado</h3>
             </div>
-             <form action="{{ route('empleado.update', $empleado->id) }}" method="post" id="form-empleado">
+
+
+            <form action="{{ route('empleado.update', $empleado->id) }}" method="post" id="form-empleado">
               @csrf
               @method('PUT')
               <div class="card-body">
@@ -71,6 +73,8 @@
                 <button type="submit" class="btn btn-primary">Enviar</button>
               </div>
             </form>
+
+            
           </div>
         </div>
       </div>

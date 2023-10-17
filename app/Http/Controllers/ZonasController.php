@@ -23,7 +23,7 @@ class ZonasController extends Controller
      */
     public function create()
     {
-        return view('zonas.modificarZonas');
+  
     }
     /**
      * Store a newly created resource in storage.
@@ -53,28 +53,52 @@ class ZonasController extends Controller
      */
     public function show(Zonas $zonas)
     {
-        //
+        $zonas = Zona::all();
+        return view('zonas.modificarZonas', compact('zonas'));
+
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Zonas $zonas)
-    {
-        
-    }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Zonas $zonas)
-    {
-        //
-    }
-
+     public function edit($id)
+     {
+         $zona = Zona::find($id);
+     
+         if (!$zona) {
+             return redirect()->route('zonas.index')->with('error', 'La zona no existe.');
+         }
+     
+         $usuarios = User::whereNotIn('id', [1])->get();
+     
+         return view('zonas.modificarZonas', compact('usuarios', 'zona'));
+     }
+ 
+     public function update(Request $request, $id)
+     {
+         $zona = Zona::find($id);
+ 
+         if (!$zona) {
+             return redirect()->route('zonas.index')->with('error', 'La zona no existe.');
+         }
+ 
+         $request->validate([
+             'nombre_Zona' => 'required|string|max:255',
+             'EncargadoZona' => 'required|exists:users,id',
+         ]);
+ 
+         $zona->nombre_Zona = $request->input('nombre_Zona');
+         $zona->Encargado = $request->input('EncargadoZona');
+         $zona->save();
+ 
+         return redirect()->route('zonas.index')->with('success', 'Zona actualizada correctamente.');
+     }
     /**
      * Remove the specified resource from storage.
-     */
+    */
+
+
     public function destroy($id)
 {
     // Buscar la zona por su ID

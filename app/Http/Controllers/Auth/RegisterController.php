@@ -68,7 +68,6 @@ class RegisterController extends Controller
     }
 
 
-
     // Sobrescribe el método register para evitar el inicio de sesión automático
     public function register(Request $request)
     {

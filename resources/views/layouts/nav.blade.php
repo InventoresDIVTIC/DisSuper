@@ -192,11 +192,10 @@
 <nav class="mt-2">
   <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
    
-  
-  
-  <li class="nav-item menu-open">
+    <!-- Usuarios -->
+    <li class="nav-item menu-open">
       <a href="#" class="nav-link active">
-        <i class="nav-icon fas fa-user"></i> <!-- Cambia la clase de icono aquí para Usuarios -->
+        <i class="nav-icon fas fa-users"></i>
         <p>
           Usuarios
           <i class="right fas fa-angle-left"></i>
@@ -211,29 +210,29 @@
         </li>
         <li class="nav-item">
           <a href="/register" class="nav-link {{ Request::is('register') ? 'active' : '' }}">
-            <i class="fas fa-user nav-icon"></i> <!-- Cambia la clase de icono aquí para esta opción -->
+            <i class="fas fa-user-plus nav-icon"></i>
             <p>Registrar usuario</p>
           </a>
         </li>
         <li class="nav-item">
           <a href="#" class="nav-link {{ Request::is('usuario/*') && !Request::is('usuario/create*') ? 'active' : '' }}">
-            <i class="fas fa-tag nav-icon"></i>
+            <i class="fas fa-edit nav-icon"></i>
             <p>Modificar Usuario</p>
           </a>
         </li>
       </ul>
-  </li>
+    </li>
   
-  <li class="nav-item menu-open">
+    <!-- Empleados -->
+    <li class="nav-item menu-open">
       <a href="#" class="nav-link active">
-        <i class="nav-icon fas fa-users"></i> <!-- Cambia la clase de icono aquí para Empleados -->
+        <i class="nav-icon fas fa-users"></i>
         <p>
           Empleados
           <i class="right fas fa-angle-left"></i>
         </p>
       </a>
       <ul class="nav nav-treeview">
-      
         <li class="nav-item">
           <a href="/index" class="nav-link {{ Request::is('index') ? 'active' : '' }}">
             <i class="fas fa-list-ul nav-icon"></i>
@@ -248,16 +247,17 @@
         </li>
         <li class="nav-item">
           <a href="/empleado/create" class="nav-link {{ Request::is('empleado/create*') ? 'active' : '' }}">
-            <i class="fas fa-tag nav-icon"></i>
+            <i class="fas fa-user-plus nav-icon"></i>
             <p>Agregar Empleado</p>
           </a>
         </li>
       </ul>
-  </li>
+    </li>
 
-  <li class="nav-item menu-open">
+    <!-- Puestos -->
+    <li class="nav-item menu-open">
       <a href="#" class="nav-link active">
-        <i class="nav-icon fas fa-id-card"></i> 
+        <i class="nav-icon fas fa-briefcase"></i>
         <p>
           Puestos
           <i class="right fas fa-angle-left"></i>
@@ -270,76 +270,70 @@
             <p>Listado de Puestos</p>
           </a>
         </li>
-
         <li class="nav-item">
           <a href="/puestos" class="nav-link {{ Request::is('puestos') ? 'active' : '' }}">
-            <i class="fas fa-user-plus"></i>
+            <i class="fas fa-user-plus nav-icon"></i>
             <p>Añadir Puestos</p>
           </a>
         </li>
-        
       </ul>
-  </li>
+    </li>
 
-  <li class="nav-item menu-open">
-    <a href="#" class="nav-link active">
-      <i class="nav-icon fas fa-id-card"></i> 
-      <p>
-        Zonas
-        <i class="right fas fa-angle-left"></i>
-      </p>
-    </a>
-    <ul class="nav nav-treeview">
+    <!-- Zonas -->
+    <li class="nav-item menu-open">
+      <a href="#" class="nav-link active">
+        <i class="nav-icon fas fa-map-marker"></i>
+        <p>
+          Zonas
+          <i class="right fas fa-angle-left"></i>
+        </p>
+      </a>
+      <ul class="nav nav-treeview">
         <li class="nav-item">
           <a href="/zonas" class="nav-link {{ Request::is('zonas') ? 'active' : '' }}">
             <i class="fas fa-list-ul nav-icon"></i>
             <p>Listado Zonas</p>
           </a>
         </li>
-  
         <li class="nav-item">
-          <a href="/zonas/create" class="nav-link {{ Request::is('zonas/create') ? 'active' : '' }}">
-            <i class="fas fa-list-ul nav-icon"></i>
+          <a href="#" class="nav-link {{ Request::is('zonas/create') ? 'active' : '' }}">
+            <i class="fas fa-edit nav-icon"></i>
             <p>Modificar Zonas</p>
           </a>
         </li>
-      
-    </ul>
-</li>
+      </ul>
+    </li>
 
-  <li class="nav-item menu-open">
-    <a href="#" class="nav-link active">
-      <i class="nav-icon fas fa-users"></i> 
-      <p>
-        Otros
-        <i class="right fas fa-angle-left"></i>
-      </p>
-    </a>
-    
-
-      <li class="nav-item">
-        <a href="/contratos" class="nav-link {{ Request::is('contratos') ? 'active' : '' }}">
-          <i class="fas fa-list-ul nav-icon"></i>
-          <p>Contratos</p>
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a href="/roles" class="nav-link {{ Request::is('roles') ? 'active' : '' }}">
-          <i class="fas fa-list-ul nav-icon"></i>
-          <p>Roles</p>
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a href="/jefaturas" class="nav-link {{ Request::is('jefaturas') ? 'active' : '' }}">
-          <i class="fas fa-list-ul nav-icon"></i>
-          <p>Jefaturas</p>
-        </a>
-      </li>
-      
-    </ul>
-</li>
+    <!-- Otros -->
+    <li class="nav-item menu-open">
+      <a href="#" class="nav-link active">
+        <i class="nav-icon fas fa-cogs"></i>
+        <p>
+          Otros
+          <i class="right fas fa-angle-left"></i>
+        </p>
+      </a>
+      <ul class="nav nav-treeview">
+        <li class="nav-item">
+          <a href="/contratos" class="nav-link {{ Request::is('contratos') ? 'active' : '' }}">
+            <i class="fas fa-list-ul nav-icon"></i>
+            <p>Contratos</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/roles" class="nav-link {{ Request::is('roles') ? 'active' : '' }}">
+            <i class="fas fa-list-ul nav-icon"></i>
+            <p>Roles</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/jefaturas" class="nav-link {{ Request::is('jefaturas') ? 'active' : '' }}">
+            <i class="fas fa-list-ul nav-icon"></i>
+            <p>Jefaturas</p>
+          </a>
+        </li>
+      </ul>
+    </li>
     
   </ul>
 </nav>

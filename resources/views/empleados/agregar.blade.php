@@ -43,7 +43,7 @@
                     <label for="id_zona">Zona:</label>
                     <select class="form-control" name="id_zona" id="id_zona" required>
                         @foreach ($zonas as $zona)
-                        <option value="{{ $zona->id }}">{{ $zona->nombre_zona }}</option>
+                          <option value="{{ $zona->id }}">{{ $zona->nombre_zona }}</option>
                         @endforeach
                     </select>
                 </div>

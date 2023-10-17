@@ -30,16 +30,10 @@ Route::resource('jefaturas', JefaturasController::class);
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 
-
 Route::get('/registro', [RegisterController::class, 'showRegistrationForm'])->name('registro');
 Route::post('/registro', [RegisterController::class, 'register'])->name('register');
 
-
-
-
-
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

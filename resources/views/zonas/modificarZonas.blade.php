@@ -13,53 +13,56 @@
           <div class="card card-primary">
             <div class="card-header">
               <h3 class="card-title"><i class="fas fa-user-plus"></i> Modificar Zona</h3>
-            </div>
-            <form action="{{ route('zonas.store') }}" method="post" id="form-zonasEdit">
-              @csrf
-              <div class="card-body">
-                <div class="form-group">
-                  <label for="nombre_Zona"><i class="fas fa-user"></i> Nombre de la Zona:</label>
-                  <input type="text" class="form-control" id="nombre_Zona" name="nombre_Zona" placeholder="Nombre">
-                </div>
-                
-                <div class="form-group">
-                    <label for="EncargadoZona">Encargado:</label>
-                    <select class="form-control" name="EncargadoZona" id="EncargadoZona" required>
-                        
-                        <option value=""></option>
-                        
-                    </select>
-                </div>
 
-              </div>
-              <div class="card-footer">
-                <button type="submit" class="btn btn-primary"><i class="fas fa-check"></i> Enviar</button>
-              </div>
-            </form>
+              
+            </div>
+                  <div class="card-body">
+                      <form action="{{ route('zonas.update', $zona->id) }}" method="post">
+                          @csrf
+                          @method('PUT')
+                          <div class="form-group">
+                              <label for="nombre_Zona">Nombre de la Zona</label>
+                              <input type="text" class="form-control" id="nombre_Zona" name="nombre_Zona" value="{{ $zona->nombre_zona }}">
+                          </div>
+                          <div class="form-group">
+                              <label for="EncargadoZona">Encargado</label>
+                              <select class="form-control" id="EncargadoZona" name="EncargadoZona">
+                                  @foreach ($usuarios as $usuario)
+                                      <option value="{{ $usuario->id }}" {{ $usuario->id == $zona->Encargado ? 'selected' : '' }}>
+                                          {{ $usuario->name }}
+                                      </option>
+                                  @endforeach
+                              </select>
+                          </div>
+                          <button type="submit" class="btn btn-primary" onclick="return confirm('¿Estás seguro de que deseas eliminar este empleado?')">Guardar cambios</button>
+                      </form>
+                  </div>
+                  
+
           </div>
         </div>
       </div>
     </section>
   </div>
-
   <!-- JS de SweetAlert -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-  
+
+
+
 
   <!-- Agregar esta sección antes de la etiqueta </body> -->
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      var formEmpleado = document.getElementById("form-empleado");
+      var formZonasEdit = document.getElementById("form-zonasEdit");
 
-      formEmpleado.addEventListener("submit", function(event) {
+      formZonasEdit.addEventListener("submit", function(event) {
         event.preventDefault();
 
         // Validar el formulario y mostrar la alerta de éxito
-        var rpeInput = document.getElementById("RPE_Empleado");
-        var nombreInput = document.getElementById("nombre_Empleado");
-        var fechaIngresoInput = document.getElementById("fecha_ingreso");
+        var nombreZonaInput = document.getElementById("nombre_zona");
+        var encargadoZonaInput = document.getElementById("EncargadoZona");
 
-        if (rpeInput.value === "" || nombreInput.value === "" || fechaIngresoInput.value === "") {
+        if (nombreZonaInput.value === "" || encargadoZonaInput.value === "") {
           swal({
             icon: 'error',
             title: 'Error',
@@ -69,7 +72,7 @@
         }
 
         // Enviar el formulario de forma manual
-        formEmpleado.submit();
+        formZonasEdit.submit();
 
         // Mostrar alerta de éxito
         swal({
@@ -83,3 +86,9 @@
     });
   </script>
 @endsection
+
+
+
+
+
+

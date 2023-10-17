@@ -65,11 +65,13 @@
                                     <i class="fas fa-trash"></i> Eliminar
                                 </button>
                             </form>
-                            <a href="/zonas/create">
-                            <button class="btn btn-info btn-sm" type="submit">
-                                <i class="fas"></i> Modificar
-                            </button>
-                            </a>
+                            
+                            <form action="{{ route('zonas.edit', $zona->id) }}" method="GET" style="display: inline-block;">
+                                <button class="btn btn-info btn-sm" type="submit">
+                                    <i class="fas"></i> Modificar
+                                </button>
+                                </a>
+                            </form>
                             
                             </td>
                         </tr>

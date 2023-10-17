@@ -31,6 +31,7 @@
         </div>
         <br>
 
+
         
         <br>
         <table id="tablContratos" class="table table-bordered table-striped">
