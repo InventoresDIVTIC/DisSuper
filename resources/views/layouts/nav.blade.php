@@ -283,26 +283,39 @@
 
   <li class="nav-item menu-open">
     <a href="#" class="nav-link active">
+      <i class="nav-icon fas fa-id-card"></i> 
+      <p>
+        Zonas
+        <i class="right fas fa-angle-left"></i>
+      </p>
+    </a>
+    <ul class="nav nav-treeview">
+        <li class="nav-item">
+          <a href="/zonas" class="nav-link {{ Request::is('zonas') ? 'active' : '' }}">
+            <i class="fas fa-list-ul nav-icon"></i>
+            <p>Listado Zonas</p>
+          </a>
+        </li>
+  
+        <li class="nav-item">
+          <a href="/zonas/create" class="nav-link {{ Request::is('zonas/create') ? 'active' : '' }}">
+            <i class="fas fa-list-ul nav-icon"></i>
+            <p>Modificar Zonas</p>
+          </a>
+        </li>
+      
+    </ul>
+</li>
+
+  <li class="nav-item menu-open">
+    <a href="#" class="nav-link active">
       <i class="nav-icon fas fa-users"></i> 
       <p>
         Otros
         <i class="right fas fa-angle-left"></i>
       </p>
     </a>
-    <ul class="nav nav-treeview">
-      <li class="nav-item">
-        <a href="/zonas" class="nav-link {{ Request::is('zonas') ? 'active' : '' }}">
-          <i class="fas fa-list-ul nav-icon"></i>
-          <p>Zonas</p>
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a href="/zonas/create" class="nav-link {{ Request::is('zonas/create') ? 'active' : '' }}">
-          <i class="fas fa-list-ul nav-icon"></i>
-          <p>Modificar Zonas</p>
-        </a>
-      </li>
+    
 
       <li class="nav-item">
         <a href="/contratos" class="nav-link {{ Request::is('contratos') ? 'active' : '' }}">

@@ -64,12 +64,13 @@
                                 <button class="btn btn-danger btn-sm" type="submit" onclick="return confirm('¿Estás seguro de que deseas eliminar esta zona?')">
                                     <i class="fas fa-trash"></i> Eliminar
                                 </button>
-                                <a href="/zonas/edit">
-                                <button class="btn btn-info btn-sm" type="submit">
-                                    <i class="fas"></i> Modificar
-                                </button>
-                                </a>
                             </form>
+                            <a href="/zonas/create">
+                            <button class="btn btn-info btn-sm" type="submit">
+                                <i class="fas"></i> Modificar
+                            </button>
+                            </a>
+                            
                             </td>
                         </tr>
                         @endforeach
