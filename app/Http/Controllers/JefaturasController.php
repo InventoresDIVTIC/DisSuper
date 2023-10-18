@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Jefaturas;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class JefaturasController extends Controller
 {
@@ -12,7 +13,11 @@ class JefaturasController extends Controller
      */
     public function index()
     {
-        return view('Jefaturas.viewJefaturas');
+        $jefaturas = User::whereHas('roles', function ($query) {
+            $query->where('name', 'like', '%jefatura%');
+        })->get();
+    
+        return view('Jefaturas.viewJefaturas', compact('jefaturas'));
     }
 
     /**

@@ -41,7 +41,3 @@
     </div>
 </div>
 @endsection
-
-@section('scripts')
-<script src="{{ asset('js/usuarios_index.js') }}"></script>
-@endsection

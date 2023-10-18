@@ -40,7 +40,26 @@
   <!-- CSS de SweetAlert -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.css">
   
+  <script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Obtén los elementos del DOM
+    const userContainer = document.getElementById("userContainer");
+    const profileOptions = document.getElementById("profileOptions");
 
+    // Oculta las opciones por defecto
+    profileOptions.style.display = "none";
+
+    // Muestra las opciones cuando el cursor está sobre el nombre de usuario
+    userContainer.addEventListener("mouseenter", function() {
+        profileOptions.style.display = "block";
+    });
+
+    // Oculta las opciones cuando el cursor sale del nombre de usuario
+    userContainer.addEventListener("mouseleave", function() {
+        profileOptions.style.display = "none";
+    });
+});
+</script>
   <!-- SweetAlert -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
@@ -151,30 +170,37 @@
       <!-- Sidebar -->
         <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <!--<img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">-->
-          <div class="user-profile">
-            <img src="#" alt="Foto de perfil" class="profile-image">
-            
-            <div class="profile-options">
-              <a href="ruta-del-perfil" id="perfil-link">Ver perfil</a>
-              <form action="/logout" method="POST">
-                @csrf <!-- Agrega el campo CSRF para protección contra ataques CSRF -->
-
-                <button type="submit">Cerrar sesión</button>
-              </form>
-            </div>
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex justify-content-center align-items-center flex-column">
+          <div class="image profile-image-container">
+              @if(Auth::check() && Auth::user()->photo)
+                  <img src="{{ Auth::user()->photo }}" alt="Foto de perfil" class="profile-image rounded-circle w-100" id="profileImage">
+              @else
+                  <img src="{{ asset('dist/img/D.png') }}" alt="Imagen predeterminada" class="profile-image rounded-circle w-100" id="profileImage">
+              @endif
           </div>
-        </div>
-        <div class="d-block">
-          @if(Auth::check())
-            <p class="d-block"> {{ Auth::user()->name }}</p>
-          @else
-            <a href="/login" class="d-block">Iniciar sesión</a>
-          @endif
-        </div>
+          <div class="d-block text-center mt-2">
+              <div id="userContainer" class="user-container">
+                  <label for="profileImage" class="user-label" id="userLabel">{{ Auth::user()->name }}</label>
+                  <div class="profile-options" id="profileOptions">
+                    <a href="{{ route('usuario.show', ['usuario' => Auth::user()->id]) }}">Ver perfil</a>
+
+                      
+                      <form action="/logout" method="POST">
+                          @csrf <!-- Agrega el campo CSRF para protección contra ataques CSRF -->
+                          <button type="submit">Cerrar sesión</button>
+                      </form>
+                  </div>
+              </div>
+              @if(!Auth::check())
+                  <a href="/login">Iniciar sesión</a>
+              @endif
+          </div>
       </div>
+
+
+
+
+
 
       <!-- SidebarSearch Form -->
       <div class="form-inline">
@@ -296,7 +322,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link {{ Request::is('zonas/create') ? 'active' : '' }}">
+          <a href="#" class="nav-link {{ Request::is('zonas/*') && !Request::is('zonas/create*') ? 'active' : '' }}">
             <i class="fas fa-edit nav-icon"></i>
             <p>Modificar Zonas</p>
           </a>
@@ -399,6 +425,7 @@
 <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.print.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.colVis.min.js"></script>
+
 
 
 </body>

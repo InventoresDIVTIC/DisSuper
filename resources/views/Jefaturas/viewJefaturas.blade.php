@@ -20,22 +20,29 @@
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <th>R.P.E. ó R.T.T.</th>
                             <th>Nombre</th>
-                            <th>Encargado</th>
-                            <td>Modalidad</td>
+                            <th>Clave de puesto</th>
+                            <th>Correo Electronico</th>
+                            <th>Fecha de ingreso</th>
+                            <th>Contrato</th>
+                            <th>Modalidad</th>
+                           
                         </tr>
                     </thead>
                     <tbody>
-                        
-                        <tr>
-                            <td>id</td>
-                            <td>nombre</td>
-                            <td>encargado</td>
-                            <td>Modalidad</td>
-                            
-                        </tr>
-                    </tbody>
+                @foreach ($jefaturas as $usuario)
+                    <tr>
+                        <td>{{ $usuario->RPE_Empleado }}</td>
+                        <td>{{ $usuario->name }}</td>
+                        <td>por ahora no</td>
+                        <td>{{ $usuario->email }}</td>
+                        <td>{{ $usuario->fecha_registro }}</td>
+                        <td>{{ $usuario->contrato->name }}</td>
+                        <td>pendiente</td>
+                    </tr>
+                @endforeach
+            </tbody>
                 </table>
             </div>
 

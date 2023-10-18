@@ -1,8 +1,7 @@
 @extends('layouts.nav')
   @section('content')
 
-  <script src="{{ asset('js/empleado_confirmation.js') }}"></script>
-  @vite(['resources/js/newIndicador.js'])
+
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
