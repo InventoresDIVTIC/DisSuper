@@ -21,16 +21,12 @@ class EmpleadoController extends Controller
         $user = Auth::user();
 
         // Obtener los empleados asociados al usuario autenticado
-        $empleados = $user->empleados;
+        $empleados = Empleado::all();
 
 
-         // Obtener los empleados que no tienen usuarios relacionados
-        $empleadosSinUsuario = Empleado::whereNotIn('id', function ($query) {
-            $query->select('empleado_id')
-                ->from('empleado_user'); 
-        })->get();
+       
 
-        return view('index', compact('empleados', 'empleadosSinUsuario'));
+        return view('index', compact('empleados'));
     }
 
     /**
@@ -72,9 +68,6 @@ class EmpleadoController extends Controller
         $empleado->zonas()->attach($zona);
 
 
-        // Asignar automáticamente el usuario autenticado al empleado creado
-        $user = Auth::user();
-        $empleado->users()->attach($user);
         
         return redirect('/index');
     }

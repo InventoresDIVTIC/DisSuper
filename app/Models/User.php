@@ -56,10 +56,7 @@ class User extends Authenticatable
         return $this->roles()->where('id', 1)->where('name', $roleName)->exists();
         
     }
-    public function empleados()
-    {
-        return $this->belongsToMany(Empleado::class, 'empleado_user', 'user_id', 'empleado_id');
-    }
+   
     public function empleado()
     {
         return $this->hasOne(Empleado::class, 'user_id');
