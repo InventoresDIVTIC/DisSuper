@@ -352,12 +352,7 @@ document.addEventListener("DOMContentLoaded", function() {
             <p>Roles</p>
           </a>
         </li>
-        <li class="nav-item">
-          <a href="/jefaturas" class="nav-link {{ Request::is('jefaturas') ? 'active' : '' }}">
-            <i class="fas fa-list-ul nav-icon"></i>
-            <p>Jefaturas</p>
-          </a>
-        </li>
+        
       </ul>
     </li>
     

@@ -218,9 +218,9 @@
                                 <input type="number" class="form-control" id="inputNLlamada" placeholder="N. llamada">
                               </div>
     
-                              <label class="col-sm-1.5 col-form-label">Ciclo</label>
+                              <label class="col-sm-1.5 col-form-label">Actividad</label>
                               <div class="col-sm-3">
-                                <input type="number" class="form-control" id="inputCiclo" placeholder="Ciclo">
+                                <input type="number" class="form-control" id="inputCiclo" placeholder="Actividad">
                               </div>
     
                               <label class="col-sm-1.5 col-form-label">Fecha</label>

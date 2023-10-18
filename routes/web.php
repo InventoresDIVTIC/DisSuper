@@ -10,7 +10,7 @@ use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ContratoController;
-use App\Http\Controllers\JefaturasController;
+
 use App\Http\Controllers\PuestosController;
 use App\Http\Controllers\ZonasController;
 
@@ -25,7 +25,7 @@ Route::resource('zonas', ZonasController::class);
 Route::resource('contratos', ContratoController::class);
 Route::resource('roles', RoleController::class);
 Route::resource('puestos', PuestosController::class);
-Route::resource('jefaturas', JefaturasController::class);
+
 
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
