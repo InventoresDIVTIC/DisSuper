@@ -39,6 +39,9 @@
   <link rel="stylesheet" href="{{ asset('dist/css/form_register.css') }}">
   <!-- CSS de SweetAlert -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.css">
+
+  <!-- Agregar la etiqueta link para el favicon -->
+  <link rel="icon" href="{{ asset('dist/img/D.png') }}" type="image/x-icon">
   
   <script>
 document.addEventListener("DOMContentLoaded", function() {
@@ -173,9 +176,9 @@ document.addEventListener("DOMContentLoaded", function() {
       <div class="user-panel mt-3 pb-3 mb-3 d-flex justify-content-center align-items-center flex-column">
           <div class="image profile-image-container">
               @if(Auth::check() && Auth::user()->photo)
-                  <img src="{{ Auth::user()->photo }}" alt="Foto de perfil" class="profile-image rounded-circle w-100" id="profileImage">
+                <img src="{{ asset(Auth::user()->photo) }}" alt="Foto de perfil" class="profile-image rounded-circle w-100" id="profileImage">
               @else
-                  <img src="{{ asset('dist/img/D.png') }}" alt="Imagen predeterminada" class="profile-image rounded-circle w-100" id="profileImage">
+                <img src="{{ asset('dist/img/D.png') }}" alt="Imagen predeterminada" class="profile-image rounded-circle w-100" id="profileImage">
               @endif
           </div>
           <div class="d-block text-center mt-2">
@@ -300,6 +303,13 @@ document.addEventListener("DOMContentLoaded", function() {
           <a href="/puestos" class="nav-link {{ Request::is('puestos') ? 'active' : '' }}">
             <i class="fas fa-user-plus nav-icon"></i>
             <p>Añadir Puestos</p>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a href="/funciones_puestos" class="nav-link {{ Request::is('funciones_puestos') ? 'active' : '' }}">
+            <i class="fas fa-user-plus nav-icon"></i>
+            <p>Funciones de Puestos</p>
           </a>
         </li>
       </ul>
