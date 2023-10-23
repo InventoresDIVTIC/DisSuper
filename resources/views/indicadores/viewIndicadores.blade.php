@@ -5,7 +5,7 @@
     <div class="card-header">
         <div class="row">
             <div class="col-md-12 text-center text-info">
-                <h3>Funciones de Puestos</h3>
+                <h3>Indicadores</h3>
             </div>
         </div>
     </div>
@@ -14,11 +14,12 @@
         <table id="example1" class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>Clave</th>
-                    <th>Nombre</th>
-                    <th>Tipo de Funcion</th>
+                    <th width="10%">Clave</th>
+                    <th width="50%">Nombre</th>
+                    <th width="10%">Valor Aceptable</th>
+                    <th width="10%">ID Funcion</th>
 
-                    <th class="text-center">Opciones</th>
+                    <th class="text-center" width="20%">Opciones</th>
                 </tr>
             </thead>
             <tbody>

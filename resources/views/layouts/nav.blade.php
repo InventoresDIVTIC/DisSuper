@@ -283,6 +283,25 @@ document.addEventListener("DOMContentLoaded", function() {
       </ul>
     </li>
 
+    <!-- Indicadores -->
+    <li class="nav-item menu-open">
+      <a href="#" class="nav-link active">
+        <i class="nav-icon fas fa-briefcase"></i>
+        <p>
+          Indicadores
+          <i class="right fas fa-angle-left"></i>
+        </p>
+      </a>
+      <ul class="nav nav-treeview">
+        <li class="nav-item">
+          <a href="/indicadores" class="nav-link {{ Request::is('indicadores') ? 'active' : '' }}">
+            <i class="fas fa-list-ul nav-icon"></i>
+            <p>Listado de Indicadores</p>
+          </a>
+        </li>
+      </ul>
+    </li>
+
     <!-- Puestos -->
     <li class="nav-item menu-open">
       <a href="#" class="nav-link active">

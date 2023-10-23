@@ -11,9 +11,9 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ContratoController;
 use App\Http\Controllers\FuncionesPuestosController;
+use App\Http\Controllers\IndicadoresController;
 use App\Http\Controllers\PuestosController;
 use App\Http\Controllers\ZonasController;
-use App\Models\FuncionesPuestos;
 
 Route::get('/', function () {
     return view('welcome');
@@ -27,6 +27,7 @@ Route::resource('contratos', ContratoController::class);
 Route::resource('roles', RoleController::class);
 Route::resource('puestos', PuestosController::class);
 Route::resource('funciones_puestos', FuncionesPuestosController::class);
+Route::resource('indicadores', IndicadoresController::class);
 
 
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
