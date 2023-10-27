@@ -42,6 +42,11 @@
 
   <!-- Agregar la etiqueta link para el favicon -->
   <link rel="icon" href="{{ asset('dist/img/D.png') }}" type="image/x-icon">
+
+  <!-- Sliders ION-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js"></script>
   
   <script>
 document.addEventListener("DOMContentLoaded", function() {
@@ -297,6 +302,12 @@ document.addEventListener("DOMContentLoaded", function() {
           <a href="/indicadores" class="nav-link {{ Request::is('indicadores') ? 'active' : '' }}">
             <i class="fas fa-list-ul nav-icon"></i>
             <p>Listado de Indicadores</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/indicadores/create" class="nav-link {{ Request::is('indicadores/create') ? 'active' : '' }}">
+            <i class="fas fa-list-ul nav-icon"></i>
+            <p>Crear Indicadores</p>
           </a>
         </li>
       </ul>

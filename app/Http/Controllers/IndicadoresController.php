@@ -20,7 +20,7 @@ class IndicadoresController extends Controller
      */
     public function create()
     {
-        //
+        return view('indicadores.addIndicadores');
     }
 
     /**

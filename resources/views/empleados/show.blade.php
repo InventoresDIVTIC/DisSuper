@@ -302,6 +302,13 @@
                                     <textarea rows="3" class="form-control" placeholder="Explique sus Hallazgos"> </textarea>
                                   </div>
                                 </div>
+
+                                <div class="form-group row">
+                                  <label class="col-md-3 col-form-label"> Valor Alcanzado: </label>
+                                  <div class="col-md-6">
+                                    <textarea rows="3" class="form-control" placeholder="Explique sus Hallazgos"> </textarea>
+                                  </div>
+                                </div>
     
                                 <div class="form-group row">
                                   <label class="col-sm-3 col-form-label"> Sistemas de Referencia</label>
@@ -311,14 +318,26 @@
                                   </div>
                                 </div>
 
-                                <div class="form-group row"data-select2-id="29">
-                                  <label class="col-sm-3 col-form-label"> Sistemas de Referencia</label>
-                                  <div class="col-md-9">
-                                    <select class="select2-search__field" multiple="multiple" type="search" tabindex="0" autocomplete="off" autocorrect="off" spellcheck="false" role="searchbox" aria-autocomplete="list" style="width:100%">
-                                    <option>Uno</option>
-                                    <option>Dos</option>
-                                    </select>
+                                <div class="form-group row">
+                                  <label class="col-md-2 col-form-label"> Valor Alcanzado</label>
+                                  <div class="col-md-8">
+                                    <span class="irs irs--round js-irs-3">
+                                      <span class="irs">
+                                        <span class="irs-line" tabindex="0"></span>
+                                        <span class="irs-min" style="visibility: visible;">0</span>
+                                        <span class="irs-max" style="visibility: hidden;">100</span>
+                                        <span class="irs-from" style="visibility: hidden;">0%</span>
+                                        <span class="irs-single" style="left: 91.8725%;">100%</span>
+                                      </span>
+                                      <span class="irs-grid"></span>
+                                      <span class="irs-bar irs-bar--single" style="left: 0px; width: 96.8379%;"></span>
+                                      <span class="irs-shadow shadow-single" style="display: none;"></span>
+                                      <span class="irs-handle single" style="left: 93.6759%;"><i></i><i></i><i></i></span>
+                                    </span>
+                                    <input id="range_6" type="text" name="range_6" value="" class="irs-hidden-input" tabindex="-1" readonly="">
                                   </div>
+                                  <label class="col-md-2 col-form-label"> Valor Esperado "100"</label>
+
                                 </div>
     
                                 <div class="form-group row">

@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-md-6 offset-md-3 text-center">
                 <!-- Botón de agregar centrado -->
-                <a href="/addPuestos">
+                <a href="/puestos">
                     <button class="btn btn-primary btn-block" type="button">
                         <i class="fas fa-plus"></i> Agregar Puestos
                     </button>
