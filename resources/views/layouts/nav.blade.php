@@ -49,25 +49,30 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js"></script>
   
   <script>
-document.addEventListener("DOMContentLoaded", function() {
-    // Obtén los elementos del DOM
-    const userContainer = document.getElementById("userContainer");
-    const profileOptions = document.getElementById("profileOptions");
+    document.addEventListener("DOMContentLoaded", function() {
+        // Obtén los elementos del DOM
+        const userContainer = document.getElementById("userContainer");
+        const profileOptions = document.getElementById("profileOptions");
 
-    // Oculta las opciones por defecto
-    profileOptions.style.display = "none";
-
-    // Muestra las opciones cuando el cursor está sobre el nombre de usuario
-    userContainer.addEventListener("mouseenter", function() {
-        profileOptions.style.display = "block";
-    });
-
-    // Oculta las opciones cuando el cursor sale del nombre de usuario
-    userContainer.addEventListener("mouseleave", function() {
+        // Oculta las opciones por defecto
         profileOptions.style.display = "none";
+
+        // Muestra las opciones cuando el cursor está sobre el nombre de usuario
+        userContainer.addEventListener("mouseenter", function() {
+            profileOptions.style.display = "block";
+        });
+
+        // Oculta las opciones cuando el cursor sale del nombre de usuario
+        userContainer.addEventListener("mouseleave", function() {
+            profileOptions.style.display = "none";
+        });
     });
-});
 </script>
+ <!-- Agregar la etiqueta link para el favicon -->
+ <link rel="icon" href="{{ asset('dist/img/D.png') }}" type="image/x-icon">
+
+
+
   <!-- SweetAlert -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
@@ -181,7 +186,11 @@ document.addEventListener("DOMContentLoaded", function() {
       <div class="user-panel mt-3 pb-3 mb-3 d-flex justify-content-center align-items-center flex-column">
           <div class="image profile-image-container">
               @if(Auth::check() && Auth::user()->photo)
+<<<<<<< HEAD
                 <img src="{{ asset(Auth::user()->photo) }}" alt="Foto de perfil" class="profile-image rounded-circle w-100" id="profileImage">
+=======
+                  <img src="{{ asset(Auth::user()->photo) }}" alt="Foto de perfil" class="profile-image rounded-circle w-100" id="profileImage">
+>>>>>>> ab3dcf71d75a07c0f66a1dfa6d181f5d8d4b17a1
               @else
                 <img src="{{ asset('dist/img/D.png') }}" alt="Imagen predeterminada" class="profile-image rounded-circle w-100" id="profileImage">
               @endif

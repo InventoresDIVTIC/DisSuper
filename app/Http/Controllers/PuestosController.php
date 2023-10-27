@@ -1,12 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Puestos;
-use App\Models\User;
+
+use App\Models\puestos;
 use Illuminate\Http\Request;
 
 class PuestosController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
         return view('puestos.addPuestos');
@@ -17,7 +20,7 @@ class PuestosController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -31,7 +34,7 @@ class PuestosController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Puestos $puestos)
+    public function show(puestos $puestos)
     {
         return view('puestos.viewPuestos');
     }
@@ -39,7 +42,7 @@ class PuestosController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Puestos $puestos)
+    public function edit(puestos $puestos)
     {
         //
     }
@@ -47,7 +50,7 @@ class PuestosController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Puestos $puestos)
+    public function update(Request $request, puestos $puestos)
     {
         //
     }
@@ -55,7 +58,7 @@ class PuestosController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Puestos $puestos)
+    public function destroy(puestos $puestos)
     {
         //
     }
