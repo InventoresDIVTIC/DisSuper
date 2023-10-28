@@ -24,6 +24,10 @@ class Zona extends Model
     {
         return $this->belongsToMany(Empleado::class, 'empleado_zona');
     }
+    public function puestos()
+    {
+        return $this->hasMany(Puesto::class);
+    }
 }
 
 

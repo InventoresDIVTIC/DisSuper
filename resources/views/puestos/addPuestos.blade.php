@@ -18,8 +18,8 @@
               @csrf
               <div class="card-body">
                 <div class="form-group">
-                  <label for="ClavePuesto"><i class="fas fa-id-card"></i> Clave del Puesto:</label>
-                  <input type="text" class="form-control" id="ClavePuesto" name="ClavePuesto" maxlength="5" placeholder="Clave del Puesto">
+                  <label for="clave_puesto"><i class="fas fa-id-card"></i> Clave del Puesto:</label>
+                  <input type="text" class="form-control" id="clave_puesto" name="clave_puesto" maxlength="5" placeholder="Clave del Puesto">
                 </div>
                 <div class="form-group">
                   <label for="nombre_Puesto"><i class="fas fa-user"></i> Nombre:</label>
@@ -27,51 +27,46 @@
                 </div>
                 <div class="form-group">
                   <label for="Empresa-Proceso"><i class="fas fa-file-contract"></i> Empresa-Proceso:</label>
-                  <select name="Empresa-Proceso" id="Empresa-Proceso" class="form-control">
-                    
-                      <option value=""></option>
-                    
+                  <input type="text" class="form-control" id="empresa_proceso" name="empresa_proceso" value="EPS CFE DISTRIBUCION">
                   </select>
                 </div>
 
                 
                 <div class="form-group">
-                    <label for="AreaResponsabilidad">Area de Responsabilidad:</label>
-                    <select class="form-control" name="AreaResponsabilidad" id="AreaResponsabilidad" required>
-                        
-                        <option value=""></option>
-                        
+                    <label for="area_responsabilidad">Area de Responsabilidad:</label>
+                    <select class="form-control" name="area_responsabilidad" id="area_responsabilidad" required>
+                        <option value="Gerencia de Ventas">GERENCIA SERVICIO AL CLIENTE</option>
+                        <option value="Gerencia de Marketing">Gerencia de Marketing</option>
+                        <option value="Gerencia de Operaciones">Gerencia de Operaciones</option>
+                        <option value="Gerencia de Recursos Humanos">Gerencia de Recursos Humanos</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="RamaActividad">Rama de Actividad:</label>
-                    <select class="form-control" name="RamaActividad" id="RamaActividad" required>
-                        
-                        <option value=""></option>
+                    <input type="text" class="form-control" id="rama_actividad" name="rama_actividad" value="SERVICIO AL CLIENTE ">
                         
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="Especialidad">Especialidad:</label>
-                    <select class="form-control" name="Especialidad" id="Especialidad" required>
-                        
-                        <option value=""></option>
+                    <input type="text" class="form-control" id="especialidad" name="especialidad" value="GESTION COMERCIAL ">
                         
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label for="id_zona">Zona:</label>
-                    <select class="form-control" name="id_zona" id="id_zona" required>
-                        
-                        <option value=""></option>
+                <label for="Especialidad">Zona:</label>
+                    <select id="zona_id" name="zona_id" class="form-control @error('zonas') is-invalid @enderror">
+                        @foreach ($zonas as $zona)
+                          <option value="{{ $zona->id }}">{{ $zona->nombre_zona }}</option>
+                        @endforeach
                     </select>
                 </div>
-
-
-
+                @if ($errors->has('zona_id'))
+                  <span class="error-message">{{ $errors->first('zona_id') }}</span>
+                @endif
               </div>
               <div class="card-footer">
                 <button type="submit" class="btn btn-primary"><i class="fas fa-check"></i> Enviar</button>

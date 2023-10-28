@@ -14,6 +14,17 @@ return new class extends Migration
         Schema::create('puestos', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('clave_puesto')->nullable(false);
+            $table->string('nombre')->nullable(false);
+            $table->string('empresa_proceso')->nullable(false);
+            $table->string('area_responsabilidad')->nullable(false);
+            $table->string('rama_actividad')->nullable(false);
+            $table->string('especialidad')->nullable(false);
+
+             // Agregar un campo para la relación con la zona
+            $table->unsignedBigInteger('zona_id')->nullable();
+            //Clave foránea para la relación con la zona
+            $table->foreign('zona_id')->references('id')->on('zonas');
         });
     }
 

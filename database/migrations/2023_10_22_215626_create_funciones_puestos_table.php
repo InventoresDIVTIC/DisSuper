@@ -18,7 +18,7 @@ return new class extends Migration
 
             $table->string('clave_funcion')->required();
             $table->string('nombre_funciones')->required();
-            $table->string('tipo_funcion')->required();  //Se usa entero para ahorrar espacio y visualizar texto mediante código
+            $table->string('tipo_funcion')->required(); 
         });
 
         $TomaLecturas = FuncionesPuestos::create([

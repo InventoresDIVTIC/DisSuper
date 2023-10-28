@@ -39,14 +39,6 @@
   <link rel="stylesheet" href="{{ asset('dist/css/form_register.css') }}">
   <!-- CSS de SweetAlert -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.css">
-
-  <!-- Agregar la etiqueta link para el favicon -->
-  <link rel="icon" href="{{ asset('dist/img/D.png') }}" type="image/x-icon">
-
-  <!-- Sliders ION-->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css"/>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js"></script>
   
   <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -68,6 +60,7 @@
         });
     });
 </script>
+
  <!-- Agregar la etiqueta link para el favicon -->
  <link rel="icon" href="{{ asset('dist/img/D.png') }}" type="image/x-icon">
 
@@ -186,13 +179,9 @@
       <div class="user-panel mt-3 pb-3 mb-3 d-flex justify-content-center align-items-center flex-column">
           <div class="image profile-image-container">
               @if(Auth::check() && Auth::user()->photo)
-<<<<<<< HEAD
-                <img src="{{ asset(Auth::user()->photo) }}" alt="Foto de perfil" class="profile-image rounded-circle w-100" id="profileImage">
-=======
                   <img src="{{ asset(Auth::user()->photo) }}" alt="Foto de perfil" class="profile-image rounded-circle w-100" id="profileImage">
->>>>>>> ab3dcf71d75a07c0f66a1dfa6d181f5d8d4b17a1
               @else
-                <img src="{{ asset('dist/img/D.png') }}" alt="Imagen predeterminada" class="profile-image rounded-circle w-100" id="profileImage">
+                  <img src="{{ asset('dist/img/D.png') }}" alt="Imagen predeterminada" class="profile-image rounded-circle w-100" id="profileImage">
               @endif
           </div>
           <div class="d-block text-center mt-2">
@@ -297,31 +286,37 @@
       </ul>
     </li>
 
+
+
+
     <!-- Indicadores -->
     <li class="nav-item menu-open">
-      <a href="#" class="nav-link active">
-        <i class="nav-icon fas fa-briefcase"></i>
-        <p>
-          Indicadores
-          <i class="right fas fa-angle-left"></i>
-        </p>
-      </a>
-      <ul class="nav nav-treeview">
-        <li class="nav-item">
-          <a href="/indicadores" class="nav-link {{ Request::is('indicadores') ? 'active' : '' }}">
-            <i class="fas fa-list-ul nav-icon"></i>
-            <p>Listado de Indicadores</p>
+          <a href="#" class="nav-link active">
+            <i class="nav-icon fas fa-briefcase"></i>
+            <p>
+              Indicadores
+              <i class="right fas fa-angle-left"></i>
+            </p>
           </a>
-        </li>
-        <li class="nav-item">
-          <a href="/indicadores/create" class="nav-link {{ Request::is('indicadores/create') ? 'active' : '' }}">
-            <i class="fas fa-list-ul nav-icon"></i>
-            <p>Crear Indicadores</p>
-          </a>
-        </li>
-      </ul>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="/indicadores" class="nav-link {{ Request::is('indicadores') ? 'active' : '' }}">
+                <i class="fas fa-list-ul nav-icon"></i>
+                <p>Listado de Indicadores</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/indicadores/create" class="nav-link {{ Request::is('indicadores/create') ? 'active' : '' }}">
+                <i class="fas fa-list-ul nav-icon"></i>
+                <p>Crear Indicadores</p>
+              </a>
+            </li>
+        </ul>
     </li>
 
+
+    
+    
     <!-- Puestos -->
     <li class="nav-item menu-open">
       <a href="#" class="nav-link active">
@@ -333,22 +328,15 @@
       </a>
       <ul class="nav nav-treeview">
         <li class="nav-item">
-          <a href="/puestos/show" class="nav-link {{ Request::is('puestos/show') ? 'active' : '' }}">
+          <a href="/puestos" class="nav-link {{ Request::is('puestos') ? 'active' : '' }}">
             <i class="fas fa-list-ul nav-icon"></i>
             <p>Listado de Puestos</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="/puestos" class="nav-link {{ Request::is('puestos') ? 'active' : '' }}">
+          <a href="/puestos/create" class="nav-link {{ Request::is('puestos/create') ? 'active' : '' }}">
             <i class="fas fa-user-plus nav-icon"></i>
             <p>Añadir Puestos</p>
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a href="/funciones_puestos" class="nav-link {{ Request::is('funciones_puestos') ? 'active' : '' }}">
-            <i class="fas fa-user-plus nav-icon"></i>
-            <p>Funciones de Puestos</p>
           </a>
         </li>
       </ul>
