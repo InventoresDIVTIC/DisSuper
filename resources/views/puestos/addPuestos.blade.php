@@ -20,11 +20,18 @@
                 <div class="form-group">
                   <label for="clave_puesto"><i class="fas fa-id-card"></i> Clave del Puesto:</label>
                   <input type="text" class="form-control" id="clave_puesto" name="clave_puesto" maxlength="5" placeholder="Clave del Puesto">
+                  @if ($errors->has('clave_puesto'))
+                            <span class="error-message">{{ $errors->first('clave_puesto') }}</span>
+                  @endif
+
                 </div>
                 <div class="form-group">
                   <label for="nombre_Puesto"><i class="fas fa-user"></i> Nombre:</label>
                   <input type="text" class="form-control" id="nombre_Puesto" name="nombre_Puesto" placeholder="Nombre">
                 </div>
+                @if ($errors->has('nombre_Puesto'))
+                            <span class="error-message">{{ $errors->first('nombre_Puesto') }}</span>
+                  @endif
                 <div class="form-group">
                   <label for="Empresa-Proceso"><i class="fas fa-file-contract"></i> Empresa-Proceso:</label>
                   <input type="text" class="form-control" id="empresa_proceso" name="empresa_proceso" value="EPS CFE DISTRIBUCION">

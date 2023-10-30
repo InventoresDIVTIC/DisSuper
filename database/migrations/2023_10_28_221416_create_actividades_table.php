@@ -11,15 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('indicador', function (Blueprint $table) {
+        Schema::create('actividades', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-
-            $table->string('Clave_Indicador')->unique()->required();
-            $table->string('Nombre_Indicador')->required();
-            $table->smallInteger('Valor_Aceptable')->required();
-
-          
+            $table->string('name')->required();
+            $table->string('clave')->default('')->nullable();
         });
     }
 
@@ -28,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('indicador');
+        Schema::dropIfExists('actividades');
     }
 };

@@ -23,4 +23,9 @@ class puestos extends Model
     {
         return $this->belongsTo(Zona::class);
     }
+
+    public function actividades()
+    {
+        return $this->belongsToMany(actividades::class);
+    }
 }

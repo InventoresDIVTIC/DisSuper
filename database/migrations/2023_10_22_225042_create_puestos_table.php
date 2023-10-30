@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('puestos', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('clave_puesto')->nullable(false);
+            $table->string('clave_puesto')->nullable(false)->unique();;
             $table->string('nombre')->nullable(false);
             $table->string('empresa_proceso')->nullable(false);
             $table->string('area_responsabilidad')->nullable(false);

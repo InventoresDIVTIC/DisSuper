@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\puestos;
 use Illuminate\Http\Request;
 use App\Models\Zona;
+use App\Models\actividades;
 class PuestosController extends Controller
 {
     /**
@@ -29,7 +30,7 @@ class PuestosController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'clave_puesto' => ['required', 'max:5'],
+            'clave_puesto' => ['required', 'max:5','unique:puestos'],
             'nombre_Puesto' => ['required'],
             'empresa_proceso' => ['required'],
             'area_responsabilidad' => ['required'],
@@ -55,55 +56,82 @@ class PuestosController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(puestos $puestos)
+    public function show($id)
     {
-       
-        return view('funciones_puestos.viewFuncionesPuestos');
-    }
+    $puestos = puestos::find($id); // Encuentra el puesto por su ID
+    $actividad = actividades::all(); // Obtén todas las actividades
+    $actividadesAsociadas = $puestos->actividades;
+
+    return view('funciones_puestos.viewFuncionesPuestos', compact('puestos', 'actividad','actividadesAsociadas'));
+}
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(puestos $puestos)
     {
-        $puesto = Puesto::find($id);
-        return view('puestos.edit', compact('puesto'));
+      //
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, puestos $puestos)
+    public function update(Request $request, $id)
     {
-        $validatedData = $request->validate([
-            'clave_puesto' => 'required',
-            'nombre' => 'required',
-            'empresa_proceso' => 'required',
-            'area_responsabilidad' => 'required',
-            'rama_actividad' => 'required',
-            'especialidad' => 'required',
+        // Validar la solicitud según tus necesidades
+        $request->validate([
+            'actividad' => 'required|exists:actividades,id', // Asegura que la actividad exista
         ]);
 
-        Puesto::whereId($id)->update($validatedData);
+        // Obtén el puesto por su ID
+        $puesto = Puestos::find($id);
 
-        return redirect()->route('puestos.index')->with('success', 'Registro actualizado exitosamente');
+        // Verifica si la actividad ya está asociada al puesto
+        if ($puesto->actividades->contains($request->actividad)) {
+            return redirect()->route('puestos.show', $id)->with('error', 'La función ya está asociada al puesto.');
+        }
+
+        // Agrega la actividad al puesto si no existe
+        $puesto->actividades()->attach($request->actividad);
+
+        return redirect()->route('puestos.show', $id)->with('success', 'Función agregada correctamente al puesto.');
     }
+    
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy($id)
-    {
-        $puesto = Puestos::find($id);
+{
+    $puesto = Puestos::find($id);
 
-        if (!$puesto) {
-            return redirect()->back()->with('error', 'El puesto no existe.');
+    if (!$puesto) {
+        return redirect()->back()->with('error', 'El puesto no existe.');
+    }
+
+    // Elimina la relación en la tabla pivot
+    $puesto->actividades()->detach();
+
+    // Luego elimina el puesto
+    $puesto->delete();
+
+    return redirect()->route('puestos.index')->with('success', 'Puesto eliminado correctamente.');
+}
+
+    public function detach($puesto, $actividad)
+    {
+        $puesto = Puestos::find($puesto);
+        $actividad = Actividades::find($actividad);
+
+        if (!$puesto || !$actividad) {
+            return redirect()->back()->with('error', 'Puesto o actividad no encontrados.');
         }
 
-        $puesto->delete();
+        // Utiliza el método detach() para eliminar la relación en la tabla pivot
+        $puesto->actividades()->detach($actividad);
 
-        return redirect()->route('puestos.index')->with('success', 'Puesto eliminado correctamente.');
+        return redirect()->back()->with('success', 'Relación eliminada correctamente.');
     }
-    
+        
 
 }

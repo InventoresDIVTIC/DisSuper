@@ -25,7 +25,7 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.1.0/css/adminlte.min.css">
   
-
+  <link href="{{ asset('ruta-a-tu-archivo-css/errors.css') }}" rel="stylesheet">
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -339,8 +339,19 @@
             <p>Añadir Puestos</p>
           </a>
         </li>
+        <li class="nav-item">
+        <a href="#" class="nav-link {{ Request::is('puestos/*') && !Request::is('puestos/create*') ? 'active' : '' }}">
+            <i class="fas fa-user-plus nav-icon"></i>
+            <p>Funciones de Puesto</p>
+          </a>
+        </li>
       </ul>
     </li>
+
+
+
+
+
 
     <!-- Zonas -->
     <li class="nav-item menu-open">
@@ -389,9 +400,16 @@
             <p>Roles</p>
           </a>
         </li>
+        <li class="nav-item">
+          <a href="/actividades" class="nav-link {{ Request::is('actividades') ? 'active' : '' }}">
+            <i class="fas fa-list-ul nav-icon"></i>
+            <p>Actividades</p>
+          </a>
+        </li>
         
       </ul>
     </li>
+    <br><br>
     
   </ul>
 </nav>

@@ -12,7 +12,8 @@ class IndicadoresController extends Controller
      */
     public function index()
     {
-        return view('indicadores.viewIndicadores');
+        $indicador = Indicadores::all(); // Recupera todos los indicadores
+        return view('indicadores.index', compact('indicador'));
     }
 
     /**
@@ -20,7 +21,7 @@ class IndicadoresController extends Controller
      */
     public function create()
     {
-        return view('indicadores.addIndicadores');
+        return view('indicadores.create');
     }
 
     /**
@@ -28,7 +29,24 @@ class IndicadoresController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'clave_indicador' => 'required|unique:indicadores,Clave_Indicador|max:5',
+            'nombre_indicador' => 'required',
+            'valorMin_Indicador' => 'required|numeric|min:0|max:100',
+        ]);
+
+        // Crear una nueva instancia del modelo Indicador
+        $indicador = new Indicadores;
+        $indicador->Clave_Indicador = $request->clave_indicador;
+        $indicador->Nombre_Indicador = $request->nombre_indicador;
+        $indicador->Valor_Aceptable = $request->valorMin_Indicador;
+
+        // Guardar el indicador en la base de datos
+        $indicador->save();
+
+        // Redirigir a la vista de éxito o a donde desees
+        return redirect()->route('indicadores.index')->with('success', 'Indicador registrado correctamente');
+    
     }
 
     /**
@@ -42,24 +60,44 @@ class IndicadoresController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Indicadores $indicadores)
+    public function edit($id)
     {
-        //
+        $indicador = Indicadores::find($id);
+        return view('indicadores.edit', compact('indicador'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Indicadores $indicadores)
+    public function update(Request $request, $id)
     {
-        //
+        $indicador = Indicadores::find($id);
+
+        $request->validate([
+            'clave_indicador' => 'required|unique:indicadores,Clave_Indicador,'.$indicador->id.'|max:5',
+            'nombre_indicador' => 'required',
+            'valorMin_Indicador' => 'required|numeric|min:0|max:100',
+        ]);
+
+        $indicador->Clave_Indicador = $request->clave_indicador;
+        $indicador->Nombre_Indicador = $request->nombre_indicador;
+        $indicador->Valor_Aceptable = $request->valorMin_Indicador;
+
+        $indicador->save();
+
+        return redirect()->route('indicadores.index')->with('success', 'Indicador actualizado exitosamente');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Indicadores $indicadores)
+    public function destroy($id)
     {
-        //
+        $indicadores = Indicadores::find($id);
+
+        if (!$indicadores) {
+            return redirect()->back()->with('error', 'El Indicador no existe.');
+        }
+
+        $indicadores->delete();
+
+        return redirect()->route('indicadores.index')->with('success', 'Puesto eliminado correctamente.');
     }
 }

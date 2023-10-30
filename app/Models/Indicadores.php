@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Indicadores extends Model
 {
     use HasFactory;
+
+    public function actividades()
+    {
+        return $this->belongsToMany(Actividad::class, 'actividades_indicadores');
+    }
 }
+

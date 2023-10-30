@@ -53010,12 +53010,6 @@ a.text-muted:hover {
   border-color: #4b545c !important;
 }
 
-
-
-
-
-
-
 .sidebar {
   position: relative;
   z-index: 1;
@@ -53048,6 +53042,10 @@ a.text-muted:hover {
 
 .user-profile:hover .profile-options {
   visibility: visible; /* Cambiamos 'display' por 'visibility' */
+
+}
+.invalid-feedback {
+ color: red;
 
 }
 

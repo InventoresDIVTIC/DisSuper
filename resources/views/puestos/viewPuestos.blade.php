@@ -24,6 +24,7 @@
         <thead>
             <tr>
                 <th class="text-center">ID</th>
+                <th class="text-center">Clave</th>
                 <th class="text-center">Nombre</th>
                 <th class="text-center">Empresa-Proceso</th>
                 <th class="text-center">Area de Responsabilidad</th>
@@ -37,6 +38,7 @@
             @foreach($puestos as $puesto)
                 <tr>
                     <td>{{ $puesto->id }}</td>
+                    <td>{{ $puesto->clave_puesto }}</td>
                     <td>{{ $puesto->nombre }}</td>
                     <td>{{ $puesto->empresa_proceso }}</td>
                     <td>{{ $puesto->area_responsabilidad }}</td>

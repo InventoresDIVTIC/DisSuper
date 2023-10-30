@@ -12,41 +12,33 @@
         <div class="col-md-12">
           <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title"><i class="fas fa-user-plus"></i> Registrar Indicador</h3>
+              <h3 class="card-title"><i class="fas fa-user-plus"></i> Editar Indicador</h3>
             </div>
 
-            <form action="{{ route('indicadores.store') }}" method="post" id="form-indicadores">
-
+            <form action="{{ route('indicadores.update', $indicador->id) }}" method="post">
               @csrf
+              @method('PUT')
               <div class="card-body">
 
                 <div class="form-group">
                   <label for="RPE_Empleado"><i class="fas fa-id-card"></i> CLAVE:</label>
-                  <input type="text" class="form-control" id="clave_indicador" name="clave_indicador" maxlength="5" placeholder="Clave del Indicador">
+                  <input type="text" class="form-control" id="clave_indicador" name="clave_indicador" maxlength="5" placeholder="Clave del Indicador" value="{{ $indicador->Clave_Indicador }}">
                 </div>
 
                 <div class="form-group">
                   <label for="nombre_Empleado"><i class="fas fa-user"></i> Nombre:</label>
-                  <input type="text" class="form-control" id="nombre_indicador" name="nombre_indicador" placeholder="Nombre del Indicador">
+                  <input type="text" class="form-control" id="nombre_indicador" name="nombre_indicador" placeholder="Nombre del Indicador" value="{{ $indicador->Nombre_Indicador }}">
                 </div>
 
                 <div class="form-group">
                   <label for="contrato_id"><i class="fas fa-file-contract"></i> Valor Mínimo Aceptable:</label>
-                  <input type="number" max="100" min="0" class="form-control" id="valorMin_Indicador" name="valorMin_Indicador" placeholder="Valor Mínimo Aceptable">
+                  <input type="number" max="100" min="0" class="form-control" id="valorMin_Indicador" name="valorMin_Indicador" placeholder="Valor Mínimo Aceptable en porcentaje de 0-100%" value="{{ $indicador->Valor_Aceptable }}">
                 </div>
-                
-                <div class="form-group">
-                    <label for="id_zona">Funcion:</label>
-                    <select class="form-control" name="nombre_funcion" id="nombre_funcion" required>
-
-                          <option value="">funcion</option>
-
-                    </select>
-                </div>
+              
                 
               </div>
               <div class="card-footer">
-                <button type="submit" class="btn btn-primary"><i class="fas fa-check"></i> Enviar</button>
+                <button type="submit" class="btn btn-primary"onclick="return confirm('¿Estás seguro de que deseas guardar los cambios realizados?')"><i class="fas fa-check" ></i> Enviar</button>
               </div>
             </form>
           </div>

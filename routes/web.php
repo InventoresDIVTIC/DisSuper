@@ -14,10 +14,16 @@ use App\Http\Controllers\FuncionesPuestosController;
 use App\Http\Controllers\IndicadoresController;
 use App\Http\Controllers\PuestosController;
 use App\Http\Controllers\ZonasController;
+use App\Http\Controllers\ActividadesController;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+
+
+
 
 Route::get('/index', [EmpleadoController::class, 'index']);
 Route::resource('empleado', EmpleadoController::class);
@@ -26,9 +32,12 @@ Route::resource('zonas', ZonasController::class);
 Route::resource('contratos', ContratoController::class);
 Route::resource('roles', RoleController::class);
 Route::resource('puestos', PuestosController::class);
+Route::delete('puestos/{puesto}/actividades/{actividad}', [PuestosController::class, 'detach'])->name('puestos.detach');
+
 Route::resource('funciones_puestos', FuncionesPuestosController::class);
 Route::resource('indicadores', IndicadoresController::class);
-
+Route::resource('actividades', ActividadesController::class);
+Route::delete('actividades/{actividad}/indicadores/{indicador}', [ActividadesController::class, 'eliminarIndicador'])->name('actividades.eliminarIndicador');
 
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
