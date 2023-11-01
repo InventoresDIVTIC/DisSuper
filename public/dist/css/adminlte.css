@@ -53050,3 +53050,27 @@ a.text-muted:hover {
 }
 
 
+/*slider de show empleados*/
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+  background: linear-gradient(to right, red 0%, red 50%, green 50%, green 100%);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #333;
+  border: 2px solid #666;
+  border-radius: 50%;
+  cursor: pointer;
+}

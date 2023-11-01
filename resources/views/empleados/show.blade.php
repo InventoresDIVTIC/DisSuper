@@ -1,7 +1,8 @@
 @extends('layouts.nav')
   @section('content')
 
-
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="{{ asset('dist/js/slidebar.js') }}"></script>
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
@@ -202,166 +203,167 @@
 
                       </div>
 
-                      <div class="tab-pane" id="GenerarLlA">
-                        <form class="form-horizontal">
-                          <div class="form-group row">
-                            <div class="text-primary col-md-12"> 
-                              <label class="col-sm-12 text-center"><h3>Generar Llamada de Atención</h3></label>
-                            </div>
-                          </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="tab-pane" id="GenerarLlA">
+    <form class="form-horizontal">
+        <div class="form-group row">
+            <div class="text-primary col-md-12">
+                <!-- Encabezado del formulario -->
+                <label class="col-sm-12 text-center"><h3>Generar Llamada de Atención</h3></label>
+            </div>
+        </div>
+
+        <!-- Campos del primer indicador -->
+        <div class="form-group row">
+            <label class="col-sm-1.8 col-form-label">N. Llamada</label>
+            <div class="col-sm-3">
+                <input type="number" class="form-control" id="inputNLlamada" placeholder="N. llamada">
+            </div>
+
+            <label class="col-sm-1.5 col-form-label">Actividad</label>
+            <div class="col-sm-3">
+                <input type="number" class="form-control" id="inputCiclo" placeholder="Actividad">
+            </div>
+
+            <label class="col-sm-1.5 col-form-label">Fecha</label>
+            <div class="col-sm-3">
+                <input type="date" class="form-control" id="inputDate" placeholder="Fecha">
+            </div>
+        </div>
+
+        <!-- Introducción del primer indicador -->
+        <div class="form-group row">
+            <label for="inputCargo" class="col-sm-12 col-form-label">Introducción</label>
+            <div class="col-sm-12">
+                <textarea class="form-control" rows="3" placeholder="Explique de manera general el motivo de la Rendición de Cuentas"></textarea>
+            </div>
+        </div>
+
+        <div class="Indicadores" id="indicadores-container">
+            <!-- Campos del primer indicador -->
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label"> Nombre del Indicador </label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" placeholder="Nombre del Indicador">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label"> Hallazgo </label>
+                <div class="col-md-9">
+                    <textarea rows="3" class="form-control" placeholder="Explique sus Hallazgos"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Evidencia</label>
+                <div class="col-sm-9">
+                    <div class="input-group">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="customFile">
+                            <label class="custom-file-label" for="customFile">Imagen de Evidencia</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Continuación de campos del primer indicador -->
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label"> Sistemas de Referencia</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" placeholder="Sistemas de Referenciar">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label">Valor Alcanzado</label>
+                <div class="col-md-10">
+                    <input type="range" class="form-range" min="0" max="100" id="static-indicador-1" name="static-indicador-1"style="width: 90%;">
+                    <output id="static-indicador-1">0</output>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label"> Afectaciones</label>
+                <div class="col-md-9">
+                    <textarea rows="3" class="form-control" placeholder="Explique las Afectaciones al Indicador"> </textarea>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label"> Normas Incumplidas</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" placeholder="Normas Incumplidas">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="inputCargo" class="col-sm-2 col-form-label">Usuario a mandar a revisión</label>
+            <div class="col-sm-9">
+                <div class="form-group">
+                    <select class="form-control">
+                        <option>Juan Mecanico</option>
+                        <option>Doctor Bonilla</option>
+                        <option>Eduardo Quintero</option>
+                        <option>David Guadalupe</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="offset-sm-2 col-sm-10">
+                <button type="submit" class="btn btn-danger">Submit</button>
+            </div>
+        </div>
+       
+    </form>
+    <div class="row text-right">
+        <div class="col-md-2">
+            <button class="btn add-btn btn-info" id="addIndicador">Agregar Indicador</button>
+        </div>
+    </div>
     
-                          <div class="form-group row">
-  
-                            <label class="col-sm-1.8 col-form-label">N. Llamada</label>
-                            <div class="col-sm-3">
-                              <input type="number" class="form-control" id="inputNLlamada" placeholder="N. llamada">
-                            </div>
-  
-                            <label class="col-sm-1.5 col-form-label">Actividad</label>
-                            <div class="col-sm-3">
-                              <input type="number" class="form-control" id="inputCiclo" placeholder="Actividad">
-                            </div>
-  
-                            <label class="col-sm-1.5 col-form-label">Fecha</label>
-                            <div class="col-sm-3">
-                              <input type="date" class="form-control" id="inputDate" placeholder="Fecha">
-                            </div>
-                            
-                          </div>
-      
-                          <div class="form-group row">
-                            <label for="inputCargo" class="col-sm-12 col-form-label">Introducción</label>
-                            <div class="col-sm-12">
-                              <textarea class="form-control" rows="3" placeholder="Explique de manera general el motivo de la Rendición de Cuentas"></textarea>
-                            </div>
-                          </div>
-  
-    
-                          <div class="row">
-                            <label class="col-md-11 text-center col-form-label">Indicadores</label>
-                            <div class="row text-right">
-                              <div class="col-md-2">
-                                <button class="btn add-btn btn-info" id="addIndicador">+</button>
-                              </div>
-                            </div>
-                          </div>
-    
-                          <div class="Indicadores">
+</div><!-- /.tab-pane -->
 
-                            <div class="form-group row">
-                              <label class="col-sm-2 col-form-label"> Nombre del Indicador 1</label>
-                              <div class="col-md-9">
-                                <input type="string" class="form-control" placeholder="Nombre del Indicador">
-                                
-                              </div>
-                            </div>
 
-                            <div class="row">
-                              <label class="col-md-11 text-center col-form-label">Hallazgos del Indicador</label>
-                              <div class="row text-right">
-                                <div class="col-md-2">
-                                  <button class="btn add-btn btn-info" id="addHallazgo">+</button>
-                                </div>
-                              </div>
-                            </div>
 
-                            <div class="Hallazgos">
-                              <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"> Hallazgo 1</label>
-                                <div class="col-md-9">
-                                  <textarea rows="3" class="form-control" placeholder="Explique sus Hallazgos"> </textarea>
-                                </div>
-                              </div>
-                            
 
-                              <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Evidencia</label>
-                                <div class="col-sm-9">
-                                  <div class="input-group">
-                                    <div class="custom-file">
-                                      <input type="file" class="custom-file-input" id="customFile">
-                                      <label class="custom-file-label" for="customFile">Imagen de Evidencia</label>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-md-1">
-                                  <button class="btn add-btn btn-danger" id="removeHallazgo">-</button>
-                                </div>
-                              </div>
 
-                              
-                          </div>
 
-                            <div class="form-group row">
-                              <label class="col-sm-2 col-form-label"> Sistemas de Referencia</label>
-                              <div class="col-md-9">
-                                <input type="string" class="form-control" placeholder="Sistemas de Referenciar">
-                                
-                              </div>
-                            </div>
 
-                            <div class="form-group row">
-                              <label class="col-md-2 col-form-label"> Valor Alcanzado</label>
-                              <div class="col-md-7">
-                                <span class="irs irs--round js-irs-3">
-                                  <span class="irs">
-                                    <span class="irs-line" tabindex="0"></span>
-                                    <span class="irs-min" style="visibility: visible;">0</span>
-                                    <span class="irs-max" style="visibility: hidden;">100</span>
-                                    <span class="irs-from" style="visibility: hidden;">0%</span>
-                                    <span class="irs-single" style="left: 91.8725%;">100%</span>
-                                  </span>
-                                  <span class="irs-grid"></span>
-                                  <span class="irs-bar irs-bar--single" style="left: 0px; width: 96.8379%;"></span>
-                                  <span class="irs-shadow shadow-single" style="display: none;"></span>
-                                  <span class="irs-handle single" style="left: 93.6759%;"><i></i><i></i><i></i></span>
-                                </span>
-                                <input id="range_6" type="text" name="range_6" value="" class="irs-hidden-input" tabindex="-1" readonly="">
-                              </div>
-                              <label class="col-md-2 col-form-label text-right"> Valor Esperado "100"</label>
 
-                            </div>
 
-                            <div class="form-group row">
-                              <label class="col-sm-2 col-form-label"> Afectaciones</label>
-                              <div class="col-md-9">
-                                <textarea rows="3" class="form-control" placeholder="Explique las Afectaciones al Indicador"> </textarea>
-                              </div>
-                            </div>
 
-                            <div class="form-group row">
-                              <label class="col-sm-2 col-form-label"> Normas Incumplidas</label>
-                              <div class="col-md-9">
-                                <input type="string" class="form-control" placeholder="Normas Incumplidas">
-                                
-                              </div>
-                            </div>
 
-                          </div>
-    
-                          <div class="form-group row">
-                            <label for="inputCargo" class="col-sm-2 col-form-label">Usuario a mandar a revisión</label>
-                            <div class="col-sm-9">
-                              <div class="form-group">
-                                <select class="form-control">
-                                  <option>Juan Mecanico</option>
-                                  <option>Doctor Bonilla</option>
-                                  <option>Eduardo Quintero</option>
-                                  <option>David Guadalupe</option>
-                                </select>
-                              </div>
-                            </div>
-                          </div>
-                              
-      
-                          <div class="form-group row">
-                            <div class="offset-sm-2 col-sm-10">
-                              <button type="submit" class="btn btn-danger">Submit</button>
-                            </div>
-                          </div>
-      
-                        </form>
-                      </div><!-- /.tab-pane -->
+
+
+
+
+
+
+
+
 
 
                     </div><!-- /.tab-content -->
@@ -441,5 +443,5 @@
       </div><!-- /.container-fluid -->
     </section>
 
-<script src="js/newIndicador.js"></script>
+
 @endsection
