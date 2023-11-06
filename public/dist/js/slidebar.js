@@ -5,6 +5,9 @@ $(document).ready(function() {
     // Inicializar el slidebar para el primer indicador estático
     initSlidebarForElement($("#static-indicador")); // Cambiado el selector
 
+    var hallazgos = document.querySelectorAll('.hallazgo');
+    var contHallazgosIndicador = [1, 0, 0, 0, 0, 0];
+
     function initSlidebarForElement(element) {
         element.on("input", ".form-range", function() {
             const slider = $(this);
@@ -39,19 +42,21 @@ $(document).ready(function() {
                             </select>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Hallazgo ${indicadorCount}</label>
-                        <div class="col-md-9">
-                            <textarea rows="3" class="form-control" placeholder="Explique sus Hallazgos"></textarea>
+                    <div class="hallazgo">
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Hallazgo ${indicadorCount}</label>
+                            <div class="col-md-9">
+                                <textarea rows="3" class="form-control" placeholder="Explique sus Hallazgos"></textarea>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Evidencia ${indicadorCount}</label>
-                        <div class="col-sm-9">
-                            <div class="input-group">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="customFile${indicadorCount}">
-                                    <label class="custom-file-label" for="customFile${indicadorCount}">Imagen de Evidencia</label>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Evidencia ${indicadorCount}</label>
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="customFile${indicadorCount}">
+                                        <label class="custom-file-label" for="customFile${indicadorCount}">Imagen de Evidencia</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -113,19 +118,26 @@ $(document).ready(function() {
                             </select>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Hallazgo ${indicadorCount}</label>
-                        <div class="col-md-9">
-                            <textarea rows="3" class="form-control" placeholder="Explique sus Hallazgos"></textarea>
+                    <div class="row text-right">
+                        <div class="col-md-2">
+                            <button class="btn add-btn btn-info" id="${indicadorCount}" onclick="addHallazgo(this.id)">Agregar Hallazgo</button>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Evidencia ${indicadorCount}</label>
-                        <div class="col-sm-9">
-                            <div class="input-group">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="customFile${indicadorCount}">
-                                    <label class="custom-file-label" for="customFile${indicadorCount}">Imagen de Evidencia</label>
+                    <div class="hallazgo">
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Hallazgo ${indicadorCount}</label>
+                            <div class="col-md-9">
+                                <textarea rows="3" class="form-control" placeholder="Explique sus Hallazgos"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Evidencia ${indicadorCount}</label>
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="customFile${indicadorCount}">
+                                        <label class="custom-file-label" for="customFile${indicadorCount}">Imagen de Evidencia</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -168,7 +180,37 @@ $(document).ready(function() {
 
         // Inicializar el slidebar para el nuevo indicador dinámico
         initSlidebarForElement($nuevoIndicador);
+        hallazgos = document.querySelectorAll('.hallazgo');
     });
+
+
+    function addHallazgo(idIndicador){
+        event.preventDefault();
+        contHallazgosIndicador[idIndicador - 1]++;
+        var nuevoHallazgo = `
+        <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Hallazgo ${contHallazgosIndicador[idIndicador]}</label>
+        <div class="col-md-9">
+            <textarea rows="3" class="form-control" placeholder="Explique sus Hallazgos"></textarea>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Evidencia ${contHallazgosIndicador[idIndicador]}</label>
+        <div class="col-sm-9">
+            <div class="input-group">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="customFile${indicadorCount}">
+                    <label class="custom-file-label" for="customFile${indicadorCount}">Imagen de Evidencia</label>
+                </div>
+            </div>
+        </div>
+    </div>`;
+
+    //revisar el input y label para adaptar el nuevo id y for correctamente
+
+        hallazgos[idIndicador - 1].innerHTML = nuevoHallazgo;
+        alert('');
+    };
 
     primerIndicador();
 });
