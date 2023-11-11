@@ -223,7 +223,7 @@
 
 
 
-<div class="tab-pane" id="GenerarLlA">
+                      <div class="tab-pane" id="GenerarLlA">
     <form class="form-horizontal">
         <div class="form-group row">
             <div class="text-primary col-md-12">
@@ -279,7 +279,7 @@
 
         <div class="form-group row">
             <div class="offset-sm-2 col-sm-10">
-                <button type="submit" class="btn btn-danger">Submit</button>
+                <button type="submit" class="btn btn-danger">Enviar</button>
             </div>
         </div>
        
@@ -291,8 +291,7 @@
     </div>
     
     
-</div><!-- /.tab-pane -->
-
+</div><!-- /.tab-pane -->
 
 
 

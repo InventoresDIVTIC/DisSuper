@@ -5,9 +5,7 @@ $(document).ready(function() {
     // Inicializar el slidebar para el primer indicador estático
     initSlidebarForElement($("#static-indicador")); // Cambiado el selector
 
-    var hallazgos = document.querySelectorAll('.hallazgo');
-    var contHallazgosIndicador = [1, 0, 0, 0, 0, 0];
-
+  
     function initSlidebarForElement(element) {
         element.on("input", ".form-range", function() {
             const slider = $(this);
@@ -25,6 +23,27 @@ $(document).ready(function() {
             output.text(value);
         });
     }
+    
+    $(document).on("click", ".add-hallazgo", function() {
+        var hallazgoCount = $(this).closest(".indicador").find(".hallazgo-container").children().length;
+
+        if (hallazgoCount < 3) {
+            var nuevoHallazgo = `
+                <div class="hallazgo">
+                    <!-- Campos del hallazgo -->
+                </div>
+            `;
+
+            // Convertir el nuevo hallazgo en un elemento jQuery
+            var $nuevoHallazgo = $(nuevoHallazgo);
+
+            // Agregar el nuevo hallazgo al contenedor de hallazgos dentro del indicador
+            $(this).closest(".indicador").find(".hallazgo-container").append($nuevoHallazgo);
+        } else {
+            alert("Se ha alcanzado el máximo de 3 hallazgos por indicador.");
+        }
+    });
+
 
     function primerIndicador(){
         var nuevoIndicador = `
@@ -43,10 +62,17 @@ $(document).ready(function() {
                         </div>
                     </div>
                     <div class="hallazgo">
+                    <div class="hallazgo-container">
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Hallazgo ${indicadorCount}</label>
                             <div class="col-md-9">
                                 <textarea rows="3" class="form-control" placeholder="Explique sus Hallazgos"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="row text-right">
+                            <div class="col-md-2">
+                                <button class="btn add-btn btn-info add-hallazgo">Agregar Hallazgo</button>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -99,7 +125,30 @@ $(document).ready(function() {
 
         // Inicializar el slidebar para el nuevo indicador dinámico
         initSlidebarForElement($nuevoIndicador);
+
+  // Manejar el clic en el botón "Agregar Hallazgo" dentro de este indicador
+  $("#addHallazgo" + indicadorCount).click(function() {
+    var hallazgoCount = $("#hallazgo-container" + indicadorCount).children().length + 1;
+    if (hallazgoCount <= 3) {
+        // Crear un nuevo hallazgo y agregarlo al contenedor
+        var nuevoHallazgo = `
+            <div class="hallazgo">
+                <!-- Campos del hallazgo -->
+            </div>
+        `;
+
+        // Convertir el nuevo hallazgo en un elemento jQuery
+        var $nuevoHallazgo = $(nuevoHallazgo);
+
+        // Agregar el nuevo hallazgo al contenedor de hallazgos
+        $("#hallazgo-container" + indicadorCount).append($nuevoHallazgo);
+    } else {
+        alert("Se ha alcanzado el máximo de 3 hallazgos por indicador.");
     }
+});
+}
+   
+
 
 
     // Manejar el clic en el botón "Agregar Indicador"
@@ -118,11 +167,7 @@ $(document).ready(function() {
                             </select>
                         </div>
                     </div>
-                    <div class="row text-right">
-                        <div class="col-md-2">
-                            <button class="btn add-btn btn-info" id="${indicadorCount}" onclick="addHallazgo(this.id)">Agregar Hallazgo</button>
-                        </div>
-                    </div>
+                   
                     <div class="hallazgo">
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Hallazgo ${indicadorCount}</label>
@@ -180,37 +225,9 @@ $(document).ready(function() {
 
         // Inicializar el slidebar para el nuevo indicador dinámico
         initSlidebarForElement($nuevoIndicador);
-        hallazgos = document.querySelectorAll('.hallazgo');
+  
     });
 
-
-    function addHallazgo(idIndicador){
-        event.preventDefault();
-        contHallazgosIndicador[idIndicador - 1]++;
-        var nuevoHallazgo = `
-        <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Hallazgo ${contHallazgosIndicador[idIndicador]}</label>
-        <div class="col-md-9">
-            <textarea rows="3" class="form-control" placeholder="Explique sus Hallazgos"></textarea>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Evidencia ${contHallazgosIndicador[idIndicador]}</label>
-        <div class="col-sm-9">
-            <div class="input-group">
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="customFile${indicadorCount}">
-                    <label class="custom-file-label" for="customFile${indicadorCount}">Imagen de Evidencia</label>
-                </div>
-            </div>
-        </div>
-    </div>`;
-
-    //revisar el input y label para adaptar el nuevo id y for correctamente
-
-        hallazgos[idIndicador - 1].innerHTML = nuevoHallazgo;
-        alert('');
-    };
 
     primerIndicador();
 });
