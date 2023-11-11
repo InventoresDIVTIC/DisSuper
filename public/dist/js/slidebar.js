@@ -26,6 +26,35 @@ $(document).ready(function() {
         });
     }
 
+    function addHallazgo(idIndicador){
+        console.log("boton");
+        contHallazgosIndicador[idIndicador - 1]++;
+        var nuevoHallazgo = `
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Hallazgo ${contHallazgosIndicador[idIndicador]}</label>
+            <div class="col-md-9">
+                <textarea rows="3" class="form-control" placeholder="Explique sus Hallazgos"></textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Evidencia ${contHallazgosIndicador[idIndicador]}</label>
+            <div class="col-sm-9">
+                <div class="input-group">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="customFile${indicadorCount}">
+                        <label class="custom-file-label" for="customFile${indicadorCount}">Imagen de Evidencia</label>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+
+        //revisar el input y label para adaptar el nuevo id y for correctamente
+
+        var $nuevoHallazgo = $(nuevoHallazgo);
+
+        hallazgos[idIndicador - 1].append($nuevoHallazgo);
+    };
+
     function primerIndicador(){
         var nuevoIndicador = `
         <div class="indicador">
@@ -120,7 +149,7 @@ $(document).ready(function() {
                     </div>
                     <div class="row text-right">
                         <div class="col-md-2">
-                            <button class="btn add-btn btn-info" id="${indicadorCount}" onclick="addHallazgo(this.id)">Agregar Hallazgo</button>
+                            <input type="button" class="btn add-btn btn-info" id="${indicadorCount}" onclick="addHallazgo(this.id)" value = "Agregar Hallazgo"></input>
                         </div>
                     </div>
                     <div class="hallazgo">
@@ -184,33 +213,7 @@ $(document).ready(function() {
     });
 
 
-    function addHallazgo(idIndicador){
-        event.preventDefault();
-        contHallazgosIndicador[idIndicador - 1]++;
-        var nuevoHallazgo = `
-        <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Hallazgo ${contHallazgosIndicador[idIndicador]}</label>
-        <div class="col-md-9">
-            <textarea rows="3" class="form-control" placeholder="Explique sus Hallazgos"></textarea>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Evidencia ${contHallazgosIndicador[idIndicador]}</label>
-        <div class="col-sm-9">
-            <div class="input-group">
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="customFile${indicadorCount}">
-                    <label class="custom-file-label" for="customFile${indicadorCount}">Imagen de Evidencia</label>
-                </div>
-            </div>
-        </div>
-    </div>`;
-
-    //revisar el input y label para adaptar el nuevo id y for correctamente
-
-        hallazgos[idIndicador - 1].innerHTML = nuevoHallazgo;
-        alert('');
-    };
+   
 
     primerIndicador();
 });
