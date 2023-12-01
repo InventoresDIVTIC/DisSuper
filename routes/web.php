@@ -15,6 +15,7 @@ use App\Http\Controllers\IndicadoresController;
 use App\Http\Controllers\PuestosController;
 use App\Http\Controllers\ZonasController;
 use App\Http\Controllers\ActividadesController;
+use App\Http\Controllers\OpenAIController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -49,3 +50,7 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::get('/formulario', [OpenAIController::class, 'mostrarFormulario']);
+Route::post('/procesar-formulario', [OpenAIController::class, 'procesarFormulario']);

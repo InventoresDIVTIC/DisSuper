@@ -224,7 +224,8 @@
 
 
                       <div class="tab-pane" id="GenerarLlA">
-    <form class="form-horizontal">
+                    <form action="{{ url('/procesar-formulario') }}" method="POST">
+                    @csrf
         <div class="form-group row">
             <div class="text-primary col-md-12">
                 <!-- Encabezado del formulario -->
@@ -236,7 +237,7 @@
         <div class="form-group row">
             <label class="col-sm-1.8 col-form-label">N. Llamada</label>
             <div class="col-sm-3">
-                <input type="number" class="form-control" id="inputNLlamada" placeholder="N. llamada">
+                <input type="number" class="form-control" id="inputNLlamada" name="inputNLlamada" placeholder="N. llamada">
             </div>
 
             <label class="col-sm-1.5 col-form-label">Actividad</label>
@@ -260,6 +261,9 @@
 
         <div class="Indicadores" id="indicadores-container">
             <!-- Campos del primer indicador -->
+            <div class="hallazgo-container" id="hallazgos-container">
+                   <!-- Los hallazgos se agregarán aquí -->
+              </div>
             
         </div>
 
@@ -287,6 +291,7 @@
     <div class="row text-right">
         <div class="col-md-2">
             <button class="btn add-btn btn-info" id="addIndicador">Agregar Indicador</button>
+            
         </div>
     </div>
     
