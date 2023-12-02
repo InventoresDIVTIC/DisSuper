@@ -1,7 +1,11 @@
 $(document).ready(function() {
     // Contador para llevar un seguimiento de los indicadores dinámicos
     var indicadorCount = 1;
+    var hallazgosCount = 1;
+  
 
+    
+   
     // Inicializar el slidebar para el primer indicador estático
     initSlidebarForElement($("#static-indicador")); // Cambiado el selector
 
@@ -13,7 +17,7 @@ $(document).ready(function() {
 
             if (value < 50) {
                 slider.css("background", "red");
-            } else if (value >= 50 && value <= 70) {
+            } else if (value >= 50 && value <= 70) { 
                 slider.css("background", "yellow");
             } else {
                 slider.css("background", "green");
@@ -21,7 +25,6 @@ $(document).ready(function() {
             output.text(value);
         });
     }
-
 
     function primerIndicador(){
         var nuevoIndicador = `
@@ -87,6 +90,10 @@ $(document).ready(function() {
                                 <textarea rows="3" class="form-control" placeholder="Explique sus Hallazgos"></textarea>
                             </div>
                         </div>
+                        <!-- El botón para agregar hallazgos dinámicamente -->
+                        <button class="btn add-btn btn-info" id="addHallazgo">Agregar hayazgos</button>
+                    </div>
+                        
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Evidencia 3</label>
                             <div class="col-sm-9">
@@ -173,6 +180,7 @@ $(document).ready(function() {
             return;
         }
         indicadorCount++;
+    
         // Crear un nuevo conjunto de campos para el indicador dinámico
         var nuevoIndicador = `
         <div class="indicador">
@@ -256,6 +264,12 @@ $(document).ready(function() {
                                 <textarea rows="3" class="form-control" placeholder="Explique sus Hallazgos"></textarea>
                             </div>
                         </div>
+                        <!-- El botón para agregar hallazgos dinámicamente -->
+
+                        <button class="btn add-btn btn-info" id="addHallazgo">Agregar Hallazgo</button>
+
+                    </div>
+                        
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Evidencia 4</label>
                             <div class="col-sm-9">
