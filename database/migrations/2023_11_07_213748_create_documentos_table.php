@@ -19,8 +19,8 @@ return new class extends Migration
             $table->unsignedSmallInteger("Tipo_Documento");
             $table->unsignedSmallInteger("Status_Documento");
 
-            $table->unsignedBigInteger("Id_Usuario_Autor");     //quien creo el documento
-            $table->unsignedBigInteger("Id_Usuario_Revisar");   //a quien se manda a revisar
+            $table->integer("Id_Usuario_Autor");     //quien creo el documento
+            $table->integer("Id_Usuario_Revisar");   //a quien se manda a revisar
 
             $table->text("N_Llamada");
             $table->integer("Actividad");

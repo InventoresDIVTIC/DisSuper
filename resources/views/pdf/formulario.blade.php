@@ -28,12 +28,14 @@
             <span>{{ $datosFormulario['inputNLlamada'] ?? '' }}</span>
         </div>
     </div>
+
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Actividad:</label>
         <div class="col-sm-10">
             <span>{{ $datosFormulario['actividad'] ?? '' }}</span>
         </div>
     </div>
+    
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Fecha:</label>
         <div class="col-sm-10">

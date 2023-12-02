@@ -38,7 +38,7 @@ class OpenAIController extends Controller
             $dompdf->render();
 
             // Descargar el PDF generado
-            return $dompdf->stream('prueba.pdf');
+            //return $dompdf->stream('prueba.pdf');
         } catch (\Exception $e) {
             // Manejar cualquier otra excepción o error
             return response("Error al procesar la solicitud: " . $e->getMessage(), 500);
