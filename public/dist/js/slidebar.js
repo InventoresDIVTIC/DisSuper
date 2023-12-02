@@ -5,9 +5,6 @@ $(document).ready(function() {
     // Inicializar el slidebar para el primer indicador estático
     initSlidebarForElement($("#static-indicador")); // Cambiado el selector
 
-    var hallazgos = document.querySelectorAll('.hallazgo');
-    var contHallazgosIndicador = [1, 0, 0, 0, 0, 0];
-
     function initSlidebarForElement(element) {
         element.on("input", ".form-range", function() {
             const slider = $(this);
@@ -21,65 +18,96 @@ $(document).ready(function() {
             } else {
                 slider.css("background", "green");
             }
-
             output.text(value);
         });
     }
 
-    function addHallazgo(idIndicador){
-        console.log("boton");
-        contHallazgosIndicador[idIndicador - 1]++;
-        var nuevoHallazgo = `
-        <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Hallazgo ${contHallazgosIndicador[idIndicador]}</label>
-            <div class="col-md-9">
-                <textarea rows="3" class="form-control" placeholder="Explique sus Hallazgos"></textarea>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Evidencia ${contHallazgosIndicador[idIndicador]}</label>
-            <div class="col-sm-9">
-                <div class="input-group">
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="customFile${indicadorCount}">
-                        <label class="custom-file-label" for="customFile${indicadorCount}">Imagen de Evidencia</label>
-                    </div>
-                </div>
-            </div>
-        </div>`;
-
-        //revisar el input y label para adaptar el nuevo id y for correctamente
-
-        var $nuevoHallazgo = $(nuevoHallazgo);
-
-        hallazgos[idIndicador - 1].append($nuevoHallazgo);
-    };
 
     function primerIndicador(){
         var nuevoIndicador = `
         <div class="indicador">
             <div class="card">
                 <div class="card-header">
-                <label class="col-sm-2 card-title text-info">Indicador ${indicadorCount}</label>
+                    <label class="col-sm-9 card-title text-info">Indicador ${indicadorCount}</label>
+                    <button type="button" class="btn add-btn btn-info " onclick="mostrarDiv(${indicadorCount})" >Agregar Hallazgo</input>
+                    <button type="button" class="btn add-btn btn-danger " onclick="ocultarDiv(${indicadorCount})" >Quitar Hallazgo</input>
                 </div>
                 <div class="card-body">
                     <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Nombre del Indicador ${indicadorCount}</label>
+                        <label class="col-sm-2 col-form-label">Indicador</label>
                         <div class="col-md-9">
                             <select name="indicador${indicadorCount}" id="indicador${indicadorCount}" class="form-control">
-                                <option value="Productividad">Productividad</option>
+                            <option value="Productividad">Productividad</option>
                             </select>
                         </div>
                     </div>
-                    <div class="hallazgo">
+
+
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Hallazgo 1</label>
+                        <div class="col-md-9">
+                            <textarea rows="3" class="form-control" placeholder="Explique sus Hallazgos"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Evidencia 1</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="customFile${indicadorCount}">
+                                    <label class="custom-file-label" for="customFile${indicadorCount}">Imagen de Evidencia</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="hallazgo" id="Indicador${indicadorCount}Hallazgo1">
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Hallazgo ${indicadorCount}</label>
+                            <label class="col-sm-2 col-form-label">Hallazgo 2</label>
                             <div class="col-md-9">
                                 <textarea rows="3" class="form-control" placeholder="Explique sus Hallazgos"></textarea>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Evidencia ${indicadorCount}</label>
+                            <label class="col-sm-2 col-form-label">Evidencia 2</label>
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="customFile${indicadorCount}">
+                                        <label class="custom-file-label" for="customFile${indicadorCount}">Imagen de Evidencia</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hallazgo" id="Indicador${indicadorCount}Hallazgo2">
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Hallazgo 3</label>
+                            <div class="col-md-9">
+                                <textarea rows="3" class="form-control" placeholder="Explique sus Hallazgos"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Evidencia 3</label>
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="customFile${indicadorCount}">
+                                        <label class="custom-file-label" for="customFile${indicadorCount}">Imagen de Evidencia</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hallazgo" id="Indicador${indicadorCount}Hallazgo3">
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Hallazgo 4</label>
+                            <div class="col-md-9">
+                                <textarea rows="3" class="form-control" placeholder="Explique sus Hallazgos"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Evidencia 4</label>
                             <div class="col-sm-9">
                                 <div class="input-group">
                                     <div class="custom-file">
@@ -91,26 +119,26 @@ $(document).ready(function() {
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-2 col-form-label"> Sistemas de Referencia ${indicadorCount}</label>
+                        <label class="col-sm-2 col-form-label"> Sistemas de Referencia</label>
                         <div class="col-md-9">
                             <input type="text" class="form-control" placeholder="Sistemas de Referenciar">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-2 col-form-label">Valor Alcanzado ${indicadorCount}</label>
+                        <label class="col-md-2 col-form-label">Valor Alcanzado</label>
                         <div class="col-md-10">
                             <input type="range" class="form-range" min="0" max="100" style="width: 90%;">
                             <output class="output-range-value">0</output>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-2 col-form-label"> Afectaciones ${indicadorCount}</label>
+                        <label class="col-sm-2 col-form-label"> Afectaciones</label>
                         <div class="col-md-9">
                             <textarea rows="3" class="form-control" placeholder="Explique las Afectaciones al Indicador"> </textarea>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-2 col-form-label"> Normas Incumplidas ${indicadorCount}</label>
+                        <label class="col-sm-2 col-form-label"> Normas Incumplidas</label>
                         <div class="col-md-9">
                             <input type="text" class="form-control" placeholder="Normas Incumplidas">
                         </div>
@@ -122,6 +150,9 @@ $(document).ready(function() {
 
         // Convertir el nuevo indicador en un elemento jQuery
         var $nuevoIndicador = $(nuevoIndicador);
+
+        //Ocultar los Divs de Hallazgo
+        $nuevoIndicador.find('.hallazgo').hide();
 
         // Agregar el nuevo indicador al contenedor
         $("#indicadores-container").append($nuevoIndicador);
@@ -130,37 +161,103 @@ $(document).ready(function() {
         initSlidebarForElement($nuevoIndicador);
     }
 
+    $("#removeIndicador").click(function(){
+        if(indicadorCount>1)
+            indicadorCount--;
+    });
 
     // Manejar el clic en el botón "Agregar Indicador"
     $("#addIndicador").click(function() {
+        if(indicadorCount == 6){
+            alert("Ya se ha alcanzado el limite de indicadores por documento");
+            return;
+        }
         indicadorCount++;
         // Crear un nuevo conjunto de campos para el indicador dinámico
         var nuevoIndicador = `
         <div class="indicador">
             <div class="card">
+                <div class="card-header">
+                <label class="col-sm-9 card-title text-info">Indicador ${indicadorCount}</label>
+                <button type="button" class="btn add-btn btn-info " onclick="mostrarDiv(${indicadorCount })" >Agregar Hallazgo</input>
+                <button type="button" class="btn add-btn btn-danger " onclick="ocultarDiv(${indicadorCount})" >Quitar Hallazgo</input>
+                </div>
                 <div class="card-body">
                     <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Indicador ${indicadorCount}</label>
+                        <label class="col-sm-2 col-form-label">Indicador</label>
                         <div class="col-md-9">
                             <select name="indicador${indicadorCount}" id="indicador${indicadorCount}" class="form-control">
                             <option value="Productividad">Productividad</option>
                             </select>
                         </div>
                     </div>
-                    <div class="row text-right">
-                        <div class="col-md-2">
-                            <input type="button" class="btn add-btn btn-info" id="${indicadorCount}" onclick="addHallazgo(this.id)" value = "Agregar Hallazgo"></input>
+
+
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Hallazgo 1</label>
+                        <div class="col-md-9">
+                            <textarea rows="3" class="form-control" placeholder="Explique sus Hallazgos"></textarea>
                         </div>
                     </div>
-                    <div class="hallazgo">
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Evidencia 1</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="customFile${indicadorCount}">
+                                    <label class="custom-file-label" for="customFile${indicadorCount}">Imagen de Evidencia</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="hallazgo" id="Indicador${indicadorCount}Hallazgo1">
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Hallazgo ${indicadorCount}</label>
+                            <label class="col-sm-2 col-form-label">Hallazgo 2</label>
                             <div class="col-md-9">
                                 <textarea rows="3" class="form-control" placeholder="Explique sus Hallazgos"></textarea>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Evidencia ${indicadorCount}</label>
+                            <label class="col-sm-2 col-form-label">Evidencia 2</label>
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="customFile${indicadorCount}">
+                                        <label class="custom-file-label" for="customFile${indicadorCount}">Imagen de Evidencia</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hallazgo" id="Indicador${indicadorCount}Hallazgo2">
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Hallazgo 3</label>
+                            <div class="col-md-9">
+                                <textarea rows="3" class="form-control" placeholder="Explique sus Hallazgos"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Evidencia 3</label>
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="customFile${indicadorCount}">
+                                        <label class="custom-file-label" for="customFile${indicadorCount}">Imagen de Evidencia</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hallazgo" id="Indicador${indicadorCount}Hallazgo3">
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Hallazgo 4</label>
+                            <div class="col-md-9">
+                                <textarea rows="3" class="form-control" placeholder="Explique sus Hallazgos"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Evidencia 4</label>
                             <div class="col-sm-9">
                                 <div class="input-group">
                                     <div class="custom-file">
@@ -172,26 +269,26 @@ $(document).ready(function() {
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-2 col-form-label"> Sistemas de Referencia ${indicadorCount}</label>
+                        <label class="col-sm-2 col-form-label"> Sistemas de Referencia</label>
                         <div class="col-md-9">
                             <input type="text" class="form-control" placeholder="Sistemas de Referenciar">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-2 col-form-label">Valor Alcanzado ${indicadorCount}</label>
+                        <label class="col-md-2 col-form-label">Valor Alcanzado</label>
                         <div class="col-md-10">
                             <input type="range" class="form-range" min="0" max="100" style="width: 90%;">
                             <output class="output-range-value">0</output>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-2 col-form-label"> Afectaciones ${indicadorCount}</label>
+                        <label class="col-sm-2 col-form-label"> Afectaciones</label>
                         <div class="col-md-9">
                             <textarea rows="3" class="form-control" placeholder="Explique las Afectaciones al Indicador"> </textarea>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-2 col-form-label"> Normas Incumplidas ${indicadorCount}</label>
+                        <label class="col-sm-2 col-form-label"> Normas Incumplidas</label>
                         <div class="col-md-9">
                             <input type="text" class="form-control" placeholder="Normas Incumplidas">
                         </div>
@@ -201,16 +298,20 @@ $(document).ready(function() {
         </div>
         `;
 
+
+
         // Convertir el nuevo indicador en un elemento jQuery
         var $nuevoIndicador = $(nuevoIndicador);
+        //Ocultar los Divs de Hallazgo
+        $nuevoIndicador.find('.hallazgo').hide();
 
         // Agregar el nuevo indicador al contenedor
         $("#indicadores-container").append($nuevoIndicador);
 
         // Inicializar el slidebar para el nuevo indicador dinámico
         initSlidebarForElement($nuevoIndicador);
-        hallazgos = document.querySelectorAll('.hallazgo');
     });
+    
 
 
    

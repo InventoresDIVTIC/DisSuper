@@ -1,8 +1,9 @@
 @extends('layouts.nav')
   @section('content')
 
+  <style src="{{asset('dist/css/hallazgosIndicadores.css')}}"></style>
+
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="{{ asset('dist/js/slidebar.js') }}"></script>
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
@@ -279,16 +280,13 @@
 
         <div class="form-group row">
             <div class="offset-sm-2 col-sm-10">
+                <button type="button" class="btn add-btn btn-info" id="addIndicador">Agregar Indicador</button>
+                <button type="button" class="btn add-btn btn-danger" onclick="eliminarIndicador()" id="removeIndicador">Eliminar Indicador</button>
                 <button type="submit" class="btn btn-danger">Submit</button>
             </div>
         </div>
        
     </form>
-    <div class="row text-right">
-        <div class="col-md-2">
-            <button class="btn add-btn btn-info" id="addIndicador">Agregar Indicador</button>
-        </div>
-    </div>
     
     
 </div><!-- /.tab-pane -->
@@ -389,6 +387,6 @@
         <!-- /.row -->
       </div><!-- /.container-fluid -->
     </section>
-
-
+<script src="{{ asset('dist/js/slidebar.js') }}"></script>
+<script src="{{asset('dist/js/mostrarHallazgos.js')}}"></script>
 @endsection
