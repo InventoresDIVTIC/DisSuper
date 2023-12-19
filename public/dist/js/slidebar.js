@@ -83,6 +83,7 @@ $(document).ready(function() {
                             </div>
                         </div>
                     </div>
+
                     <div class="hallazgo" id="Indicador${indicadorCount}Hallazgo2">
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Hallazgo 3</label>
@@ -90,9 +91,6 @@ $(document).ready(function() {
                                 <textarea rows="3" class="form-control" placeholder="Explique sus Hallazgos"></textarea>
                             </div>
                         </div>
-                        <!-- El botón para agregar hallazgos dinámicamente -->
-                        <button class="btn add-btn btn-info" id="addHallazgo">Agregar hayazgos</button>
-                    </div>
                         
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Evidencia 3</label>
@@ -264,11 +262,6 @@ $(document).ready(function() {
                                 <textarea rows="3" class="form-control" placeholder="Explique sus Hallazgos"></textarea>
                             </div>
                         </div>
-                        <!-- El botón para agregar hallazgos dinámicamente -->
-
-                        <button class="btn add-btn btn-info" id="addHallazgo">Agregar Hallazgo</button>
-
-                    </div>
                         
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Evidencia 4</label>

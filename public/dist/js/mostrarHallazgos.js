@@ -1,5 +1,6 @@
 
 var contadorHallazgos = [1, 1, 1, 1, 1, 1, 1];
+var contadorIndicadores = 1;
 
 function mostrarDiv(idIndicador){
     if(contadorHallazgos[idIndicador] == 4){
@@ -24,13 +25,15 @@ function ocultarDiv(idIndicador){
 }
 
 function eliminarIndicador(){
-    
     var indicadoresContainer = document.getElementById("indicadores-container");
     
     var hijos = indicadoresContainer.children;
-    if(hijos.length <= 1){
+    if(hijos.length <= 2){
         alert("No se pueden eliminar mas indicadores del documento");
         return;
     }
-    hijos[hijos.length-1].remove();
+    else{
+        hijos[hijos.length-1].remove();
+    }
+    
 }
