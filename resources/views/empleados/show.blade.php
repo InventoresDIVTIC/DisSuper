@@ -15,23 +15,38 @@
               <div class="card-body box-profile">
                 <div class="text-center">
                   <img class="profile-user-img img-fluid img-circle"
-                       src="../../dist/img/user4-128x128.jpg"
+                       src="../../dist/img/logo.png"
                        alt="User profile picture">
+                       
                 </div>
-
-                <h3 class="profile-username text-center">Nombre Empleado</h3>
-
-                <p class="text-muted text-center">Cargo Actual</p>
-
+                <h3 class="profile-username text-center">Nombre: {{ $empleado->nombre_Empleado }}</h3>
+                <p class="text-muted text-center">RPE:{{ $empleado->RPE_Empleado }}
+                   
+                </p>
                 <ul class="list-group list-group-unbordered mb-3">
                   <li class="list-group-item">
-                    <b>Zona de Trabajo</b>
+                    <b>Zona de Trabajo: </b>
+                    @if ($empleado->zonas->count() > 0)
+                                    @foreach ($empleado->zonas as $zona)
+                                        {{ $zona->nombre_zona }}
+                                        @if (!$loop->last)
+                                            ,
+                                        @endif
+                                    @endforeach
+                                @else
+                                    Sin zona asignada
+                                @endif
                   </li>
                   <li class="list-group-item">
-                    <b>Encargado de la Zona</b> 
+                    <b>Encargado de la Zona: </b> 
+                    @if ($empleado->zonas->count() > 0 && $empleado->zonas->first()->encargado)
+                                    {{ $empleado->zonas->first()->encargado->name }}
+                                @else
+                                    Sin encargado asignado
+                                @endif
                   </li>
                   <li class="list-group-item">
-                    <b>Fecha de Ingreso</b> 
+                  <b>Fecha de Ingreso: {{ $empleado->fecha_ingreso }}</b>
                   </li>
                 </ul>
               </div>
@@ -272,12 +287,13 @@
             <label for="inputCargo" class="col-sm-2 col-form-label">Usuario a mandar a revisión</label>
             <div class="col-sm-9">
                 <div class="form-group">
-                    <select class="form-control">
-                        <option>Juan Mecanico</option>
-                        <option>Doctor Bonilla</option>
-                        <option>Eduardo Quintero</option>
-                        <option>David Guadalupe</option>
-                    </select>
+                <select class="form-control" id="usuario" name="usuario_id">
+                @foreach($usuarios as $index => $usuario)
+                    @if($index !== 0) <!-- Omitir el primer usuario -->
+                        <option value="{{ $usuario->id }}">{{ $usuario->name }}</option>
+                    @endif
+                @endforeach
+                </select>
                 </div>
             </div>
         </div>

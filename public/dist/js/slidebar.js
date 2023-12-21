@@ -63,6 +63,22 @@ $(document).ready(function() {
                             </div>
                         </div>
                     </div>
+
+
+
+
+
+
+                    <label for="contrato_id"><i ></i> Foto de perfil:</label><br>
+                    <div class="input-group mb-3">
+                        <input type="file" name="photo" id="photo" accept="image/*"
+                            value="{{ $usuario->pho }}">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                            </div>
+                        </div>
+                    </div>
                     
                     <div class="hallazgo" id="Indicador${indicadorCount}Hallazgo1">
                         <div class="form-group row">
