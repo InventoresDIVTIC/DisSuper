@@ -58,6 +58,7 @@
         <div class="footer">
             <p>Por favor, no respondas a este correo electrónico. Si necesitas asistencia, ponte en contacto con el soporte.</p>
         </div>
+     
     </div>
 </body>
 </html>

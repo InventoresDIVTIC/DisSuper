@@ -15,7 +15,8 @@ use App\Http\Controllers\IndicadoresController;
 use App\Http\Controllers\PuestosController;
 use App\Http\Controllers\ZonasController;
 use App\Http\Controllers\ActividadesController;
-use App\Http\Controllers\OpenAIController;
+
+use App\Http\Controllers\DocumentosController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -51,8 +52,8 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-Route::get('/formulario', [OpenAIController::class, 'mostrarFormulario']);
-Route::post('/procesar-formulario', [OpenAIController::class, 'procesarFormulario']);
+Route::get('/formulario', [DocumentosController::class, 'mostrarFormulario']);
+Route::post('/procesar-formulario', [DocumentosController::class, 'procesarFormulario']);
 
-
+Route::get('/cambiar-estatus/{id_documento}', 'DocumentoController@cambiarEstatus')->name('cambiar_estatus');
 
