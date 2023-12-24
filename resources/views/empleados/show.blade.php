@@ -139,10 +139,11 @@
                   <div class="tab-pane" id="Documentos">
                     <div class="card bg-black color-palette">
                     <ul class="nav navtabs" id="custom-content-below-tab" role="tablist">
-                    <li class="nav-item" style="width: 25%"><a class="nav-link text-center text-muted" href="#ListadoDocumentos" data-toggle="tab">Listado de Documentos</a></li>
-                    <li class="nav-item" style="width: 25%"><a class="nav-link text-center text-muted" href="#GenerarRC" data-toggle="tab">Rendición de Cuentas</a></li>
-                    <li class="nav-item" style="width: 25%"><a class="nav-link text-center text-muted" href="#GenerarLlA" data-toggle="tab">Llamada de Atención</a></li>
-                    <li class="nav-item" style="width: 25%"><a class="nav-link text-center text-muted" href="#GenerarAA" data-toggle="tab">Acta Administrativa</a></li>
+                    <li class="nav-item" style="width: 20%"><a class="nav-link text-center text-muted" href="#ListadoDocumentos" data-toggle="tab">Listado de Documentos</a></li>
+                    <li class="nav-item" style="width: 20%"><a class="nav-link text-center text-muted" href="#Subir_Doc" data-toggle="tab">Subir Documento</a></li>
+                    <li class="nav-item" style="width: 20%"><a class="nav-link text-center text-muted" href="#GenerarRC" data-toggle="tab">Rendición de Cuentas</a></li>
+                    <li class="nav-item" style="width: 20%"><a class="nav-link text-center text-muted" href="#GenerarLlA" data-toggle="tab">Llamada de Atención</a></li>
+                    <li class="nav-item" style="width: 20%"><a class="nav-link text-center text-muted" href="#GenerarAA" data-toggle="tab">Acta Administrativa</a></li>
                     </ul>
                     </div>
 
@@ -201,6 +202,56 @@
                           <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
                           </ul>
                         </div>
+
+                      </div>
+
+                      <div class="tab-pane" id="Subir_Doc">
+                        <form action="{{ url('/procesar-formulario') }}" method="POST">
+                          <div class="form-group row">
+                            <div class="text-primary col-md-12">
+                                <!-- Encabezado del formulario -->
+                                <label class="col-sm-12 text-center"><h3>Subir Documento</h3></label>
+                            </div>
+                          </div>
+
+                          <div class="form-group row">
+                            <label class="col-sm-1.8 col-form-label">Tipo de Documento: </label>
+                            <div class="col-sm-3">
+                                <select class="form-control" id="t_Documento" name="t_Documento" placeholder="Tipo de Documento">
+                                  <option>Remdición de Cuentas</option>
+                                  <option>Llamada de Atención</option>
+                                  <option>Acta Administrativa</option>
+                                </select>
+                            </div>
+                
+                            <label class="col-sm-1.8 col-form-label">Encargado de Revisión: </label>
+                            <div class="col-sm-3">
+                                <select class="form-control" id="Revisor" placeholder="Encargado de Revisión">
+                                  <option>Juan Mecanico</option>
+                                  <option>Doctor Bonilla</option>
+                                  <option>Eduardo Quintero</option>
+                                  <option>David Guadalupe</option>
+                                </select>
+                            </div>
+                          </div>
+
+                          <div class="form-group row">
+
+                            <label class="col-sm-1.9 col-form-label">Documento:  </label>
+                            <div class="col-sm-10">
+                                <input type="file" class="custom-file-input" id="Doc">
+                                <label class="custom-file-label">Documento</label>
+                            </div>
+                          </div>
+
+                          <div class="form-group row">
+                            <div class="offset-sm-2 col-sm-10">
+                                <button type="submit" class="btn btn-info">Enviar</button>
+                            </div>
+                          </div>
+
+
+                        </form>
 
                       </div>
 
