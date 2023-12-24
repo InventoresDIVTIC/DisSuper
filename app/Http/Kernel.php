@@ -65,5 +65,9 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'auth.redirect' => \App\Http\Middleware\RedirectIfNotAuthenticated::class,
+        'jefaturaInmediata' => \App\Http\Middleware\JefaturaInmediataMiddleware::class,
+        'admin' => \App\Http\Middleware\AdminMiddleware::class,
+        'jefaturaZonalProceso' => \App\Http\Middleware\JefaturaZonalProcesoMiddleware::class,
+        'jefaturaZonalProcesoTrabajo' => \App\Http\Middleware\JefaturaZonalProcesoTrabajoMiddleware::class,
     ];
 }

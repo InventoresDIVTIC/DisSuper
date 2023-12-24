@@ -28,19 +28,45 @@ Route::post('/login', [LoginController::class, 'login']);
 
 
 Route::middleware(['auth'])->group(function () {
-Route::get('/index', [EmpleadoController::class, 'index']);
-Route::resource('empleado', EmpleadoController::class);
-Route::resource('usuario', UserController::class);
-Route::resource('zonas', ZonasController::class);
-Route::resource('contratos', ContratoController::class);
-Route::resource('roles', RoleController::class);
-Route::resource('puestos', PuestosController::class);
-Route::delete('puestos/{puesto}/actividades/{actividad}', [PuestosController::class, 'detach'])->name('puestos.detach');
+    Route::middleware(['jefaturaInmediata'])->group(function () {
+        Route::get('/index', [EmpleadoController::class, 'index']);
+        Route::resource('empleado', EmpleadoController::class);
+        Route::get('/formulario', [DocumentosController::class, 'mostrarFormulario']);
+        Route::post('/procesar-formulario', [DocumentosController::class, 'procesarFormulario']);
+    });
+Route::middleware(['admin'])->group(function () {
+    Route::resource('usuario', UserController::class);
+    Route::resource('zonas', ZonasController::class);
+    Route::resource('roles', RoleController::class);
+});
 
-Route::resource('funciones_puestos', FuncionesPuestosController::class);
-Route::resource('indicadores', IndicadoresController::class);
-Route::resource('actividades', ActividadesController::class);
-Route::delete('actividades/{actividad}/indicadores/{indicador}', [ActividadesController::class, 'eliminarIndicador'])->name('actividades.eliminarIndicador');
+Route::middleware(['jefaturaZonalProceso'])->group(function () {
+    // Rutas protegidas que requieren el rol 'JEFATURA ZONAL DE PROCESO'
+});
+
+Route::middleware(['jefaturaZonalProcesoTrabajo'])->group(function () {
+    Route::resource('contratos', ContratoController::class);
+    Route::resource('puestos', PuestosController::class);
+    Route::resource('funciones_puestos', FuncionesPuestosController::class);
+    Route::resource('indicadores', IndicadoresController::class);
+    Route::resource('actividades', ActividadesController::class);
+    Route::delete('puestos/{puesto}/actividades/{actividad}', [PuestosController::class, 'detach'])->name('puestos.detach');
+    Route::delete('actividades/{actividad}/indicadores/{indicador}', [ActividadesController::class, 'eliminarIndicador'])->name('actividades.eliminarIndicador');
+    Route::get('/registro', [RegisterController::class, 'showRegistrationForm'])->name('registro');
+    Route::post('/registro', [RegisterController::class, 'register'])->name('register');
+});
+
+
+
+
+
+
+
+
+
+
+
+
 });
 
 Route::get('/registro', [RegisterController::class, 'showRegistrationForm'])->name('registro');
@@ -52,8 +78,5 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-Route::get('/formulario', [DocumentosController::class, 'mostrarFormulario']);
-Route::post('/procesar-formulario', [DocumentosController::class, 'procesarFormulario']);
 
-Route::get('/cambiar-estatus/{id_documento}', 'DocumentoController@cambiarEstatus')->name('cambiar_estatus');
 

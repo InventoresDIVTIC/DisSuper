@@ -230,6 +230,7 @@
   <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
    
     <!-- Usuarios -->
+    @if(Auth::user()->hasRole('admin'))
     <li class="nav-item menu-open">
       <a href="#" class="nav-link active">
         <i class="nav-icon fas fa-users"></i>
@@ -259,6 +260,9 @@
         </li>
       </ul>
     </li>
+    @endif
+ 
+
   
     <!-- Empleados -->
     <li class="nav-item menu-open">
@@ -357,7 +361,7 @@
 
 
 
-
+    @if(Auth::user()->hasRole('admin'))
     <!-- Zonas -->
     <li class="nav-item menu-open">
       <a href="#" class="nav-link active">
@@ -382,6 +386,8 @@
         </li>
       </ul>
     </li>
+    @endif
+  
 
     <!-- Otros -->
     <li class="nav-item menu-open">
@@ -399,12 +405,15 @@
             <p>Contratos</p>
           </a>
         </li>
+        @if(Auth::user()->hasRole('admin'))
         <li class="nav-item">
           <a href="/roles" class="nav-link {{ Request::is('roles') ? 'active' : '' }}">
             <i class="fas fa-list-ul nav-icon"></i>
             <p>Roles</p>
           </a>
         </li>
+        @endif
+  
         <li class="nav-item">
           <a href="/actividades" class="nav-link {{ Request::is('actividades') ? 'active' : '' }}">
             <i class="fas fa-list-ul nav-icon"></i>
