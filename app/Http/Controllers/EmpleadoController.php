@@ -9,6 +9,7 @@ use App\Events\EmpleadoUpdated;
 use App\Models\Contrato;
 use App\Models\Zona;
 use App\Models\User;
+use App\Models\Documentos;
 
 class EmpleadoController extends Controller
 {
@@ -76,11 +77,21 @@ class EmpleadoController extends Controller
      * Display the specified resource.
      */
     public function show(Empleado $empleado)
-    {   $usuarios = User::all(); // Obtén todos los usuarios
+    {   
+        $Id_Empleado = $empleado->id;
+        $usuarios = User::all(); // Obtén todos los usuarios
         $zonas = Zona::all();
         $contratos = Contrato::all();
-       
-        return view('empleados.show',compact('empleado','contratos','zonas','usuarios'));
+        
+        // Obtener los documentos del empleado actual
+        $documentos = Documentos::where('Id_Empleado', $Id_Empleado)->get();
+        
+        // Obtener los conteos de documentos por tipo para el empleado actual
+        $contadorRendicionCuentas = $documentos->where('Tipo_Documento', 'RENDICION DE CUENTAS')->count();
+        $contadorLlamadasAtencion = $documentos->where('Tipo_Documento', 'LLAMADA DE ATENCION')->count();
+        $contadorActasAdministrativas = $documentos->where('Tipo_Documento', 'ACTAS ADMINISTRATIVAS')->count();
+
+        return view('empleados.show', compact('empleado', 'documentos', 'contratos', 'zonas', 'usuarios', 'contadorRendicionCuentas', 'contadorLlamadasAtencion', 'contadorActasAdministrativas'));
     }
 
     /**

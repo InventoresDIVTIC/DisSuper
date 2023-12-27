@@ -55,6 +55,8 @@
         <p>Espero que te encuentres bien. Queremos informarte que has recibido una llamada de atención para revisión. Revisa los detalles adjuntos en el archivo PDF para obtener más información.</p>
         <p>Si tienes alguna pregunta o necesitas más detalles, no dudes en contactar al administrador.</p>
         <p>Atentamente,<br>DisSuper</p>
+        <p>Si tienes alguna pregunta o necesitas más detalles, no dudes en contactar al administrador.</p>
+        <p>Atentamente,<br>DisSuper</p>
         <div class="footer">
             <p>Por favor, no respondas a este correo electrónico. Si necesitas asistencia, ponte en contacto con el soporte.</p>
         </div>

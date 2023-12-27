@@ -13,4 +13,19 @@ class Documentos extends Model
     {
         return $this->hasMany(IndicadorDocumento::class, 'Id_Documento');
     }
+    public function emisor()
+    {
+        return $this->belongsTo(User::class, 'Id_Usuario_Autor');
+    }
+
+    public function receptor()
+    {
+        return $this->belongsTo(User::class, 'Id_Usuario_Revisar');
+    }
+    // Método de acceso al documento binario
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class, 'documento_id');
+    }
+
 }

@@ -54,93 +54,13 @@
                 <!-- Contenido Principal -->
             <div class="col-md-9">
                 <div class="card">
-                    <div class="card-header p-2">
-                        <ul class="nav nav-pills">
-                            <li class="nav-item" style="width: 15%"><a class="nav-link active text-center" href="#InformacionGeneral" data-toggle="tab">Información General</a></li>
-                            
-                            <li class="nav-item" style="width: 13%"><a class="nav-link text-center" href="#ModInfo" data-toggle="tab">Modificar</a></li>
-                        </ul>
-                    </div>
+                    
                         
                     <div class="card-body">
                         <div class="tab-content">
-                            {{-- Informacion General --}}
-                            <div class="active tab-pane" id="InformacionGeneral">
-                                <div class="card-body">
-                                    {{-- Contador de Documentos --}}
-                                    <div class="row">
-                                        <div class="col-12 col-sm-4">
-                                            <div class="info-box bg-light">
-                                                <div class="info-box-content">
-                                                    <span class="info-box-text text-center text-muted">Rendición de Cuentas</span>
-                                                    <span class="info-box-number text-center text-muted mb-0">0</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-sm-4">
-                                            <div class="info-box bg-light">
-                                                <div class="info-box-content">
-                                                    <span class="info-box-text text-center text-muted">Llamadas de Atención</span>
-                                                    <span class="info-box-number text-center text-muted mb-0">0</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-sm-4">
-                                            <div class="info-box bg-light">
-                                                <div class="info-box-content">
-                                                    <span class="info-box-text text-center text-muted"><a>Actas Administrativas</a></span>
-                                                    <span class="info-box-number text-center text-muted mb-0">0</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                           
 
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <h4 class="text-center">Ultimos Documentos Registrados</h4>
-                                        </div>
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th style="width: 180px">Fecha</th>
-                                                    <th>Tipo Documento</th>
-                                                    <th>Emitido por</th>
-                                                    <th>Estado</th>
-                                                    <th style="width: 120px"></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>11-7-2014</td>
-                                                    <td>Rendición de Cuentas</td>
-                                                    <td>El Admin</td>
-                                                    <td>Por Revisar</td>
-                                                    <td><button type="button"
-                                                            class="btn btn-block btn-primary btn-sm">Abrir</button></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>11-7-2014</td>
-                                                    <td>Acta Administrativa</td>
-                                                    <td>El Admin</td>
-                                                    <td>Revisado</td>
-                                                    <td><button type="button"
-                                                            class="btn btn-block btn-primary btn-sm">Abrir</button></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>11-7-2014</td>
-                                                    <td>Llamada de Atención</td>
-                                                    <td>El Admin</td>
-                                                    <td>Cancelado</td>
-                                                    <td><button type="button"
-                                                            class="btn btn-block btn-primary btn-sm">Abrir</button></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="tab-pane" id="ModInfo">
+                            
                                 <h2>Modificar Usuario: {{ strtoupper($usuario->name) }}</h2><br><br>
                                 <form method="POST" id="tuFormularioId2" action="{{ route('usuario.update', $usuario->id) }}"
                                     enctype="multipart/form-data">
@@ -270,6 +190,6 @@
                 </div> <!-- /.card -->
             </div> <!-- /.col -->
         </div> <!-- /.row -->
-    </div>  <!-- /.container-fluid -->
+  <!-- /.container-fluid -->
 </section>
 @endsection
