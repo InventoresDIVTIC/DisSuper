@@ -77,34 +77,33 @@
 
                       {{-- Contador de Documentos --}}
                       <div class="row">
-                        <div class="col-12 col-sm-4">
+                      <div class="col-12 col-sm-4">
                           <div class="info-box bg-light">
-                            <div class="info-box-content">
-                              <span class="info-box-text text-center text-muted">Rendición de Cuentas</span>
-                              <span class="info-box-number text-center text-muted mb-0">0</span>
-                            </div>
+                              <div class="info-box-content">
+                                  <span class="info-box-text text-center text-muted">Rendición de Cuentas</span>
+                                  <span class="info-box-number text-center text-muted mb-0">{{ $contadorRendicionCuentas }}</span>
+                              </div>
                           </div>
-                        </div>
-                        
-                        <div class="col-12 col-sm-4">
-                          <div class="info-box bg-light">
-                            <div class="info-box-content">
-                              <span class="info-box-text text-center text-muted">Llamadas de Atención</span>
-                              <span class="info-box-number text-center text-muted mb-0">0</span>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="col-12 col-sm-4">
-                          <div class="info-box bg-light">
-                            <div class="info-box-content">
-                              <span class="info-box-text text-center text-muted"><a>Actas Administrativas</a></span>
-                              <span class="info-box-number text-center text-muted mb-0">0</span>
-                            </div>
-                          </div>
-                        </div>
                       </div>
 
+                      <div class="col-12 col-sm-4">
+                          <div class="info-box bg-light">
+                              <div class="info-box-content">
+                                  <span class="info-box-text text-center text-muted">Llamadas de Atención</span>
+                                  <span class="info-box-number text-center text-muted mb-0">{{ $contadorLlamadasAtencion }}</span>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="col-12 col-sm-4">
+                          <div class="info-box bg-light">
+                              <div class="info-box-content">
+                                  <span class="info-box-text text-center text-muted">Actas Administrativas</span>
+                                  <span class="info-box-number text-center text-muted mb-0">{{ $contadorActasAdministrativas }}</span>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
                       <div class="row">
                         <div class="col-sm-12">
                             <h4 class="text-center">Ultimos Documentos Registrados</h4>
@@ -116,35 +115,28 @@
                               <th style="width: 180px">Fecha</th>
                               <th>Tipo Documento</th>
                               <th>Emitido por</th>
+                              <th>Eviado a</th> 
                               <th>Estado</th>
+                              <th></th> 
                               <th style="width: 120px"></th>
                             </tr>
                           </thead>
                           <tbody>
-                            <tr>
-                              
-                              <td>11-7-2014</td>
-                              <td>Rendición de Cuentas</td>
-                              <td>El Admin</td>
-                              <td>Por Revisar</td>
-                              <td><button type="button" class="btn btn-block btn-primary btn-sm">Abrir</button></td>
-                            </tr>
-                            <tr>
-                                
-                                <td>11-7-2014</td>
-                                <td>Acta Administrativa</td>
-                                <td>El Admin</td>
-                                <td>Revisado</td>
-                                <td><button type="button" class="btn btn-block btn-primary btn-sm">Abrir</button></td>
-                            </tr>
-                            <tr>
-                              
-                              <td>11-7-2014</td>
-                              <td>Llamada de Atención</td>
-                              <td>El Admin</td>
-                              <td>Cancelado</td>
-                              <td><button type="button" class="btn btn-block btn-primary btn-sm">Abrir</button></td>
-                            </tr>
+                            @foreach($documentos as $documento)
+                              <tr>
+                                  <td>{{ $documento->Fecha_Actividad }}</td>
+                                  <td>{{ $documento->Tipo_Documento }}</td>
+                                  <td>{{ $documento->emisor->name }}</td>
+                                  <td>{{ $documento->receptor->name }}</td>
+                                  <td>{{ $documento->Status_Documento }}</td>
+                                  <td>
+                                      <form action="{{ route('download.pdf', ['id' => $documento->id]) }}" method="POST">
+                                          @csrf
+                                          <button type="submit" class="btn btn-block btn-primary btn-sm">Descargar</button>
+                                      </form>
+                                  </td>
+                              </tr>
+                            @endforeach
                           </tbody>
                         </table>
                       </div>
@@ -166,45 +158,35 @@
                       <div class="active tab-pane" id="ListadoDocumentos">
                         <div class="card-body p-0">
                           <table class="table">
-                            <thead>
+                          <thead>
+                            <tr>
+                              
+                              <th style="width: 180px">Fecha</th>
+                              <th>Tipo Documento</th>
+                              <th>Emitido por</th>
+                              <th>Eviado a</th> 
+                              <th>Estado</th>
+                              <th></th> 
+                              <th style="width: 120px"></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            @foreach($documentos as $documento)
                               <tr>
-                                <th style="width: 180px">Fecha</th>
-                                <th>Tipo Documento</th>
-                                <th>Emitido por</th>
-                                <th>Estado</th>
-                                <th style="width: 120px"></th>
+                                  <td>{{ $documento->Fecha_Actividad }}</td>
+                                  <td>{{ $documento->Tipo_Documento }}</td>
+                                  <td>{{ $documento->emisor->name }}</td>
+                                  <td>{{ $documento->receptor->name }}</td>
+                                  <td>{{ $documento->Status_Documento }}</td>
+                                  <td>
+                                      <form action="{{ route('download.pdf', ['id' => $documento->id]) }}" method="POST">
+                                          @csrf
+                                          <button type="submit" class="btn btn-block btn-primary btn-sm">Descargar</button>
+                                      </form>
+                                  </td>
                               </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td>11-7-2014</td>
-                                <td>Rendición de Cuentas</td>
-                                <td>El Admin</td>
-                                <td>Por Revisar</td>
-                                <td><button type="button" class="btn btn-block btn-primary btn-sm">Abrir</button></td>
-                              </tr>
-                              <tr>
-                                  <td>11-7-2014</td>
-                                  <td>Acta Administrativa</td>
-                                  <td>El Admin</td>
-                                  <td>Revisado</td>
-                                  <td><button type="button" class="btn btn-block btn-primary btn-sm">Abrir</button></td>
-                              </tr>
-                              <tr>
-                                <td>11-7-2014</td>
-                                <td>Llamada de Atención</td>
-                                <td>El Admin</td>
-                                <td>Cancelado</td>
-                                <td><button type="button" class="btn btn-block btn-primary btn-sm">Abrir</button></td>
-                              </tr>
-                              <tr>
-                                  <td>11-7-2014</td>
-                                  <td>Rendición de Cuentas</td>
-                                  <td>El Admin</td>
-                                  <td>Revisado</td>
-                                  <td><button type="button" class="btn btn-block btn-primary btn-sm">Abrir</button></td>
-                              </tr>
-                            </tbody>
+                            @endforeach
+                          </tbody>
                           </table>
                         </div>
     
@@ -320,7 +302,7 @@
 
 
         <input type="hidden" name="Id_Empleado" id="Id_Empleado" value="{{$empleado->id}}">
-        <input type="hidden" name="Tipo_Documento" id="Tipo_Documento" value="LLAMADA DE ATENCIÓN">
+        <input type="hidden" name="Tipo_Documento" id="Tipo_Documento" value="LLAMADA DE ATENCION">
         <input type="hidden" name="Status_Documento" id="Status_Documento" value="ENVIADO">
         
         <!-- Introducción del primer indicador -->

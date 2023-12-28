@@ -15,6 +15,7 @@ use App\Http\Controllers\IndicadoresController;
 use App\Http\Controllers\PuestosController;
 use App\Http\Controllers\ZonasController;
 use App\Http\Controllers\ActividadesController;
+use App\Http\Controllers\NotificationController;
 
 use App\Http\Controllers\DocumentosController;
 
@@ -26,7 +27,6 @@ Route::get('/', function () {
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 
-
 Route::middleware(['auth'])->group(function () {
     /*
     Route::middleware(['jefaturaInmediata'])->group(function () {
@@ -34,6 +34,13 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('empleado', EmpleadoController::class);
         Route::get('/formulario', [DocumentosController::class, 'mostrarFormulario']);
         Route::post('/procesar-formulario', [DocumentosController::class, 'procesarFormulario']);
+        Route::post('/download/pdf/{id}', [DocumentosController::class, 'downloadPDF'])->name('download.pdf');
+        Route::get('/notificaciones', [NotificationController::class, 'mostrarNotificaciones'])->name('notificaciones.mostrar');
+        Route::delete('/notificaciones/eliminar', [NotificationController::class, 'eliminarNotificaciones'])->name('notificaciones.eliminar');
+        Route::get('/descargar/documento/{id}', [DocumentosController::class, 'downloadPDF'])->name('descargar.documento');
+
+
+        
     });
     Route::middleware(['admin'])->group(function () {
         Route::resource('usuario', UserController::class);

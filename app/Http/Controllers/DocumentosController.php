@@ -7,8 +7,11 @@ use Illuminate\Http\Request;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 use App\Models\User; 
+use App\Models\Notification; 
 use Illuminate\Support\Facades\Mail;
 use App\Models\IndicadorDocumento;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Response;
 
 
 
@@ -25,10 +28,14 @@ class DocumentosController extends Controller
 
     public function showFormulario()
     {
+       
+     
         $usuarios = User::all(); // Obtén todos los usuarios
 
-        return view('empleados.show', compact('usuarios'));
+        return view('empleados.show', compact('usuarios','contadorRendicionCuentas', 'contadorLlamadasAtencion', 'contadorActasAdministrativas'));
     }
+ 
+
     public function procesarFormulario(Request $request)
     {
         try {
@@ -73,6 +80,13 @@ class DocumentosController extends Controller
             // Guardar el documento
             $documento->save();
 
+            $notification = new Notification();
+            $notification->user_id = $datosFormulario['Id_Usuario_Revisar'];
+            $notification->message = 'Se te ha enviado una llamada de atención para revisión.';
+            $notification->read = false;
+            
+            $documento->notifications()->save($notification);
+
 
             $documentoId = $documento->id;
             $indicadorDocumento = new IndicadorDocumento();
@@ -82,6 +96,9 @@ class DocumentosController extends Controller
             $indicadorDocumento->Afectaciones = $datosFormulario['Afectaciones'];
             $indicadorDocumento->Normas_Incumplidas = $datosFormulario['Normas_Incumplidas'];
             $indicadorDocumento->save();
+
+            
+            
 
 
             // Generar HTML para el PDF utilizando los datos del formulario
@@ -95,29 +112,35 @@ class DocumentosController extends Controller
             $dompdf->loadHtml($html);
             $dompdf->setPaper('A4', 'portrait');
             $dompdf->render();
-
+            $pdfOutput = $dompdf->output();
+            $documento->Documento = $pdfOutput;
+            $documento->save();
             // Obtener el ID del usuario seleccionado en el formulario
             $Id_Usuario_Revisar = $request->input('Id_Usuario_Revisar');
 
             // Obtener el correo electrónico del usuario desde la tabla users
             $usuario = User::find($Id_Usuario_Revisar);
+            // Construye la URL del enlace para actualizar el estado
+     
 
             if ($usuario) {
                 $email = $usuario->email;
-
+                
 
                 // Definir los datos que se pasarán a la vista de correo electrónico
                 $datosCorreo = [
                     'nombreUsuario' => $usuario->name, 
                     
                 ];
-
+                
+                
                 // Enviar el correo electrónico al usuario seleccionado
                 Mail::send('emails.llamada_revision', $datosCorreo, function ($message) use ($email, $dompdf) {
                     $message->to($email)
                         ->subject('Llamada de atención a revisión')
                         ->attachData($dompdf->output(), 'prueba.pdf');
                 });
+                
             } else {
               
             }
@@ -130,5 +153,32 @@ class DocumentosController extends Controller
             return redirect()->back()->with('error', 'Error al procesar la solicitud: ' . $e->getMessage());
         }
     }
+    public function downloadPDF($id)
+    {
+        // Encuentra el documento por su ID
+        $documento = Documentos::find($id);
 
+        if (!$documento) {
+            // Manejo si el documento no es encontrado
+            return response()->json(['message' => 'Documento no encontrado'], 404);
+        }
+
+        // Obtén el contenido binario del campo del documento (asumiendo que el campo es 'archivo_binario')
+        $archivoBinario = $documento->Documento;
+        $Id_Empleado = $documento->Id_Empleado;
+        $Fecha_Actividad = $documento->Fecha_Actividad;
+        // Genera el nombre del archivo
+        $nombreArchivo = "{$Id_Empleado}_{$Fecha_Actividad}.pdf";
+
+       
+        // Devuelve el archivo binario como una respuesta para descargarlo
+        return Response::make($archivoBinario, 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => "attachment; filename={$nombreArchivo}"
+        ]);
+     
+    }
+    
+    
+   
 }

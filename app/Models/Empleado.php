@@ -28,6 +28,10 @@ class Empleado extends Model
     {
         return $this->belongsToMany(Zona::class, 'empleado_zona');
     }
+    public function documentos()
+    {
+        return $this->hasMany(Documentos::class, 'Id_Empleado', 'id');
+    }
    
    
    
