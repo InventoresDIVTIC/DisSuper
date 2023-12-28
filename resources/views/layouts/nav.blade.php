@@ -97,8 +97,15 @@
       </li>
     </ul>
 
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <span>Nivel: <?php echo Auth::user()->roles[0]['nivel_permisos']; ?></span>
+      </li>
+    </ul>
+
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
+      
       <!-- Navbar Search -->
       <li class="nav-item">
         <a class="nav-link" data-widget="navbar-search" href="#" role="button">
@@ -230,6 +237,7 @@
   <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
    
     <!-- Usuarios -->
+    @if(Auth::user()->roles[0]['nivel_permisos'] < 1)
     <li class="nav-item menu-open">
       <a href="#" class="nav-link active">
         <i class="nav-icon fas fa-users"></i>
@@ -259,6 +267,9 @@
         </li>
       </ul>
     </li>
+    @endif
+ 
+
   
     <!-- Empleados -->
     <li class="nav-item menu-open">
@@ -295,6 +306,7 @@
 
 
     <!-- Indicadores -->
+    @if(Auth::user()->roles[0]['nivel_permisos'] <= 3)
     <li class="nav-item menu-open">
           <a href="#" class="nav-link active">
             <i class="nav-icon fas fa-briefcase"></i>
@@ -318,10 +330,10 @@
             </li>
         </ul>
     </li>
-
+    @endif
 
     
-    
+    @if(Auth::user()->roles[0]['nivel_permisos'] <= 1)
     <!-- Puestos -->
     <li class="nav-item menu-open">
       <a href="#" class="nav-link active">
@@ -352,12 +364,12 @@
         </li>
       </ul>
     </li>
+    @endif
 
 
 
 
-
-
+    @if(Auth::user()->roles[0]['nivel_permisos'] <= 0)
     <!-- Zonas -->
     <li class="nav-item menu-open">
       <a href="#" class="nav-link active">
@@ -382,6 +394,8 @@
         </li>
       </ul>
     </li>
+    @endif
+  
 
     <!-- Otros -->
     <li class="nav-item menu-open">
@@ -399,12 +413,15 @@
             <p>Contratos</p>
           </a>
         </li>
+        @if(Auth::user()->roles[0]['nivel_permisos'] <= 0)
         <li class="nav-item">
           <a href="/roles" class="nav-link {{ Request::is('roles') ? 'active' : '' }}">
             <i class="fas fa-list-ul nav-icon"></i>
             <p>Roles</p>
           </a>
         </li>
+        @endif
+  
         <li class="nav-item">
           <a href="/actividades" class="nav-link {{ Request::is('actividades') ? 'active' : '' }}">
             <i class="fas fa-list-ul nav-icon"></i>

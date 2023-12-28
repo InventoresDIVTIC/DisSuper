@@ -76,11 +76,11 @@ class EmpleadoController extends Controller
      * Display the specified resource.
      */
     public function show(Empleado $empleado)
-    { 
+    {   $usuarios = User::all(); // Obtén todos los usuarios
         $zonas = Zona::all();
         $contratos = Contrato::all();
        
-        return view('empleados.show',compact('empleado','contratos','zonas'));
+        return view('empleados.show',compact('empleado','contratos','zonas','usuarios'));
     }
 
     /**

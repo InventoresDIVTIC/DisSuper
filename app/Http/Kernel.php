@@ -65,5 +65,13 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'auth.redirect' => \App\Http\Middleware\RedirectIfNotAuthenticated::class,
+        'jefaturaInmediata' => \App\Http\Middleware\JefaturaInmediataMiddleware::class,
+        'admin' => \App\Http\Middleware\AdminMiddleware::class,
+        'jefaturaZonalProceso' => \App\Http\Middleware\JefaturaZonalProcesoMiddleware::class,
+        'jefaturaZonalProcesoTrabajo' => \App\Http\Middleware\JefaturaZonalProcesoTrabajoMiddleware::class,
+        'nivel_0' => \App\Http\Middleware\permisosNivel0::class,
+        'nivel_1' => \App\Http\Middleware\permisosNivel1::class,
+        'nivel_3' => \App\Http\Middleware\permisosNivel3::class,
+        'nivel_5' => \App\Http\Middleware\permisosNivel5::class,
     ];
 }

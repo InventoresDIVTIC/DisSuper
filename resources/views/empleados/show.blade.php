@@ -15,23 +15,38 @@
               <div class="card-body box-profile">
                 <div class="text-center">
                   <img class="profile-user-img img-fluid img-circle"
-                       src="../../dist/img/user4-128x128.jpg"
+                       src="../../dist/img/logo.png"
                        alt="User profile picture">
+                       
                 </div>
-
-                <h3 class="profile-username text-center">Nombre Empleado</h3>
-
-                <p class="text-muted text-center">Cargo Actual</p>
-
+                <h3 class="profile-username text-center">Nombre: {{ $empleado->nombre_Empleado }}</h3>
+                <p class="text-muted text-center">RPE:{{ $empleado->RPE_Empleado }}
+                   
+                </p>
                 <ul class="list-group list-group-unbordered mb-3">
                   <li class="list-group-item">
-                    <b>Zona de Trabajo</b>
+                    <b>Zona de Trabajo: </b>
+                    @if ($empleado->zonas->count() > 0)
+                                    @foreach ($empleado->zonas as $zona)
+                                        {{ $zona->nombre_zona }}
+                                        @if (!$loop->last)
+                                            ,
+                                        @endif
+                                    @endforeach
+                                @else
+                                    Sin zona asignada
+                                @endif
                   </li>
                   <li class="list-group-item">
-                    <b>Encargado de la Zona</b> 
+                    <b>Encargado de la Zona: </b> 
+                    @if ($empleado->zonas->count() > 0 && $empleado->zonas->first()->encargado)
+                                    {{ $empleado->zonas->first()->encargado->name }}
+                                @else
+                                    Sin encargado asignado
+                                @endif
                   </li>
                   <li class="list-group-item">
-                    <b>Fecha de Ingreso</b> 
+                  <b>Fecha de Ingreso: {{ $empleado->fecha_ingreso }}</b>
                   </li>
                 </ul>
               </div>
@@ -289,25 +304,30 @@
         <div class="form-group row">
             <label class="col-sm-1.8 col-form-label">N. Llamada</label>
             <div class="col-sm-3">
-                <input type="number" class="form-control" id="inputNLlamada" name="inputNLlamada" placeholder="N. llamada">
+                <input type="number" class="form-control" id="N_Llamada" name="N_Llamada" placeholder="N. llamada">
             </div>
 
             <label class="col-sm-1.5 col-form-label">Actividad</label>
             <div class="col-sm-3">
-                <input type="number" class="form-control" id="inputCiclo" placeholder="Actividad">
+                <input type="number" class="form-control" id="Actividad" name="Actividad" placeholder="Actividad">
             </div>
 
             <label class="col-sm-1.5 col-form-label">Fecha</label>
             <div class="col-sm-3">
-                <input type="date" class="form-control" id="inputDate" placeholder="Fecha">
+                <input type="date" class="form-control" id="Fecha_Actividad" name="Fecha_Actividad" placeholder="Fecha">
             </div>
         </div>
 
+
+        <input type="hidden" name="Id_Empleado" id="Id_Empleado" value="{{$empleado->id}}">
+        <input type="hidden" name="Tipo_Documento" id="Tipo_Documento" value="LLAMADA DE ATENCIÓN">
+        <input type="hidden" name="Status_Documento" id="Status_Documento" value="ENVIADO">
+        
         <!-- Introducción del primer indicador -->
         <div class="form-group row">
             <label for="inputCargo" class="col-sm-12 col-form-label">Introducción</label>
             <div class="col-sm-12">
-                <textarea class="form-control" rows="3" placeholder="Explique de manera general el motivo de la Rendición de Cuentas"></textarea>
+                <textarea class="form-control"id="Introduccion"name="Introduccion" rows="3" placeholder="Explique de manera general el motivo de la Rendición de Cuentas"></textarea>
             </div>
         </div>
 
@@ -323,12 +343,13 @@
             <label for="inputCargo" class="col-sm-2 col-form-label">Usuario a mandar a revisión</label>
             <div class="col-sm-9">
                 <div class="form-group">
-                    <select class="form-control">
-                        <option>Juan Mecanico</option>
-                        <option>Doctor Bonilla</option>
-                        <option>Eduardo Quintero</option>
-                        <option>David Guadalupe</option>
-                    </select>
+                <select class="form-control" id="Id_Usuario_Revisar" name="Id_Usuario_Revisar">
+                @foreach($usuarios as $index => $usuario)
+                    @if($index !== 0) <!-- Omitir el primer usuario -->
+                        <option value="{{ $usuario->id }}">{{ $usuario->name }}</option>
+                    @endif
+                @endforeach
+                </select>
                 </div>
             </div>
         </div>

@@ -16,8 +16,8 @@ return new class extends Migration
             $table->timestamps();
 
             $table->unsignedBigInteger("Id_Empleado");
-            $table->unsignedSmallInteger("Tipo_Documento");
-            $table->unsignedSmallInteger("Status_Documento");
+            $table->text("Tipo_Documento");
+            $table->text("Status_Documento");
 
             $table->integer("Id_Usuario_Autor");     //quien creo el documento
             $table->integer("Id_Usuario_Revisar");   //a quien se manda a revisar
@@ -27,7 +27,7 @@ return new class extends Migration
             $table->date("Fecha_Actividad");
             $table->text("Introduccion");
 
-            $table->binary("Documento");   // Aqui se almacena el documento PDF
+            $table->binary("Documento")->nullable(true);   // Aqui se almacena el documento PDF
 
         });
     }

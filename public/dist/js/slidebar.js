@@ -63,7 +63,7 @@ $(document).ready(function() {
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="hallazgo" id="Indicador${indicadorCount}Hallazgo1">
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Hallazgo 2</label>
@@ -123,29 +123,31 @@ $(document).ready(function() {
                             </div>
                         </div>
                     </div>
+                    
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label"> Sistemas de Referencia</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" placeholder="Sistemas de Referenciar">
+                            <input type="text" name="Sistemas_Referencia" id= "Sistemas_Referencia" class="form-control" placeholder="Sistemas de Referenciar">
                         </div>
                     </div>
+
                     <div class="form-group row">
                         <label class="col-md-2 col-form-label">Valor Alcanzado</label>
                         <div class="col-md-10">
-                            <input type="range" class="form-range" min="0" max="100" style="width: 90%;">
-                            <output class="output-range-value">0</output>
+                            <input type="range" class="form-range" id="rangoValor" name="rangoValor" min="0" max="100" style="width: 90%;">
+                            <output id="Valor_Alcanzado" name="Valor_Alcanzado" class="output-range-value">0</output>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label"> Afectaciones</label>
                         <div class="col-md-9">
-                            <textarea rows="3" class="form-control" placeholder="Explique las Afectaciones al Indicador"> </textarea>
+                            <textarea rows="3" name="Afectaciones" id="Afectaciones" class="form-control" placeholder="Explique las Afectaciones al Indicador"> </textarea>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label"> Normas Incumplidas</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" placeholder="Normas Incumplidas">
+                            <input type="text" class="form-control" name="Normas_Incumplidas" id="Normas_Incumplidas" placeholder="Normas Incumplidas">
                         </div>
                     </div>
                 </div>

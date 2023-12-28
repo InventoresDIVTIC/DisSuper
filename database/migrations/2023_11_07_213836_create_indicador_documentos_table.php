@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
 
-            $table->unsignedBigInteger("Id_Documento");
-            $table->unsignedBigInteger("Id_Indicador");
-            $table->text("Sistemas_Referencia");
-            $table->text("Normas_Incumplidas");
-            $table->text("Afectaciones");
-            $table->float("Valor_Alcanzado")->max(100)->min(0);
+            $table->unsignedBigInteger("Id_Documento")->nullable(true);
+            $table->unsignedBigInteger("Id_Indicador")->nullable(true);
+            $table->text("Sistemas_Referencia")->nullable(true);
+            $table->float("Valor_Alcanzado")->max(100)->min(0)->nullable(true);
+            $table->text("Afectaciones")->nullable(true);
+            $table->text("Normas_Incumplidas")->nullable(true);
             
 
         });
