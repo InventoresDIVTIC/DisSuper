@@ -153,6 +153,8 @@ class DocumentosController extends Controller
             return redirect()->back()->with('error', 'Error al procesar la solicitud: ' . $e->getMessage());
         }
     }
+
+    
     public function downloadPDF($id)
     {
         // Encuentra el documento por su ID
