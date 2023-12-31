@@ -203,7 +203,9 @@
                       </div>
 
                       <div class="tab-pane" id="Subir_Doc">
-                        <form action="{{ url('/procesar-formulario') }}" method="POST">
+
+                        <form action="{{ url('/procesar-formulario') }}" method="POST" enctype="multipart/form-data">
+                          @csrf
                           <div class="form-group row">
                             <div class="text-primary col-md-12">
                                 <!-- Encabezado del formulario -->
@@ -214,20 +216,21 @@
                           <div class="form-group row">
                             <label class="col-sm-1.8 col-form-label">Tipo de Documento: </label>
                             <div class="col-sm-3">
-                                <select class="form-control" id="t_Documento" name="t_Documento" placeholder="Tipo de Documento">
-                                  <option>Remdición de Cuentas</option>
-                                  <option>Llamada de Atención</option>
-                                  <option>Acta Administrativa</option>
+                                <select class="form-control" id="Tipo_Documento" name="Tipo_Documento" placeholder="Tipo de Documento">
+                                  <option>RENDICION DE CUENTAS</option>
+                                  <option>LLAMADA DE ATENCION</option>
+                                  <option>ACTA ADMINISTRATIVA</option>
                                 </select>
                             </div>
                 
                             <label class="col-sm-1.8 col-form-label">Encargado de Revisión: </label>
                             <div class="col-sm-3">
-                                <select class="form-control" id="Revisor" placeholder="Encargado de Revisión">
-                                  <option>Juan Mecanico</option>
-                                  <option>Doctor Bonilla</option>
-                                  <option>Eduardo Quintero</option>
-                                  <option>David Guadalupe</option>
+                                <select class="form-control" id="Id_Usuario_Revisar" placeholder="Encargado de Revisión" name="Id_Usuario_Revisar">
+                                  @foreach($usuarios as $index => $usuario)
+                                    @if($index !== 0) <!-- Omitir el primer usuario -->
+                                        <option value="{{ $usuario->id }}">{{ $usuario->name }}</option>
+                                    @endif
+                                @endforeach
                                 </select>
                             </div>
                           </div>
@@ -236,10 +239,12 @@
 
                             <label class="col-sm-1.9 col-form-label">Documento:  </label>
                             <div class="col-sm-10">
-                                <input type="file" class="custom-file-input" id="Doc">
+                                <input type="file" class="custom-file-input" id="Documento" name="Documento">
                                 <label class="custom-file-label">Documento</label>
                             </div>
                           </div>
+                          <input type="hidden" name="Id_Empleado" id="Id_Empleado" value="{{$empleado->id}}">
+                          <input type="hidden" name="Status_Documento" id="Status_Documento" value="ENVIADO">
 
                           <div class="form-group row">
                             <div class="offset-sm-2 col-sm-10">

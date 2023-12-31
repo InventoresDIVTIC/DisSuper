@@ -13,8 +13,7 @@ use App\Models\IndicadorDocumento;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Response;
 
-
-
+use function Laravel\Prompts\alert;
 
 class DocumentosController extends Controller
 {
@@ -33,6 +32,83 @@ class DocumentosController extends Controller
         $usuarios = User::all(); // Obtén todos los usuarios
 
         return view('empleados.show', compact('usuarios','contadorRendicionCuentas', 'contadorLlamadasAtencion', 'contadorActasAdministrativas'));
+    }
+
+
+    public function subir_Documento(Request $request)
+    {
+        try {
+            // Obtener el ID del usuario que realiza el documento
+            $Id_Usuario_Autor = auth()->id();
+            // Obtener el ID del usuario al que se envía a revisión desde el formulario
+
+            // Obtener los datos del formulario
+            $datosFormulario = [
+                'Documento' => $request->file('Documento'),
+                'Id_Usuario_Revisar' => $request->input('Id_Usuario_Revisar'),
+                'Id_Empleado' => $request->input('Id_Empleado'),
+                'Tipo_Documento' => $request->input('Tipo_Documento'),
+                'Status_Documento' => $request->input('Status_Documento'),
+                
+            ];
+            //dd($datosFormulario);
+
+
+            $documento = new Documentos();
+            $documento->Documento = $datosFormulario['Documento'];
+            $documento->Id_Usuario_Autor = $Id_Usuario_Autor;
+            $documento->Id_Usuario_Revisar = $datosFormulario['Id_Usuario_Revisar'];
+            $documento->Id_Empleado = $datosFormulario['Id_Empleado'];
+            $documento->Tipo_Documento = $datosFormulario['Tipo_Documento'];
+            $documento->Status_Documento = $datosFormulario['Status_Documento'];
+
+           
+            // Guardar el documento
+            $documento->save();
+
+            $notification = new Notification();
+            $notification->user_id = $datosFormulario['Id_Usuario_Revisar'];
+            $notification->message = 'Se te ha enviado una llamada de atención para revisión.';
+            $notification->read = false;
+            
+            $documento->notifications()->save($notification);
+
+            // Obtener el ID del usuario seleccionado en el formulario
+            $Id_Usuario_Revisar = $request->input('Id_Usuario_Revisar');
+
+            // Obtener el correo electrónico del usuario desde la tabla users
+            $usuario = User::find($Id_Usuario_Revisar);
+            // Construye la URL del enlace para actualizar el estado
+     
+            if ($usuario) {
+                $email = $usuario->email;
+                
+
+                // Definir los datos que se pasarán a la vista de correo electrónico
+                $datosCorreo = [
+                    'nombreUsuario' => $usuario->name, 
+                    
+                ];
+                
+                
+                // Enviar el correo electrónico al usuario seleccionado
+                Mail::send('emails.llamada_revision', $datosCorreo, function ($message) use ($email, $documento) {
+                    $message->to($email)
+                        ->subject('Llamada de atención a revisión')
+                        ->attachData($documento->Documento, 'documento.pdf');
+                });
+                
+            } else {
+              
+            }
+
+            // Redireccionar de vuelta con un mensaje de éxito
+            return redirect()->back()->with('success', 'Formulario procesado correctamente y correo electrónico enviado.');
+
+        } catch (\Exception $e) {
+            // Manejar cualquier otra excepción o error y redireccionar con un mensaje de error
+            return redirect()->back()->with('error', 'Error al procesar la solicitud: ' . $e->getMessage());
+        }
     }
  
 

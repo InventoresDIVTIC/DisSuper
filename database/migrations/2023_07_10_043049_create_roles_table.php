@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('roles', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('nivel_permisos')->default(1);
+            $table->integer('nivel_permisos');
             $table->timestamps();
         });
 
@@ -23,6 +23,7 @@ return new class extends Migration
             'name' => 'Admin',
             'nivel_permisos' => 0,
         ]);
+
         $jefaturaInmediataRole = Role::create([
             'name' => 'Jefatura inmediata',
             'nivel_permisos' => 5,

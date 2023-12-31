@@ -70,6 +70,12 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('empleado', EmpleadoController::class);
         Route::get('/formulario', [DocumentosController::class, 'mostrarFormulario']);
         Route::post('/procesar-formulario', [DocumentosController::class, 'procesarFormulario']);
+        Route::post('/subir_Documento', [DocumentosController::class, 'subir_Documento']);
+        
+        Route::post('/download/pdf/{id}', [DocumentosController::class, 'downloadPDF'])->name('download.pdf');
+        Route::get('/notificaciones', [NotificationController::class, 'mostrarNotificaciones'])->name('notificaciones.mostrar');
+        Route::delete('/notificaciones/eliminar', [NotificationController::class, 'eliminarNotificaciones'])->name('notificaciones.eliminar');
+        Route::get('/descargar/documento/{id}', [DocumentosController::class, 'downloadPDF'])->name('descargar.documento');
     });
     Route::middleware(['nivel_0'])->group(function () {
         Route::resource('usuario', UserController::class);
