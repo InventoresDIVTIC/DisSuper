@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Documentos extends Model
 {
     protected $table = 'documentos';
+    protected $fillable = ['nombre_archivo'];
 
     public function indicadores()
     {

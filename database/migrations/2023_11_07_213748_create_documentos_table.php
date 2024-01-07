@@ -22,13 +22,13 @@ return new class extends Migration
             $table->integer("Id_Usuario_Autor");     //quien creo el documento
             $table->integer("Id_Usuario_Revisar");   //a quien se manda a revisar
 
-            $table->text("N_Llamada");
-            $table->integer("Actividad");
-            $table->date("Fecha_Actividad");
-            $table->text("Introduccion");
+            $table->text("N_Llamada")->nullable(true);
+            $table->integer("Actividad")->nullable(true);
+            $table->date("Fecha_Actividad")->nullable(true);
+            $table->text("Introduccion")->nullable(true);
 
-            $table->binary("Documento")->nullable(true);   // Aqui se almacena el documento PDF
-
+            $table->string('nombre_archivo')->nullable(true); 
+           
         });
     }
 
