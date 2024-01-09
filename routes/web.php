@@ -16,8 +16,9 @@ use App\Http\Controllers\PuestosController;
 use App\Http\Controllers\ZonasController;
 use App\Http\Controllers\ActividadesController;
 use App\Http\Controllers\NotificationController;
-
+use App\Http\Controllers\ChatbotController;
 use App\Http\Controllers\DocumentosController;
+use App\Http\Controllers\BotManController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -120,6 +121,8 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::match(['get','post'], 'botman',[BotManController::class , "handle"]);
+// Luego, para configurar el widget, podrías hacerlo en algún punto de inicialización de tu aplicación
 
 
 
