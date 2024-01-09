@@ -20,6 +20,7 @@
         }
     </style>
 </head>
+
 <body>
     <h3>Generar Llamada de Atención</h3>
     <div class="form-group row">
