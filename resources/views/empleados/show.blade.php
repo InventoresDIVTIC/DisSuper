@@ -138,7 +138,7 @@
                               </tr>
                             @endforeach
                           </tbody>
-                        </table>
+                          </table>
                       </div>
                     </div>
                   </div>
@@ -179,10 +179,8 @@
                                   <td>{{ $documento->receptor->name }}</td>
                                   <td>{{ $documento->Status_Documento }}</td>
                                   <td>
-                                      <form action="{{ route('download.pdf', ['id' => $documento->id]) }}" method="POST">
-                                          @csrf
-                                          <button type="submit" class="btn btn-block btn-primary btn-sm">Descargar</button>
-                                      </form>
+                                    <a href="{{ asset($documento->nombre_archivo) }}">Descargar</a>
+
                                   </td>
                               </tr>
                             @endforeach
@@ -204,56 +202,65 @@
 
                       <div class="tab-pane" id="Subir_Doc">
 
-                        <form action="{{ url('/procesar-formulario') }}" method="POST" enctype="multipart/form-data">
-                          @csrf
-                          <div class="form-group row">
+                      <form method="POST" action="/guardar-documento" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group row">
                             <div class="text-primary col-md-12">
                                 <!-- Encabezado del formulario -->
                                 <label class="col-sm-12 text-center"><h3>Subir Documento</h3></label>
                             </div>
-                          </div>
+                        </div>
 
-                          <div class="form-group row">
+                        <div class="form-group row">
                             <label class="col-sm-1.8 col-form-label">Tipo de Documento: </label>
                             <div class="col-sm-3">
                                 <select class="form-control" id="Tipo_Documento" name="Tipo_Documento" placeholder="Tipo de Documento">
-                                  <option>RENDICION DE CUENTAS</option>
-                                  <option>LLAMADA DE ATENCION</option>
-                                  <option>ACTA ADMINISTRATIVA</option>
+                                    <option>RENDICION DE CUENTAS</option>
+                                    <option>LLAMADA DE ATENCION</option>
+                                    <option>ACTA ADMINISTRATIVA</option>
                                 </select>
                             </div>
-                
+
                             <label class="col-sm-1.8 col-form-label">Encargado de Revisión: </label>
                             <div class="col-sm-3">
                                 <select class="form-control" id="Id_Usuario_Revisar" placeholder="Encargado de Revisión" name="Id_Usuario_Revisar">
-                                  @foreach($usuarios as $index => $usuario)
-                                    @if($index !== 0) <!-- Omitir el primer usuario -->
-                                        <option value="{{ $usuario->id }}">{{ $usuario->name }}</option>
-                                    @endif
-                                @endforeach
+                                    @foreach($usuarios as $index => $usuario)
+                                        @if($index !== 0) <!-- Omitir el primer usuario -->
+                                            <option value="{{ $usuario->id }}">{{ $usuario->name }}</option>
+                                        @endif
+                                    @endforeach
                                 </select>
                             </div>
-                          </div>
+                        </div>
 
-                          <div class="form-group row">
-
+                        <div class="form-group row">
                             <label class="col-sm-1.9 col-form-label">Documento:  </label>
                             <div class="col-sm-10">
-                                <input type="file" class="custom-file-input" id="Documento" name="Documento">
-                                <label class="custom-file-label">Documento</label>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="Documento" name="Documento" onchange="mostrarNombreArchivo()">
+                                    <label class="custom-file-label" for="Documento">Seleccionar archivo...</label>
+                                </div>
+                                <span id="nombreArchivoSeleccionado"></span>
                             </div>
-                          </div>
-                          <input type="hidden" name="Id_Empleado" id="Id_Empleado" value="{{$empleado->id}}">
-                          <input type="hidden" name="Status_Documento" id="Status_Documento" value="ENVIADO">
+                        </div>
+                        <script>
+                          function mostrarNombreArchivo() {
+                              const input = document.getElementById('Documento');
+                              const nombreArchivo = input.files[0].name;
+                              const label = document.querySelector('.custom-file-label');
+                              label.textContent = nombreArchivo;
+                              document.getElementById('nombreArchivoSeleccionado').textContent = 'Nombre del archivo: ' + nombreArchivo;
+                          }
+                      </script>
+                        <input type="hidden" name="Id_Empleado" id="Id_Empleado" value="{{$empleado->id}}">
+                        <input type="hidden" name="Status_Documento" id="Status_Documento" value="ENVIADO">
 
-                          <div class="form-group row">
+                        <div class="form-group row">
                             <div class="offset-sm-2 col-sm-10">
                                 <button type="submit" class="btn btn-info">Enviar</button>
                             </div>
-                          </div>
-
-
-                        </form>
+                        </div>
+                    </form>
 
                       </div>
 

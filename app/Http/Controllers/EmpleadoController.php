@@ -89,7 +89,7 @@ class EmpleadoController extends Controller
         // Obtener los conteos de documentos por tipo para el empleado actual
         $contadorRendicionCuentas = $documentos->where('Tipo_Documento', 'RENDICION DE CUENTAS')->count();
         $contadorLlamadasAtencion = $documentos->where('Tipo_Documento', 'LLAMADA DE ATENCION')->count();
-        $contadorActasAdministrativas = $documentos->where('Tipo_Documento', 'ACTAS ADMINISTRATIVAS')->count();
+        $contadorActasAdministrativas = $documentos->where('Tipo_Documento', 'ACTA ADMINISTRATIVA')->count();
 
         return view('empleados.show', compact('empleado', 'documentos', 'contratos', 'zonas', 'usuarios', 'contadorRendicionCuentas', 'contadorLlamadasAtencion', 'contadorActasAdministrativas'));
     }
