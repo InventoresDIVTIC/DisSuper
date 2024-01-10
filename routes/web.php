@@ -39,11 +39,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/notificaciones', [NotificationController::class, 'mostrarNotificaciones'])->name('notificaciones.mostrar');
         Route::delete('/notificaciones/eliminar', [NotificationController::class, 'eliminarNotificaciones'])->name('notificaciones.eliminar');
         Route::get('/descargar/documento/{id}', [DocumentosController::class, 'downloadPDF'])->name('descargar.documento');
-        Route::post('/guardar-documento', [DocumentosController::class, 'procesarFormulario2']);
-      
-
-
-        
+        Route::post('/guardar-documento', [DocumentosController::class, 'procesarFormulario2']);  
     });
 Route::middleware(['admin'])->group(function () {
     Route::resource('usuario', UserController::class);
@@ -65,6 +61,7 @@ Route::middleware(['jefaturaZonalProcesoTrabajo'])->group(function () {
     Route::delete('actividades/{actividad}/indicadores/{indicador}', [ActividadesController::class, 'eliminarIndicador'])->name('actividades.eliminarIndicador');
     Route::get('/registro', [RegisterController::class, 'showRegistrationForm'])->name('registro');
     Route::post('/registro', [RegisterController::class, 'register'])->name('register');
+
 });
 
 
@@ -88,7 +85,16 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::match(['get','post'], 'botman',[BotManController::class , "handle"]);
+Route::post('/exportar-datos', [DocumentosController::class, 'exportarDatos'])->name('exportar_datos');
+Route::post('/importar-datos', [DocumentosController::class, 'importarDatos'])->name('importar_datos');
+Route::post('/cambiar_estado/{id}', [DocumentosController::class, 'cambiarEstado'])->name('cambiar.estado');
+Route::post('/rechazar/documento/{id}', [DocumentosController::class, 'rechazarDocumento'])->name('rechazar.documento');
+Route::get('/editar/documento/{id}', [DocumentosController::class, 'editarDocumento'])->name('editar.documento');
+Route::post('/guardar_edicion/{id}', [DocumentosController::class, 'guardarEdicion'])->name('guardar_edicion');
+
+
 // Luego, para configurar el widget, podrías hacerlo en algún punto de inicialización de tu aplicación
+
 
 
 

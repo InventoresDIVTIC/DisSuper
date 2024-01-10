@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Llamada de atención a revisión</title>
+    <title>Actualización de documento</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -48,15 +48,15 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>Llamada de atención a revisión</h1>
+            <h1>Actualización de documento</h1>
         </div>
         <p>Hola <strong>{{ $nombreUsuario }}</strong>,</p>
-        <p>Espero que te encuentres bien. Queremos informarte que has recibido una llamada de atención para revisión. </p>
-        <p>Detalles del documento:</p>
+        <p>Espero que te encuentres bien. Queremos informarte que se ha actualizado un documento que estás siguiendo. </p>
+        <p>Detalles de la actualización:</p>
         <ul>
             <li>ID del documento: <strong>{{ $idDocumento }}</strong></li>
             <li>Empleado asociado: <strong>{{ $Id_Empleado }}</strong></li>
-            <!-- Agrega más detalles del documento según sea necesario -->
+            <!-- Agrega más detalles de la actualización según sea necesario -->
         </ul>
         <p>Si tienes alguna pregunta o necesitas más detalles, no dudes en contactar al administrador.</p>
         <p>Atentamente,<br><strong>{{ $usuarioAutor }}</strong></p>
