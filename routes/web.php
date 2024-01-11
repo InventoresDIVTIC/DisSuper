@@ -29,53 +29,14 @@ Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 
 Route::middleware(['auth'])->group(function () {
-    /*
-    Route::middleware(['jefaturaInmediata'])->group(function () {
-        Route::get('/index', [EmpleadoController::class, 'index']);
-        Route::resource('empleado', EmpleadoController::class);
-        Route::get('/formulario', [DocumentosController::class, 'mostrarFormulario']);
-        Route::post('/procesar-formulario', [DocumentosController::class, 'procesarFormulario']);
-        Route::post('/subir-documento', [DocumentosController::class, 'procesarFormulario2']);
-        Route::post('/download/pdf/{id}', [DocumentosController::class, 'downloadPDF'])->name('download.pdf');
-        Route::get('/notificaciones', [NotificationController::class, 'mostrarNotificaciones'])->name('notificaciones.mostrar');
-        Route::delete('/notificaciones/eliminar', [NotificationController::class, 'eliminarNotificaciones'])->name('notificaciones.eliminar');
-        Route::get('/descargar/documento/{id}', [DocumentosController::class, 'downloadPDF'])->name('descargar.documento');
-        Route::post('/guardar-documento', [DocumentosController::class, 'procesarFormulario2']);
-      
-
-
-        
-    });
-    Route::middleware(['admin'])->group(function () {
-        Route::resource('usuario', UserController::class);
-        Route::resource('zonas', ZonasController::class);
-        Route::resource('roles', RoleController::class);
-    });
-
-    Route::middleware(['jefaturaZonalProceso'])->group(function () {
-        // Rutas protegidas que requieren el rol 'JEFATURA ZONAL DE PROCESO'
-    });
-
-    Route::middleware(['jefaturaZonalProcesoTrabajo'])->group(function () {
-        Route::resource('contratos', ContratoController::class);
-        Route::resource('puestos', PuestosController::class);
-        Route::resource('funciones_puestos', FuncionesPuestosController::class);
-        Route::resource('indicadores', IndicadoresController::class);
-        Route::resource('actividades', ActividadesController::class);
-        Route::delete('puestos/{puesto}/actividades/{actividad}', [PuestosController::class, 'detach'])->name('puestos.detach');
-        Route::delete('actividades/{actividad}/indicadores/{indicador}', [ActividadesController::class, 'eliminarIndicador'])->name('actividades.eliminarIndicador');
-        Route::get('/registro', [RegisterController::class, 'showRegistrationForm'])->name('registro');
-        Route::post('/registro', [RegisterController::class, 'register'])->name('register');
-    });
-
-    */
+    
     Route::middleware(['nivel_5'])->group(function () {
         Route::get('/index', [EmpleadoController::class, 'index']);
         Route::resource('empleado', EmpleadoController::class);
         Route::get('/formulario', [DocumentosController::class, 'mostrarFormulario']);
         Route::post('/procesar-formulario', [DocumentosController::class, 'procesarFormulario']);
-        Route::post('/subir_Documento', [DocumentosController::class, 'subir_Documento']);
-        
+        Route::post('/subir-documento', [DocumentosController::class, 'procesarFormulario2']);
+        Route::post('/guardar-documento', [DocumentosController::class, 'procesarFormulario2']);
         Route::post('/download/pdf/{id}', [DocumentosController::class, 'downloadPDF'])->name('download.pdf');
         Route::get('/notificaciones', [NotificationController::class, 'mostrarNotificaciones'])->name('notificaciones.mostrar');
         Route::delete('/notificaciones/eliminar', [NotificationController::class, 'eliminarNotificaciones'])->name('notificaciones.eliminar');

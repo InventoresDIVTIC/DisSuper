@@ -26,11 +26,6 @@ return new class extends Migration
             $table->integer("Actividad")->nullable(true);
             $table->date("Fecha_Actividad")->nullable(true);
             $table->text("Introduccion")->nullable(true);
-<<<<<<< HEAD
-
-            $table->binary("Documento")->nullable(true);   // Aqui se almacena el documento PDF
-=======
->>>>>>> 4e3bf9da412d088c0cee8175416dac11932de1dd
 
             $table->string('nombre_archivo')->nullable(true); 
            
