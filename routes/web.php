@@ -34,14 +34,17 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/index', [EmpleadoController::class, 'index']);
         Route::resource('empleado', EmpleadoController::class);
         Route::get('/formulario', [DocumentosController::class, 'mostrarFormulario']);
-        Route::post('/procesar-formulario', [DocumentosController::class, 'procesarFormulario']);
+        
         Route::post('/subir-documento', [DocumentosController::class, 'procesarFormulario2']);
         Route::post('/guardar-documento', [DocumentosController::class, 'procesarFormulario2']);
         Route::post('/download/pdf/{id}', [DocumentosController::class, 'downloadPDF'])->name('download.pdf');
         Route::get('/notificaciones', [NotificationController::class, 'mostrarNotificaciones'])->name('notificaciones.mostrar');
         Route::delete('/notificaciones/eliminar', [NotificationController::class, 'eliminarNotificaciones'])->name('notificaciones.eliminar');
         Route::get('/descargar/documento/{id}', [DocumentosController::class, 'downloadPDF'])->name('descargar.documento');
+        Route::get('/editar/documento/{id}', [DocumentosController::class, 'editarDocumento'])->name('editar.documento');
+        Route::post('/guardar_edicion/{id}', [DocumentosController::class, 'guardarEdicion'])->name('guardar_edicion');
     });
+    
     Route::middleware(['nivel_0'])->group(function () {
         Route::resource('usuario', UserController::class);
         Route::resource('zonas', ZonasController::class);
@@ -83,7 +86,15 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::match(['get','post'], 'botman',[BotManController::class , "handle"]);
+Route::post('/exportar-datos', [DocumentosController::class, 'exportarDatos'])->name('exportar_datos');
+Route::post('/importar-datos', [DocumentosController::class, 'importarDatos'])->name('importar_datos');
+Route::post('/cambiar_estado/{id}', [DocumentosController::class, 'cambiarEstado'])->name('cambiar.estado');
+Route::post('/rechazar/documento/{id}', [DocumentosController::class, 'rechazarDocumento'])->name('rechazar.documento');
+Route::post('/procesar-formulario', [DocumentosController::class, 'procesarFormulario']);
+
+
 // Luego, para configurar el widget, podrías hacerlo en algún punto de inicialización de tu aplicación
+
 
 
 

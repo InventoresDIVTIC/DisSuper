@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Llamada de atención a revisión</title>
+    <title>Documento aceptado</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -48,18 +48,12 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>Llamada de atención a revisión</h1>
+            <h1>Documento aceptado</h1>
         </div>
+        <!-- Mensaje personalizado usando los datos proporcionados -->
         <p>Hola <strong>{{ $nombreUsuario }}</strong>,</p>
-        <p>Espero que te encuentres bien. Queremos informarte que has recibido una llamada de atención para revisión. </p>
-        <p>Detalles del documento:</p>
-        <ul>
-            <li>ID del documento: <strong>{{ $idDocumento }}</strong></li>
-            <li>Empleado asociado: <strong>{{ $Id_Empleado }}</strong></li>
-            <!-- Agrega más detalles del documento según sea necesario -->
-        </ul>
-        <p>Si tienes alguna pregunta o necesitas más detalles, no dudes en contactar al administrador.</p>
-        <p>Atentamente,<br><strong>{{ $usuarioAutor }}</strong></p>
+        <p>Te informamos que el documento con ID <strong>{{ $idDocumento }}</strong> que le corresponde al empleado <strong>{{ $Id_Empleado }}</strong>, ha sido revisado y aceptado por <strong>{{ $Id_Usuario_Revisar }}</strong>.</p>
+        <p>Si tienes alguna pregunta o necesitas más información, no dudes en contactar al administrador.</p>
         <div class="footer">
             <p>Por favor, no respondas a este correo electrónico. Si necesitas asistencia, ponte en contacto con el soporte.</p>
         </div>

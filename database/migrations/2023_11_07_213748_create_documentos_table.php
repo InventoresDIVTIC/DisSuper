@@ -26,8 +26,8 @@ return new class extends Migration
             $table->integer("Actividad")->nullable(true);
             $table->date("Fecha_Actividad")->nullable(true);
             $table->text("Introduccion")->nullable(true);
-
             $table->string('nombre_archivo')->nullable(true); 
+            $table->text('contenido')->nullable(true);
            
         });
     }

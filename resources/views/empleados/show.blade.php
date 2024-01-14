@@ -70,11 +70,9 @@
 
               <div class="card-body">
                 <div class="tab-content">
-
                   {{-- Informacion General --}}
                   <div class="active tab-pane" id="InformacionGeneral">
                     <div class="card-body">
-
                       {{-- Contador de Documentos --}}
                       <div class="row">
                       <div class="col-12 col-sm-4">
@@ -111,7 +109,7 @@
                         <table class="table">
                           <thead>
                             <tr>
-                              
+                              <th>Id</th>
                               <th style="width: 180px">Fecha</th>
                               <th>Tipo Documento</th>
                               <th>Emitido por</th>
@@ -124,6 +122,7 @@
                           <tbody>
                             @foreach($documentos as $documento)
                               <tr>
+                                  <td>{{ $documento->id }}</td>
                                   <td>{{ $documento->Fecha_Actividad }}</td>
                                   <td>{{ $documento->Tipo_Documento }}</td>
                                   <td>{{ $documento->emisor->name }}</td>
@@ -132,8 +131,57 @@
                                   <td>
                                       <form action="{{ route('download.pdf', ['id' => $documento->id]) }}" method="POST">
                                           @csrf
-                                          <button type="submit" class="btn btn-block btn-primary btn-sm">Descargar</button>
+                                          <button type="submit" class="btn btn-block btn-primary btn-sm">
+                                              <i class="fas fa-download"></i> Descargar
+                                          </button>
                                       </form>
+                                  </td>
+                                  <td>
+                                    <button onclick="copiarDatos('{{ $documento->contenido }}', '{{ $documento->Introduccion }}')" class="btn btn-danger btn-sm">
+                                        <i class="fas fa-copy"></i> Copiar
+                                    </button>
+                                  </td>
+                                  <td>
+                                      @if($documento->Status_Documento !== 'ACEPTADO' && Auth::id() === $documento->Id_Usuario_Revisar && $documento->Status_Documento !== 'EN EDICION')
+                                          <form action="{{ route('cambiar.estado', ['id' => $documento->id]) }}" method="POST">
+                                              @csrf
+                                              <button type="submit" class="btn btn-success btn-sm">
+                                                  Aceptar
+                                              </button>
+                                          </form>
+                                      @elseif($documento->Status_Documento === 'ACEPTADO' && Auth::id() === $documento->Id_Usuario_Revisar)
+                                          <!-- Si el documento ya está aceptado, mostrar un mensaje o simplemente un texto -->
+                                          <span>Documento aceptado</span>
+                                      @else
+                                          <!-- Otro mensaje si el usuario no es el destinatario -->
+                                         
+                                      @endif
+                                  </td>
+                                  <td>
+                                      @if($documento->Status_Documento !== 'EN EDICION' && Auth::id() === $documento->Id_Usuario_Revisar && $documento->Status_Documento !== 'ACEPTADO' )
+                                          <form action="{{ route('rechazar.documento', ['id' => $documento->id]) }}" method="POST">
+                                              @csrf
+                                              <button type="submit" class="btn btn-danger btn-sm">
+                                                  Rechazar
+                                              </button>
+                                          </form>
+                                      @elseif($documento->Status_Documento === 'EN EDICION' && Auth::id() === $documento->Id_Usuario_Revisar)
+                                          <!-- Si el documento ya está aceptado, mostrar un mensaje o simplemente un texto -->
+                                          <span>Documento enviado a revisión</span>
+                                      @else
+                                          <!-- Otro mensaje si el usuario no es el destinatario -->
+                                         
+                                      @endif
+                                  </td>
+                                  <td>
+                                  @if($documento->Status_Documento === 'EN EDICION' && Auth::id() === $documento->Id_Usuario_Autor)
+                                      <!-- Si el documento está en EDICION y el usuario es el autor, mostrar botón de Editar -->
+                                      <a href="{{ route('editar.documento', ['id' => $documento->id]) }}" class="btn btn-primary btn-sm">
+                                          Editar
+                                      </a>
+                                  @else
+                                      <!-- Otro mensaje si el usuario no es el destinatario -->
+                                  @endif
                                   </td>
                               </tr>
                             @endforeach
@@ -142,6 +190,16 @@
                       </div>
                     </div>
                   </div>
+                  <script>
+                      function copiarDatos(contenido,Introduccion) {
+                          // Captura los datos de la fila y guárdalos en una variable global (por ejemplo, 'datosCopiados')
+                          window.datosCopiados = {
+                            contenido,
+                            Introduccion
+                          };
+                          alert('Datos copiados.'); // Puedes eliminar esta alerta si lo prefieres
+                      }
+                  </script>
 
                   <div class="tab-pane" id="Documentos">
                     <div class="card bg-black color-palette">
@@ -179,7 +237,7 @@
                                   <td>{{ $documento->receptor->name }}</td>
                                   <td>{{ $documento->Status_Documento }}</td>
                                   <td>
-                                    <a href="{{ asset($documento->nombre_archivo) }}">Visualizar</a>
+                                    <a href="{{ asset($documento->nombre_archivo) }}">Descargar</a>
 
                                   </td>
                               </tr>
@@ -225,7 +283,7 @@
                             <div class="col-sm-3">
                                 <select class="form-control" id="Id_Usuario_Revisar" placeholder="Encargado de Revisión" name="Id_Usuario_Revisar">
                                     @foreach($usuarios as $index => $usuario)
-                                        @if($index !== 0) <!-- Omitir el primer usuario -->
+                                    @if($usuario->id !== auth()->user()->id && $usuario->id !== 1 &&$usuario->RPE_Empleado !== $empleado->RPE_Empleado) 
                                             <option value="{{ $usuario->id }}">{{ $usuario->name }}</option>
                                         @endif
                                     @endforeach
@@ -285,78 +343,114 @@
 
 
                       <div class="tab-pane" id="GenerarLlA">
-                    <form action="{{ url('/procesar-formulario') }}" method="POST">
+                    <form action="{{ url('/procesar-formulario') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-        <div class="form-group row">
-            <div class="text-primary col-md-12">
-                <!-- Encabezado del formulario -->
-                <label class="col-sm-12 text-center"><h3>Generar Llamada de Atención</h3></label>
-            </div>
-        </div>
+                        <div class="form-group row">
+                            <div class="text-primary col-md-12">
+                                <!-- Encabezado del formulario -->
+                                <label class="col-sm-12 text-center"><h3>Generar Llamada de Atención</h3></label>
+                            </div>
+                        </div>
+                    
+                        <button type="button" onclick="pegarDatos()" class="btn btn-primary">Pegar Datos</button><br><br>
 
-        <!-- Campos del primer indicador -->
-        <div class="form-group row">
-            <label class="col-sm-1.8 col-form-label">N. Llamada</label>
-            <div class="col-sm-3">
-                <input type="number" class="form-control" id="N_Llamada" name="N_Llamada" placeholder="N. llamada">
-            </div>
+                        <!-- Campos del primer indicador -->
+                        <div class="form-group row">
+                            <label class="col-sm-1.8 col-form-label">N. Llamada</label>
+                            <div class="col-sm-3">
+                                <input type="number" class="form-control" id="N_Llamada" name="N_Llamada" placeholder="N. llamada">
+                            </div>
 
-            <label class="col-sm-1.5 col-form-label">Actividad</label>
-            <div class="col-sm-3">
-                <input type="number" class="form-control" id="Actividad" name="Actividad" placeholder="Actividad">
-            </div>
+                            <label class="col-sm-1.5 col-form-label">Actividad</label>
+                            <div class="col-sm-3">
+                                <input type="number" class="form-control" id="Actividad" name="Actividad" placeholder="Actividad">
+                            </div>
 
-            <label class="col-sm-1.5 col-form-label">Fecha</label>
-            <div class="col-sm-3">
-                <input type="date" class="form-control" id="Fecha_Actividad" name="Fecha_Actividad" placeholder="Fecha">
-            </div>
-        </div>
+                            <label class="col-sm-1.5 col-form-label">Fecha</label>
+                            <div class="col-sm-3">
+                                <input type="date" class="form-control" id="Fecha_Actividad" name="Fecha_Actividad" placeholder="Fecha">
+                            </div>
+                        </div>
 
 
-        <input type="hidden" name="Id_Empleado" id="Id_Empleado" value="{{$empleado->id}}">
-        <input type="hidden" name="Tipo_Documento" id="Tipo_Documento" value="LLAMADA DE ATENCION">
-        <input type="hidden" name="Status_Documento" id="Status_Documento" value="ENVIADO">
-        
-        <!-- Introducción del primer indicador -->
-        <div class="form-group row">
-            <label for="inputCargo" class="col-sm-12 col-form-label">Introducción</label>
-            <div class="col-sm-12">
-                <textarea class="form-control"id="Introduccion"name="Introduccion" rows="3" placeholder="Explique de manera general el motivo de la Rendición de Cuentas"></textarea>
-            </div>
-        </div>
+                        <input type="hidden" name="Id_Empleado" id="Id_Empleado" value="{{$empleado->id}}">
+                        <input type="hidden" name="Tipo_Documento" id="Tipo_Documento" value="LLAMADA DE ATENCION">
+                        <input type="hidden" name="Status_Documento" id="Status_Documento" value="ENVIADO">
+                        
+                        <!-- Introducción del primer indicador -->
+                        <div class="form-group row">
+                            <label for="inputCargo" class="col-sm-12 col-form-label">Introducción</label>
+                            <div class="col-sm-12">
+                                <textarea class="form-control"id="Introduccion"name="Introduccion" rows="3" placeholder="Explique de manera general el motivo de la Rendición de Cuentas"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputCargo" class="col-sm-12 col-form-label">Explicación</label>
+                            <div class="col-sm-12">
+                                <textarea class="form-control"id="contenido"name="contenido" rows="11" placeholder="Explique de manera detallada y especifica el motivo de la Rendición de Cuentas"></textarea>
+                            </div>
+                        </div>
 
-        <div class="Indicadores" id="indicadores-container">
-            <!-- Campos del primer indicador -->
-            <div class="hallazgo-container" id="hallazgos-container">
-                   <!-- Los hallazgos se agregarán aquí -->
-              </div>
-            
-        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-1.9 col-form-label">Imagen de prueba:  </label>
+                            <div class="col-sm-10">
+                                <div class="custom-file">
+                            
+                                    <input class="form-control" type="file" id="imagen" name="imagen"onchange="mostrarNombre()" multiple>
+                                </div>
+                                <span id="ArchivoSeleccionado"></span>
+                            </div>
+                        </div>
+                        <script>
+                            function mostrarNombre() {
+                                const input2 = document.getElementById('imagen');
+                                const nombreArchivo2 = input2.files[0].name;
+                                const label2 = document.querySelector('.custom-file-label');
+                                label2.innerText = nombreArchivo2;
+                                document.getElementById('ArchivoSeleccionado').innerText = 'Nombre del archivo: ' + nombreArchivo2;
+                            }
+                        </script>
 
-        <div class="form-group row">
-            <label for="inputCargo" class="col-sm-2 col-form-label">Usuario a mandar a revisión</label>
-            <div class="col-sm-9">
-                <div class="form-group">
-                <select class="form-control" id="Id_Usuario_Revisar" name="Id_Usuario_Revisar">
-                @foreach($usuarios as $index => $usuario)
-                    @if($index !== 0) <!-- Omitir el primer usuario -->
-                        <option value="{{ $usuario->id }}">{{ $usuario->name }}</option>
-                    @endif
-                @endforeach
-                </select>
-                </div>
-            </div>
-        </div>
 
-        <div class="form-group row">
-            <div class="offset-sm-2 col-sm-10">
-                <button type="button" class="btn add-btn btn-info" id="addIndicador">Agregar Indicador</button>
-                <button type="button" class="btn add-btn btn-danger" onclick="eliminarIndicador()" id="removeIndicador">Eliminar Indicador</button>
-                <button type="submit" class="btn btn-danger">Submit</button>
-            </div>
-        </div>
-       
-    </form>
+
+
+
+
+
+                        <div class="form-group row">
+                            <label for="inputCargo" class="col-sm-2 col-form-label">Usuario a mandar a revisión</label>
+                            <div class="col-sm-9">
+                                <div class="form-group">
+                                <select class="form-control" id="Id_Usuario_Revisar" name="Id_Usuario_Revisar">
+                                  @foreach($usuarios as $usuario)
+                                      @if($usuario->id !== auth()->user()->id && $usuario->id !== 1 &&$usuario->RPE_Empleado !== $empleado->RPE_Empleado) 
+                                          <option value="{{ $usuario->id }}">{{ $usuario->name }}</option>
+                                      @endif
+                                  @endforeach
+                              </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="offset-sm-2 col-sm-10">
+                                
+                                <button type="submit" class="btn btn-danger">Enviar</button>
+                            </div>
+                        </div>
+                      
+                    </form>
+                    <script>
+                        function pegarDatos() {
+                            if (window.datosCopiados) {
+                                document.getElementById('contenido').value = window.datosCopiados.contenido || '';
+                                document.getElementById('Introduccion').value = window.datosCopiados.Introduccion || '';
+                            } else {
+                                alert('No se han copiado datos aún.');
+                            }
+                        }
+                    </script>
+
     
     
 </div><!-- /.tab-pane -->

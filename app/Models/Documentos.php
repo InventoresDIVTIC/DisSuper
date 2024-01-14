@@ -28,5 +28,9 @@ class Documentos extends Model
     {
         return $this->hasMany(Notification::class, 'documento_id');
     }
-
 }
+
+
+
+
+
