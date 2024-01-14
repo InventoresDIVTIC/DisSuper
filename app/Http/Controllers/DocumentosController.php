@@ -51,6 +51,7 @@ class DocumentosController extends Controller
 
             // Obtener los datos del formulario
             $datosFormulario = [
+                'nombre_archivo' => $request->input('nombre_archivo'),
                 'N_Llamada' => $request->input('N_Llamada'),
                 'Actividad' => $request->input('Actividad'),
                 'Fecha_Actividad' => $request->input('Fecha_Actividad'),
@@ -63,7 +64,7 @@ class DocumentosController extends Controller
 
                 // Otros campos del formulario según su estructura
             ];
-            //dd($datosFormulario);
+            dd($datosFormulario);
             // Obtener el nombre del empleado al que se le hizo el documento
             $empleado = Empleado::find($datosFormulario['Id_Empleado']);
             $nombreEmpleado = $empleado->nombre; // Cambiar por el nombre real del empleado

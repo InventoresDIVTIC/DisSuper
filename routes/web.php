@@ -86,8 +86,6 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::match(['get','post'], 'botman',[BotManController::class , "handle"]);
-Route::post('/exportar-datos', [DocumentosController::class, 'exportarDatos'])->name('exportar_datos');
-Route::post('/importar-datos', [DocumentosController::class, 'importarDatos'])->name('importar_datos');
 Route::post('/cambiar_estado/{id}', [DocumentosController::class, 'cambiarEstado'])->name('cambiar.estado');
 Route::post('/rechazar/documento/{id}', [DocumentosController::class, 'rechazarDocumento'])->name('rechazar.documento');
 Route::post('/procesar-formulario', [DocumentosController::class, 'procesarFormulario']);
