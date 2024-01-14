@@ -28,6 +28,7 @@ return new class extends Migration
             $table->text("Introduccion")->nullable(true);
             $table->string('nombre_archivo')->nullable(true); 
             $table->text('contenido')->nullable(true);
+            $table->string('imagen')->nullable();
            
         });
     }

@@ -79,13 +79,32 @@ class DocumentosController extends Controller
             $documento->Tipo_Documento = $datosFormulario['Tipo_Documento'];
             $documento->Status_Documento = $datosFormulario['Status_Documento'];
             $documento->contenido = $datosFormulario['contenido'];
-
             
+            if ($request->hasFile('imagen')) {
+                $photo = $request->file('imagen');
+                if ($photo->isValid()) {
+                    $imageName = time() . '.' . $photo->getClientOriginalExtension();
+                    
+                    // Mover la imagen a la carpeta deseada
+                    $photo->move(public_path('dist/img/imagenes_documentos'), $imageName);
+            
+                    // Asignar la ruta de la imagen al campo 'imagen' del documento
+                    $documento->imagen = 'dist/img/imagenes_documentos/' . $imageName;
+                } else {
+                    return redirect()->back()->withInput()->withErrors([
+                        'imagen' => 'El archivo de imagen no es válido.',
+                    ]);
+                }
+            }
+
+
             // Guardar el documento
             $documento->save();
           
             $notification = new Notification();
             $notification->user_id = $datosFormulario['Id_Usuario_Revisar'];
+            $notification->autor = $Id_Usuario_Autor;
+            $notification->empleado = $datosFormulario['Id_Empleado'];
             $notification->message = 'Se te ha enviado una llamada de atención para revisión.';
             $notification->read = false;
             
@@ -307,6 +326,15 @@ class DocumentosController extends Controller
         $Id_Documento = $documento->id;
         $Id_Usuario_Revisar = $documento->Id_Usuario_Revisar; 
         $Id_Empleado = $documento->Id_Empleado; 
+
+        $notification = new Notification();
+        $notification->user_id = $Id_Usuario_Revisar;
+        $notification->autor = $Id_Usuario_Autor;
+        $notification->empleado = $Id_Empleado;
+        $notification->message = 'LLamada de atención aceptada';
+        $notification->read = false;
+        
+        $documento->notifications()->save($notification);
     
         // Obtener el correo electrónico del usuario desde la tabla users
         $usuario = User::find($Id_Usuario_Autor);
@@ -330,6 +358,7 @@ class DocumentosController extends Controller
                     ->subject('Llamada de atención aceptada');
             });
         }
+   
     
         // Redireccionar o responder según lo que necesites
         return redirect()->back()->with('success', 'Estado cambiado exitosamente a Aceptado. Correo enviado al usuario.');
@@ -374,7 +403,7 @@ class DocumentosController extends Controller
         // Enviar el correo electrónico al usuario
         Mail::send('emails.rechazado', $datosCorreo, function ($message) use ($email) {
             $message->to($email)
-                ->subject('Llamada de atención aceptada');
+                ->subject('Llamada de atención Rechazada');
         });
     }
 
@@ -417,6 +446,13 @@ public function editarDocumento($id)
             $Id_Usuario_Autor = $documento->Id_Usuario_Autor;
             $Id_Documento = $documento->id;
             $Id_Empleado = $documento->Id_Empleado; 
+
+            $notification = new Notification();
+            $notification->user_id = $Id_Usuario_Revisar;
+            $notification->autor = $Id_Usuario_Autor;
+            $notification->empleado = $Id_Empleado;
+            $notification->message = 'Se ha corregido una llamada de atención';
+            $notification->read = false;
 
             // Obtener el correo electrónico del usuario desde la tabla users
             $usuario = User::find($Id_Usuario_Revisar);

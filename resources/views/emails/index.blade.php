@@ -43,25 +43,42 @@
                             </div>
                             <div class="table-responsive mailbox-messages">
                                 <table class="table table-hover table-striped">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th>Mensaje</th>
+                                        <th>Estado</th>
+                                        <th>Emisor</th>
+                                        <th>Receptor</th>
+                                        <th>Empleado sancionado</th>
+                                        <th>Fecha</th>
+                                        <th>Descarga</th>
+                                        
+                                    </tr>
+                                </thead>
                                     <tbody>
-                                        @foreach($notifications as $notification)
+                                    @foreach($notifications as $notification)
                                             <tr>
                                                 <td>
                                                     <div class="icheck-primary">
-                                                    <input type="checkbox" name="notificaciones[]" value="{{ $notification->id }}" id="check{{ $loop->iteration }}">
+                                                        <input type="checkbox" name="notificaciones[]" value="{{ $notification->id }}" id="check{{ $loop->iteration }}">
                                                         <label for="check{{ $loop->iteration }}"></label>
                                                     </div>
                                                 </td>
                                                 <td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>
                                                 <td class="mailbox-name">{{ $notification->message }}</td>
                                                 <td class="mailbox-subject">{{ $notification->read ? 'Read' : 'Unread' }}</td>
+                                                <td class="mailbox-name">{{ $userNames[$notification->autor] }}</td>
+                                                <td class="mailbox-name">{{ $userReceptor[$notification->user_id] }}</td>
+                                                <td class="mailbox-name">{{ $userNamesEmpleado[$notification->empleado] }}</td>
+                                                <td class="mailbox-date">{{ $notification->created_at->diffForHumans() }}</td>
                                                 <td class="mailbox-attachment">
                                                     <!-- Botón de descarga -->
                                                     @if($notification->documento)
                                                         <a href="{{ route('descargar.documento', ['id' => $notification->documento->id]) }}" class="btn btn-info btn-sm">Descargar</a>
                                                     @endif
                                                 </td>
-                                                <td class="mailbox-date">{{ $notification->created_at->diffForHumans() }}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>
