@@ -16,5 +16,9 @@ class Notification extends Model
     {
         return $this->belongsTo(Documentos::class, 'documento_id');
     }
+    public function autor()
+{
+    return $this->belongsTo(User::class, 'autor');
+}
 
 }

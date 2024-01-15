@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,14 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Plantilla Dissuper 1</title>
+
+    
     <style>
-       * {
-            box-sizing: border-box;
-        }
+        
         body {
             
             margin: 90px;
             padding: 0;
+        }
+
+        * {
+            box-sizing: border-box;
         }
 
         .content {
@@ -65,14 +70,14 @@
 
         .datos_Documento {
             text-align: right;
-            size: 11px;
+            size: 11;
             
         }
 
         .datos_Empleado {
             text-align: left;
-            size: 11px;
-        }
+            size: 11;
+        }
 
     </style>
 </head>
@@ -83,22 +88,21 @@ $nombreImagen = public_path('dist/img/cfe_Logo.jpg');
 $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nombreImagen));
 ?>
 <body>
-<div id="header">
+    <div id="header">
         <div class="L_Header">
             <img src="<?php echo $imagenBase64 ?>" alt="CFE Logo">
         </div>
         
         <label class="text-header">
-            <strong>
+            <b>
             División de Distribución Jalisco<br>
             Gerencia Divisional<br>
             Departamento Comercial<br>
             Agencia TOLUQUILLA<br>
             Zona Metropolitana Reforma
-            </strong>
+            </b>
         </label>
     </div>
-
 
     <div id="footer">
         <label class="text-footer">
@@ -107,6 +111,35 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
             <br>
             Por un uso responsable del papel, los comunicados internos se envían por correo electrónico y los comunicados externos se envían en papel.
         </label>
+    </div>
+
+    <div class="datos_Documento">
+        <b>
+        Lugar, {{now()->format('d/F/Y')}}<br><br>
+        Asunto:<br>
+        Actividad Supervisada:<br>
+        Fecha de Actividad:<br>
+        Fecha de Supervision: {{$datosFormulario['Fecha_Actividad']}}<br><br>
+        </b>
+
+    </div>
+
+    <div class="datos_Empleado">
+        <b>
+        {{$empleado['nombre_Empleado']}}<br>
+        Auxiliar Comercial <br>
+        R.T.T {{$empleado['RPE_Empleado']}}<br>
+        Centro de Integración de Consumo Toluquilla<br>
+        Presenta<br><br>
+        </b>
+
+    </div>
+
+    <div>
+        <p>
+
+        Se realizó supervisión al ciclo <b>"Ciclo" Tarea {{$datosFormulario['Actividad']}}</b> asignada al <b>C. <{{$empleado['nombre_Empleado']}}</b>, R.P.E <b>{{$empleado->RPE_Empleado}} </b>realizado el día 18  de Octubre del 2023.
+        </p>
     </div>
 
     <div class="content">
@@ -127,8 +160,7 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
     <div class="content">
         <h2>Lipsum</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. ...</p>
-        <!-- Lipsum content shortened for brevity -->
     </div>
-    <!-- Y así sucesivamente para los demás campos -->
+    
 </body>
 </html>

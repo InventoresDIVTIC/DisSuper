@@ -391,31 +391,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label class="col-sm-1.9 col-form-label">Imagen de prueba:  </label>
-                            <div class="col-sm-10">
-                                <div class="custom-file">
-                            
-                                    <input class="form-control" type="file" id="imagen" name="imagen"onchange="mostrarNombre()" multiple>
-                                </div>
-                                <span id="ArchivoSeleccionado"></span>
-                            </div>
-                        </div>
-                        <script>
-                            function mostrarNombre() {
-                                const input2 = document.getElementById('imagen');
-                                const nombreArchivo2 = input2.files[0].name;
-                                const label2 = document.querySelector('.custom-file-label');
-                                label2.innerText = nombreArchivo2;
-                                document.getElementById('ArchivoSeleccionado').innerText = 'Nombre del archivo: ' + nombreArchivo2;
-                            }
-                        </script>
-
-
-
-
-
-
+                      
 
                         <div class="form-group row">
                             <label for="inputCargo" class="col-sm-2 col-form-label">Usuario a mandar a revisión</label>

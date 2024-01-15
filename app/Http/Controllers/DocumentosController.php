@@ -64,7 +64,7 @@ class DocumentosController extends Controller
 
                 // Otros campos del formulario según su estructura
             ];
-            dd($datosFormulario);
+            ///dd($datosFormulario);
             // Obtener el nombre del empleado al que se le hizo el documento
             $empleado = Empleado::find($datosFormulario['Id_Empleado']);
             $nombreEmpleado = $empleado->nombre; // Cambiar por el nombre real del empleado
@@ -113,7 +113,7 @@ class DocumentosController extends Controller
 
 
             // Generar el PDF a partir de la vista del formulario
-            $html = view('pdf.formulario', compact('datosFormulario'))->render();
+            $html = view('pdf.formulario', compact('datosFormulario', 'empleado'))->render();
             $options = new Options();
             $options->set('isHtml5ParserEnabled', true);
             $dompdf = new Dompdf($options);

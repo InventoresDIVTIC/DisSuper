@@ -21,7 +21,7 @@ return new class extends Migration
             $table->float("Valor_Alcanzado")->max(100)->min(0)->nullable(true);
             $table->text("Afectaciones")->nullable(true);
             $table->text("Normas_Incumplidas")->nullable(true);
-            
+            $table->string('imagen')->nullable(true);
 
         });
     }

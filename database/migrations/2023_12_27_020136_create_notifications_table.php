@@ -17,12 +17,15 @@ class CreateNotificationsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('documento_id');
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('autor');
+            $table->unsignedBigInteger('empleado')->nullable(true);
             $table->text('message');
             $table->boolean('read')->default(false);
             $table->timestamps();
 
             $table->foreign('documento_id')->references('id')->on('documentos')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('autor')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

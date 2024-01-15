@@ -9,7 +9,7 @@ class Documentos extends Model
 {
     protected $table = 'documentos';
     protected $fillable = ['nombre_archivo'];
-
+  
     public function indicadores()
     {
         return $this->hasMany(IndicadorDocumento::class, 'Id_Documento');
