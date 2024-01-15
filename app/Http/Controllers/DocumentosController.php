@@ -98,6 +98,7 @@ class DocumentosController extends Controller
             }
 
 
+            
             // Guardar el documento
             $documento->save();
           
@@ -109,11 +110,6 @@ class DocumentosController extends Controller
             $notification->read = false;
             
             $documento->notifications()->save($notification);
-
-
-
-            
-            
 
 
             // Generar el PDF a partir de la vista del formulario
@@ -139,11 +135,6 @@ class DocumentosController extends Controller
             $documento->nombre_archivo = $ruta;
             $documento->save();
 
-
-
-
-
-            
             // Obtener el ID del usuario seleccionado en el formulario
             $Id_Usuario_Revisar = $request->input('Id_Usuario_Revisar');
             $Id_Usuario_Autor = $documento->Id_Usuario_Autor;

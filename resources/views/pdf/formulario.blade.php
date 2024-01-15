@@ -6,19 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Plantilla Dissuper 1</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        * {
+       * {
             box-sizing: border-box;
+        }
+        body {
+            
+            margin: 90px;
+            padding: 0;
         }
 
         .content {
             page-break-after: always;
-            padding-top: 85px;
+            
         }
 
         #header {
@@ -27,7 +26,6 @@
             left: 0;
             right: 0;
             height: 80px;
-            background-color: #ccc;
             padding: 5px;
             width: 100%;
             display: flex;
@@ -41,9 +39,9 @@
             left: 0;
             right: 0;
             height: 50px;
-            background-color: #ccc;
             text-align: center;
             padding: 10px;
+            width: 100%;
         }
 
         .text-footer {
@@ -51,19 +49,30 @@
         }
 
         .text-header {
-            width: 65%; /* Ajusta el ancho del contenedor del texto según sea necesario */
+            width: 62%; /* Ajusta el ancho del contenedor del texto según sea necesario */
             text-align: right;
             display: inline-block;
             vertical-align: top;
-            margin-right: 25px; /* Ajusta el margen derecho según sea necesario */
+            margin-right: 5px; /* Ajusta el margen derecho según sea necesario */
             font-size: 12px;
         }
 
         .L_Header img{
             float: left;
-            margin-right: 10px;
-            width: 40%;
+            margin-right: 0%;
+            width: 38%;
         }
+
+        .datos_Documento {
+            text-align: right;
+            size: 11px;
+            
+        }
+
+        .datos_Empleado {
+            text-align: left;
+            size: 11px;
+        }
 
     </style>
 </head>
@@ -74,19 +83,22 @@ $nombreImagen = public_path('dist/img/cfe_Logo.jpg');
 $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nombreImagen));
 ?>
 <body>
-    <div id="header">
+<div id="header">
         <div class="L_Header">
             <img src="<?php echo $imagenBase64 ?>" alt="CFE Logo">
         </div>
         
         <label class="text-header">
+            <strong>
             División de Distribución Jalisco<br>
             Gerencia Divisional<br>
             Departamento Comercial<br>
             Agencia TOLUQUILLA<br>
             Zona Metropolitana Reforma
+            </strong>
         </label>
     </div>
+
 
     <div id="footer">
         <label class="text-footer">
@@ -96,6 +108,28 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
             Por un uso responsable del papel, los comunicados internos se envían por correo electrónico y los comunicados externos se envían en papel.
         </label>
     </div>
+    
+    <div class="datos_Documento">
+        <b>
+        Lugar, {{now()}}<br><br>
+        Asunto:<br>
+        Actividad Supervisada:<br>
+        Fecha de Actividad:<br>
+        Fecha de Supervision: {{$datosFormulario['Fecha_Supervision']}}<br><br>
+        </b>
+
+    </div>
+
+    <div class="datos_Empleado">
+        <!--{{$empleado->nombre_Empleado}}--><br>
+        Auxiliar Comercial <br>
+        R.T.T <!--{{$empleado->RPE_Empleado}}--><br>
+        Centro de Integración de Consumo Toluquilla<br>
+        Presenta<br><br>
+
+
+    </div>
+
     <div class="content">
         <h1>Plantilla Dissuper 1</h1>
         <p><strong>Autor:</strong> JESUS EDUARDO QUINTERO GOMEZ</p>
