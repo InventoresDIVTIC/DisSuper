@@ -116,7 +116,7 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
     <div class="datos_Documento">
         <b>
         Lugar, {{now()->format('d/F/Y')}}<br><br>
-        Asunto:<br>
+        Asunto:{{$datosFormulario['Tipo_Documento']}}<br>
         Actividad Supervisada:<br>
         Fecha de Actividad:<br>
         Fecha de Supervision: {{$datosFormulario['Fecha_Actividad']}}<br><br>
