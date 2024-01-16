@@ -260,7 +260,7 @@
 
                       <div class="tab-pane" id="Subir_Doc">
 
-                      <form method="POST" action="/guardar-documento" enctype="multipart/form-data">
+                      <form method="POST" action="/guardar-documento"id="subirForm" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group row">
                             <div class="text-primary col-md-12">
@@ -318,9 +318,24 @@
                                 <button type="submit" class="btn btn-info">Enviar</button>
                             </div>
                         </div>
-                    </form>
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function () {
+                                const form = document.querySelector('#subirForm'); // Agregar el "#" para seleccionar por ID
 
-                      </div>
+                                form.addEventListener('submit', function (event) {
+                                    const tipoDocumento = document.getElementById('Tipo_Documento').value;
+                                    const usuarioRevisar = document.getElementById('Id_Usuario_Revisar').value;
+                                    const documento = document.getElementById('Documento').value; // Obtener el primer archivo seleccionado
+
+                                    if (!tipoDocumento || !usuarioRevisar || !documento) {
+                                        alert('Por favor, completa todos los campos antes de enviar el formulario.');
+                                        event.preventDefault();
+                                    }
+                                });
+                            });
+                        </script>
+                    </form>
+                </div>
 
 
 
@@ -343,7 +358,7 @@
 
 
                       <div class="tab-pane" id="GenerarLlA">
-                    <form action="{{ url('/procesar-formulario') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ url('/procesar-formulario') }}"id="llamadaAtencionForm" method="POST" enctype="multipart/form-data">
                     @csrf
                         <div class="form-group row">
                             <div class="text-primary col-md-12">
@@ -356,15 +371,22 @@
 
                         <!-- Campos del primer indicador -->
                         <div class="form-group row">
-                            <label class="col-sm-1.8 col-form-label">N. Llamada</label>
-                            <div class="col-sm-3">
-                                <input type="number" class="form-control" id="N_Llamada" name="N_Llamada" placeholder="N. llamada">
-                            </div>
+                            
+                        <label for="N_Llamada" class="col-sm-1.8 col-form-label">N. Llamada</label>
+                        <div class="col-sm-3">
+                            <input type="number" class="form-control" id="N_Llamada" name="N_Llamada" placeholder="N. llamada" value="{{ old('N_Llamada') }}">
+                        </div>
+                        @error('N_Llamada')
+                            <span class="error-message">{{ $message }}</span>
+                        @enderror
 
                             <label class="col-sm-1.5 col-form-label">Actividad</label>
                             <div class="col-sm-3">
                                 <input type="number" class="form-control" id="Actividad" name="Actividad" placeholder="Actividad">
                             </div>
+                            @if ($errors->has('Actividad'))
+                                <span class="error-message">{{ $errors->first('Actividad') }}</span>
+                            @endif
 
                             <label class="col-sm-1.5 col-form-label">Fecha</label>
                             <div class="col-sm-3">
@@ -383,6 +405,9 @@
                             <div class="col-sm-12">
                                 <textarea class="form-control"id="Introduccion"name="Introduccion" rows="3" placeholder="Explique de manera general el motivo de la Rendición de Cuentas"></textarea>
                             </div>
+                            @if ($errors->has('Introduccion'))
+                                <span class="error-message">{{ $errors->first('Introduccion') }}</span>
+                            @endif
                         </div>
                         <div class="form-group row">
                             <label for="inputCargo" class="col-sm-12 col-form-label">Explicación</label>
@@ -435,11 +460,31 @@
                         <div class="form-group row">
                             <div class="offset-sm-2 col-sm-10">
                                 
-                                <button type="submit" class="btn btn-danger">Enviar</button>
+                                <button type="submit"  class="btn btn-danger">Enviar</button>
                             </div>
                         </div>
-                      
+                       
                     </form>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            const form = document.getElementById('llamadaAtencionForm');
+
+                            form.addEventListener('submit', function (event) {
+                                const nLlamada = document.getElementById('N_Llamada').value;
+                                const actividad = document.getElementById('Actividad').value;
+                                const fechaActividad = document.getElementById('Fecha_Actividad').value;
+                                const introduccion = document.getElementById('Introduccion').value;
+                                const contenido = document.getElementById('contenido').value;
+                                const usuarioRevisar = document.getElementById('Id_Usuario_Revisar').value;
+
+                                if (!nLlamada || !actividad || !fechaActividad || !introduccion || !contenido || !imagen || !usuarioRevisar) {
+                                    alert('Por favor, completa todos los campos antes de enviar el formulario.');
+                                    event.preventDefault();
+                                }
+                            });
+                        });
+                    </script>
+        
                     <script>
                         function pegarDatos() {
                             if (window.datosCopiados) {
@@ -482,15 +527,17 @@
                     <form method="POST"id="tuFormularioId" action="{{ route('empleado.update', $empleado->id) }}">
                       @csrf
                       @method('PATCH')
-                        <div class="form-group">
-                          <label for="RPE_Empleado"><i class="fas fa-id-card"></i> RPE:</label>
-                          <input type="text" class="form-control" id="RPE_Empleado" maxlength="5" value="{{ $empleado->RPE_Empleado }}" name="RPE_Empleado" placeholder="RPE">
-                        </div>
+                        
+                          <input type="hidden" class="form-control" id="RPE_Empleado" maxlength="5" value="{{ $empleado->RPE_Empleado }}" name="RPE_Empleado" placeholder="RPE">
+                        
 
                         <div class="form-group">
                           <label for="nombre_Empleado"><i class="fas fa-user"></i> Nombre:</label>
                           <input type="text" class="form-control" id="nombre_Empleado" name="nombre_Empleado"value="{{ $empleado->nombre_Empleado }}" placeholder="Nombre">
                         </div>
+                        @if ($errors->has('nombre_Empleado'))
+                            <span class="error-message">{{ $errors->first('nombre_Empleado') }}</span>
+                        @endif
 
                         <div class="form-group">
                           <label for="contrato_id"><i class="fas fa-file-contract"></i> Contrato:</label>
@@ -502,6 +549,10 @@
                                 @endforeach
                             </select>
                         </div>
+                        @if ($errors->has('contrato'))
+                              <span class="error-message">{{ $errors->first('contrato') }}</span>
+                          @endif
+                        
 
 
                         <label for="zonas"><i ></i> Selecciona una Zona:</label><br>
@@ -530,6 +581,9 @@
                           <label for="fecha_ingreso"><i class="fas fa-calendar"></i> Fecha Ingreso:</label>
                           <input type="date" class="form-control" name="fecha_ingreso" id="fecha_ingreso"value="{{ $empleado->fecha_ingreso }}" required>
                         </div>
+                        @if ($errors->has('fecha_ingreso'))
+                            <span class="error-message">{{ $errors->first('fecha_ingreso') }}</span>
+                        @endif
 
 
                         <div class="form-group row">

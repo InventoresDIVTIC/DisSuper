@@ -106,12 +106,11 @@ class EmpleadoController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, Empleado $empleado)
-    { // Validar los datos del formulario
-        // Validar los datos del formulario
+    { 
+
         $request->validate([
             'RPE_Empleado' => 'required|max:5',
             'nombre_Empleado' => 'required|string|max:255',
-            'contrato' => 'required|exists:contratos,id',
             'fecha_ingreso' => 'required|date',
         ]);
 
