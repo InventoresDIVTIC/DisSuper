@@ -9,13 +9,15 @@
 
     
     <style>
-       * {
-            box-sizing: border-box;
-        }
+        
         body {
             
             margin: 90px;
             padding: 0;
+        }
+
+        * {
+            box-sizing: border-box;
         }
 
         .content {
@@ -68,14 +70,14 @@
 
         .datos_Documento {
             text-align: right;
-            size: 11px;
+            size: 11;
             
         }
 
         .datos_Empleado {
             text-align: left;
-            size: 11px;
-        }
+            size: 11;
+        }
 
     </style>
 </head>
@@ -86,7 +88,7 @@ $nombreImagen = public_path('dist/img/cfe_Logo.jpg');
 $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nombreImagen));
 ?>
 <body>
-<div id="header">
+    <div id="header">
         <div class="L_Header">
             <img src="<?php echo $imagenBase64 ?>" alt="CFE Logo">
         </div>
@@ -101,7 +103,6 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
             </b>
         </label>
     </div>
-
 
     <div id="footer">
         <label class="text-footer">
@@ -131,9 +132,15 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
         Centro de Integración de Consumo Toluquilla<br>
         Presenta<br><br>
         </b>
+<<<<<<< HEAD
 
     </div>
 
+=======
+
+    </div>
+
+>>>>>>> c9379c02815c909ebb883be03f35f546d78e42da
     <div>
         <p>
 

@@ -31,8 +31,6 @@ class DocumentosController extends Controller
 
     public function showFormulario()
     {
-       
-     
         $usuarios = User::all(); // Obtén todos los usuarios
 
         return view('empleados.show', compact('usuarios','contadorRendicionCuentas', 'contadorLlamadasAtencion', 'contadorActasAdministrativas'));
@@ -42,6 +40,10 @@ class DocumentosController extends Controller
     public function procesarFormulario(Request $request)
     {
         try {
+            $request->validate([
+                'N_Llamada' => 'required',
+                'Introduccion' => 'required', 'string',
+            ]);
             // Obtener el ID del usuario que realiza el documento
             $Id_Usuario_Autor = auth()->id();
             // Obtener el ID del usuario al que se envía a revisión desde el formulario
@@ -61,8 +63,8 @@ class DocumentosController extends Controller
                 'Tipo_Documento' => $request->input('Tipo_Documento'),
                 'Status_Documento' => $request->input('Status_Documento'),
                 'contenido' => $request->input('contenido'),
-
                 // Otros campos del formulario según su estructura
+
             ];
             ///dd($datosFormulario);
             // Obtener el nombre del empleado al que se le hizo el documento
@@ -318,15 +320,8 @@ class DocumentosController extends Controller
         $Id_Documento = $documento->id;
         $Id_Usuario_Revisar = $documento->Id_Usuario_Revisar; 
         $Id_Empleado = $documento->Id_Empleado; 
-
-        $notification = new Notification();
-        $notification->user_id = $Id_Usuario_Revisar;
-        $notification->autor = $Id_Usuario_Autor;
-        $notification->empleado = $Id_Empleado;
-        $notification->message = 'LLamada de atención aceptada';
-        $notification->read = false;
         
-        $documento->notifications()->save($notification);
+      
     
         // Obtener el correo electrónico del usuario desde la tabla users
         $usuario = User::find($Id_Usuario_Autor);
@@ -356,52 +351,59 @@ class DocumentosController extends Controller
         return redirect()->back()->with('success', 'Estado cambiado exitosamente a Aceptado. Correo enviado al usuario.');
     }
     
+
     public function rechazarDocumento($id, Request $request)
-{
-     // Obtener los datos del formulario
-     $datosFormulario = [
-        'Id_Usuario_Revisar' => $request->input('Id_Usuario_Revisar'),
-        'Id_Empleado' => $request->input('Id_Empleado'),
-        'Status_Documento' => $request->input('Status_Documento'),
-    ];
-
-    // Encuentra el documento por su ID y actualiza el estado a "Aceptado"
-    $documento = Documentos::findOrFail($id);
-    $documento->Status_Documento = 'EN EDICION';
-    $documento->save();
-
-    // Obtener el ID del usuario que creó el documento y otros datos relevantes
-    $Id_Usuario_Autor = $documento->Id_Usuario_Autor;
-    $Id_Documento = $documento->id;
-    $Id_Usuario_Revisar = $documento->Id_Usuario_Revisar; 
-    $Id_Empleado = $documento->Id_Empleado; 
-
-    // Obtener el correo electrónico del usuario desde la tabla users
-    $usuario = User::find($Id_Usuario_Autor);
-    $usuario2 = User::find($Id_Usuario_Revisar);
-    $empleado = Empleado::find($Id_Empleado);
-    if ($usuario) {
-        $email = $usuario->email;
-
-        // Definir los datos que se pasarán a la vista de correo electrónico
-        $datosCorreo = [
-            'nombreUsuario' => $usuario->name,
-            'idDocumento' => $Id_Documento,
-            'Id_Usuario_Revisar' => $usuario2->name,
-            'Id_Empleado' => $empleado->nombre_Empleado,
-            // Otros datos relevantes para la plantilla de correo
+    {
+        // Obtener los datos del formulario
+        $datosFormulario = [
+            'Id_Usuario_Revisar' => $request->input('Id_Usuario_Revisar'),
+            'Id_Empleado' => $request->input('Id_Empleado'),
+            'Status_Documento' => $request->input('Status_Documento'),
         ];
+        $comentarioRechazo = $request->input('comentarioRechazo');
 
-        // Enviar el correo electrónico al usuario
-        Mail::send('emails.rechazado', $datosCorreo, function ($message) use ($email) {
-            $message->to($email)
-                ->subject('Llamada de atención Rechazada');
-        });
+        // Encuentra el documento por su ID y actualiza el estado a "Aceptado"
+        $documento = Documentos::findOrFail($id);
+        $documento->Status_Documento = 'EN EDICION';
+        $documento->comentario_rechazado = $comentarioRechazo;
+        $documento->save();
+
+        // Obtener el ID del usuario que creó el documento y otros datos relevantes
+        $Id_Usuario_Autor = $documento->Id_Usuario_Autor;
+        $Id_Documento = $documento->id;
+        $Id_Usuario_Revisar = $documento->Id_Usuario_Revisar; 
+        $Id_Empleado = $documento->Id_Empleado; 
+        $comentario_rechazado = $documento->comentario_rechazado;
+
+        // Obtener el correo electrónico del usuario desde la tabla users
+        $usuario = User::find($Id_Usuario_Autor);
+        $usuario2 = User::find($Id_Usuario_Revisar);
+        $empleado = Empleado::find($Id_Empleado);
+        if ($usuario) {
+            $email = $usuario->email;
+
+            // Definir los datos que se pasarán a la vista de correo electrónico
+            $datosCorreo = [
+                'nombreUsuario' => $usuario->name,
+                'idDocumento' => $Id_Documento,
+                'Id_Usuario_Revisar' => $usuario2->name,
+                'Id_Empleado' => $empleado->nombre_Empleado,
+                'comentario' => $comentario_rechazado,
+                // Otros datos relevantes para la plantilla de correo
+            ];
+
+            // Enviar el correo electrónico al usuario
+            Mail::send('emails.rechazado', $datosCorreo, function ($message) use ($email) {
+                $message->to($email)
+                    ->subject('Llamada de atención Rechazada');
+            });
+        }
+
+        // Redireccionar o responder según lo que necesites
+        return redirect()->back()->with('success', 'Estado cambiado exitosamente a Aceptado. Correo enviado al usuario.');
     }
 
-    // Redireccionar o responder según lo que necesites
-    return redirect()->back()->with('success', 'Estado cambiado exitosamente a Aceptado. Correo enviado al usuario.');
-}
+
 public function editarDocumento($id)
 {
     // Supongo que aquí estás obteniendo el empleado relacionado con el documento.
@@ -468,12 +470,114 @@ public function editarDocumento($id)
                     $message->to($email)
                         ->subject('Llamada de atención actualizada');
                 });
-    // Asegúrate de obtener el empleado relacionado con el documento
-        $empleado = Empleado::find($documento->Id_Empleado);
-        // Redirecciona a donde quieras después de guardar la edición
-        return redirect()->route('empleado.show', $empleado->id)->with('success', 'Los cambios se han guardado correctamente.');
+            // Asegúrate de obtener el empleado relacionado con el documento
+                $empleado = Empleado::find($documento->Id_Empleado);
+                // Redirecciona a donde quieras después de guardar la edición
+                return redirect()->route('empleado.show', $empleado->id)->with('success', 'Los cambios se han guardado correctamente.');
+            }
+
+            
     }
 
-    
+// ...
+
+    public function cancelarDocumento($id,Request $request)
+    {
+        try {
+            // Encuentra el documento por su ID
+            $documento = Documentos::findOrFail($id);
+
+            // Verifica que el usuario tenga permisos para cancelar el documento
+            if (auth()->user()->roles[0]['nivel_permisos'] < 1) {
+                // Guarda el ID del usuario que canceló el documento
+                $Id_Usuario_Cancelacion = auth()->user()->id;
+                // Captura el comentario desde el formulario
+                $comentario = $request->input('comentario');
+                // Cambia el estado del documento a "CANCELADO"
+                $documento->Status_Documento = 'CANCELADO';
+                $documento->Id_Usuario_Cancelacion = $Id_Usuario_Cancelacion; // Agrega el ID del usuario que canceló
+                $documento->comentario_cancelado = $comentario;
+                $documento->save();
+
+               
+                $usuarioCancelacion = User::find($documento->Id_Usuario_Cancelacion);
+                // Obtener el ID del usuario que creó el documento y otros datos relevantes
+                $Id_Usuario_Autor = $documento->Id_Usuario_Autor;
+                $Id_Documento = $documento->id;
+                $Id_Usuario_Cancelacion = $usuarioCancelacion ? $usuarioCancelacion->name : 'Usuario Desconocido';
+                $Id_Usuario_Revisar = $documento->Id_Usuario_Revisar; 
+                $comentarioCancelado = $documento->comentario_cancelado;
+                $Id_Empleado = $documento->Id_Empleado; 
+
+                // Obtener el correo electrónico del usuario desde la tabla users
+                $usuario = User::find($Id_Usuario_Autor);
+                $usuario2 = User::find($Id_Usuario_Revisar);
+                $empleado = Empleado::find($Id_Empleado);
+                if ($usuario) {
+                    $email = $usuario->email;
+
+                    // Definir los datos que se pasarán a la vista de correo electrónico
+                    $datosCorreo = [
+                        'nombreUsuario' => $usuario->name,
+                        'idDocumento' => $Id_Documento,
+                        'Id_Usuario_Revisar' => $usuario2->name,
+                        'Id_Empleado' => $empleado->nombre_Empleado,
+                        'Usercancelado' => $Id_Usuario_Cancelacion,
+                        'comentario' => $comentarioCancelado,
+                        // Otros datos relevantes para la plantilla de correo
+                    ];
+
+                    // Enviar el correo electrónico al usuario
+                    Mail::send('emails.canceladoA', $datosCorreo, function ($message) use ($email) {
+                        $message->to($email)
+                            ->subject('Llamada de atención cancelada');
+                    });
+                }
+                $usuario = User::find($Id_Usuario_Revisar);
+                $usuario2 = User::find($Id_Usuario_Autor);
+                $empleado = Empleado::find($Id_Empleado);
+                if ($usuario) {
+                    $email = $usuario->email;
+
+                    // Definir los datos que se pasarán a la vista de correo electrónico
+                    $datosCorreo = [
+                        'nombreUsuario' => $usuario->name,
+                        'idDocumento' => $Id_Documento,
+                        'Id_Usuario_Revisar' => $usuario2->name,
+                        'Id_Empleado' => $empleado->nombre_Empleado,
+                        'Usercancelado' => $Id_Usuario_Cancelacion,
+                        'comentario' => $comentarioCancelado,
+                        // Otros datos relevantes para la plantilla de correo
+                    ];
+
+                    // Enviar el correo electrónico al usuario
+                    Mail::send('emails.canceladoR', $datosCorreo, function ($message) use ($email) {
+                        $message->to($email)
+                            ->subject('Llamada de atención cancelada');
+                    });
+                }
+                // Puedes agregar otras acciones o redireccionar a una vista específica
+                return redirect()->back()->with('success', 'Documento cancelado exitosamente. Correo enviado al usuario que canceló.');
+            } else {
+                // Si el usuario no tiene los permisos adecuados, puedes redirigir a una vista de error
+                return redirect()->back()->with('error', 'No tienes los permisos para cancelar este documento.');
+            }
+
+        } catch (\Exception $e) {
+            // Manejar cualquier excepción que pueda ocurrir durante el proceso
+            return redirect()->back()->with('error', 'Error al cancelar el documento: ' . $e->getMessage());
+        }
     }
+
+
+   
+
+
+
+
+
+
+
+
 }
+

@@ -39,7 +39,7 @@
                         @endif
 
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" name="RPE_Empleado" placeholder="RPE (max. 5 caracteres)" maxlength="5" value="{{ old('RPE_Empleado') }}">
+                            <input type="text" class="form-control" name="RPE_Empleado" id="RPE_Empleado" placeholder="RPE (max. 5 caracteres)" maxlength="5" value="{{ old('RPE_Empleado') }}">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-id-card"></span>
@@ -141,6 +141,16 @@
                             </div>
                         </div>
                     </form>
+                    <script>
+                        document.getElementById('form-registro').addEventListener('submit', function(event) {
+                            // Verifica si el checkbox de términos y condiciones está marcado
+                            if (!document.getElementById('agreeTerms').checked) {
+                                // Si no está marcado, evita que el formulario se envíe y muestra un mensaje de error
+                                event.preventDefault();
+                                alert('Debes aceptar los términos y condiciones antes de enviar el formulario.');
+                            }
+                        });
+                    </script>
                 </div>
             </div>
         </div>

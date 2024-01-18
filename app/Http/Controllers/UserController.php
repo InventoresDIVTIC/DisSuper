@@ -84,6 +84,7 @@ class UserController extends Controller
      */
 
      public function update(Request $request, $id)
+<<<<<<< HEAD
      {
          // Validación de datos
          $validator = Validator::make($request->all(), [
@@ -149,6 +150,74 @@ class UserController extends Controller
          // Redirigir a una página de confirmación o de detalles del usuario
          return redirect()->route('usuario.index', $id)->with('success', 'Los cambios se han guardado correctamente.');
      }
+=======
+    {
+        // Validación de datos
+        $validator = Validator::make($request->all(), [
+            // ... otras reglas de validación ...
+            'photo' => 'nullable|image|max:5000',
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'fecha_registro'=>['required'],
+           
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        // Obtener el usuario que deseas actualizar
+        $usuario = User::findOrFail($id);
+
+         // Actualizar las zonas asociadas al usuario
+        $zonas = $request->input('zonas', []); // Obtener los IDs de las zonas seleccionadas
+        $usuario->zonas()->sync($zonas); // Actualizar las zonas asociadas al usuario
+        // Almacenar la ruta de la foto anterior (si existe)
+        $oldPhotoPath = $usuario->photo;
+
+        // Actualizar los campos con los nuevos valores del formulario
+        $usuario->name = $request->input('name');
+        $usuario->email = $request->input('email');
+        $usuario->RPE_Empleado = $request->input('RPE_Empleado');
+        $usuario->fecha_registro = $request->input('fecha_registro');
+        $usuario->contrato()->associate($request->input('contrato'));
+        $usuario->roles()->sync($request->input('rol'));
+
+        // Actualizar la foto de perfil si se proporciona una nueva
+        if ($request->hasFile('photo')) {
+            $photo = $request->file('photo');
+
+            if ($photo->isValid()) {
+                $imageName = time() . '.' . $photo->getClientOriginalExtension();
+
+                $photo->move(public_path('dist/img/photo_users'), $imageName);
+
+                $usuario->photo = 'dist/img/photo_users/' . $imageName;
+
+                // Eliminar la foto de perfil anterior si existe
+                if ($oldPhotoPath && file_exists(public_path($oldPhotoPath))) {
+                    unlink(public_path($oldPhotoPath));
+                }
+            } else {
+                return redirect()->back()->withInput()->withErrors([
+                    'photo' => 'El archivo de foto no es válido.',
+                ]);
+            }
+        }
+       
+        $usuario->save();
+        event(new UserUpdated($usuario));
+        // Guardar los cambios en la base de datos
+      
+        
+
+        // Redirigir a una página de confirmación o de detalles del usuario
+        return redirect()->route('usuario.index', $id)->with('success', 'Los cambios se han guardado correctamente.');
+    }
+     
+>>>>>>> c9379c02815c909ebb883be03f35f546d78e42da
 
 
 

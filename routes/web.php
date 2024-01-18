@@ -43,6 +43,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/descargar/documento/{id}', [DocumentosController::class, 'downloadPDF'])->name('descargar.documento');
         Route::get('/editar/documento/{id}', [DocumentosController::class, 'editarDocumento'])->name('editar.documento');
         Route::post('/guardar_edicion/{id}', [DocumentosController::class, 'guardarEdicion'])->name('guardar_edicion');
+<<<<<<< HEAD
     });
     
     Route::middleware(['nivel_0'])->group(function () {
@@ -50,6 +51,17 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('zonas', ZonasController::class);
         Route::resource('roles', RoleController::class);
     });
+=======
+    });
+    
+    Route::middleware(['nivel_0'])->group(function () {
+        Route::resource('usuario', UserController::class);
+        Route::resource('zonas', ZonasController::class);
+        Route::resource('roles', RoleController::class);
+        Route::post('/cancelar/documento/{id}', [DocumentosController::class, 'cancelarDocumento'])->name('cancelar.documento');
+
+    });
+>>>>>>> c9379c02815c909ebb883be03f35f546d78e42da
 
     Route::middleware(['nivel_3'])->group(function () {
         // Rutas protegidas que requieren el rol 'JEFATURA ZONAL DE PROCESO'

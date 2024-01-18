@@ -18,7 +18,10 @@
                         <div class="col-md-6 form-group">
                             <label for="nombre_zona">Nombre de la Zona:</label>
                             <input type="text" class="form-control" id="nombre_zona" name="nombre_zona" placeholder="Nombre de la Zona">
-                        </div>
+                        </div><br>
+                        @if ($errors->has('nombre_zona'))
+                            <span class="error-message">{{ $errors->first('nombre_zona') }}</span>
+                        @endif
                         <div class="col-md-6 form-group">
                             <label for="Encargado">Encargado:</label>
                             <select class="form-control" id="Encargado" name="Encargado">
@@ -27,6 +30,9 @@
                                 @endforeach
                             </select>
                         </div>
+                        @if ($errors->has('Encargado'))
+                            <span class="error-message">{{ $errors->first('Encargado') }}</span>
+                        @endif
                     </div>
                     <div class="col-12"> <!-- Aquí agregamos la clase col-12 -->
                         <button type="submit" class="btn btn-primary btn-block">

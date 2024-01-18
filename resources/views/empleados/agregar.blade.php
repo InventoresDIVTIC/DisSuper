@@ -21,10 +21,16 @@
                   <label for="RPE_Empleado"><i class="fas fa-id-card"></i> RPE:</label>
                   <input type="text" class="form-control" id="RPE_Empleado" name="RPE_Empleado" maxlength="5" placeholder="RPE">
                 </div>
+                @if ($errors->has('RPE_Empleado'))
+                    <span class="error-message">{{ $errors->first('RPE_Empleado') }}</span>
+                @endif
                 <div class="form-group">
                   <label for="nombre_Empleado"><i class="fas fa-user"></i> Nombre:</label>
                   <input type="text" class="form-control" id="nombre_Empleado" name="nombre_Empleado" placeholder="Nombre">
                 </div>
+                @if ($errors->has('nombre_Empleado'))
+                    <span class="error-message">{{ $errors->first('nombre_Empleado') }}</span>
+                @endif
                 <div class="form-group">
                   <label for="contrato_id"><i class="fas fa-file-contract"></i> Contrato:</label>
                   <select name="contrato_id" id="contrato_id" class="form-control">
@@ -37,6 +43,9 @@
                   <label for="fecha_ingreso"><i class="fas fa-calendar"></i> Fecha Ingreso:</label>
                   <input type="date" class="form-control" name="fecha_ingreso" id="fecha_ingreso" required>
                 </div>
+                @if ($errors->has('fecha_ingreso'))
+                    <span class="error-message">{{ $errors->first('fecha_ingreso') }}</span>
+                @endif
 
                 <div class="form-group">
                     <label for="id_zona">Zona:</label>
@@ -46,6 +55,9 @@
                         @endforeach
                     </select>
                 </div>
+                @if ($errors->has('id_zona'))
+                    <span class="error-message">{{ $errors->first('id_zona') }}</span>
+                @endif
               </div>
               <div class="card-footer">
                 <button type="submit" class="btn btn-primary"><i class="fas fa-check"></i> Enviar</button>

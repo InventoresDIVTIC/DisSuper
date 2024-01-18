@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Documento rechazado</title>
+    <title>Recordatorio de revisión de documento</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -26,7 +26,7 @@
             margin-bottom: 10px;
         }
         h1 {
-            color: #e74c3c; /* Cambia el color a uno que refleje el rechazo */
+            color: #1877f2;
             font-size: 24px;
             margin-bottom: 10px;
         }
@@ -48,13 +48,18 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>Documento rechazado</h1>
+            <h1>Recordatorio de revisión de documento</h1>
         </div>
-        <!-- Mensaje personalizado usando los datos proporcionados -->
         <p>Hola <strong>{{ $nombreUsuario }}</strong>,</p>
-        <p>Lamentamos informarte que el documento con ID <strong>{{ $idDocumento }}</strong> que le corresponde al empleado <strong>{{ $Id_Empleado }}</strong> ha sido revisado y rechazado por <strong>{{ $Id_Usuario_Revisar }}</strong>.</p>
-        <p>El comentario que dejó <strong>{{ $Id_Usuario_Revisar }}</strong>, por el cual rechazo el documento fué: <br><strong>{{ $comentario }}</strong> </p>
-        <p>Si tienes alguna pregunta o necesitas más información, por favor, ponte en contacto con el administrador para revisar los cambios necesarios.</p>
+        <p>Espero que te encuentres bien. Este correo es un recordatorio de que ha pasado un tiempo desde que se creó un documento y se requiere tu revisión.</p>
+        <p>Detalles del documento:</p>
+        <ul>
+            <li>ID del documento: <strong>{{ $idDocumento }}</strong></li>
+            <li>Empleado asociado: <strong>{{ $Id_Empleado }}</strong></li>
+            <!-- Agrega más detalles del documento según sea necesario -->
+        </ul>
+        <p>Por favor, revisa el documento lo antes posible y realiza las acciones necesarias.</p>
+        <p>Atentamente,<br><strong>{{ $usuarioAutor }}</strong></p>
         <div class="footer">
             <p>Por favor, no respondas a este correo electrónico. Si necesitas asistencia, ponte en contacto con el soporte.</p>
         </div>

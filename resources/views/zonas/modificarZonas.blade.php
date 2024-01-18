@@ -24,6 +24,9 @@
                               <label for="nombre_Zona">Nombre de la Zona</label>
                               <input type="text" class="form-control" id="nombre_Zona" name="nombre_Zona" value="{{ $zona->nombre_zona }}">
                           </div>
+                          @if ($errors->has('nombre_Zona'))
+                            <span class="error-message">{{ $errors->first('nombre_Zona') }}</span>
+                        @endif
                           <div class="form-group">
                               <label for="EncargadoZona">Encargado</label>
                               <select class="form-control" id="EncargadoZona" name="EncargadoZona">
