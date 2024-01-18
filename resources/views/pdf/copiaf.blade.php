@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -114,31 +115,27 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
 
     <div class="datos_Documento">
         <b>
-        Lugar, {{now()->format('d/F/Y')}}<br><br>
-        Asunto:{{$datosFormulario['Tipo_Documento']}}<br>
+        Lugar, {{now()}}<br><br>
+        Asunto:<br>
         Actividad Supervisada:<br>
         Fecha de Actividad:<br>
-        Fecha de Supervision: {{$datosFormulario['Fecha_Actividad']}}<br><br>
+        Fecha de Supervision: {{$datosFormulario['Fecha_Supervision']}}<br><br>
         </b>
 
     </div>
 
     <div class="datos_Empleado">
-        <b>
-        {{$empleado['nombre_Empleado']}}<br>
+        <!--{{$empleado->nombre_Empleado}}--><br>
         Auxiliar Comercial <br>
-        R.T.T {{$empleado['RPE_Empleado']}}<br>
+        R.T.T <!--{{$empleado->RPE_Empleado}}--><br>
         Centro de Integración de Consumo Toluquilla<br>
         Presenta<br><br>
-        </b>
+
 
     </div>
 
     <div>
-        <p>
-
-        Se realizó supervisión al ciclo <b>"Ciclo" Tarea {{$datosFormulario['Actividad']}}</b> asignada al <b>C. <{{$empleado['nombre_Empleado']}}</b>, R.P.E <b>{{$empleado->RPE_Empleado}} </b>realizado el día 18  de Octubre del 2023.
-        </p>
+        Se realizó supervisión al ciclo <b>"Ciclo" Tarea {{$datosFormulario['Actividad']}}</b> asignada al <b>C. <!--{{$empleado->nombre_Empleado}}--></b>, R.P.E <b><!--{{$empleado->RPE_Empleado}}--></b> realizado el día 18  de Octubre del 2023.
     </div>
 
     <div class="content">

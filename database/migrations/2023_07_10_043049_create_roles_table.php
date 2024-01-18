@@ -15,29 +15,38 @@ return new class extends Migration
         Schema::create('roles', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->integer('nivel_permisos');
             $table->timestamps();
         });
 
         $adminRole = Role::create([
             'name' => 'Admin',
+            'nivel_permisos' => 0,
         ]);
+
         $jefaturaInmediataRole = Role::create([
             'name' => 'Jefatura inmediata',
+            'nivel_permisos' => 5,
         ]);
         $jefaturaZonalProcesoRole = Role::create([
             'name' => 'Jefatura zonal de proceso',
+            'nivel_permisos' => 5,
         ]);
         $jefaturaZonalProcesoTrabajoRole = Role::create([
             'name' => 'Jefatura zonal de proceso de trabajo',
+            'nivel_permisos' => 3,
         ]);
         $superintendenteZonaRole = Role::create([
             'name' => 'Superintendente de zona',
+            'nivel_permisos' => 3,
         ]);
         $subjerenteTrabajoRole = Role::create([
             'name' => 'Subjerente de trabajo',
+            'nivel_permisos' => 1,
         ]);
         $gerenteDivisionalRole = Role::create([
             'name' => 'Gerente divisional',
+            'nivel_permisos' => 1,
         ]);
         
     }

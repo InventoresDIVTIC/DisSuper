@@ -121,68 +121,148 @@
                           </thead>
                           <tbody>
                             @foreach($documentos as $documento)
-                              <tr>
-                                  <td>{{ $documento->id }}</td>
-                                  <td>{{ $documento->Fecha_Actividad }}</td>
-                                  <td>{{ $documento->Tipo_Documento }}</td>
-                                  <td>{{ $documento->emisor->name }}</td>
-                                  <td>{{ $documento->receptor->name }}</td>
-                                  <td>{{ $documento->Status_Documento }}</td>
-                                  <td>
-                                      <form action="{{ route('download.pdf', ['id' => $documento->id]) }}" method="POST">
-                                          @csrf
-                                          <button type="submit" class="btn btn-block btn-primary btn-sm">
-                                              <i class="fas fa-download"></i> Descargar
-                                          </button>
-                                      </form>
-                                  </td>
-                                  <td>
-                                    <button onclick="copiarDatos('{{ $documento->contenido }}', '{{ $documento->Introduccion }}')" class="btn btn-danger btn-sm">
-                                        <i class="fas fa-copy"></i> Copiar
-                                    </button>
-                                  </td>
-                                  <td>
-                                      @if($documento->Status_Documento !== 'ACEPTADO' && Auth::id() === $documento->Id_Usuario_Revisar && $documento->Status_Documento !== 'EN EDICION')
-                                          <form action="{{ route('cambiar.estado', ['id' => $documento->id]) }}" method="POST">
-                                              @csrf
-                                              <button type="submit" class="btn btn-success btn-sm">
-                                                  Aceptar
-                                              </button>
-                                          </form>
-                                      @elseif($documento->Status_Documento === 'ACEPTADO' && Auth::id() === $documento->Id_Usuario_Revisar)
-                                          <!-- Si el documento ya está aceptado, mostrar un mensaje o simplemente un texto -->
-                                          <span>Documento aceptado</span>
-                                      @else
-                                          <!-- Otro mensaje si el usuario no es el destinatario -->
-                                         
-                                      @endif
-                                  </td>
-                                  <td>
-                                      @if($documento->Status_Documento !== 'EN EDICION' && Auth::id() === $documento->Id_Usuario_Revisar && $documento->Status_Documento !== 'ACEPTADO' )
-                                          <form action="{{ route('rechazar.documento', ['id' => $documento->id]) }}" method="POST">
-                                              @csrf
-                                              <button type="submit" class="btn btn-danger btn-sm">
-                                                  Rechazar
-                                              </button>
-                                          </form>
-                                      @elseif($documento->Status_Documento === 'EN EDICION' && Auth::id() === $documento->Id_Usuario_Revisar)
-                                          <!-- Si el documento ya está aceptado, mostrar un mensaje o simplemente un texto -->
-                                          <span>Documento enviado a revisión</span>
-                                      @else
-                                          <!-- Otro mensaje si el usuario no es el destinatario -->
-                                         
-                                      @endif
-                                  </td>
-                                  <td>
-                                  @if($documento->Status_Documento === 'EN EDICION' && Auth::id() === $documento->Id_Usuario_Autor)
-                                      <!-- Si el documento está en EDICION y el usuario es el autor, mostrar botón de Editar -->
-                                      <a href="{{ route('editar.documento', ['id' => $documento->id]) }}" class="btn btn-primary btn-sm">
-                                          Editar
-                                      </a>
-                                  @else
-                                      <!-- Otro mensaje si el usuario no es el destinatario -->
-                                  @endif
-                                  </td>
+                                <tr>
+                                    <td>{{ $documento->id }}</td>
+                                    <td>{{ $documento->Fecha_Actividad }}</td>
+                                    <td>{{ $documento->Tipo_Documento }}</td>
+                                    <td>{{ $documento->emisor->name }}</td>
+                                    <td>{{ $documento->receptor->name }}</td>
+                                    <td>{{ $documento->Status_Documento }}</td>
+                                    <td>
+                                        <form action="{{ route('download.pdf', ['id' => $documento->id]) }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="btn btn-primary btn-sm btn-block">
+                                                <i class="fas fa-download"></i> Descargar
+                                            </button>
+                                        </form>
+                                        <button onclick="copiarDatos('{{ $documento->contenido }}', '{{ $documento->Introduccion }}')" class="btn btn-danger btn-sm btn-block">
+                                            <i class="fas fa-copy"></i> Copiar
+                                        </button>
+                                    </td>
+                                  
+
+                                    <td>
+                                        @if($documento->Status_Documento !== 'ACEPTADO' && $documento->Status_Documento !== 'CANCELADO' && Auth::id() === $documento->Id_Usuario_Revisar && $documento->Status_Documento !== 'EN EDICION')
+                                            <form action="{{ route('cambiar.estado', ['id' => $documento->id]) }}" method="POST">
+                                                @csrf
+                                                <button type="submit" class="btn btn-success btn-sm">
+                                                    <i class="fas fa-check"></i> Aceptar
+                                                </button>
+                                            </form>
+                                        @elseif($documento->Status_Documento === 'ACEPTADO' && Auth::id() === $documento->Id_Usuario_Revisar)
+                                            <!-- Si el documento ya está aceptado, mostrar un mensaje o simplemente un texto -->
+                                            <span><i class="fas fa-check-circle"></i> Documento aceptado</span>
+                                        @else
+                                            <!-- Otro mensaje si el usuario no es el destinatario -->
+                                        @endif
+
+                                        @if($documento->Status_Documento === 'CANCELADO' && (Auth::id() === $documento->Id_Usuario_Autor || Auth::id() === $documento->Id_Usuario_Revisar))
+                                            <!-- Botón para ver el comentario cancelado -->
+                                            <button class="btn btn-info btn-sm" onclick="verComentarioCancelado('{{ $documento->comentario_cancelado }}')">
+                                                <i class="fas fa-comment"></i> Ver comentario
+                                            </button>
+
+                                            <!-- Script para mostrar el comentario cancelado en una alerta -->
+                                            <script>
+                                                function verComentarioCancelado(comentario) {
+                                                    // Muestra una alerta con el comentario cancelado
+                                                    alert("Comentario Cancelado: " + comentario);
+                                                }
+                                            </script>
+                                        @endif
+
+                                        @if($documento->Status_Documento !== 'EN EDICION' && $documento->Status_Documento !== 'CANCELADO' && Auth::id() === $documento->Id_Usuario_Revisar && $documento->Status_Documento !== 'ACEPTADO' )
+                                            <form action="{{ route('rechazar.documento', ['id' => $documento->id]) }}" method="POST" onsubmit="return validarRechazoFormulario()">
+                                                @csrf
+                                                <button type="button" class="btn btn-danger btn-sm" onclick="mostrarComentario()">
+                                                    <i class="fas fa-times"></i> Rechazar
+                                                </button>
+                                                <div id="comentarioContainer" style="display: none;">
+                                                    <label for="comentarioRechazo">Comentario de rechazo:</label>
+                                                    <textarea name="comentarioRechazo" PLACEHOLDER="Escriba aqui el por que esta rechazando el documento"id="comentarioRechazo" rows="4" cols="50" required></textarea>
+                                                </div>
+                                                <button type="submit" class="btn btn-danger btn-sm" id="btnRechazar" style="display: none;">
+                                                    <i class="fas fa-times"></i> Confirmar Rechazo
+                                                </button>
+                                            </form>
+                                        
+                                        @elseif($documento->Status_Documento === 'EN EDICION' && Auth::id() === $documento->Id_Usuario_Revisar)
+                                            <!-- Si el documento ya está en edición, mostrar un mensaje o simplemente un texto -->
+                                            <span><i class="fas fa-edit"></i> Documento enviado a revisión</span>
+                                        @else
+                                            <!-- Otro mensaje si el usuario no es el destinatario -->
+                                        @endif
+                                        <script>
+                                            function mostrarComentario() {
+                                                // Muestra el contenedor de comentario y el botón de confirmar rechazo
+                                                document.getElementById('comentarioContainer').style.display = 'block';
+                                                document.getElementById('btnRechazar').style.display = 'inline';
+                                            }
+
+                                            function validarRechazoFormulario() {
+                                                // Validar que el campo de comentario no esté vacío
+                                                var comentarioRechazo = document.getElementById('comentarioRechazo').value;
+                                                if (comentarioRechazo.trim() === "") {
+                                                    alert('Debes escribir un comentario para rechazar el documento.');
+                                                    return false;
+                                                }
+
+                                                return true;
+                                            }
+                                        </script>
+
+                                        @if($documento->Status_Documento === 'EN EDICION' && Auth::id() === $documento->Id_Usuario_Autor)
+                                            <!-- Si el documento está en EDICION y el usuario es el autor, mostrar botón de Editar -->
+                                            <a href="{{ route('editar.documento', ['id' => $documento->id]) }}" class="btn btn-primary btn-sm">
+                                                <i class="fas fa-edit"></i> Editar
+                                            </a>
+                                            <!-- Si el documento está RECHAZADO y el usuario es el autor, mostrar enlace para ver el comentario -->
+                                            <a href="#" class="btn btn-info btn-sm" onclick="verComentario('{{ $documento->comentario_rechazado }}')">
+                                                <i class="fas fa-comment"></i> Ver Nota
+                                            </a>
+
+                                            <!-- Script para mostrar el comentario en una alerta al hacer clic en el enlace -->
+                                            <script>
+                                                function verComentario(comentario) {
+                                                    // Muestra una alerta con el comentario
+                                                    alert("Comentario: " + comentario);
+                                                }
+                                            </script>
+                                        @endif
+
+                                        <div class="container">
+                                            @if(Auth::user()->roles[0]['nivel_permisos'] < 1 && $documento->Status_Documento !== 'CANCELADO' && $documento->Status_Documento !== 'ACEPTADO' && $documento->Status_Documento !== 'EN EDICION')
+                                                <form action="{{ route('cancelar.documento', ['id' => $documento->id]) }}" method="POST" onsubmit="return validarFormulario()">
+                                                    @csrf
+                                                   
+                                                    <textarea name="comentario" id="comentario"placeholder="Escribe aqui el porque de la cancelación del documento" rows="4" cols="50" required style="display: none;"></textarea>
+                                                    <button type="button" class="btn btn-warning btn-sm" onclick="mostrarMotivo()">
+                                                        <i class="fas fa-times-circle"></i> Cancelar
+                                                    </button>
+                                                    <button type="submit" id="btnCancelar" style="display: none;">Confirmar Cancelación</button>
+                                                </form>
+                                            @endif
+                                        </div>
+                                        <script>
+                                            function mostrarMotivo() {
+                                                // Muestra el cuadro de texto y oculta el botón de cancelar inicial
+                                                document.getElementById('comentario').style.display = 'block';
+                                                document.getElementById('btnCancelar').style.display = 'inline';
+                                            }
+
+                                            function validarFormulario() {
+                                                // Validar que el campo de comentario no esté vacío
+                                                var comentario = document.getElementById('comentario').value;
+                                                if (comentario.trim() === "") {
+                                                    alert('Debes escribir un comentario para cancelar el documento.');
+                                                    return false;
+                                                }
+
+                                                return true;
+                                            }
+                                        </script>
+
+                                </td>
                               </tr>
                             @endforeach
                           </tbody>
@@ -208,7 +288,6 @@
                     <li class="nav-item" style="width: 20%"><a class="nav-link text-center text-muted" href="#Subir_Doc" data-toggle="tab">Subir Documento</a></li>
                     <li class="nav-item" style="width: 20%"><a class="nav-link text-center text-muted" href="#GenerarRC" data-toggle="tab">Rendición de Cuentas</a></li>
                     <li class="nav-item" style="width: 20%"><a class="nav-link text-center text-muted" href="#GenerarLlA" data-toggle="tab">Llamada de Atención</a></li>
-                    <li class="nav-item" style="width: 20%"><a class="nav-link text-center text-muted" href="#GenerarAA" data-toggle="tab">Acta Administrativa</a></li>
                     </ul>
                     </div>
 
@@ -260,7 +339,7 @@
 
                       <div class="tab-pane" id="Subir_Doc">
 
-                      <form method="POST" action="/guardar-documento" enctype="multipart/form-data">
+                      <form method="POST" action="/guardar-documento"id="subirForm" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group row">
                             <div class="text-primary col-md-12">
@@ -318,9 +397,24 @@
                                 <button type="submit" class="btn btn-info">Enviar</button>
                             </div>
                         </div>
-                    </form>
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function () {
+                                const form = document.querySelector('#subirForm'); // Agregar el "#" para seleccionar por ID
 
-                      </div>
+                                form.addEventListener('submit', function (event) {
+                                    const tipoDocumento = document.getElementById('Tipo_Documento').value;
+                                    const usuarioRevisar = document.getElementById('Id_Usuario_Revisar').value;
+                                    const documento = document.getElementById('Documento').value; // Obtener el primer archivo seleccionado
+
+                                    if (!tipoDocumento || !usuarioRevisar || !documento) {
+                                        alert('Por favor, completa todos los campos antes de enviar el formulario.');
+                                        event.preventDefault();
+                                    }
+                                });
+                            });
+                        </script>
+                    </form>
+                </div>
 
 
 
@@ -343,7 +437,7 @@
 
 
                       <div class="tab-pane" id="GenerarLlA">
-                    <form action="{{ url('/procesar-formulario') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ url('/procesar-formulario') }}"id="llamadaAtencionForm" method="POST" enctype="multipart/form-data">
                     @csrf
                         <div class="form-group row">
                             <div class="text-primary col-md-12">
@@ -356,15 +450,22 @@
 
                         <!-- Campos del primer indicador -->
                         <div class="form-group row">
-                            <label class="col-sm-1.8 col-form-label">N. Llamada</label>
-                            <div class="col-sm-3">
-                                <input type="number" class="form-control" id="N_Llamada" name="N_Llamada" placeholder="N. llamada">
-                            </div>
+                            
+                        <label for="N_Llamada" class="col-sm-1.8 col-form-label">N. Llamada</label>
+                        <div class="col-sm-3">
+                            <input type="number" class="form-control" id="N_Llamada" name="N_Llamada" placeholder="N. llamada" value="{{ old('N_Llamada') }}">
+                        </div>
+                        @error('N_Llamada')
+                            <span class="error-message">{{ $message }}</span>
+                        @enderror
 
                             <label class="col-sm-1.5 col-form-label">Actividad</label>
                             <div class="col-sm-3">
                                 <input type="number" class="form-control" id="Actividad" name="Actividad" placeholder="Actividad">
                             </div>
+                            @if ($errors->has('Actividad'))
+                                <span class="error-message">{{ $errors->first('Actividad') }}</span>
+                            @endif
 
                             <label class="col-sm-1.5 col-form-label">Fecha</label>
                             <div class="col-sm-3">
@@ -383,6 +484,9 @@
                             <div class="col-sm-12">
                                 <textarea class="form-control"id="Introduccion"name="Introduccion" rows="3" placeholder="Explique de manera general el motivo de la Rendición de Cuentas"></textarea>
                             </div>
+                            @if ($errors->has('Introduccion'))
+                                <span class="error-message">{{ $errors->first('Introduccion') }}</span>
+                            @endif
                         </div>
                         <div class="form-group row">
                             <label for="inputCargo" class="col-sm-12 col-form-label">Explicación</label>
@@ -435,11 +539,31 @@
                         <div class="form-group row">
                             <div class="offset-sm-2 col-sm-10">
                                 
-                                <button type="submit" class="btn btn-danger">Enviar</button>
+                                <button type="submit"  class="btn btn-danger">Enviar</button>
                             </div>
                         </div>
-                      
+                       
                     </form>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            const form = document.getElementById('llamadaAtencionForm');
+
+                            form.addEventListener('submit', function (event) {
+                                const nLlamada = document.getElementById('N_Llamada').value;
+                                const actividad = document.getElementById('Actividad').value;
+                                const fechaActividad = document.getElementById('Fecha_Actividad').value;
+                                const introduccion = document.getElementById('Introduccion').value;
+                                const contenido = document.getElementById('contenido').value;
+                                const usuarioRevisar = document.getElementById('Id_Usuario_Revisar').value;
+
+                                if (!nLlamada || !actividad || !fechaActividad || !introduccion || !contenido || !imagen || !usuarioRevisar) {
+                                    alert('Por favor, completa todos los campos antes de enviar el formulario.');
+                                    event.preventDefault();
+                                }
+                            });
+                        });
+                    </script>
+        
                     <script>
                         function pegarDatos() {
                             if (window.datosCopiados) {
@@ -482,15 +606,17 @@
                     <form method="POST"id="tuFormularioId" action="{{ route('empleado.update', $empleado->id) }}">
                       @csrf
                       @method('PATCH')
-                        <div class="form-group">
-                          <label for="RPE_Empleado"><i class="fas fa-id-card"></i> RPE:</label>
-                          <input type="text" class="form-control" id="RPE_Empleado" maxlength="5" value="{{ $empleado->RPE_Empleado }}" name="RPE_Empleado" placeholder="RPE">
-                        </div>
+                        
+                          <input type="hidden" class="form-control" id="RPE_Empleado" maxlength="5" value="{{ $empleado->RPE_Empleado }}" name="RPE_Empleado" placeholder="RPE">
+                        
 
                         <div class="form-group">
                           <label for="nombre_Empleado"><i class="fas fa-user"></i> Nombre:</label>
                           <input type="text" class="form-control" id="nombre_Empleado" name="nombre_Empleado"value="{{ $empleado->nombre_Empleado }}" placeholder="Nombre">
                         </div>
+                        @if ($errors->has('nombre_Empleado'))
+                            <span class="error-message">{{ $errors->first('nombre_Empleado') }}</span>
+                        @endif
 
                         <div class="form-group">
                           <label for="contrato_id"><i class="fas fa-file-contract"></i> Contrato:</label>
@@ -502,6 +628,10 @@
                                 @endforeach
                             </select>
                         </div>
+                        @if ($errors->has('contrato'))
+                              <span class="error-message">{{ $errors->first('contrato') }}</span>
+                          @endif
+                        
 
 
                         <label for="zonas"><i ></i> Selecciona una Zona:</label><br>
@@ -530,6 +660,9 @@
                           <label for="fecha_ingreso"><i class="fas fa-calendar"></i> Fecha Ingreso:</label>
                           <input type="date" class="form-control" name="fecha_ingreso" id="fecha_ingreso"value="{{ $empleado->fecha_ingreso }}" required>
                         </div>
+                        @if ($errors->has('fecha_ingreso'))
+                            <span class="error-message">{{ $errors->first('fecha_ingreso') }}</span>
+                        @endif
 
 
                         <div class="form-group row">

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Listado</title>
+  <title>DisSuper</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -49,7 +49,7 @@
   <!-- ION Slider -->
   <link rel="stylesheet" href="../../plugins/ion-rangeslider/css/ion.rangeSlider.min.css">
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css?v=3.2.0">
-  <script nonce="7db90ae7-5af2-4011-a9da-67aeb8c657a9">(function(w,d){!function(bb,bc,bd,be){bb[bd]=bb[bd]||{};bb[bd].executed=[];bb.zaraz={deferred:[],listeners:[]};bb.zaraz.q=[];bb.zaraz._f=function(bf){return async function(){var bg=Array.prototype.slice.call(arguments);bb.zaraz.q.push({m:bf,a:bg})}};for(const bh of["track","set","debug"])bb.zaraz[bh]=bb.zaraz._f(bh);bb.zaraz.init=()=>{var bi=bc.getElementsByTagName(be)[0],bj=bc.createElement(be),bk=bc.getElementsByTagName("title")[0];bk&&(bb[bd].t=bc.getElementsByTagName("title")[0].text);bb[bd].x=Math.random();bb[bd].w=bb.screen.width;bb[bd].h=bb.screen.height;bb[bd].j=bb.innerHeight;bb[bd].e=bb.innerWidth;bb[bd].l=bb.location.href;bb[bd].r=bc.referrer;bb[bd].k=bb.screen.colorDepth;bb[bd].n=bc.characterSet;bb[bd].o=(new Date).getTimezoneOffset();if(bb.dataLayer)for(const bo of Object.entries(Object.entries(dataLayer).reduce(((bp,bq)=>({...bp[1],...bq[1]})),{})))zaraz.set(bo[0],bo[1],{scope:"page"});bb[bd].q=[];for(;bb.zaraz.q.length;){const br=bb.zaraz.q.shift();bb[bd].q.push(br)}bj.defer=!0;for(const bs of[localStorage,sessionStorage])Object.keys(bs||{}).filter((bu=>bu.startsWith("_zaraz_"))).forEach((bt=>{try{bb[bd]["z_"+bt.slice(7)]=JSON.parse(bs.getItem(bt))}catch{bb[bd]["z_"+bt.slice(7)]=bs.getItem(bt)}}));bj.referrerPolicy="origin";bj.src="/cdn-cgi/zaraz/s.js?z="+btoa(encodeURIComponent(JSON.stringify(bb[bd])));bi.parentNode.insertBefore(bj,bi)};["complete","interactive"].includes(bc.readyState)?zaraz.init():bb.addEventListener("DOMContentLoaded",zaraz.init)}(w,d,"zarazData","script");})(window,document);</script>
+  <script nonce="7db90ae7-5af2-4011-a9da-67aeb8c657a9">(function(w,d){!function(bb,bc,bd,be){bb[bd]=bb[bd]||{};bb[bd].executed=[];bb.zaraz={deferred:[],listeners:[]};bb.zaraz.q=[];bb.zaraz.f=function(bf){return async function(){var bg=Array.prototype.slice.call(arguments);bb.zaraz.q.push({m:bf,a:bg})}};for(const bh of["track","set","debug"])bb.zaraz[bh]=bb.zaraz._f(bh);bb.zaraz.init=()=>{var bi=bc.getElementsByTagName(be)[0],bj=bc.createElement(be),bk=bc.getElementsByTagName("title")[0];bk&&(bb[bd].t=bc.getElementsByTagName("title")[0].text);bb[bd].x=Math.random();bb[bd].w=bb.screen.width;bb[bd].h=bb.screen.height;bb[bd].j=bb.innerHeight;bb[bd].e=bb.innerWidth;bb[bd].l=bb.location.href;bb[bd].r=bc.referrer;bb[bd].k=bb.screen.colorDepth;bb[bd].n=bc.characterSet;bb[bd].o=(new Date).getTimezoneOffset();if(bb.dataLayer)for(const bo of Object.entries(Object.entries(dataLayer).reduce(((bp,bq)=>({...bp[1],...bq[1]})),{})))zaraz.set(bo[0],bo[1],{scope:"page"});bb[bd].q=[];for(;bb.zaraz.q.length;){const br=bb.zaraz.q.shift();bb[bd].q.push(br)}bj.defer=!0;for(const bs of[localStorage,sessionStorage])Object.keys(bs||{}).filter((bu=>bu.startsWith("_zaraz"))).forEach((bt=>{try{bb[bd]["z_"+bt.slice(7)]=JSON.parse(bs.getItem(bt))}catch{bb[bd]["z_"+bt.slice(7)]=bs.getItem(bt)}}));bj.referrerPolicy="origin";bj.src="/cdn-cgi/zaraz/s.js?z="+btoa(encodeURIComponent(JSON.stringify(bb[bd])));bi.parentNode.insertBefore(bj,bi)};["complete","interactive"].includes(bc.readyState)?zaraz.init():bb.addEventListener("DOMContentLoaded",zaraz.init)}(w,d,"zarazData","script");})(window,document);</script>
   
 
   <script src="https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js"></script>
@@ -105,8 +105,15 @@
       </li>
     </ul>
 
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <span>ACTICOM</span>
+      </li>
+    </ul>
+
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
+      
       <!-- Navbar Search -->
       <li class="nav-item">
        
@@ -216,7 +223,7 @@
   <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
    
     <!-- Usuarios -->
-    @if(Auth::user()->hasRole('admin'))
+    @if(Auth::user()->roles[0]['nivel_permisos'] < 1)
     <li class="nav-item menu-open">
       <a href="#" class="nav-link active">
         <i class="nav-icon fas fa-users"></i>
@@ -239,7 +246,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link {{ Request::is('usuario/*') && !Request::is('usuario/create*') ? 'active' : '' }}">
+          <a href="#" class="nav-link {{ Request::is('usuario/') && !Request::is('usuario/create') ? 'active' : '' }}">
             <i class="fas fa-edit nav-icon"></i>
             <p>Modificar Usuario</p>
           </a>
@@ -267,7 +274,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link {{ Request::is('empleado/*') && !Request::is('empleado/create*') ? 'active' : '' }}">
+          <a href="#" class="nav-link {{ Request::is('empleado/') && !Request::is('empleado/create') ? 'active' : '' }}">
             <i class="fas fa-user nav-icon"></i>
             <p>Perfil de empleado</p>
           </a>
@@ -285,6 +292,7 @@
 
 
     <!-- Indicadores -->
+    @if(Auth::user()->roles[0]['nivel_permisos'] <= 3)
     <li class="nav-item menu-open">
           <a href="#" class="nav-link active">
             <i class="nav-icon fas fa-briefcase"></i>
@@ -308,10 +316,10 @@
             </li>
         </ul>
     </li>
-
+    @endif
 
     
-    
+    @if(Auth::user()->roles[0]['nivel_permisos'] <= 1)
     <!-- Puestos -->
     <li class="nav-item menu-open">
       <a href="#" class="nav-link active">
@@ -335,19 +343,19 @@
           </a>
         </li>
         <li class="nav-item">
-        <a href="#" class="nav-link {{ Request::is('puestos/*') && !Request::is('puestos/create*') ? 'active' : '' }}">
+        <a href="#" class="nav-link {{ Request::is('puestos/') && !Request::is('puestos/create') ? 'active' : '' }}">
             <i class="fas fa-user-plus nav-icon"></i>
             <p>Funciones de Puesto</p>
           </a>
         </li>
       </ul>
     </li>
+    @endif
 
 
 
 
-
-    @if(Auth::user()->hasRole('admin'))
+    @if(Auth::user()->roles[0]['nivel_permisos'] <= 0)
     <!-- Zonas -->
     <li class="nav-item menu-open">
       <a href="#" class="nav-link active">
@@ -365,7 +373,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link {{ Request::is('zonas/*') && !Request::is('zonas/create*') ? 'active' : '' }}">
+          <a href="#" class="nav-link {{ Request::is('zonas/') && !Request::is('zonas/create') ? 'active' : '' }}">
             <i class="fas fa-edit nav-icon"></i>
             <p>Modificar Zonas</p>
           </a>
@@ -391,7 +399,7 @@
             <p>Contratos</p>
           </a>
         </li>
-        @if(Auth::user()->hasRole('admin'))
+        @if(Auth::user()->roles[0]['nivel_permisos'] <= 0)
         <li class="nav-item">
           <a href="/roles" class="nav-link {{ Request::is('roles') ? 'active' : '' }}">
             <i class="fas fa-list-ul nav-icon"></i>

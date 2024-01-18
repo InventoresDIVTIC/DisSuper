@@ -83,6 +83,7 @@ $(document).ready(function() {
                             </div>
                         </div>
                     </div>
+
                     <div class="hallazgo" id="Indicador${indicadorCount}Hallazgo2">
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Hallazgo 3</label>
@@ -90,7 +91,6 @@ $(document).ready(function() {
                                 <textarea rows="3" class="form-control" placeholder="Explique sus Hallazgos"></textarea>
                             </div>
                         </div>
-                    
                         
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Evidencia 3</label>
@@ -264,7 +264,6 @@ $(document).ready(function() {
                                 <textarea rows="3" class="form-control" placeholder="Explique sus Hallazgos"></textarea>
                             </div>
                         </div>
-              
                         
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Evidencia 4</label>

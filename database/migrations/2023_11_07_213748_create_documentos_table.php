@@ -6,9 +6,11 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+
     /**
      * Run the migrations.
      */
+
     public function up(): void
     {
         Schema::create('documentos', function (Blueprint $table) {
@@ -20,15 +22,22 @@ return new class extends Migration
             $table->text("Status_Documento");
 
             $table->integer("Id_Usuario_Autor");     //quien creo el documento
+            $table->string('Id_Usuario_Autor2')->nullable();
             $table->integer("Id_Usuario_Revisar");   //a quien se manda a revisar
+            $table->integer("Id_Usuario_Cancelacion")->nullable();   //a quien se manda a revisar
 
-            $table->text("N_Llamada")->nullable(true);
-            $table->integer("Actividad")->nullable(true);
-            $table->date("Fecha_Actividad")->nullable(true);
-            $table->text("Introduccion")->nullable(true);
-            $table->string('nombre_archivo')->nullable(true); 
-            $table->text('contenido')->nullable(true);
+            $table->text("N_Llamada")->nullable();
+            $table->integer("Actividad")->nullable();
+            $table->date("Fecha_Actividad")->nullable();
+            $table->text("Introduccion")->nullable();
+            $table->string('nombre_archivo')->nullable(); 
+            $table->text('contenido')->nullable();
             $table->string('imagen')->nullable();
+
+            $table->text('comentario_rechazado')->nullable();
+            $table->text('comentario_cancelado')->nullable();
+            $table->text('comentario_terminado')->nullable();
+
            
         });
     }

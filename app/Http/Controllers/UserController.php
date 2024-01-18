@@ -89,6 +89,10 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), [
             // ... otras reglas de validación ...
             'photo' => 'nullable|image|max:5000',
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'fecha_registro'=>['required'],
+           
         ]);
 
         if ($validator->fails()) {
@@ -143,7 +147,7 @@ class UserController extends Controller
         
 
         // Redirigir a una página de confirmación o de detalles del usuario
-        return redirect()->route('usuario.show', $id)->with('success', 'Los cambios se han guardado correctamente.');
+        return redirect()->route('usuario.index', $id)->with('success', 'Los cambios se han guardado correctamente.');
     }
      
 

@@ -19,7 +19,6 @@ class CreateEmployee implements ShouldQueue
         $user = $event->user; // Obtén el usuario que se acaba de crear
         // Crear y guardar un nuevo empleado relacionado con el usuario
         $empleado = new Empleado();
-        $empleado->id = $user->id;
         $empleado->RPE_Empleado = $user->RPE_Empleado;
         $empleado->nombre_Empleado = $user->name;
         $empleado->contrato_id = $user->contrato_id;

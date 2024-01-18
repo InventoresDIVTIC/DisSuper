@@ -17,6 +17,7 @@ return new class extends Migration
             $table->char("RPE_Empleado", 5)->unique()->nullable(false);
             $table->string('nombre_Empleado')->nullable(false);
             $table->date('fecha_ingreso')->nullable(false);
+            $table->string('imagen')->nullable();
             
 
             $table->unsignedBigInteger('contrato_id')->nullable(); // Agrega la columna contrato_id

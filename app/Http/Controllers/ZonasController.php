@@ -32,7 +32,7 @@ class ZonasController extends Controller
     {
            // Validar los datos del formulario
            $request->validate([
-            'nombre_zona' => 'required|string|max:255',
+            'nombre_zona' => 'required|string|max:255|unique:zonas',
             'Encargado' => 'required|exists:users,id',
         ]);
 
@@ -84,7 +84,7 @@ class ZonasController extends Controller
          }
  
          $request->validate([
-             'nombre_Zona' => 'required|string|max:255',
+             'nombre_Zona' => 'required|string|max:255|unique:zonas',
              'EncargadoZona' => 'required|exists:users,id',
          ]);
  
