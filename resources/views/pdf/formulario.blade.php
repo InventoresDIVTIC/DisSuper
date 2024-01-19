@@ -132,15 +132,9 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
         Centro de Integración de Consumo Toluquilla<br>
         Presenta<br><br>
         </b>
-<<<<<<< HEAD
 
     </div>
 
-=======
-
-    </div>
-
->>>>>>> c9379c02815c909ebb883be03f35f546d78e42da
     <div>
         <p>
 
