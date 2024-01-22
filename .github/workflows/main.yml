@@ -19,7 +19,7 @@ jobs:
         password: ${{ secrets.FTP_ACCESO }}
         
     - name: Install Dependences
-      run: composer install -q --no-ansi --no-interation --no-scripts --no-progress --prefer-dist
+      run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
       
     - name: Run migrations
       run: |
