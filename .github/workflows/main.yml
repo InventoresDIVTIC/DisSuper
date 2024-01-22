@@ -15,8 +15,9 @@ jobs:
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
       with:
         server: 66.225.201.137
-        username: DisSuper@innovusweb.com
+        username: dissuper2@innovusweb.com
         password: ${{ secrets.FTP_ACCESO }}
+        
     - name: Install Dependences
       run: composer install -q --no-ansi --no-interation --no-scripts --no-progress --prefer-dist
       
