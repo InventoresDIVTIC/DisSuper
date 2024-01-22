@@ -23,6 +23,3 @@ jobs:
 
     - name: Copy .env
       run: cp .env.example .env
-
-    - name: Copy .env
-      run: php artisan serve
