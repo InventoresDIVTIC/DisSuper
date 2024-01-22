@@ -7,8 +7,23 @@ jobs:
     name: 🎉 Deploy
     runs-on: ubuntu-latest
     steps:
-    - name: 🚚 Get latest code
-      uses: actions/checkout@v2
+    - uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
+      with: 
+       php-version: '8.1'
+    - uses: actions\checkout@v3
+    
+    - name: Copy .env
+      run: php -r "file_exists('.env')" || copy('.env.example', '.env');
+
+    - name: Install Dependences
+      run: composer install -q --no-ansi --no-interation --no-scripts --no-progress --prefer-dist
+
+    - name: Directory Permisions
+      run: chmod -R 777 storage bootstrao/cache
+
+    - name: Run migrations
+      run: |
+        php artisan migrate --force
     
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
