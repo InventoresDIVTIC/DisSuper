@@ -26,5 +26,5 @@ jobs:
       
     - name: Run migrations
       run: |
-        php artisan migrate:reset
+        php artisan migrate:reset --force
         php artisan migrate --force
