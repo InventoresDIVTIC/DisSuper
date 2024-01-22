@@ -23,3 +23,7 @@ jobs:
 
     - name: Copy .env
       run: cp .env.example .env
+
+    - name: Run Testsuite
+      run: vendor/bin/phpunit tests/
+
