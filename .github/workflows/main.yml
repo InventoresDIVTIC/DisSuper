@@ -23,8 +23,3 @@ jobs:
 
     - name: Copy .env
       run: cp .env.example .env
-      
-    - name: Run migrations
-      run: |
-        php artisan migrate:reset --force
-        php artisan migrate --force
