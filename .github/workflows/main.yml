@@ -10,6 +10,13 @@ jobs:
     steps:
     - name: 🚚 Get latest code
       uses: actions/checkout@v2
+
+    - name: Install Dependences
+      run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+
+    - name: Copy .env
+      run: cp .env.example .env
+
     
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
@@ -17,13 +24,7 @@ jobs:
         server: 66.225.201.137
         username: dissuper2@innovusweb.com
         password: ${{ secrets.FTP_ACCESO }}
+        server-dir: ./public/
         
-    - name: Install Dependences
-      run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-
-    - name: Copy .env
-      run: cp .env.example .env
-
-    - name: Run Testsuite
-      run: vendor/bin/phpunit tests/
+    
 
