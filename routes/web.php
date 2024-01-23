@@ -50,6 +50,8 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('zonas', ZonasController::class);
         Route::resource('roles', RoleController::class);
         Route::post('/cancelar/documento/{id}', [DocumentosController::class, 'cancelarDocumento'])->name('cancelar.documento');
+        Route::get('/registro', [RegisterController::class, 'showRegistrationForm'])->name('registro');
+        Route::post('/registro', [RegisterController::class, 'register'])->name('register');
 
     });
 
@@ -65,12 +67,10 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('actividades', ActividadesController::class);
         Route::delete('puestos/{puesto}/actividades/{actividad}', [PuestosController::class, 'detach'])->name('puestos.detach');
         Route::delete('actividades/{actividad}/indicadores/{indicador}', [ActividadesController::class, 'eliminarIndicador'])->name('actividades.eliminarIndicador');
-        Route::get('/registro', [RegisterController::class, 'showRegistrationForm'])->name('registro');
-        Route::post('/registro', [RegisterController::class, 'register'])->name('register');
+        
     });
 
-    Route::get('/registro', [RegisterController::class, 'showRegistrationForm'])->name('registro');
-    Route::post('/registro', [RegisterController::class, 'register'])->name('register');
+
     
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
     
