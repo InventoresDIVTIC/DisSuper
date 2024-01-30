@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View; // Agrega esta línea
 use Illuminate\Support\Facades\Auth;
 use App\Models\Notification;
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -18,6 +19,12 @@ class AppServiceProvider extends ServiceProvider
     /** Bootstrap any application services. */
     public function boot(): void
     {
+
+        if(config(key:'app.env') === 'production'){
+            URL::forceSchema('https');
+        }
+
+
         View::composer('*', function ($view) {
             if (Auth::check()) {
                 $userId = Auth::id();
