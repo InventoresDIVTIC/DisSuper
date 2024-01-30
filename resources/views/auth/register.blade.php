@@ -157,7 +157,7 @@
     </div>
 </body>
 
-<script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-<script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
+<script src="{{ secure_asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ secure_asset('dist/js/adminlte.min.js') }}"></script>
 
 @endsection

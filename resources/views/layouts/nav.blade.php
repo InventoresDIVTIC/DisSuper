@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.bootstrap4.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="{{ asset('dist/css/adminlte.css') }}">
+  <link rel="stylesheet" href="{{ secure_asset('dist/css/adminlte.css') }}">
  
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -25,7 +25,7 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.1.0/css/adminlte.min.css">
   
-  <link href="{{ asset('ruta-a-tu-archivo-css/errors.css') }}" rel="stylesheet">
+  <link href="{{ secure_asset('ruta-a-tu-archivo-css/errors.css') }}" rel="stylesheet">
 
 
 
@@ -36,13 +36,13 @@
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
+  <link rel="stylesheet" href="{{ secure_asset('plugins/fontawesome-free/css/all.min.css') }}">
   <!-- icheck bootstrap -->
-  <link rel="stylesheet" href="{{ asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ secure_asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
   <!-- Theme style -->
-  <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
+  <link rel="stylesheet" href="{{ secure_asset('dist/css/adminlte.min.css') }}">
 
-  <link rel="stylesheet" href="{{ asset('dist/css/form_register.css') }}">
+  <link rel="stylesheet" href="{{ secure_asset('dist/css/form_register.css') }}">
   <!-- CSS de SweetAlert -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.css">
 
@@ -75,7 +75,7 @@
 </script>
 
  <!-- Agregar la etiqueta link para el favicon -->
- <link rel="icon" href="{{ asset('dist/img/D.png') }}" type="image/x-icon">
+ <link rel="icon" href="{{ secure_asset('dist/img/D.png') }}" type="image/x-icon">
 
 
 
@@ -87,7 +87,7 @@
 
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__wobble" src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTELogo" height="60" width="60">
+    <img class="animation__wobble" src="{{ secure_asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTELogo" height="60" width="60">
   </div>
 
   <!-- Navbar -->
@@ -167,7 +167,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index" class="brand-link">
-      <img src="{{ asset('dist/img/D.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <img src="{{ secure_asset('dist/img/D.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">isSuper</span>
     </a>
 
@@ -177,9 +177,9 @@
       <div class="user-panel mt-3 pb-3 mb-3 d-flex justify-content-center align-items-center flex-column">
           <div class="image profile-image-container">
               @if(Auth::check() && Auth::user()->photo)
-                  <img src="{{ asset(Auth::user()->photo) }}" alt="Foto de perfil" class="profile-image rounded-circle w-100" id="profileImage">
+                  <img src="{{ secure_asset(Auth::user()->photo) }}" alt="Foto de perfil" class="profile-image rounded-circle w-100" id="profileImage">
               @else
-                  <img src="{{ asset('dist/img/D.png') }}" alt="Imagen predeterminada" class="profile-image rounded-circle w-100" id="profileImage">
+                  <img src="{{ secure_asset('dist/img/D.png') }}" alt="Imagen predeterminada" class="profile-image rounded-circle w-100" id="profileImage">
               @endif
           </div>
           <div class="d-block text-center mt-2">
@@ -476,8 +476,8 @@
 <!-- overlayScrollbars -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.13.0/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
-<script src="{{ asset('dist/js/adminlte.js') }}"></script>
-<script src="{{ asset('js/nav.js') }}"></script>
+<script src="{{ secure_asset('dist/js/adminlte.js') }}"></script>
+<script src="{{ secure_asset('js/nav.js') }}"></script>
 
 
 

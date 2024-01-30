@@ -107,5 +107,5 @@
 @endsection
 
 @section('scripts')
-<script src="{{ asset('js/usuarios_index.js') }}"></script>
+<script src="{{ secure_asset('js/usuarios_index.js') }}"></script>
 @endsection

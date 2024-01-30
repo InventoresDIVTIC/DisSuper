@@ -1,7 +1,7 @@
 @extends('layouts.nav')
 
 @section('content')
-<link rel="stylesheet" href="{{ asset('dist/css/form_empleado.css') }}">
+<link rel="stylesheet" href="{{ secure_asset('dist/css/form_empleado.css') }}">
 <!-- CSS de SweetAlert -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.css">
 

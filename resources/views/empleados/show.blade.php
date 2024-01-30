@@ -1,7 +1,7 @@
 @extends('layouts.nav')
   @section('content')
 
-  <style src="{{asset('dist/css/hallazgosIndicadores.css')}}"></style>
+  <style src="{{secure_asset('dist/css/hallazgosIndicadores.css')}}"></style>
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Main content -->
@@ -316,7 +316,7 @@
                                   <td>{{ $documento->receptor->name }}</td>
                                   <td>{{ $documento->Status_Documento }}</td>
                                   <td>
-                                    <a href="{{ asset($documento->nombre_archivo) }}">Descargar</a>
+                                    <a href="{{ secure_asset($documento->nombre_archivo) }}">Descargar</a>
 
                                   </td>
                               </tr>
@@ -683,6 +683,6 @@
         <!-- /.row -->
       </div><!-- /.container-fluid -->
     </section>
-<script src="{{ asset('dist/js/slidebar.js') }}"></script>
-<script src="{{asset('dist/js/mostrarHallazgos.js')}}"></script>
+<script src="{{ secure_asset('dist/js/slidebar.js') }}"></script>
+<script src="{{secure_asset('dist/js/mostrarHallazgos.js')}}"></script>
 @endsection

@@ -14,7 +14,7 @@
                                     src="{{ $photoUrl }}" alt="Foto de perfil">
                             @else
                                 <img id="profile-image" class="profile-user-img img-fluid img-circle"
-                                    src="{{ asset('dist/img/D.png') }}" alt="Foto de perfil por defecto">
+                                    src="{{ secure_asset('dist/img/D.png') }}" alt="Foto de perfil por defecto">
                             @endif
                         </div>
 

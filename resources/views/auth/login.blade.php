@@ -14,7 +14,7 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.1.0/css/adminlte.min.css">
 
-  <link rel="icon" href="{{ asset('dist/img/D.png') }}" type="image/x-icon">
+  <link rel="icon" href="{{ secure_asset('dist/img/D.png') }}" type="image/x-icon">
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
