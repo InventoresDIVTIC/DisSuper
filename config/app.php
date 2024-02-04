@@ -59,6 +59,9 @@ return [
 
     'asset_url' => env('ASSET_URL'),
 
+
+    
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone
@@ -169,6 +172,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\AppServiceProvider::class,
+        Illuminate\Routing\UrlGenerator::class,
     ])->toArray(),
 
     /*
@@ -184,6 +188,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
+        'URL' => Illuminate\Support\Facades\URL::class,
     ])->toArray(),
 
 ];
