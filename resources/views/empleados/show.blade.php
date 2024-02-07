@@ -115,6 +115,7 @@
                               <th>Emitido por</th>
                               <th>Eviado a</th> 
                               <th>Estado</th>
+                              <th>Tiempo Restante</th>
                               <th></th> 
                               <th style="width: 120px"></th>
                             </tr>
@@ -128,6 +129,7 @@
                                     <td>{{ $documento->emisor->name }}</td>
                                     <td>{{ $documento->receptor->name }}</td>
                                     <td>{{ $documento->Status_Documento }}</td>
+                                    <td id="contador_{{ $documento->id }}"></td>
                                     <td>
                                         <form action="{{ route('download.pdf', ['id' => $documento->id]) }}" method="POST">
                                             @csrf
@@ -135,10 +137,13 @@
                                                 <i class="fas fa-download"></i> Descargar
                                             </button>
                                         </form>
-                                        <button onclick="copiarDatos('{{ $documento->contenido }}', '{{ $documento->Introduccion }}')" class="btn btn-danger btn-sm btn-block">
-                                            <i class="fas fa-copy"></i> Copiar
-                                        </button>
+                                        @if($documento->subido_hecho === 1 )
+                                            <button onclick="copiarDatos('{{ $documento->contenido }}', '{{ $documento->Introduccion }}')" class="btn btn-danger btn-sm btn-block">
+                                                <i class="fas fa-copy"></i> Copiar
+                                            </button>
+                                        @endif
                                     </td>
+                                    
                                   
 
                                     <td>
@@ -172,36 +177,62 @@
                                         @endif
 
                                         @if($documento->Status_Documento !== 'EN EDICION' && $documento->Status_Documento !== 'CANCELADO' && Auth::id() === $documento->Id_Usuario_Revisar && $documento->Status_Documento !== 'ACEPTADO' )
-                                            <form action="{{ route('rechazar.documento', ['id' => $documento->id]) }}" method="POST" onsubmit="return validarRechazoFormulario()">
+                                            <form id="formRechazarDocumento_{{ $documento->id }}" action="{{ route('rechazar.documento', ['id' => $documento->id]) }}" method="POST" onsubmit="return validarRechazoFormulario('{{ $documento->id }}')">
                                                 @csrf
-                                                <button type="button" class="btn btn-danger btn-sm" onclick="mostrarComentario()">
+                                                <button type="button" class="btn btn-danger btn-sm" onclick="toggleComentario('{{ $documento->id }}')">
                                                     <i class="fas fa-times"></i> Rechazar
                                                 </button>
-                                                <div id="comentarioContainer" style="display: none;">
-                                                    <label for="comentarioRechazo">Comentario de rechazo:</label>
-                                                    <textarea name="comentarioRechazo" PLACEHOLDER="Escriba aqui el por que esta rechazando el documento"id="comentarioRechazo" rows="4" cols="50" required></textarea>
+                                                <div id="comentarioContainer_{{ $documento->id }}" style="display: none;">
+                                                    <label for="comentarioRechazo_{{ $documento->id }}">Comentario de rechazo:</label>
+                                                    <textarea name="comentarioRechazo" placeholder="Escriba aquí el motivo por el que está rechazando el documento" id="comentarioRechazo_{{ $documento->id }}" rows="4" cols="50" required></textarea>
                                                 </div>
-                                                <button type="submit" class="btn btn-danger btn-sm" id="btnRechazar" style="display: none;">
+                                                <button type="submit" class="btn btn-danger btn-sm" id="btnRechazar_{{ $documento->id }}" style="display: none;">
                                                     <i class="fas fa-times"></i> Confirmar Rechazo
                                                 </button>
                                             </form>
-                                        
                                         @elseif($documento->Status_Documento === 'EN EDICION' && Auth::id() === $documento->Id_Usuario_Revisar)
                                             <!-- Si el documento ya está en edición, mostrar un mensaje o simplemente un texto -->
                                             <span><i class="fas fa-edit"></i> Documento enviado a revisión</span>
                                         @else
                                             <!-- Otro mensaje si el usuario no es el destinatario -->
                                         @endif
+
                                         <script>
-                                            function mostrarComentario() {
-                                                // Muestra el contenedor de comentario y el botón de confirmar rechazo
-                                                document.getElementById('comentarioContainer').style.display = 'block';
-                                                document.getElementById('btnRechazar').style.display = 'inline';
+                                            function toggleComentario(documentoId) {
+                                                var comentarioContainer = document.getElementById('comentarioContainer_' + documentoId);
+                                                var btnRechazar = document.getElementById('btnRechazar_' + documentoId);
+
+                                                if (comentarioContainer.style.display === 'none') {
+                                                    // Ocultar contenedores de comentario y botones de rechazo en todas las filas
+                                                    ocultarTodosComentarios();
+
+                                                    // Mostrar contenedor de comentario y botón de rechazo solo para la fila específica
+                                                    comentarioContainer.style.display = 'block';
+                                                    btnRechazar.style.display = 'inline';
+                                                } else {
+                                                    // Ocultar contenedor de comentario y botón de rechazo
+                                                    comentarioContainer.style.display = 'none';
+                                                    btnRechazar.style.display = 'none';
+                                                }
                                             }
 
-                                            function validarRechazoFormulario() {
+                                            function ocultarTodosComentarios() {
+                                                // Ocultar contenedores de comentario y botones de rechazo en todas las filas
+                                                var comentarioContainers = document.querySelectorAll('[id^="comentarioContainer_"]');
+                                                var btnRechazars = document.querySelectorAll('[id^="btnRechazar_"]');
+
+                                                comentarioContainers.forEach(function(container) {
+                                                    container.style.display = 'none';
+                                                });
+
+                                                btnRechazars.forEach(function(btn) {
+                                                    btn.style.display = 'none';
+                                                });
+                                            }
+
+                                            function validarRechazoFormulario(documentoId) {
                                                 // Validar que el campo de comentario no esté vacío
-                                                var comentarioRechazo = document.getElementById('comentarioRechazo').value;
+                                                var comentarioRechazo = document.getElementById('comentarioRechazo_' + documentoId).value;
                                                 if (comentarioRechazo.trim() === "") {
                                                     alert('Debes escribir un comentario para rechazar el documento.');
                                                     return false;
@@ -231,36 +262,23 @@
                                         @endif
 
                                         <div class="container">
-                                            @if(Auth::user()->roles[0]['nivel_permisos'] < 1 && $documento->Status_Documento !== 'CANCELADO' && $documento->Status_Documento !== 'ACEPTADO' && $documento->Status_Documento !== 'EN EDICION')
-                                                <form action="{{ route('cancelar.documento', ['id' => $documento->id]) }}" method="POST" onsubmit="return validarFormulario()">
-                                                    @csrf
-                                                   
-                                                    <textarea name="comentario" id="comentario"placeholder="Escribe aqui el porque de la cancelación del documento" rows="4" cols="50" required style="display: none;"></textarea>
-                                                    <button type="button" class="btn btn-warning btn-sm" onclick="mostrarMotivo()">
-                                                        <i class="fas fa-times-circle"></i> Cancelar
-                                                    </button>
-                                                    <button type="submit" id="btnCancelar" style="display: none;">Confirmar Cancelación</button>
-                                                </form>
-                                            @endif
-                                        </div>
-                                        <script>
-                                            function mostrarMotivo() {
-                                                // Muestra el cuadro de texto y oculta el botón de cancelar inicial
-                                                document.getElementById('comentario').style.display = 'block';
-                                                document.getElementById('btnCancelar').style.display = 'inline';
-                                            }
+    @if(Auth::user()->roles[0]['nivel_permisos'] < 1 && $documento->Status_Documento !== 'CANCELADO' && $documento->Status_Documento !== 'ACEPTADO' && $documento->Status_Documento !== 'EN EDICION')
+        <form id="formCancelarDocumento_{{ $documento->id }}" action="{{ route('cancelar.documento', ['id' => $documento->id]) }}" method="POST" onsubmit="return validarFormulario('{{ $documento->id }}')">
+            @csrf
+            <textarea name="comentario" id="comentario_{{ $documento->id }}" placeholder="Escribe aquí el motivo de la cancelación del documento" rows="4" cols="50" style="display: none;"></textarea>
+            <button type="button" class="btn btn-warning btn-sm" onclick="toggleMotivo('{{ $documento->id }}')">
+              Cancelar
+            </button>
+            <button type="submit" class="btn btn-danger btn-sm" id="btnCancelar_{{ $documento->id }}" style="display: none;">Confirmar Cancelación</button>
+            <button type="button" class="btn btn-secondary btn-sm" onclick="toggleMotivo('{{ $documento->id }}')" style="display: none;">X</button>
+        </form>
+    @endif
+</div>
 
-                                            function validarFormulario() {
-                                                // Validar que el campo de comentario no esté vacío
-                                                var comentario = document.getElementById('comentario').value;
-                                                if (comentario.trim() === "") {
-                                                    alert('Debes escribir un comentario para cancelar el documento.');
-                                                    return false;
-                                                }
 
-                                                return true;
-                                            }
-                                        </script>
+<script>
+   
+</script>
 
                                 </td>
                               </tr>
@@ -283,12 +301,25 @@
 
                   <div class="tab-pane" id="Documentos">
                     <div class="card bg-black color-palette">
-                    <ul class="nav navtabs" id="custom-content-below-tab" role="tablist">
-                    <li class="nav-item" style="width: 20%"><a class="nav-link text-center text-muted" href="#ListadoDocumentos" data-toggle="tab">Listado de Documentos</a></li>
-                    <li class="nav-item" style="width: 20%"><a class="nav-link text-center text-muted" href="#Subir_Doc" data-toggle="tab">Subir Documento</a></li>
-                    <li class="nav-item" style="width: 20%"><a class="nav-link text-center text-muted" href="#GenerarRC" data-toggle="tab">Rendición de Cuentas</a></li>
-                    <li class="nav-item" style="width: 20%"><a class="nav-link text-center text-muted" href="#GenerarLlA" data-toggle="tab">Llamada de Atención</a></li>
-                    </ul>
+                        <ul class="nav navtabs" id="custom-content-below-tab" role="tablist">
+                            <li class="nav-item" style="width: 20%"><a class="nav-link text-center text-muted" href="#ListadoDocumentos" data-toggle="tab">Listado de Documentos</a></li>
+                            <li class="nav-item" style="width: 20%"><a class="nav-link text-center text-muted" href="#Subir_Doc" data-toggle="tab">Subir Documento</a></li>
+
+                            @php
+                                $secuencia = ($contadorRendicionCuentas + $contadorLlamadasAtencion + $contadorActasAdministrativas) % 4;
+                            @endphp
+
+                            @if($secuencia === 0)
+                                <!-- Mostrar Rendición de Cuentas si la secuencia es 0 -->
+                                <li class="nav-item" style="width: 33.3%"><a class="nav-link text-center text-muted" href="#GenerarRC" data-toggle="tab">Rendición de Cuentas</a></li>
+                            @elseif($secuencia === 1 || $secuencia === 2)
+                                <!-- Mostrar Llamada de Atención si la secuencia es 1 o 2 -->
+                                <li class="nav-item" style="width: 33.3%"><a class="nav-link text-center text-muted" href="#GenerarLlA" data-toggle="tab" id="llamadaAtencionTab">Llamada de Atención</a></li>
+                            @elseif($secuencia === 3)
+                            <!-- Mensaje sobre la necesidad de realizar un Acta Administrativa -->
+                            <li class="nav-item" style="width: 50%"><span class="nav-link text-center text-warning">Subir en el apartado de "Subir Documento" un Acta Administrativa ya que este empleado cuenta con 1 rendicion de cuentas y 2 llamadas de atención</span></li>
+                            @endif
+                        </ul>
                     </div>
 
                     <div class="tab-content" id="custom-below-tabContent">
@@ -349,14 +380,29 @@
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-sm-1.8 col-form-label">Tipo de Documento: </label>
-                            <div class="col-sm-3">
+                        <label class="col-sm-1.8 col-form-label">Tipo de Documento: </label>
+                        <div class="col-sm-3">
+                            @php
+                                $secuenciaDocumento = ($contadorRendicionCuentas + $contadorLlamadasAtencion + $contadorActasAdministrativas) % 4;
+                            @endphp
+
+                            @if($secuenciaDocumento === 0)
+                                <!-- Mostrar opciones para Rendición de Cuentas -->
                                 <select class="form-control" id="Tipo_Documento" name="Tipo_Documento" placeholder="Tipo de Documento">
                                     <option>RENDICION DE CUENTAS</option>
+                                </select>
+                            @elseif($secuenciaDocumento === 1 || $secuenciaDocumento === 2)
+                                <!-- Mostrar opciones para Llamada de Atención -->
+                                <select class="form-control" id="Tipo_Documento" name="Tipo_Documento" placeholder="Tipo de Documento">
                                     <option>LLAMADA DE ATENCION</option>
+                                </select>
+                            @elseif($secuenciaDocumento === 3)
+                                <!-- Mostrar opciones para Acta Administrativa -->
+                                <select class="form-control" id="Tipo_Documento" name="Tipo_Documento" placeholder="Tipo de Documento">
                                     <option>ACTA ADMINISTRATIVA</option>
                                 </select>
-                            </div>
+                            @endif
+                        </div>
 
                             <label class="col-sm-1.8 col-form-label">Encargado de Revisión: </label>
                             <div class="col-sm-3">
@@ -683,6 +729,84 @@
         <!-- /.row -->
       </div><!-- /.container-fluid -->
     </section>
+    <script>
+// Contador de tiempo
+                                        // Función para calcular el tiempo restante y actualizar el contador cada segundo
+                                        function actualizarContadores() {
+                                            // Recorrer cada documento
+                                            @foreach($documentos as $documento)
+                                                // Obtener la fecha de creación del documento en milisegundos
+                                                var fechaCreacion{{ $documento->id }} = new Date("{{ $documento->created_at }}").getTime();
+
+                                                // Calcular la fecha de expiración sumando 24 horas a la fecha de creación
+                                                var fechaExpiracion{{ $documento->id }} = fechaCreacion{{ $documento->id }} + (18 * 60 * 60 * 1000);
+
+                                                // Obtener la diferencia de tiempo en milisegundos entre la fecha de expiración y la fecha actual
+                                                var diferencia{{ $documento->id }} = fechaExpiracion{{ $documento->id }} - new Date().getTime();
+
+                                                // Verificar si la diferencia es menor o igual a cero
+                                                if (diferencia{{ $documento->id }} <= 0) {
+                                                    // Detener el contador y establecer el tiempo restante en "00h 00m 00s"
+                                                    document.getElementById("contador_{{ $documento->id }}").innerHTML = "00h 00m 00s";
+
+                                                    // Cambiar el color de la línea a rojo
+                                                    document.getElementById("contador_{{ $documento->id }}").style.color = "red";
+                                                } else {
+                                                    // Convertir la diferencia a horas, minutos y segundos
+                                                    var segundosTotales{{ $documento->id }} = Math.floor(diferencia{{ $documento->id }} / 1000);
+                                                    var horas{{ $documento->id }} = Math.floor(segundosTotales{{ $documento->id }} / 3600);
+                                                    var minutos{{ $documento->id }} = Math.floor((segundosTotales{{ $documento->id }} % 3600) / 60);
+                                                    var segundos{{ $documento->id }} = segundosTotales{{ $documento->id }} % 60;
+
+                                                    // Formatear el tiempo restante
+                                                    var tiempoRestante{{ $documento->id }} = (horas{{ $documento->id }} < 10 ? '0' : '') + horas{{ $documento->id }} + "h " + (minutos{{ $documento->id }} < 10 ? '0' : '') + minutos{{ $documento->id }} + "m " + (segundos{{ $documento->id }} < 10 ? '0' : '') + segundos{{ $documento->id }} + "s ";
+
+                                                    // Actualizar el contador en la tabla
+                                                    document.getElementById("contador_{{ $documento->id }}").innerHTML = tiempoRestante{{ $documento->id }};
+
+                                                    // Cambiar el color del texto a verde
+                                                    document.getElementById("contador_{{ $documento->id }}").style.color = "green";
+                                                }
+                                            @endforeach
+                                        }
+
+                                        // Llamar a la función inicialmente para actualizar los contadores
+                                        actualizarContadores();
+
+                                        // Actualizar los contadores cada segundo
+                                        setInterval(actualizarContadores, 1000); // 1000 milisegundos = 1 segundo
+
+
+
+// Cancelar documento
+                                        function toggleMotivo(documentoId) {
+                                        var comentario = document.getElementById('comentario_' + documentoId);
+                                        var btnCancelar = document.getElementById('btnCancelar_' + documentoId);
+                                        var btnToggle = document.getElementById('formCancelarDocumento_' + documentoId).querySelector('button[type="button"]');
+
+                                        if (comentario.style.display === 'none') {
+                                            // Mostrar cuadro de texto y botón "X", ocultar botón "Cancelar"
+                                            comentario.style.display = 'block';
+                                            btnCancelar.style.display = 'inline';
+                                            btnToggle.textContent = 'Cancelar';
+                                        } else {
+                                            // Ocultar cuadro de texto y botón "X", mostrar botón "Cancelar"
+                                            comentario.style.display = 'none';
+                                            btnCancelar.style.display = 'none';
+                                            btnToggle.textContent = 'Cancelar';
+                                        }
+                                    }
+
+                                    function validarFormulario(documentoId) {
+                                        // Validar que el campo de comentario no esté vacío
+                                        var comentario = document.getElementById('comentario_' + documentoId).value;
+                                        if (comentario.trim() === "") {
+                                            alert('Debes escribir un comentario para cancelar el documento.');
+                                            return false;
+                                        }
+                                        return true;
+                                    }
+                                    </script>
 <script src="{{ asset('dist/js/slidebar.js') }}"></script>
 <script src="{{asset('dist/js/mostrarHallazgos.js')}}"></script>
 @endsection

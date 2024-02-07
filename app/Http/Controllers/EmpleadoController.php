@@ -22,10 +22,10 @@ class EmpleadoController extends Controller
         $user = Auth::user();
 
         // Obtener los empleados asociados al usuario autenticado
-        $empleados = Empleado::all();
+
+        $empleados = Empleado::with('documentos')->get();
 
 
-       
 
         return view('index', compact('empleados'));
     }
@@ -140,7 +140,7 @@ class EmpleadoController extends Controller
        
         // Redirigir a una página de confirmación o de detalles del usuario
         return redirect()->route('empleado.show', $empleado->id)->with('success', 'Los cambios se han guardado correctamente.');
-        }
+    }
 
 
 
@@ -152,5 +152,8 @@ class EmpleadoController extends Controller
         $empleado->delete();
         return redirect('/index')->with('success', 'Empleado eliminado exitosamente.');
     }
+
+
+    
 }
  
