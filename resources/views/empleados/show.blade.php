@@ -241,6 +241,100 @@
                                                 return true;
                                             }
                                         </script>
+                                        @if($documento->Status_Documento === 'ACEPTADO' && Auth::id() === $documento->Id_Usuario_Autor)
+                                            <form id="formArchivo_{{ $documento->id }}" action="{{ route('documento.cambiar-archivo', $documento->id) }}" method="post" enctype="multipart/form-data">
+                                                @csrf
+
+                                                <!-- Botón para mostrar el input -->
+                                                <button type="button" class="btn btn-primary" onclick="mostrarInput('{{ $documento->id }}')">Terminar</button>
+
+                                                <!-- Campo del nuevo archivo (inicialmente oculto) -->
+                                                <input type="file" name="nuevo_archivo" id="nuevo_archivo_{{ $documento->id }}" accept=".pdf, .doc, .docx" style="display: none;" required>
+
+                                                <!-- Botón para enviar el formulario -->
+                                                <button type="button" class="btn btn-success" onclick="enviarFormulario('{{ $documento->id }}')" style="display: none;">Enviar</button>
+
+                                                <!-- Botón para cerrar el input -->
+                                                <button type="button" class="btn btn-danger" onclick="cerrarInput('{{ $documento->id }}')" style="display: none;">X</button>
+                                            </form>
+
+                                            <script>
+                                                function mostrarInput(documentoId) {
+                                                    var input = document.getElementById('nuevo_archivo_' + documentoId);
+                                                    var botonEnviar = document.querySelector('#formArchivo_' + documentoId + ' button.btn-success');
+                                                    var botonCerrar = document.querySelector('#formArchivo_' + documentoId + ' button.btn-danger');
+
+                                                    // Cambiar la visibilidad del input y de los botones
+                                                    input.style.display = 'block';
+                                                    botonEnviar.style.display = 'inline';
+                                                    botonCerrar.style.display = 'inline';
+                                                }
+
+                                                function cerrarInput(documentoId) {
+                                                    var input = document.getElementById('nuevo_archivo_' + documentoId);
+                                                    var botonEnviar = document.querySelector('#formArchivo_' + documentoId + ' button.btn-success');
+                                                    var botonCerrar = document.querySelector('#formArchivo_' + documentoId + ' button.btn-danger');
+
+                                                    // Ocultar el input y los botones
+                                                    input.style.display = 'none';
+                                                    botonEnviar.style.display = 'none';
+                                                    botonCerrar.style.display = 'none';
+                                                }
+
+                                                function enviarFormulario(documentoId) {
+                                                    var input = document.getElementById('nuevo_archivo_' + documentoId);
+
+                                                    // Verificar si el campo de archivo está vacío
+                                                    if (input.files.length === 0) {
+                                                        alert('Debes seleccionar un archivo antes de enviar.');
+                                                    } else {
+                                                        // Enviar el formulario
+                                                        document.forms['formArchivo_' + documentoId].submit();
+                                                    }
+                                                }
+                                            </script>
+                                        @endif
+<!--Fin de boton de terminar de documento -->
+
+<!--boton de redirigir de documento -->
+<div class="container1">
+                                            @if($documento->Status_Documento === 'ENVIADO' && Auth::id() === $documento->Id_Usuario_Revisar)
+                                                <button type="button" class="btn btn-success btn-sm" onclick="mostrarRedireccion('{{ $documento->id }}')">
+                                                    Redirigir
+                                                </button>
+
+                                                <form id="formRedireccion_{{ $documento->id }}" action="{{ route('redirigir.documento', ['id' => $documento->id]) }}" method="POST" style="display: none;">
+                                                    @csrf
+                                                    <label for="nuevoIdUsuario">Seleccionar Usuario:</label>
+                                                    <select class="form-control" id="nuevoIdUsuario_{{ $documento->id }}" name="nuevoIdUsuario" required>
+                                                        @foreach($usuarios as $usuario)
+                                                            @if($usuario->id !== auth()->user()->id && $usuario->id !== 1 && $usuario->RPE_Empleado !== $empleado->RPE_Empleado) 
+                                                                <option value="{{ $usuario->id }}">{{ $usuario->name }}</option>
+                                                            @endif
+                                                        @endforeach
+                                                    </select>
+                                                    <button type="submit" class="btn btn-success btn-sm">Confirmar Redirección</button>
+                                                </form>
+                                                <a href="javascript:void(0);" onclick="cerrarFormRedireccion('{{ $documento->id }}')" id="btnCerrarRedireccion_{{ $documento->id }}" style="font-size: 20px; color: red; text-decoration: none; display: none;">&times;</a>
+                                            @endif
+                                        </div>
+                                        <script>
+                                            function mostrarRedireccion(documentoId) {
+                                                // Oculta otros formularios de redirección si hay alguno visible
+                                                document.querySelectorAll('[id^="formRedireccion_"]').forEach(form => form.style.display = 'none');
+                                                // Muestra el formulario específico
+                                                document.getElementById('formRedireccion_' + documentoId).style.display = 'block';
+                                                // Muestra el botón de cerrar
+                                                document.getElementById('btnCerrarRedireccion_' + documentoId).style.display = 'inline';
+                                            }
+
+                                            function cerrarFormRedireccion(documentoId) {
+                                                // Oculta el formulario y el botón de cerrar
+                                                document.getElementById('formRedireccion_' + documentoId).style.display = 'none';
+                                                document.getElementById('btnCerrarRedireccion_' + documentoId).style.display = 'none';
+                                            }
+                                        </script>
+<!-- Fin de boton de redirigir de documento -->
 
                                         @if($documento->Status_Documento === 'EN EDICION' && Auth::id() === $documento->Id_Usuario_Autor)
                                             <!-- Si el documento está en EDICION y el usuario es el autor, mostrar botón de Editar -->
@@ -262,23 +356,18 @@
                                         @endif
 
                                         <div class="container">
-    @if(Auth::user()->roles[0]['nivel_permisos'] < 1 && $documento->Status_Documento !== 'CANCELADO' && $documento->Status_Documento !== 'ACEPTADO' && $documento->Status_Documento !== 'EN EDICION')
-        <form id="formCancelarDocumento_{{ $documento->id }}" action="{{ route('cancelar.documento', ['id' => $documento->id]) }}" method="POST" onsubmit="return validarFormulario('{{ $documento->id }}')">
-            @csrf
-            <textarea name="comentario" id="comentario_{{ $documento->id }}" placeholder="Escribe aquí el motivo de la cancelación del documento" rows="4" cols="50" style="display: none;"></textarea>
-            <button type="button" class="btn btn-warning btn-sm" onclick="toggleMotivo('{{ $documento->id }}')">
-              Cancelar
-            </button>
-            <button type="submit" class="btn btn-danger btn-sm" id="btnCancelar_{{ $documento->id }}" style="display: none;">Confirmar Cancelación</button>
-            <button type="button" class="btn btn-secondary btn-sm" onclick="toggleMotivo('{{ $documento->id }}')" style="display: none;">X</button>
-        </form>
-    @endif
-</div>
-
-
-<script>
-   
-</script>
+                                            @if(Auth::user()->roles[0]['nivel_permisos'] < 1 && $documento->Status_Documento !== 'CANCELADO' &&  $documento->Status_Documento !== 'TERMINADO' )
+                                                <form id="formCancelarDocumento_{{ $documento->id }}" action="{{ route('cancelar.documento', ['id' => $documento->id]) }}" method="POST" onsubmit="return validarFormulario('{{ $documento->id }}')">
+                                                    @csrf
+                                                    <textarea name="comentario" id="comentario_{{ $documento->id }}" placeholder="Escribe aquí el motivo de la cancelación del documento" rows="4" cols="50" style="display: none;"></textarea>
+                                                    <button type="button" class="btn btn-warning btn-sm" onclick="toggleMotivo('{{ $documento->id }}')">
+                                                    Cancelar
+                                                    </button>
+                                                    <button type="submit" class="btn btn-danger btn-sm" id="btnCancelar_{{ $documento->id }}" style="display: none;">Confirmar Cancelación</button>
+                                                    <button type="button" class="btn btn-secondary btn-sm" onclick="toggleMotivo('{{ $documento->id }}')" style="display: none;">X</button>
+                                                </form>
+                                            @endif
+                                        </div>
 
                                 </td>
                               </tr>
@@ -731,50 +820,102 @@
     </section>
     <script>
 // Contador de tiempo
-                                        // Función para calcular el tiempo restante y actualizar el contador cada segundo
-                                        function actualizarContadores() {
-                                            // Recorrer cada documento
-                                            @foreach($documentos as $documento)
-                                                // Obtener la fecha de creación del documento en milisegundos
-                                                var fechaCreacion{{ $documento->id }} = new Date("{{ $documento->created_at }}").getTime();
+// Variables para almacenar los identificadores de los intervalos de cada contador
+// Variables para almacenar los identificadores de los intervalos de cada contador
+var intervalosContadores = {};
 
-                                                // Calcular la fecha de expiración sumando 24 horas a la fecha de creación
-                                                var fechaExpiracion{{ $documento->id }} = fechaCreacion{{ $documento->id }} + (18 * 60 * 60 * 1000);
+// Función para calcular el tiempo restante y actualizar el contador para un documento específico
+function actualizarContador(documentoId, fechaCreacion, duracionPredeterminada) {
+    // Obtener la fecha de expiración sumando la duración al tiempo de creación
+    var fechaExpiracion = fechaCreacion + duracionPredeterminada;
 
-                                                // Obtener la diferencia de tiempo en milisegundos entre la fecha de expiración y la fecha actual
-                                                var diferencia{{ $documento->id }} = fechaExpiracion{{ $documento->id }} - new Date().getTime();
+    // Obtener la diferencia de tiempo en milisegundos entre la fecha de expiración y la fecha actual
+    var diferencia = fechaExpiracion - new Date().getTime();
 
-                                                // Verificar si la diferencia es menor o igual a cero
-                                                if (diferencia{{ $documento->id }} <= 0) {
-                                                    // Detener el contador y establecer el tiempo restante en "00h 00m 00s"
-                                                    document.getElementById("contador_{{ $documento->id }}").innerHTML = "00h 00m 00s";
+    // Verificar si la diferencia es menor o igual a cero
+    if (diferencia <= 0) {
+        // Detener el contador y establecer el tiempo restante en "00h 00m 00s"
+        document.getElementById("contador_" + documentoId).innerHTML = "00h 00m 00s";
 
-                                                    // Cambiar el color de la línea a rojo
-                                                    document.getElementById("contador_{{ $documento->id }}").style.color = "red";
-                                                } else {
-                                                    // Convertir la diferencia a horas, minutos y segundos
-                                                    var segundosTotales{{ $documento->id }} = Math.floor(diferencia{{ $documento->id }} / 1000);
-                                                    var horas{{ $documento->id }} = Math.floor(segundosTotales{{ $documento->id }} / 3600);
-                                                    var minutos{{ $documento->id }} = Math.floor((segundosTotales{{ $documento->id }} % 3600) / 60);
-                                                    var segundos{{ $documento->id }} = segundosTotales{{ $documento->id }} % 60;
+        // Cambiar el color de la línea a rojo
+        document.getElementById("contador_" + documentoId).style.color = "red";
 
-                                                    // Formatear el tiempo restante
-                                                    var tiempoRestante{{ $documento->id }} = (horas{{ $documento->id }} < 10 ? '0' : '') + horas{{ $documento->id }} + "h " + (minutos{{ $documento->id }} < 10 ? '0' : '') + minutos{{ $documento->id }} + "m " + (segundos{{ $documento->id }} < 10 ? '0' : '') + segundos{{ $documento->id }} + "s ";
+        // Detener el intervalo para este contador
+        clearInterval(intervalosContadores[documentoId]);
+    } else {
+        // Convertir la diferencia a horas, minutos y segundos
+        var segundosTotales = Math.floor(diferencia / 1000);
+        var horas = Math.floor(segundosTotales / 3600);
+        var minutos = Math.floor((segundosTotales % 3600) / 60);
+        var segundos = segundosTotales % 60;
 
-                                                    // Actualizar el contador en la tabla
-                                                    document.getElementById("contador_{{ $documento->id }}").innerHTML = tiempoRestante{{ $documento->id }};
+        // Formatear el tiempo restante
+        var tiempoRestante = (horas < 10 ? '0' : '') + horas + "h " + (minutos < 10 ? '0' : '') + minutos + "m " + (segundos < 10 ? '0' : '') + segundos + "s ";
 
-                                                    // Cambiar el color del texto a verde
-                                                    document.getElementById("contador_{{ $documento->id }}").style.color = "green";
-                                                }
-                                            @endforeach
-                                        }
+        // Actualizar el contador en la tabla
+        document.getElementById("contador_" + documentoId).innerHTML = tiempoRestante;
 
-                                        // Llamar a la función inicialmente para actualizar los contadores
-                                        actualizarContadores();
+        // Cambiar el color del texto a verde
+        document.getElementById("contador_" + documentoId).style.color = "green";
+    }
+}
 
-                                        // Actualizar los contadores cada segundo
-                                        setInterval(actualizarContadores, 1000); // 1000 milisegundos = 1 segundo
+// Función para iniciar el contador para un documento específico
+function iniciarContador(documentoId, fechaCreacion, duracionPredeterminada) {
+    // Actualizar el contador cada segundo y almacenar el identificador del intervalo
+    intervalosContadores[documentoId] = setInterval(function() {
+        actualizarContador(documentoId, fechaCreacion, duracionPredeterminada);
+    }, 1000); // 1000 milisegundos = 1 segundo
+}
+
+// Llamar a la función inicialmente para iniciar los contadores para cada documento
+@foreach($documentos as $documento)
+    // Obtener el estado del documento y la fecha de creación en milisegundos
+    var estado{{ $documento->id }} = "{{ $documento->Status_Documento }}";
+    var fechaCreacion{{ $documento->id }} = new Date("{{ $documento->created_at }}").getTime();
+
+    // Definir la duración predeterminada en milisegundos según el estado del documento
+    var duracionPredeterminada{{ $documento->id }} = 18 * 60 * 60 * 1000; // Duración predeterminada de 24 horas
+
+    // Ajustar la duración según el estado del documento
+    if (estado{{ $documento->id }} === 'EN EDICION' || estado{{ $documento->id }} === 'ACEPTADO') {
+        // Duración de 24 horas para documentos en edición o aceptados
+        duracionPredeterminada{{ $documento->id }} = 19 * 60 * 60 * 1000;
+    }
+
+    // Iniciar el contador para el documento actual si cumple con las condiciones
+    @if($documento->Status_Documento !== 'CANCELADO' && $documento->Status_Documento !== 'TERMINADO' )
+        iniciarContador({{ $documento->id }}, fechaCreacion{{ $documento->id }}, duracionPredeterminada{{ $documento->id }});
+    @endif
+
+@endforeach
+
+// Función para reiniciar los contadores cuando cambie el estado del documento
+function reiniciarContadores(documentoId) {
+    // Detener el contador actual si ya está en funcionamiento
+    clearInterval(intervalosContadores[documentoId]);
+
+    // Realizar una búsqueda con el ID del documento para obtener el valor del Status_Documento
+    var nuevoEstado;
+    @foreach($documentos as $documento)
+        if({{ $documento->id }} === documentoId) {
+            nuevoEstado = "{{ $documento->Status_Documento }}";
+        }
+    @endforeach
+
+    // Definir la duración predeterminada en milisegundos según el nuevo estado del documento
+    var duracionPredeterminada = 23 * 60 * 60 * 1000; // Duración predeterminada de 24 horas
+
+    // Ajustar la duración según el nuevo estado del documento
+    if (nuevoEstado === 'ENVIADO' || nuevoEstado === 'ACEPTADO' || nuevoEstado === 'EN EDICION') {
+        // Duración de 23 horas, 59 minutos y 59 segundos para documentos enviados
+        duracionPredeterminada = 23 * 60 * 60 * 1000;
+    }
+
+    // Iniciar el contador con el nuevo estado del documento
+    iniciarContador(documentoId, new Date().getTime(), duracionPredeterminada);
+}
+
 
 
 
