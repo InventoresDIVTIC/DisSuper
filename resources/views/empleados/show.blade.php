@@ -862,6 +862,11 @@ function actualizarContador(documentoId, fechaCreacion, duracionPredeterminada) 
 
 // Función para iniciar el contador para un documento específico
 function iniciarContador(documentoId, fechaCreacion, duracionPredeterminada) {
+    // Si la duración predeterminada es negativa, establecerla en cero para evitar valores negativos
+    if (duracionPredeterminada < 0) {
+        duracionPredeterminada = 0;
+    }
+    
     // Actualizar el contador cada segundo y almacenar el identificador del intervalo
     intervalosContadores[documentoId] = setInterval(function() {
         actualizarContador(documentoId, fechaCreacion, duracionPredeterminada);
@@ -873,48 +878,26 @@ function iniciarContador(documentoId, fechaCreacion, duracionPredeterminada) {
     // Obtener el estado del documento y la fecha de creación en milisegundos
     var estado{{ $documento->id }} = "{{ $documento->Status_Documento }}";
     var fechaCreacion{{ $documento->id }} = new Date("{{ $documento->created_at }}").getTime();
-
+    
     // Definir la duración predeterminada en milisegundos según el estado del documento
     var duracionPredeterminada{{ $documento->id }} = 18 * 60 * 60 * 1000; // Duración predeterminada de 24 horas
-
+    
     // Ajustar la duración según el estado del documento
-    if (estado{{ $documento->id }} === 'EN EDICION' || estado{{ $documento->id }} === 'ACEPTADO') {
+    if (estado{{ $documento->id }} === 'EN EDICION' ) {
         // Duración de 24 horas para documentos en edición o aceptados
         duracionPredeterminada{{ $documento->id }} = 19 * 60 * 60 * 1000;
     }
-
+    if (estado{{ $documento->id }} === 'ACEPTADO' ) {
+        // Duración de 24 horas para documentos en edición o aceptados
+        duracionPredeterminada{{ $documento->id }} = 20 * 60 * 60 * 1000;
+    }
+    
     // Iniciar el contador para el documento actual si cumple con las condiciones
     @if($documento->Status_Documento !== 'CANCELADO' && $documento->Status_Documento !== 'TERMINADO' )
         iniciarContador({{ $documento->id }}, fechaCreacion{{ $documento->id }}, duracionPredeterminada{{ $documento->id }});
     @endif
-
+    
 @endforeach
-
-// Función para reiniciar los contadores cuando cambie el estado del documento
-function reiniciarContadores(documentoId) {
-    // Detener el contador actual si ya está en funcionamiento
-    clearInterval(intervalosContadores[documentoId]);
-
-    // Realizar una búsqueda con el ID del documento para obtener el valor del Status_Documento
-    var nuevoEstado;
-    @foreach($documentos as $documento)
-        if({{ $documento->id }} === documentoId) {
-            nuevoEstado = "{{ $documento->Status_Documento }}";
-        }
-    @endforeach
-
-    // Definir la duración predeterminada en milisegundos según el nuevo estado del documento
-    var duracionPredeterminada = 23 * 60 * 60 * 1000; // Duración predeterminada de 24 horas
-
-    // Ajustar la duración según el nuevo estado del documento
-    if (nuevoEstado === 'ENVIADO' || nuevoEstado === 'ACEPTADO' || nuevoEstado === 'EN EDICION') {
-        // Duración de 23 horas, 59 minutos y 59 segundos para documentos enviados
-        duracionPredeterminada = 23 * 60 * 60 * 1000;
-    }
-
-    // Iniciar el contador con el nuevo estado del documento
-    iniciarContador(documentoId, new Date().getTime(), duracionPredeterminada);
-}
 
 
 

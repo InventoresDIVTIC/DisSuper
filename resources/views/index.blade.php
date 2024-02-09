@@ -34,8 +34,15 @@
             </thead>
             <tbody>
             @forelse ($empleados as $empleado)
-            <tr class="{{ $empleado->documentos->where('Status_Documento', 'ENVIADO')->isNotEmpty() && Auth::id() === $empleado->documentos->where('Status_Documento', 'ENVIADO')->first()->Id_Usuario_Revisar ? 'bg-custom' : '' }}">
-
+            <tr class="
+                @if ($empleado->documentos->where('Status_Documento', 'ENVIADO')->isNotEmpty() && Auth::id() === $empleado->documentos->where('Status_Documento', 'ENVIADO')->first()->Id_Usuario_Revisar)
+                    bg-custom
+                @elseif ($empleado->documentos->where('Status_Documento', 'ACEPTADO')->isNotEmpty() && Auth::id() === $empleado->documentos->where('Status_Documento', 'ACEPTADO')->first()->Id_Usuario_Autor)
+                    bg-custom2
+                @elseif ($empleado->documentos->where('Status_Documento', 'EN EDICION')->isNotEmpty() && Auth::id() === $empleado->documentos->where('Status_Documento', 'EN EDICION')->first()->Id_Usuario_Autor)
+                    bg-custom3
+                @endif
+            ">
                     <td class="text-center">{{ $empleado->id }}</td>
                     <td class="text-center">{{ $empleado->RPE_Empleado }}</td>
                     <td class="text-center">{{ $empleado->nombre_Empleado }}</td>

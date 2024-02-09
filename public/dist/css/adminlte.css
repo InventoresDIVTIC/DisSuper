@@ -53077,3 +53077,9 @@ input[type="range"]::-webkit-slider-thumb {
 .bg-custom {
   background-color: #001f3f; /* Cambia el color a tu preferencia */
 }
+.bg-custom2 {
+  background-color: #4CAF50; /* Cambia el color a tu preferencia */
+}
+.bg-custom3 {
+  background-color: #E6330D; /* Cambia el color a tu preferencia */
+}
