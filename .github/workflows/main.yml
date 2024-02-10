@@ -18,9 +18,6 @@ jobs:
         extensions: mbstring, dom, xml, ctype, iconv, bcmath  # Agrega las extensiones necesarias
         tools: composer
     
-    - name: Copy bootstrap/cache files
-      run: cp bootstrap/cache/config.php bootstrap/cache/config.php
-
     - name: Install Dependences
       run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
@@ -34,15 +31,6 @@ jobs:
       run: |
         npm install
         npm run build
-
-    - name: Cache Laravel Config
-      run: php artisan config:cache
-
-    - name: Route Laravel Config
-      run: php artisan route:cache
-
-    - name: Cache Laravel Views
-      run: php artisan view:cache
 
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
