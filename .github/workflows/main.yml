@@ -1,3 +1,4 @@
+  
 on: 
   push:
     branches: master
@@ -9,10 +10,47 @@ jobs:
     steps:
     - name: 🚚 Get latest code
       uses: actions/checkout@v2
+      
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.1'  # Versión de PHP que coincida con tu proyecto
+        extensions: mbstring, dom, xml, ctype, iconv, bcmath  # Agrega las extensiones necesarias
+        tools: composer
+
+    - name: Update composer
+      run: composer update
+
+    - name: Install Dependences
+      run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+
+    - name: Copy .env
+      run: cp .env.DisSuper .env
+
+    - name: Use Node.js 16
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'
+      
+    - name: 🔨 Build Project
+      run: |
+        npm install
+        npm run build
+
+    - name: Cache Laravel Config
+      run: php artisan config:cache
+
+
+    - name: Cache Laravel Views
+      run: php artisan view:cache
+
     
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
       with:
-        server: 66.225.201.137
-        username: DisSuper@innovusweb.com
+        server: ftp.innovusweb.com
+        username: dissuper2@innovusweb.com
         password: ${{ secrets.FTP_ACCESO }}
+        
+    
+
