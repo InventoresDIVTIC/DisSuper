@@ -35,6 +35,9 @@ jobs:
         npm install
         npm run build
 
+    - name: Dar permisos a cache
+      run: chmod -R 777 bootstrap/cache
+
     - name: Cache Laravel Config
       run: php artisan config:cache
 
