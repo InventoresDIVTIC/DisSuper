@@ -17,6 +17,9 @@ jobs:
         php-version: '8.1'  # Versión de PHP que coincida con tu proyecto
         extensions: mbstring, dom, xml, ctype, iconv, bcmath  # Agrega las extensiones necesarias
         tools: composer
+    
+    - name: Copy bootstrap/cache files
+      run: cp -r bootstrap/cache/* /bootstrap/cache
 
     - name: Install Dependences
       run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
