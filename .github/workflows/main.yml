@@ -38,9 +38,7 @@ jobs:
         npm run build
 
     - name: Cache Laravel Config
-      run: | 
-        php artisan config:clear
-        php artisan config:cache
+      run: php artisan config:cache
 
     - name: Route Laravel Config
       run: php artisan route:cache
