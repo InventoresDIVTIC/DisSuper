@@ -50,7 +50,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('zonas', ZonasController::class);
         Route::resource('roles', RoleController::class);
         Route::post('/cancelar/documento/{id}', [DocumentosController::class, 'cancelarDocumento'])->name('cancelar.documento');
-        Route::get('/registro', [RegisterController::class, 'showRegistrationForm']);
+        Route::get('/registro', [RegisterController::class, 'showRegistrationForm'])->name('registro');
         Route::post('/registro', [RegisterController::class, 'register']);
 
     });
