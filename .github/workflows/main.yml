@@ -40,6 +40,8 @@ jobs:
     - name: Cache Laravel Config
       run: php artisan config:cache
 
+    - name: Route Laravel Config
+      run: php artisan route:cache
 
     - name: Cache Laravel Views
       run: php artisan view:cache
