@@ -1,53 +1,17 @@
-on: 
-  push:
-    branches: master
+on: push
 name: 🚀 Deploy website on push
 jobs:
-  ftp-deploy:
+  web-deploy:
     name: 🎉 Deploy
     runs-on: ubuntu-latest
     steps:
     - name: 🚚 Get latest code
       uses: actions/checkout@v2
-      
-    - name: Set up PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.1'  # Versión de PHP que coincida con tu proyecto
-        extensions: mbstring, dom, xml, ctype, iconv, bcmath  # Agrega las extensiones necesarias
-        tools: composer
-
-    - name: Install Dependences
-      run: composer install --no-dev --optimize-autoloader
-
-    - name: Update composer
-      run: composer update
-
-    - name: Copy .env
-      run: cp .env.DisSuper .env
-
-    - name: Cache Laravel Config
-      run: php artisan config:cache
-
-    - name: Route Laravel Config
-      run: php artisan route:cache
-
-    - name: Cache Laravel Views
-      run: php artisan view:cache
-<<<<<<< HEAD
     
-    - name: Directory Permissions
-      run: chmod -R 775 storage
-=======
-      
-    - name: Generate Key
-      run: php artisan key:generate
->>>>>>> 0e74f203284a4c5ab8ad86bf31af496786079771
-
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
       with:
-        server: ftp.innovusweb.com
+        server: 66.225.201.137
         username: dissuper2@innovusweb.com
         password: ${{ secrets.FTP_ACCESO }}
         
