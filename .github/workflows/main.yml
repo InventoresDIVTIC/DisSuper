@@ -1,38 +1,16 @@
-on: 
-  push:
-    branches: master
+on: push
 name: 🚀 Deploy website on push
 jobs:
-  ftp-deploy:
+  web-deploy:
     name: 🎉 Deploy
     runs-on: ubuntu-latest
     steps:
     - name: 🚚 Get latest code
       uses: actions/checkout@v2
-      
-    - name: Set up PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.1'  # Versión de PHP que coincida con tu proyecto
-        extensions: mbstring, dom, xml, ctype, iconv, bcmath  # Agrega las extensiones necesarias
-        tools: composer
-
-    - name: Install Dependences
-      run: composer install --no-dev --optimize-autoloader
-
-    - name: Update composer
-      run: composer update
-
-    - name: Copy .env
-      run: cp .env.DisSuper .env
-      
-    - name: Generate Key
-      run: php artisan key:generate
-
 
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
-      
+
       with:
         server: 66.225.201.137
         username: dissuper2@innovusweb.com
