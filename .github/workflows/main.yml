@@ -29,21 +29,13 @@ jobs:
     - name: Generate Key
       run: php artisan key:generate
 
-    - name: Cache Laravel Config
-      run: php artisan config:cache
-
-    - name: Route Laravel Config
-      run: php artisan route:cache
-
-    - name: Cache Laravel Views
-      run: php artisan view:cache
-    
 
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
+      
       with:
         server: 66.225.201.137
         username: dissuper2@innovusweb.com
         password: ${{ secrets.FTP_ACCESO }}
-        local-dir: "./bootstrap/cache"
+
 
