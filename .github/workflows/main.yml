@@ -46,7 +46,11 @@ jobs:
     - name: Cache Laravel Views
       run: php artisan view:cache
 
-    
+    - name: Listar archivos en el directorio 'boostrap/cache'
+      run: |
+        echo "Archivos en el directorio 'bootstrap/cache':"
+        ls -la bootstrap/cache
+
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
       with:
