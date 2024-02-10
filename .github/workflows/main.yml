@@ -37,6 +37,9 @@ jobs:
 
     - name: Cache Laravel Views
       run: php artisan view:cache
+    
+    - name: Directory Permissions
+      run: chmod -R 775 storage
 
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
