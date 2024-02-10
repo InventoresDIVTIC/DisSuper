@@ -2,13 +2,13 @@
 on: 
   push:
     branches: master
-name: Deploy website on push
+name: 🚀 Deploy website on push
 jobs:
   ftp-deploy:
-    name: Deploy
+    name: 🎉 Deploy
     runs-on: ubuntu-latest
     steps:
-    - name:  Get latest code
+    - name: 🚚 Get latest code
       uses: actions/checkout@v2
       
     - name: Set up PHP
@@ -26,7 +26,7 @@ jobs:
 
     - name: Copy .env
       run: cp .env.DisSuper .env
-
+      
     - name: Generate Key
       run: php artisan key:generate
 
@@ -39,7 +39,7 @@ jobs:
     - name: Cache Laravel Views
       run: php artisan view:cache
 
-    - name:  Sync files
+    - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
       with:
         server: ftp.innovusweb.com
