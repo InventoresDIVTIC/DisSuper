@@ -4,7 +4,7 @@ on:
     branches: master
 name: 🚀 Deploy website on push
 jobs:
-  web-deploy:
+  ftp-deploy:
     name: 🎉 Deploy
     runs-on: ubuntu-latest
     steps:
@@ -17,7 +17,7 @@ jobs:
         php-version: '8.1'  # Versión de PHP que coincida con tu proyecto
         extensions: mbstring, dom, xml, ctype, iconv, bcmath  # Agrega las extensiones necesarias
         tools: composer
-    
+
     - name: Install Dependences
       run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
@@ -27,10 +27,24 @@ jobs:
     - name: Copy .env
       run: cp .env.DisSuper .env
 
+    - name: Use Node.js 16
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'
+      
     - name: 🔨 Build Project
       run: |
         npm install
         npm run build
+
+    - name: Cache Laravel Config
+      run: php artisan config:cache
+
+    - name: Route Laravel Config
+      run: php artisan route:cache
+
+    - name: Cache Laravel Views
+      run: php artisan view:cache
 
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
