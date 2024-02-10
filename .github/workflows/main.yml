@@ -25,9 +25,6 @@ jobs:
 
     - name: Copy .env
       run: cp .env.DisSuper .env
-      
-    - name: Generate Key
-      run: php artisan key:generate
 
     - name: Cache Laravel Config
       run: php artisan config:cache
@@ -37,6 +34,9 @@ jobs:
 
     - name: Cache Laravel Views
       run: php artisan view:cache
+      
+    - name: Generate Key
+      run: php artisan key:generate
 
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
