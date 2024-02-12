@@ -1,18 +1,33 @@
-on: push
-name: 🚀 Deploy website on push
+name: Deploy Laravel Project
+
+on:
+  push:
+    branches:
+      - master 
 jobs:
-  web-deploy:
-    name: 🎉 Deploy
+  deploy:
     runs-on: ubuntu-latest
+
     steps:
-    - name: 🚚 Get latest code
-      uses: actions/checkout@v2
-    
-    - name: 📂 Sync files
-      uses: SamKirkland/FTP-Deploy-Action@4.3.0
-      with:
-        server: 66.225.201.137
-        username: dissuper2@innovusweb.com
-        password: ${{ secrets.FTP_ACCESO }}
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0'  # Puedes ajustar la versión de PHP según tus necesidades
+
+      - name: Install dependencies
+        run: composer install --no-dev --optimize-autoloader
+
+      - name: Build assets
+        run: php artisan build
+
+      - name: Deploy to FTP
+        uses: SamKirkland/FTP-Deploy-Action@4.3.0
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
 
 
