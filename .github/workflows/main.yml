@@ -32,10 +32,9 @@ jobs:
       - name: Deploy to FTP
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: '/path/to/remote/directory'  # Cambiar a la ruta del directorio remoto en tu servidor FTP
-          local-dir: './public'  # Ruta local del directorio public de tu proyecto Laravel
-          args: '--exclude ".env .git/"'  # Opciones adicionales de rsync para excluir archivos
+          server: ftp.innovusweb.com
+          username: dissuper2@innovusweb.com
+          password: ${{ secrets.FTP_ACCESO }}
+          local-dir: './public'  
+          args: '--exclude ".env .git/"'  
 
