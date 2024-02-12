@@ -1,6 +1,4 @@
-on:
-  push:
-    branches: main
+on: push
 name: 🚀 Deploy website on push
 jobs:
   web-deploy:
@@ -9,14 +7,7 @@ jobs:
     steps:
     - name: 🚚 Get latest code
       uses: actions/checkout@v2
-
-    - name: Use Node.js 16
-      uses: actions/setup-node@v2
-      with:
-        node-version: '16'
-
-    - name: Install Dependencies
-      run: composer install -q --no-ansi --no-scripts --no-progress --prefer-dist
+    
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
       with:
