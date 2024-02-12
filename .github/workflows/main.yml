@@ -21,8 +21,16 @@ jobs:
       - name: Install dependencies
         run: composer install --no-dev --optimize-autoloader
 
+      - name: Install Node.js and npm
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install npm dependencies
+        run: npm install
+
       - name: Build assets
-        run: npm install && npm run prod  
+        run: npm run prod
 
       - name: Deploy to FTP
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
@@ -30,3 +38,7 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: '/path/to/remote/directory'  # Cambiar a la ruta del directorio remoto en tu servidor FTP
+          local-dir: './public'  # Ruta local del directorio public de tu proyecto Laravel
+          args: '--exclude ".env .git/"'  # Opciones adicionales de rsync para excluir archivos
+
