@@ -3,7 +3,8 @@ name: Deploy Laravel Project
 on:
   push:
     branches:
-      - master 
+      - master
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -15,13 +16,13 @@ jobs:
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.1.10' 
+          php-version: '8.1.10'
 
       - name: Install dependencies
         run: composer install --no-dev --optimize-autoloader
 
       - name: Build assets
-        run: php artisan build
+        run: npm install && npm run prod  
 
       - name: Deploy to FTP
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
@@ -29,5 +30,3 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-
-
