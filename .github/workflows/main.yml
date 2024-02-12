@@ -15,7 +15,7 @@ jobs:
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.0'  # Puedes ajustar la versión de PHP según tus necesidades
+          php-version: '8.1.10' 
 
       - name: Install dependencies
         run: composer install --no-dev --optimize-autoloader
