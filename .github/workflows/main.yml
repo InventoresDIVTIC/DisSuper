@@ -32,7 +32,7 @@ jobs:
       - name: Deploy to FTP
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
-          server: ftp.innovusweb.com
+          server: 66.225.201.137
           username: dissuper2@innovusweb.com
           password: ${{ secrets.FTP_ACCESO }}
           server-dir: '/public/' 
