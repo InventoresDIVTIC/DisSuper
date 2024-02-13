@@ -35,8 +35,6 @@ jobs:
           server: 66.225.201.137
           username: dissuper2@innovusweb.com
           password: ${{ secrets.FTP_ACCESO }}
-          server-dir: '/public/' 
-          local-dir: './public/'
           exclude: ".env .git/"
         env:
           COMPOSER_PROCESS_TIMEOUT: 0
