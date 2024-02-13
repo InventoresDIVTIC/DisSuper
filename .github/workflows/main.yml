@@ -41,7 +41,7 @@ jobs:
           password: ${{ secrets.FTP_ACCESO }}
           server-dir: '/public_html/my-laravel-app/'
           local-dir: './'  
-          exclude: ".env .git/"
+          exclude: ".git/"  # No se excluye .env en este caso
         env:
           COMPOSER_PROCESS_TIMEOUT: 0
           COMPOSER_NO_INTERACTION: 1
@@ -51,4 +51,10 @@ jobs:
         run: php artisan cache:clear
         working-directory: ./  # Asegurarse de estar en el directorio raíz de la aplicación Laravel
 
-   
+      - name: Set up .env file
+        run: |
+          echo "APP_NAME=YourAppName" > .env
+          echo "APP_ENV=production" >> .env
+          echo "APP_KEY=$(php artisan --no-ansi key:generate --show)" >> .env
+          # Aquí puedes agregar más variables de entorno según sea necesario
+        working-directory: ./  # Asegurarse de estar en el directorio raíz de la aplicación Laravel
