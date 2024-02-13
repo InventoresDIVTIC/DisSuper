@@ -35,7 +35,7 @@ jobs:
           server: ftp.innovusweb.com
           username: dissuper2@innovusweb.com
           password: ${{ secrets.FTP_ACCESO }}
-          local-dir: ./public
+          local-dir: './public/'
           exclude: ".env .git/"
         env:
           COMPOSER_PROCESS_TIMEOUT: 0
