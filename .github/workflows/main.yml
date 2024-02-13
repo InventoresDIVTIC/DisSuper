@@ -53,8 +53,7 @@ jobs:
 
       - name: Set up .env file
         run: |
-          echo "APP_NAME=YourAppName" > .env
-          echo "APP_ENV=production" >> .env
+
           echo "APP_KEY=$(php artisan --no-ansi key:generate --show)" >> .env
           # Aquí puedes agregar más variables de entorno según sea necesario
         working-directory: ./  # Asegurarse de estar en el directorio raíz de la aplicación Laravel
