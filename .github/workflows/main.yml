@@ -47,6 +47,7 @@ jobs:
           COMPOSER_NO_INTERACTION: 1
           COMPOSER_NO_AUDIT: 1 
 
+
       - name: Clear cache
         run: php artisan cache:clear
         working-directory: ./  # Asegurarse de estar en el directorio raíz de la aplicación Laravel
