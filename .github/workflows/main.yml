@@ -31,7 +31,7 @@ jobs:
 
       - name: Deploy to FTP
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
-       with:
+        with:
           server: ftp.innovusweb.com
           username: dissuper2@innovusweb.com
           password: ${{ secrets.FTP_PASSWORD }}
@@ -41,4 +41,3 @@ jobs:
           COMPOSER_PROCESS_TIMEOUT: 0
           COMPOSER_NO_INTERACTION: 1
           COMPOSER_NO_AUDIT: 1
-
