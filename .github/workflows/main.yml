@@ -28,7 +28,7 @@ jobs:
       - name: Install Node.js and npm
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: '20'
 
       - name: Install npm dependencies
         run: npm install
@@ -41,7 +41,7 @@ jobs:
           password: ${{ secrets.FTP_ACCESO }}
           server-dir: '/public/'  # Directorio en el servidor FTP donde se aloja la aplicación Laravel
           local-dir: './'  # Directorio raíz del proyecto Laravel en tu repositorio GitHub 
-          exclude: ".git/"  # No se excluye .env en este caso
+         
         env:
           COMPOSER_PROCESS_TIMEOUT: 0
           COMPOSER_NO_INTERACTION: 1
@@ -52,8 +52,7 @@ jobs:
         working-directory: ./  # Asegurarse de estar en el directorio raíz de la aplicación Laravel
 
       - name: Set up .env file
-        run: |
-
+        run: 
           echo "APP_KEY=$(php artisan --no-ansi key:generate --show)" >> .env
-          # Aquí puedes agregar más variables de entorno según sea necesario
-        working-directory: ./  # Asegurarse de estar en el directorio raíz de la aplicación Laravel
+         
+        working-directory: ./ 
