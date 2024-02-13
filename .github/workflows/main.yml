@@ -39,7 +39,7 @@ jobs:
           server: ftp.innovusweb.com
           username: dissuper2@innovusweb.com
           password: ${{ secrets.FTP_ACCESO }}
-          server-dir: './'  # Directorio en el servidor FTP donde se aloja la aplicación Laravel
+          server-dir: '/public/'  # Directorio en el servidor FTP donde se aloja la aplicación Laravel
           local-dir: './'  # Directorio raíz del proyecto Laravel en tu repositorio GitHub 
          
         env:
