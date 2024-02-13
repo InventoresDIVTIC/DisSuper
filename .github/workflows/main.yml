@@ -39,7 +39,7 @@ jobs:
           server: ftp.innovusweb.com
           username: dissuper2@innovusweb.com
           password: ${{ secrets.FTP_ACCESO }}
-          server-dir: '/public_html/my-laravel-app/'
+          server-dir: './'
           local-dir: './'  
           exclude: ".git/"  # No se excluye .env en este caso
         env:
