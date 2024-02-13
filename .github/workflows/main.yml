@@ -35,8 +35,8 @@ jobs:
           server: ftp.innovusweb.com
           username: dissuper2@innovusweb.com
           password: ${{ secrets.FTP_ACCESO }}
-          server-dir: '/public_html/my-laravel-app'  # Directorio en el servidor FTP donde se encuentra tu aplicación Laravel
-          local-dir: './'
+          server-dir: '/public_html/my-laravel-app/'  # Directorio en el servidor FTP donde se encuentra tu aplicación Laravel (asegúrate de que termine con /)
+          local-dir: './public/'
           exclude: ".env .git/"
         env:
           COMPOSER_PROCESS_TIMEOUT: 0
