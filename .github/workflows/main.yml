@@ -1,22 +1,63 @@
-on: 
-  push:
-    branches: master
-name: 🚀 Deploy website on push
-jobs:
-  ftp-deploy:
-    name: 🎉 Deploy
-    runs-on: ubuntu-latest
-    steps:
-    - name: 🚚 Get latest code
-      uses: actions/checkout@v2
-    
+name: Deploy Laravel Project
 
-    - name: 📂 Sync files
-      uses: SamKirkland/FTP-Deploy-Action@4.3.0
-      with:
-        server: 66.225.201.137
-        username: dissuper2@innovusweb.com
-        password: ${{ secrets.FTP_ACCESO }}
-        
-    
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+
+      - name: Install dependencies
+        run: composer install --no-dev --optimize-autoloader
+
+      - name: Generate application key
+        run: php artisan key:generate --no-ansi
+        working-directory: ./  # Asegurarse de estar en el directorio raíz de la aplicación Laravel
+
+      - name: Install Node.js and npm
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16.x'
+
+      - name: Install npm dependencies
+        run: npm install
+
+      - name: Create .env
+        run: cp .env.DisSuper .env
+
+      - name: Deploy to FTP
+        uses: SamKirkland/FTP-Deploy-Action@4.3.0
+        with:
+          server: ftp.innovusweb.com
+          username: dissuper2@innovusweb.com
+          password: ${{ secrets.FTP_ACCESO }}
+          server-dir: '/public/'  # Directorio en el servidor FTP donde se aloja la aplicación Laravel
+          local-dir: './'  # Directorio raíz del proyecto Laravel en tu repositorio GitHub 
+         
+        env:
+          COMPOSER_PROCESS_TIMEOUT: 0
+          COMPOSER_NO_INTERACTION: 1
+          COMPOSER_NO_AUDIT: 1 
+
+
+      - name: Clear cache
+        run: php artisan cache:clear
+        working-directory: ./  # Asegurarse de estar en el directorio raíz de la aplicación Laravel
+
+      - name: Set up .env file
+        run: 
+          echo "APP_KEY=$(php artisan --no-ansi key:show)" >> .env
+         
+        working-directory: ./  
 

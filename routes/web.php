@@ -69,18 +69,15 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('actividades/{actividad}/indicadores/{indicador}', [ActividadesController::class, 'eliminarIndicador'])->name('actividades.eliminarIndicador');
     });
 
-
-    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-
-    Auth::routes();
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    Route::match(['get','post'], 'botman',[BotManController::class , "handle"]);
-    Route::post('/cambiar_estado/{id}', [DocumentosController::class, 'cambiarEstado'])->name('cambiar.estado');
-    Route::post('/rechazar/documento/{id}', [DocumentosController::class, 'rechazarDocumento'])->name('rechazar.documento');
-    Route::post('/procesar-formulario', [DocumentosController::class, 'procesarFormulario']);
-
-
 });
 
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+Auth::routes();
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::match(['get','post'], 'botman',[BotManController::class , "handle"]);
+Route::post('/cambiar_estado/{id}', [DocumentosController::class, 'cambiarEstado'])->name('cambiar.estado');
+Route::post('/rechazar/documento/{id}', [DocumentosController::class, 'rechazarDocumento'])->name('rechazar.documento');
+Route::post('/procesar-formulario', [DocumentosController::class, 'procesarFormulario']);
 
 // Luego, para configurar el widget, podrías hacerlo en algún punto de inicialización de tu aplicación
