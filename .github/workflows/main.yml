@@ -24,6 +24,9 @@ jobs:
       - name: Update dependencies
         run: composer update
 
+      - name: Storage permissions
+        run: chmod -R 775 storage
+
       - name: Copy public to public_html
         run: |
           mkdir ./public_html
