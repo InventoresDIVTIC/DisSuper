@@ -47,5 +47,4 @@ jobs:
           server: ftp.innovusweb.com
           username: dissuper2@innovusweb.com
           password: ${{ secrets.FTP_ACCESO }}
-          local-dir: ./
           git-ftp-args: --insecure # Elimina --insecure si tu servidor FTP soporta conexiones seguras
