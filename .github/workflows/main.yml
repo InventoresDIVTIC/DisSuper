@@ -25,7 +25,9 @@ jobs:
         run: composer update
 
       - name: Storage permissions
-        run: chmod -R 775 storage
+        run: |
+          chmod -R 775 storage
+          mkdir -p /home/runner/work/DisSuper/DisSuper/storage/logs
 
       - name: Copy public to public_html
         run: |
