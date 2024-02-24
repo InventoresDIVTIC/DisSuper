@@ -47,4 +47,5 @@ jobs:
           server: ftp.innovusweb.com
           username: dissuper2@innovusweb.com
           password: ${{ secrets.FTP_ACCESO }}
-          server-dir: ./
+          server-dir: /public
+          local-dir: ./
