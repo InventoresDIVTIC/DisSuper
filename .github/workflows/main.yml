@@ -26,8 +26,8 @@ jobs:
 
       - name: Storage permissions
         run: |
-          chmod -R 775 DisSuper/storage
-          mkdir -p /home/runner/work/DisSuper/DisSuper/storage/logs
+          chmod -R 775 storage
+     
 
       - name: Copy public to public_html
         run: |
