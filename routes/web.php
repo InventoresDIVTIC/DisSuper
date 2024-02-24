@@ -46,6 +46,7 @@ Route::middleware(['auth'])->group(function () {
     });
     
     Route::middleware(['nivel_0'])->group(function () {
+        
         Route::resource('usuario', UserController::class);
         Route::resource('zonas', ZonasController::class);
         Route::resource('roles', RoleController::class);
@@ -79,5 +80,3 @@ Route::match(['get','post'], 'botman',[BotManController::class , "handle"]);
 Route::post('/cambiar_estado/{id}', [DocumentosController::class, 'cambiarEstado'])->name('cambiar.estado');
 Route::post('/rechazar/documento/{id}', [DocumentosController::class, 'rechazarDocumento'])->name('rechazar.documento');
 Route::post('/procesar-formulario', [DocumentosController::class, 'procesarFormulario']);
-
-// Luego, para configurar el widget, podrías hacerlo en algún punto de inicialización de tu aplicación
