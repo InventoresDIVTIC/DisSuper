@@ -41,8 +41,6 @@ jobs:
           FTP_PASSWORD: ${{ secrets.FTP_ACCESO }}
           FTP_DESTINATION: ./
           COMPOSER_PROCESS_TIMEOUT: 0
-          COMPOSER_NO_INTERACTION: 1
-          COMPOSER_NO_AUDIT: 1
 
         run: |
           php artisan config:cache
