@@ -26,7 +26,7 @@ jobs:
 
       - name: Storage permissions
         run: |
-          sudo chmod -R 776 /bootstrap /storage
+          sudo chmod -R 776 /home/runner/work/DisSuper/DisSuper/bootstrap /home/runner/work/DisSuper/DisSuper/storage/
      
 
       - name: Copy public to public_html
