@@ -26,7 +26,8 @@ jobs:
 
       - name: Storage permissions
         run: |
-          chmod -R 775 storage
+          sudo chmod -R 776 ./bootstrap ./storage/
+     
 
       - name: Copy public to public_html
         run: |
