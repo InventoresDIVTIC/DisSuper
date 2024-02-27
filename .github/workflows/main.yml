@@ -24,27 +24,11 @@ jobs:
       - name: Update dependencies
         run: composer update
 
-      - name: Storage permissions
-        run: |
-          sudo chmod -R 776 ./bootstrap ./storage/
-     
+      - name: 📝 Add Environment File
+        run: cp .env.DisSuper .env  # Configura tus variables de entorno de Laravel en los secretos de GitHub
 
-      - name: Copy public to public_html
-        run: |
-          mkdir ./public_html
-          cp -r ./public/* ./public_html/
-
-      - name: Configure env
-        env:
-          FTP_HOST: ftp.innovusweb.com
-          FTP_USERNAME: dissuper2@innovusweb.com
-          FTP_PASSWORD: ${{ secrets.FTP_ACCESO }}
-          FTP_DESTINATION: ./
-          COMPOSER_PROCESS_TIMEOUT: 0
-
-        run: |
-          php artisan config:cache
-          php artisan route:clear
+      - name: 🔑 Generate Key
+        run: php artisan key:generate
 
       - name: Deploy to shared hosting
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
