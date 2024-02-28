@@ -2,7 +2,7 @@ name: Deploy GestionSSCFE
 on:
   push:
     branches:
-      - deploy_other_ftp # Ajusta esto a tu rama por defecto si es necesario
+      - deploy # Ajusta esto a tu rama por defecto si es necesario
 
 jobs:
   ftp-deploy:
