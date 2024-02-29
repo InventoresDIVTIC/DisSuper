@@ -26,8 +26,12 @@ jobs:
       - name: ⬇️ Install Dependencies
         run: composer install --no-dev --optimize-autoloader
 
-      - name: 📝 Add Environment File
-        run: cp -r "${{ secrets.LARAVEL_ENV }}" .env
+      - name: 📝 Addd files
+        run: |
+          cp -r "${{ secrets.LARAVEL_ENV }}" .env  
+          cp -r ./public/* ./
+          cp -r .htaccess.example .htaccess
+          cp -r index.php.example index.php
 
       - name: 🔑 Generate Key
         run: php artisan key:generate
