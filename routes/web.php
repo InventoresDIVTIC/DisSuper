@@ -20,7 +20,7 @@ use App\Http\Controllers\ChatbotController;
 use App\Http\Controllers\DocumentosController;
 use App\Http\Controllers\BotManController;
 
-Route::get('/.', function () {
+Route::get('/', function () {
     return view('welcome');
 });
 
