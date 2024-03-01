@@ -33,40 +33,46 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse ($empleados as $empleado)
-                    @if ($empleado->RPE_Empleado !== auth()->user()->RPE_Empleado && $empleado->nombre_Empleado !== auth()->user()->name)
-                        <tr>
-                            <td class="text-center">{{ $empleado->id }}</td>
-                            <td class="text-center">{{ $empleado->RPE_Empleado }}</td>
-                            <td class="text-center">{{ $empleado->nombre_Empleado }}</td>
-                            <td class="text-center">{{ $empleado->contrato->name }}</td> <!-- Mostrar el tipo de contrato -->
-                            <td class="text-center">
-                                @foreach ($empleado->zonas as $zona)
-                                    {{ $zona->nombre_zona }}
-                                @endforeach
-                            </td>
-                            <td class="text-center">{{ $empleado->fecha_ingreso }}</td>
-                            <td class="text-center">
-                                <div class="btn-group">
-                                    <a href="/empleado/{{ $empleado->id }}" type="button" class="btn btn-primary btn-sm">
-                                        <i class="fas fa-eye"></i> Ver perfil
-                                    </a>
-                                    <form action="/empleado/{{ $empleado->id }}" method="POST" style="display: inline-block;">
-                                        @method('DELETE')
-                                        @csrf
-                                        <button class="btn btn-danger btn-sm" type="submit" onclick="return confirm('¿Estás seguro de que deseas eliminar este empleado?')">
-                                            <i class="fas fa-trash"></i> Eliminar
-                                        </button>
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>
-                    @endif
-                @empty
-                    <tr>
-                        <td colspan="5" class="text-center">No se encontraron empleados.</td>
-                    </tr>
-                @endforelse
+            @forelse ($empleados as $empleado)
+            <tr class="
+                @if ($empleado->documentos->where('Status_Documento', 'ENVIADO')->isNotEmpty() && Auth::id() === $empleado->documentos->where('Status_Documento', 'ENVIADO')->first()->Id_Usuario_Revisar)
+                    bg-custom
+                @elseif ($empleado->documentos->where('Status_Documento', 'ACEPTADO')->isNotEmpty() && Auth::id() === $empleado->documentos->where('Status_Documento', 'ACEPTADO')->first()->Id_Usuario_Autor)
+                    bg-custom2
+                @elseif ($empleado->documentos->where('Status_Documento', 'EN EDICION')->isNotEmpty() && Auth::id() === $empleado->documentos->where('Status_Documento', 'EN EDICION')->first()->Id_Usuario_Autor)
+                    bg-custom3
+                @endif
+            ">
+                    <td class="text-center">{{ $empleado->id }}</td>
+                    <td class="text-center">{{ $empleado->RPE_Empleado }}</td>
+                    <td class="text-center">{{ $empleado->nombre_Empleado }}</td>
+                    <td class="text-center">{{ $empleado->contrato->name }}</td>
+                    <td class="text-center">
+                        @foreach ($empleado->zonas as $zona)
+                            {{ $zona->nombre_zona }}
+                        @endforeach
+                    </td>
+                    <td class="text-center">{{ $empleado->fecha_ingreso }}</td>
+                    <td class="text-center">
+                        <div class="btn-group">
+                            <a href="/empleado/{{ $empleado->id }}" type="button" class="btn btn-primary btn-sm">
+                                <i class="fas fa-eye"></i> Ver perfil
+                            </a>
+                            <form action="/empleado/{{ $empleado->id }}" method="POST" style="display: inline-block;">
+                                @method('DELETE')
+                                @csrf
+                                <button class="btn btn-danger btn-sm" type="submit" onclick="return confirm('¿Estás seguro de que deseas eliminar este empleado?')">
+                                    <i class="fas fa-trash"></i> Eliminar
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="8" class="text-center">No se encontraron empleados.</td>
+                </tr>
+            @endforelse
             </tbody>
         </table>
 
