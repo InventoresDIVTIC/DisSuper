@@ -29,7 +29,7 @@ jobs:
 
       - name: 📝 Addd files
         run: |
-          cp -r "${{ secrets.LARAVEL_ENV }}" .env  
+          cp -r .env.example .env  
           cp -r ./public/* ./
           cp -r .htaccess.example .htaccess
           cp -r index.php.example index.php
