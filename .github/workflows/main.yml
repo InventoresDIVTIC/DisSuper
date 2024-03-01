@@ -40,6 +40,6 @@ jobs:
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
           server: ftp.innovusweb.com
-                username: dissuper2@innovusweb.com
-                password: ${{ secrets.FTP_ACCESO }}
-                git-ftp-args: --insecure # Elimina --insecure si tu servidor FTP soporta conexiones seguras
+          username: dissuper2@innovusweb.com
+          password: ${{ secrets.FTP_ACCESO }}
+          git-ftp-args: --insecure # Elimina --insecure si tu servidor FTP soporta conexiones seguras
