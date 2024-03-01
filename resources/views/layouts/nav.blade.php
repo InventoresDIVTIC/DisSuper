@@ -457,11 +457,16 @@
     </div>
     <strong>Derechos de autor &copy; 2023 DisSuper</strong>
     <script>
-      var botmanWidget={
-        aboutText:"",
-        introMessage:"Hola, ¿en que puedo ayudarte?"
-      }
-    </script>
+    var botmanWidget = {
+        aboutText: "", // Texto sobre el botón de información (opcional)
+        introMessage: "Hola, ¿en qué puedo ayudarte?", // Mensaje de introducción
+        title: "DisSuper ", // Título del widget
+        mainColor: "#4CAF50", // Color principal del widget
+    
+      
+   
+    };
+</script>
   </footer>
 </div>
 <!-- ./wrapper -->
