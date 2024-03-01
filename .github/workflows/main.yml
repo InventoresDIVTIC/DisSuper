@@ -28,7 +28,7 @@ jobs:
 
       - name: 📝 Addd files
         run: |
-          cp -r "${{ secrets.LARAVEL_ENV }}" .env  
+          cp -r .env.example .env  
           cp -r ./public/* ./
           cp -r .htaccess.example .htaccess
           cp -r index.php.example index.php
@@ -39,8 +39,7 @@ jobs:
       - name: 🚀 FTP Deploy
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
-          server: educortez.com
-          username: disuper@educortez.com
-          password: vazcortezUd.
-          local-dir: ./
-          git-ftp-args: --insecure # Elimina --insecure si tu servidor FTP soporta conexiones seguras
+          server: ftp.innovusweb.com
+                username: dissuper2@innovusweb.com
+                password: ${{ secrets.FTP_ACCESO }}
+                git-ftp-args: --insecure # Elimina --insecure si tu servidor FTP soporta conexiones seguras
