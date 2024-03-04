@@ -25,7 +25,7 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.1.0/css/adminlte.min.css">
   
-  <link href="{{ asset('ruta-a-tu-archivo-css/errors.css') }}" rel="stylesheet">
+
 
 
 
@@ -107,9 +107,38 @@
 
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-        <span>ACTICOM</span>
+        <input type="checkbox" id="activar-estrellas">
+        <label for="activar-estrellas" class="checkbox-label">EVIDENCIA EN ACTICOM</label>
       </li>
     </ul>
+
+    <div class="estrellas-container" id="estrellas-container">
+      <!-- Aquí se agregarán las estrellas dinámicamente con JavaScript -->
+    </div>
+    <script>
+      const checkbox = document.getElementById('activar-estrellas');
+      const estrellasContainer = document.getElementById('estrellas-container');
+
+      checkbox.addEventListener('change', function() {
+        if (this.checked) {
+          // Mostrar las estrellas
+          mostrarEstrellas();
+          // Desmarcar el checkbox después de 3 segundos
+         
+        }
+      });
+
+      function mostrarEstrellas() {
+        // Crear 50 estrellas y agregarlas al contenedor
+        for (let i = 0; i < 50; i++) {
+          const estrella = document.createElement('div');
+          estrella.classList.add('estrella');
+          estrella.style.top = Math.random() * 100 + 'vh';
+          estrella.style.left = Math.random() * 100 + 'vw';
+          estrellasContainer.appendChild(estrella);
+        }
+      }
+    </script>
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
@@ -166,7 +195,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index" class="brand-link">
+    <a href="/index" class="brand-link">
       <img src="{{ asset('dist/img/D.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">isSuper</span>
     </a>
@@ -223,7 +252,7 @@
   <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
    
     <!-- Usuarios -->
-    @if(Auth::user()->roles[0]['nivel_permisos'] < 1)
+    @if(Auth::user()->roles[0]['nivel_permisos'] < 1 )
     <li class="nav-item menu-open">
       <a href="#" class="nav-link active">
         <i class="nav-icon fas fa-users"></i>
@@ -457,16 +486,14 @@
     </div>
     <strong>Derechos de autor &copy; 2023 DisSuper</strong>
     <script>
-    var botmanWidget = {
-        aboutText: "", // Texto sobre el botón de información (opcional)
-        introMessage: "Hola, ¿en qué puedo ayudarte?", // Mensaje de introducción
-        title: "DisSuper ", // Título del widget
-        mainColor: "#4CAF50", // Color principal del widget
-    
-      
-   
-    };
-</script>
+        var botmanWidget = {
+            aboutText: "", // Texto sobre el botón de información (opcional)
+            introMessage: "Hola, ¿en qué puedo ayudarte?", // Mensaje de introducción
+            title: "DisSuper", // Título del widget
+            mainColor: "#4CAF50", // Color principal del widget
+            placeholderInput: "hola",
+        };
+    </script>
   </footer>
 </div>
 <!-- ./wrapper -->

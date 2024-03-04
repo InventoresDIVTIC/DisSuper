@@ -571,7 +571,7 @@
 
 
 
-                      <div class="tab-pane" id="GenerarLlA">
+                <div class="tab-pane" id="GenerarLlA">
                     <form action="{{ url('/procesar-formulario') }}"id="llamadaAtencionForm" method="POST" enctype="multipart/form-data">
                     @csrf
                         <div class="form-group row">
@@ -583,31 +583,96 @@
                     
                         <button type="button" onclick="pegarDatos()" class="btn btn-primary">Pegar Datos</button><br><br>
 
-                        <!-- Campos del primer indicador -->
                         <div class="form-group row">
-                            
-                        <label for="N_Llamada" class="col-sm-1.8 col-form-label">N. Llamada</label>
-                        <div class="col-sm-3">
-                            <input type="number" class="form-control" id="N_Llamada" name="N_Llamada" placeholder="N. llamada" value="{{ old('N_Llamada') }}">
-                        </div>
-                        @error('N_Llamada')
-                            <span class="error-message">{{ $message }}</span>
-                        @enderror
+                            <label for="N_Llamada" class="col-sm-1.8 col-form-label">N. Llamada</label>
+                            <div class="col-sm-1"> <!-- Cambiado a col-sm-1 para reducir el ancho -->
+                                <!-- El valor de N. Llamada se autoincrementará y no será modificable -->
+                                <input type="number" class="form-control" id="N_Llamada" name="N_Llamada" placeholder="N. llamada" value="{{ $ultimoNumeroLlamada + 1 }}" readonly>
+                            </div>
 
                             <label class="col-sm-1.5 col-form-label">Actividad</label>
                             <div class="col-sm-3">
-                                <input type="number" class="form-control" id="Actividad" name="Actividad" placeholder="Actividad">
+                                <!-- El campo de Actividad como un select -->
+                                <select class="form-control" id="Actividad" name="Actividad">
+                                    <!-- Agregar una opción por defecto si es necesario -->
+                                    <option value="">Selecciona una actividad</option>
+                                    <!-- Iterar sobre las actividades y mostrarlas en el select -->
+                                    @foreach($actividades as $actividad)
+                                        <option value="{{ $actividad->id }}">{{ $actividad->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
-                            @if ($errors->has('Actividad'))
-                                <span class="error-message">{{ $errors->first('Actividad') }}</span>
-                            @endif
 
-                            <label class="col-sm-1.5 col-form-label">Fecha</label>
+                            <label class="col-sm-1.5 col-form-label">Fecha de la supervision</label>
                             <div class="col-sm-3">
-                                <input type="date" class="form-control" id="Fecha_Actividad" name="Fecha_Actividad" placeholder="Fecha">
+                                <!-- El campo de Fecha con la fecha actual y no editable -->
+                                <input type="date" class="form-control" id="Fecha_Supervision" name="Fecha_Supervision" value="{{ $fechaActual }}" readonly>
                             </div>
+
+                            
                         </div>
 
+                        <div class="form-group row">
+                                <label class="col-sm-1.5 col-form-label">Fecha de la actividad</label>
+                                <div class="col-sm-3">
+                                    <!-- El campo de Fecha con la fecha actual y editable -->
+                                    <input type="date" class="form-control" id="Fecha_Actividad" name="Fecha_Actividad" value="{{ $fechaActual }}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                            <div class="form-group row">
+                            <label class="col-sm-1.5 col-form-label">Indicadores afectados:</label>
+                            <div class="select-wrapper">
+                                <select id="nombre_indicador" onchange="agregarFila()">
+                                    @foreach($indicadores as $indicador)
+                                        <option value="{{ $indicador->Nombre_Indicador }}">{{ $indicador->Nombre_Indicador }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <table id="tabla" class="custom-table">
+                                <thead>
+                                    <tr>
+                                        <th>Indicador</th>
+                                        <th>Eliminar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <script>
+                        function agregarFila() {
+                            var opcionSeleccionada = document.getElementById("nombre_indicador").value;
+                            var tablaBody = document.getElementById("tabla").getElementsByTagName("tbody")[0];
+                            var fila = tablaBody.insertRow();
+
+                            var celdaOpcion = fila.insertCell(0);
+                            celdaOpcion.textContent = opcionSeleccionada;
+
+                            // Agregar el valor seleccionado al arreglo de indicadores
+                            var indicadoresInput = document.createElement("input");
+                            indicadoresInput.type = "hidden";
+                            indicadoresInput.name = "nombre_indicador[]";
+                            indicadoresInput.value = opcionSeleccionada;
+                            fila.appendChild(indicadoresInput);
+
+                            var celdaBoton = fila.insertCell(1);
+                            var deleteIcon = document.createElement("span");
+                            deleteIcon.textContent = "❌";
+                            deleteIcon.className = "delete-icon";
+                            deleteIcon.onclick = function() {
+                                fila.parentNode.removeChild(fila);
+                            };
+
+                            celdaBoton.appendChild(deleteIcon);
+                        }
+                        </script>
+
+</div>
+                 
+                        
+                        
 
                         <input type="hidden" name="Id_Empleado" id="Id_Empleado" value="{{$empleado->id}}">
                         <input type="hidden" name="Tipo_Documento" id="Tipo_Documento" value="LLAMADA DE ATENCION">

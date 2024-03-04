@@ -5,11 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Auth\Passwords\CanResetPassword as CanResetPasswordTrait;
+use App\Notifications\CustomResetPassword; // Importa la clase CustomResetPassword
 
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
     use Notifiable;
+    use CanResetPasswordTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -56,7 +59,6 @@ class User extends Authenticatable
         return $this->roles()->where('id', 1)->where('name', $roleName)->exists();
         
     }
-   
     public function empleado()
     {
         return $this->hasOne(Empleado::class, 'user_id');
@@ -93,6 +95,7 @@ class User extends Authenticatable
     {
         return $this->hasMany(Notification::class);
     }
+   
    
     
    

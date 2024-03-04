@@ -27,6 +27,6 @@ class JefaturaInmediataMiddleware
         }
 
         // No es 'admin' ni tiene el rol de jefatura inmediata
-        return response()->json(['error' => 'Acceso no autorizado'], 403);
+        return redirect()->route('403')->with('error', 'Acceso no autorizado.');
     }
 }

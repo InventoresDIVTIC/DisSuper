@@ -10,6 +10,8 @@ use App\Models\User;
 use App\Models\Contrato;
 use App\Models\Role;
 use App\Models\Zona;
+use Illuminate\Support\Facades\Hash;
+
 
 class UserController extends Controller
 {
@@ -92,6 +94,7 @@ class UserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255'],
             'fecha_registro'=>['required'],
+            'password' => ['string', 'min:8'],
            
         ]);
 
@@ -117,6 +120,7 @@ class UserController extends Controller
         $usuario->fecha_registro = $request->input('fecha_registro');
         $usuario->contrato()->associate($request->input('contrato'));
         $usuario->roles()->sync($request->input('rol'));
+        $usuario->password = Hash::make($request->input('password'));
 
         // Actualizar la foto de perfil si se proporciona una nueva
         if ($request->hasFile('photo')) {

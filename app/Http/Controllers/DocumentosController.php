@@ -60,15 +60,21 @@ class DocumentosController extends Controller
                 'N_Llamada' => $request->input('N_Llamada'),
                 'Actividad' => $request->input('Actividad'),
                 'Fecha_Actividad' => $request->input('Fecha_Actividad'),
+                'Fecha_Supervision' => $request->input('Fecha_Supervision'),
                 'Introduccion' => $request->input('Introduccion'),
                 'Id_Usuario_Revisar' => $request->input('Id_Usuario_Revisar'),
                 'Id_Empleado' => $request->input('Id_Empleado'),
                 'Tipo_Documento' => $request->input('Tipo_Documento'),
                 'Status_Documento' => $request->input('Status_Documento'),
                 'contenido' => $request->input('contenido'),
+                'nombre_indicador' => $request->input('nombre_indicador'),
                 // Otros campos del formulario según su estructura
 
             ];
+ 
+            // Procesar los indicadores seleccionados y convertirlos en una cadena separada por comas
+            $indicadores = implode(',', $datosFormulario['nombre_indicador']);
+
             ///dd($datosFormulario);
             // Obtener el nombre del empleado al que se le hizo el documento
             $empleado = Empleado::find($datosFormulario['Id_Empleado']);
@@ -78,6 +84,7 @@ class DocumentosController extends Controller
             $documento->N_llamada = $datosFormulario['N_Llamada'];
             $documento->Actividad = $datosFormulario['Actividad'];
             $documento->Fecha_Actividad = $datosFormulario['Fecha_Actividad'];
+            $documento->Fecha_Supervision = $datosFormulario['Fecha_Supervision'];
             $documento->Introduccion = $datosFormulario['Introduccion'];
             $documento->Id_Usuario_Autor = $Id_Usuario_Autor;
             $documento->Id_Usuario_Revisar = $datosFormulario['Id_Usuario_Revisar'];
@@ -85,6 +92,7 @@ class DocumentosController extends Controller
             $documento->Tipo_Documento = $datosFormulario['Tipo_Documento'];
             $documento->Status_Documento = $datosFormulario['Status_Documento'];
             $documento->contenido = $datosFormulario['contenido'];
+            $documento->nombre_indicador = $indicadores;
             $documento->subido_hecho = 1;
             
             
