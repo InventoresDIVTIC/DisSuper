@@ -609,10 +609,9 @@
                                 <input type="date" class="form-control" id="Fecha_Supervision" name="Fecha_Supervision" value="{{ $fechaActual }}" readonly>
                             </div>
 
-                            
                         </div>
 
-                        <div class="form-group row">
+                            <div class="form-group row">
                                 <label class="col-sm-1.5 col-form-label">Fecha de la actividad</label>
                                 <div class="col-sm-3">
                                     <!-- El campo de Fecha con la fecha actual y editable -->
@@ -667,11 +666,11 @@
 
                             celdaBoton.appendChild(deleteIcon);
                         }
-                        </script>
-
-</div>
+                    </script>
+                </div>
                  
                         
+
                         
 
                         <input type="hidden" name="Id_Empleado" id="Id_Empleado" value="{{$empleado->id}}">
@@ -696,30 +695,72 @@
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-sm-1.9 col-form-label">Imagen de prueba:  </label>
-                            <div class="col-sm-10">
-                                <div class="custom-file">
-                            
-                                    <input class="form-control" type="file" id="imagen" name="imagen"onchange="mostrarNombre()" multiple>
+                            <label class="col-sm-1.9 col-form-label">Imágenes de evidencia:</label>
+                            <div class="col-sm-10" style="height: 200px; border: 2px solid #ccc; border-radius: 5px; padding: 10px;">
+                                <div class="custom-file" style="height: 100%;">
+                                <input class="custom-file-input" type="file" id="imagen" name="imagen[]" onchange="mostrarNombre()" multiple accept="image/*" style="border: none; height: calc(100% - 2px);">
+
+                                    <label class="custom-file-label" for="imagen">Arrastra y suelta imágenes aquí, o haz clic para seleccionar...</label>
+                                    <i class="fas fa-cloud-upload-alt" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"></i>
                                 </div>
                                 <span id="ArchivoSeleccionado"></span>
                             </div>
                         </div>
+                        <table id="tablaImagenes" class="custom-table">
+                            <thead>
+                                <tr>
+                                    <th>Nombre del archivo</th>
+                                    <th>Quitar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+
                         <script>
-                            function mostrarNombre() {
-                                const input2 = document.getElementById('imagen');
-                                const nombreArchivo2 = input2.files[0].name;
-                                const label2 = document.querySelector('.custom-file-label');
-                                label2.innerText = nombreArchivo2;
-                                document.getElementById('ArchivoSeleccionado').innerText = 'Nombre del archivo: ' + nombreArchivo2;
-                            }
-                        </script>
+                                function mostrarNombre() {
+                                    const input = document.getElementById('imagen');
+                                    const files = input.files;
+                                    const tablaImagenes = document.getElementById('tablaImagenes').getElementsByTagName('tbody')[0];
 
+                                    for (let i = 0; i < files.length; i++) {
+                                        const file = files[i];
+                                        if (file.type.startsWith('image/')) {
+                                            const nombreArchivo = file.name;
+                                            const fila = document.createElement('tr');
+                                            const celdaNombre = document.createElement('td');
+                                            celdaNombre.textContent = nombreArchivo;
+                                            fila.appendChild(celdaNombre);
 
+                                            const celdaQuitar = document.createElement('td');
+                                            const botonQuitar = document.createElement('button');
+                                            botonQuitar.textContent = "❌";
+                                            botonQuitar.className = "btn-quitar";
+                                            botonQuitar.addEventListener('click', function() {
+                                                fila.remove();
+                                                actualizarContador();
+                                            });
+                                            celdaQuitar.appendChild(botonQuitar);
+                                            fila.appendChild(celdaQuitar);
 
+                                            // Asignar un ID único a la fila
+                                            fila.id = 'imagen_' + i;
 
+                                            tablaImagenes.appendChild(fila);
+                                        } else {
+                                            alert('El archivo "' + file.name + '" no es una imagen y no será agregado.');
+                                        }
+                                    }
 
+                                    // Actualizar el contador de imágenes
+                                    actualizarContador();
+                                }
 
+                                function actualizarContador() {
+                                    const cantidadImagenes = document.getElementById('tablaImagenes').getElementsByTagName('tbody')[0].getElementsByTagName('tr').length;
+                                    document.getElementById('ArchivoSeleccionado').innerText = 'Número de archivos: ' + cantidadImagenes;
+                                }
+                            </script>
 
                         <div class="form-group row">
                             <label for="inputCargo" class="col-sm-2 col-form-label">Usuario a mandar a revisión</label>
@@ -778,20 +819,6 @@
     
     
 </div><!-- /.tab-pane -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

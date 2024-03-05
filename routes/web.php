@@ -55,7 +55,14 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/404', function () {
             return view('404');
         })->name('404');
-        // Otras rutas nivel_0
+        Route::match(['get','post'], 'botman',[BotManController::class , "handle"]);
+        Route::post('/cambiar_estado/{id}', [DocumentosController::class, 'cambiarEstado'])->name('cambiar.estado');
+        Route::post('/rechazar/documento/{id}', [DocumentosController::class, 'rechazarDocumento'])->name('rechazar.documento');
+        Route::post('/procesar-formulario', [DocumentosController::class, 'procesarFormulario']);
+        Route::post('/cambiar-archivo/{documento}', [DocumentosController::class, 'cambiarArchivo'])->name('documento.cambiar-archivo');
+        Route::post('/redirigir-documento/{id}', [DocumentosController::class, 'redirigirDocumento'])->name('redirigir.documento');
+        Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+        Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     });
     
 
@@ -84,22 +91,17 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/registro', [RegisterController::class, 'register']);
     });
 
-    Route::match(['get','post'], 'botman',[BotManController::class , "handle"]);
-    Route::post('/cambiar_estado/{id}', [DocumentosController::class, 'cambiarEstado'])->name('cambiar.estado');
-    Route::post('/rechazar/documento/{id}', [DocumentosController::class, 'rechazarDocumento'])->name('rechazar.documento');
-    Route::post('/procesar-formulario', [DocumentosController::class, 'procesarFormulario']);
-    Route::post('/cambiar-archivo/{documento}', [DocumentosController::class, 'cambiarArchivo'])->name('documento.cambiar-archivo');
-    Route::post('/redirigir-documento/{id}', [DocumentosController::class, 'redirigirDocumento'])->name('redirigir.documento');
+   
 
 
 });
 
 
 
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
 
 Auth::routes();
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 
 
 
