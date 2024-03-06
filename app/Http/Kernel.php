@@ -21,6 +21,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+        
       
     ];
 
@@ -73,5 +74,9 @@ class Kernel extends HttpKernel
         'nivel_1' => \App\Http\Middleware\permisosNivel1::class,
         'nivel_3' => \App\Http\Middleware\permisosNivel3::class,
         'nivel_5' => \App\Http\Middleware\permisosNivel5::class,
+        'check_user_ownership' => \App\Http\Middleware\CheckUserOwnership::class,
+
+
+
     ];
 }

@@ -1,11 +1,10 @@
-
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Plantilla Dissuper 1</title>
+    <title>Llamada de atención</title>
 
     
     <style>
@@ -115,10 +114,10 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
 
     <div class="datos_Documento">
         <b>
-        Lugar, {{now()->format('d/F/Y')}}<br><br>
+        {{$datosFormulario['Zona_Autor']}}, Jalisco, {{now()->format('d/F/Y')}}<br><br>
         Asunto:{{$datosFormulario['Tipo_Documento']}}<br>
-        Actividad Supervisada:<br>
-        Fecha de Actividad:<br>
+        Actividad Supervisada:{{$datosFormulario['Actividad']}}<br>
+        Fecha de Actividad:{{$datosFormulario['Fecha_Supervision']}}<br>
         Fecha de Supervision: {{$datosFormulario['Fecha_Actividad']}}<br><br>
         </b>
 

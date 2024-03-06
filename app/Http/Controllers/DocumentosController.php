@@ -11,9 +11,11 @@ use App\Models\Empleado;
 use App\Models\Notification; 
 use Illuminate\Support\Facades\Mail;
 use App\Models\IndicadorDocumento;
+use App\Models\Zona;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Response;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\File;
 
 
 
@@ -35,6 +37,8 @@ class DocumentosController extends Controller
 
         return view('empleados.show', compact('usuarios','contadorRendicionCuentas', 'contadorLlamadasAtencion', 'contadorActasAdministrativas'));
     }
+
+  
  
 
     public function procesarFormulario(Request $request)
@@ -49,7 +53,7 @@ class DocumentosController extends Controller
             // Obtener el ID del usuario al que se envía a revisión desde el formulario
        
            
-            
+            $zonas_usuario = user::find($Id_Usuario_Autor)->zonas[0]["nombre_zona"];
 
             // Obtener los datos del formulario
             $datosFormulario = [
@@ -57,15 +61,22 @@ class DocumentosController extends Controller
                 'N_Llamada' => $request->input('N_Llamada'),
                 'Actividad' => $request->input('Actividad'),
                 'Fecha_Actividad' => $request->input('Fecha_Actividad'),
+                'Fecha_Supervision' => $request->input('Fecha_Supervision'),
                 'Introduccion' => $request->input('Introduccion'),
                 'Id_Usuario_Revisar' => $request->input('Id_Usuario_Revisar'),
                 'Id_Empleado' => $request->input('Id_Empleado'),
                 'Tipo_Documento' => $request->input('Tipo_Documento'),
                 'Status_Documento' => $request->input('Status_Documento'),
                 'contenido' => $request->input('contenido'),
+                'nombre_indicador' => $request->input('nombre_indicador'),
                 // Otros campos del formulario según su estructura
+                'Zona_Autor' => $zonas_usuario,
 
             ];
+
+            // Procesar los indicadores seleccionados y convertirlos en una cadena separada por comas
+            $indicadores = implode(',', $datosFormulario['nombre_indicador']);
+
             ///dd($datosFormulario);
             // Obtener el nombre del empleado al que se le hizo el documento
             $empleado = Empleado::find($datosFormulario['Id_Empleado']);
@@ -75,6 +86,7 @@ class DocumentosController extends Controller
             $documento->N_llamada = $datosFormulario['N_Llamada'];
             $documento->Actividad = $datosFormulario['Actividad'];
             $documento->Fecha_Actividad = $datosFormulario['Fecha_Actividad'];
+            $documento->Fecha_Supervision = $datosFormulario['Fecha_Supervision'];
             $documento->Introduccion = $datosFormulario['Introduccion'];
             $documento->Id_Usuario_Autor = $Id_Usuario_Autor;
             $documento->Id_Usuario_Revisar = $datosFormulario['Id_Usuario_Revisar'];
@@ -82,6 +94,9 @@ class DocumentosController extends Controller
             $documento->Tipo_Documento = $datosFormulario['Tipo_Documento'];
             $documento->Status_Documento = $datosFormulario['Status_Documento'];
             $documento->contenido = $datosFormulario['contenido'];
+            $documento->nombre_indicador = $indicadores;
+            $documento->subido_hecho = 1;
+            
             
             if ($request->hasFile('imagen')) {
                 $photo = $request->file('imagen');
@@ -114,7 +129,8 @@ class DocumentosController extends Controller
             
             $documento->notifications()->save($notification);
 
-
+            
+            try{
             // Generar el PDF a partir de la vista del formulario
             $html = view('pdf.formulario', compact('datosFormulario', 'empleado'))->render();
             $options = new Options();
@@ -130,6 +146,11 @@ class DocumentosController extends Controller
 
             // Ruta donde se guardará el archivo
             $rutaGuardado = public_path('dist/archivos/' . $nombreArchivo);
+            
+            if (!File::isDirectory(public_path('dist/archivos'))) {
+                dd("No existe el directorio");
+            }
+
             // Guardar el archivo PDF en la ruta especificada
             file_put_contents($rutaGuardado, $pdfOutput);
             $ruta = 'dist/archivos/' . $nombreArchivo;
@@ -137,7 +158,11 @@ class DocumentosController extends Controller
             // Actualizar el documento con la ruta del archivo PDF
             $documento->nombre_archivo = $ruta;
             $documento->save();
-
+            }catch(\Exception $e){
+                $mensaje = 'Error: ' . $e->getMessage();
+                dd($mensaje);
+            }
+            
             // Obtener el ID del usuario seleccionado en el formulario
             $Id_Usuario_Revisar = $request->input('Id_Usuario_Revisar');
             $Id_Usuario_Autor = $documento->Id_Usuario_Autor;
@@ -213,8 +238,11 @@ class DocumentosController extends Controller
             $documento->Id_Empleado = $datosFormulario['Id_Empleado'];
             $documento->Tipo_Documento = $datosFormulario['Tipo_Documento'];
             $documento->Status_Documento = $datosFormulario['Status_Documento'];
+            $documento->subido_hecho = 2;
             // Verificar si hay un archivo enviado
             
+           
+            // Construye la URL del enlace para actualizar el estado
             if ($request->hasFile('Documento')) {
                 $file = $request->file('Documento'); // Cambiado de $nombre_archivoe a $file
                 $nombreArchivo =  $file->getClientOriginalName(); // Obtener el nombre original del archivo
@@ -222,27 +250,39 @@ class DocumentosController extends Controller
                 $file->move(public_path('dist/archivos'), $nombreArchivo);
                 $documento->nombre_archivo = 'dist/archivos/' . $nombreArchivo; // Cambiado de $documento->file a $documento->nombre_archivo
             }
-          
+            
             // Guardar el documento
             $documento->save();
             
 
             $notification = new Notification();
             $notification->user_id = $datosFormulario['Id_Usuario_Revisar'];
+            $notification->autor = $Id_Usuario_Autor;
+            $notification->empleado = $datosFormulario['Id_Empleado'];
             $notification->message = 'Se te ha enviado una llamada de atención para revisión.';
             $notification->read = false;
+            
             $documento->notifications()->save($notification);
 
-            
 
 
 
 
-            
+             // Obtener el ID del usuario seleccionado en el formulario
+             $Id_Usuario_Revisar = $request->input('Id_Usuario_Revisar');
+             $Id_Usuario_Autor = $documento->Id_Usuario_Autor;
+             $Id_Documento = $documento->id;
+             $Id_Empleado = $documento->Id_Empleado; 
+ 
+             // Obtener el correo electrónico del usuario desde la tabla users
+             $usuario = User::find($Id_Usuario_Revisar);
+             $usuario2 = User::find($Id_Usuario_Autor);
+             $empleado = Empleado::find($Id_Empleado);
             // Obtener el ID del usuario seleccionado en el formulario
-            $Id_Usuario_Revisar = $request->input('Id_Usuario_Revisar');
+            
             // Obtener el correo electrónico del usuario desde la tabla users
             $usuario = User::find($Id_Usuario_Revisar);
+            
             // Construye la URL del enlace para actualizar el estado
             if ($usuario) {
                 $email = $usuario->email;
@@ -251,7 +291,9 @@ class DocumentosController extends Controller
                 // Definir los datos que se pasarán a la vista de correo electrónico
                 $datosCorreo = [
                     'nombreUsuario' => $usuario->name, 
-                    
+                    'usuarioAutor' => $usuario2->name,
+                    'idDocumento' => $Id_Documento,
+                    'Id_Empleado' => $empleado->nombre_Empleado,
                 ];
                 
                 
@@ -404,17 +446,26 @@ class DocumentosController extends Controller
     }
 
 
-public function editarDocumento($id)
-{
-    // Supongo que aquí estás obteniendo el empleado relacionado con el documento.
-    // Si no lo has obtenido aún, necesitas hacerlo.
-    $documento = Documentos::findOrFail($id);
-    $empleado = Empleado::find($documento->Id_Empleado);
-    $usuarios = User::all(); // Obtén todos los usuarios
-    // Resto de tu lógica para obtener datos relacionados con la edición
+    public function editarDocumento($id)
+    {
+        $documento = Documentos::findOrFail($id);
+         // Si subido_hecho es 1, realiza las acciones existentes
+         $empleado = Empleado::find($documento->Id_Empleado);
+         $usuarios = User::all();
+        if ($documento->subido_hecho == 1) {
+            return view('empleados.editar_llamada', compact('empleado', 'documento', 'usuarios'));
 
-    return view('empleados.editar_llamada', compact('empleado', 'documento','usuarios' /* otras variables que necesites pasar a la vista */));
-}
+        } elseif ($documento->subido_hecho == 2) {
+            return view('empleados.editar_llamada2', compact('empleado', 'documento','usuarios'));
+
+        } else {
+            // Manejo de otros casos, si es necesario
+            abort(404); // O puedes redirigir o manejar según tu lógica
+        }
+    }
+
+
+
     public function guardarEdicion(Request $request, $id)
     {
         // Encuentra el documento por su ID
@@ -569,15 +620,156 @@ public function editarDocumento($id)
         }
     }
 
+    public function cambiarArchivo(Request $request,$id)
+    {
+       // Encuentra el documento por su ID
+       $documento = Documentos::findOrFail($id);
+     
+        $request->validate([
+            'nuevo_archivo' => 'required|mimes:pdf,doc,docx',
+        ]);
+        $documento = Documentos::findOrFail($id);
+        // Procesar la actualización del archivo
+        if ($request->hasFile('nuevo_archivo')) {
+            $file = $request->file('nuevo_archivo');
+            
+            // Eliminar el archivo anterior si existe
+            if ($documento->nombre_archivo) {
+                // Obtener la ruta completa del archivo
+                $rutaCompleta = public_path($documento->nombre_archivo);
 
-   
+                // Verificar si el archivo existe antes de intentar eliminarlo
+                if (File::exists($rutaCompleta)) {
+                    File::delete($rutaCompleta);
+                }
+            }
+
+            // Generar un nombre único para el archivo
+            $nombreUnico = hash('sha256', $file->getFilename() . time()) . '.' . $file->getClientOriginalExtension();
+
+            // Almacenar el nuevo archivo
+            $ruta = $file->storeAs('dist/archivos', $nombreUnico);
+            $file->move(public_path('dist/archivos'), $nombreUnico);
+        
+            // Encuentra el documento por su ID y actualiza el estado a "Aceptado"
+            // Actualizar el modelo de documento con la nueva ruta
+            $documento->nombre_archivo = 'dist/archivos/' . $nombreUnico;
+            $documento->Status_Documento = 'TERMINADO';
+            $documento->save();
+
+            
+                $Id_Usuario_Autor = $documento->Id_Usuario_Autor;
+                $Id_Documento = $documento->id;
+                $Id_Usuario_Revisar = $documento->Id_Usuario_Revisar; 
+                $comentarioCancelado = $documento->comentario_cancelado;
+                $Id_Empleado = $documento->Id_Empleado; 
+
+                // Obtener el correo electrónico del usuario desde la tabla users
+                $usuario = User::find($Id_Usuario_Revisar);
+                $usuario2 = User::find($Id_Usuario_Autor);
+                $empleado = Empleado::find($Id_Empleado);
+                if ($usuario) {
+                    $email = $usuario->email;
+
+                    // Definir los datos que se pasarán a la vista de correo electrónico
+                    $datosCorreo = [
+                        'nombreUsuario' => $usuario->name,
+                        'idDocumento' => $Id_Documento,
+                        'Id_Usuario_Autor' => $usuario2->name,
+                        'Id_Empleado' => $empleado->nombre_Empleado,
+    
+                      
+                        // Otros datos relevantes para la plantilla de correo
+                    ];
+
+                    // Enviar el correo electrónico al usuario
+                    Mail::send('emails.terminado', $datosCorreo, function ($message) use ($email) {
+                        $message->to($email)
+                            ->subject('documento terminado con éxito');
+                    });
+                }
+
+            return redirect()->back()->with('success', 'Archivo actualizado correctamente.');
+        }
+
+        return redirect()->back()->with('error', 'No se proporcionó un nuevo archivo.');
+    }
+        public function redirigirDocumento(Request $request, $id)
+        {// Encuentra el documento por su ID
+            $documento = Documentos::findOrFail($id);
+            // Validaciones y lógica necesaria
+        
+            // Obtener el documento
+            $documento = Documentos::findOrFail($id);
+        
+            // Actualizar los campos
+            $documento->Id_Usuario_Revisar2 = $documento->Id_Usuario_Revisar;
+            $documento->Id_Usuario_Revisar = $request->input('nuevoIdUsuario');
+        
+            // Guardar cambios
+            $documento->save();
+
+
+            // Obtener el ID del usuario que creó el documento y otros datos relevantes
+            $Id_Usuario_Autor = $documento->Id_Usuario_Autor;
+            $Id_Documento = $documento->id;
+            $Id_Usuario_Revisar = $documento->Id_Usuario_Revisar; 
+            $Id_Usuario_Revisar2 = $documento->Id_Usuario_Revisar2; 
+            $Id_Empleado = $documento->Id_Empleado; 
+
+            // Obtener el correo electrónico del usuario desde la tabla users
+            $usuario = User::find($Id_Usuario_Autor);
+            $usuario2 = User::find($Id_Usuario_Revisar);
+            $usuario3 = User::find($Id_Usuario_Revisar2);
+            $empleado = Empleado::find($Id_Empleado);
+            if ($usuario) {
+                $email = $usuario->email;
+
+                // Definir los datos que se pasarán a la vista de correo electrónico
+                $datosCorreo = [
+                    'nombreUsuario' => $usuario->name,
+                    'idDocumento' => $Id_Documento,
+                    'Id_Usuario_Revisar' => $usuario2->name,
+                    'Id_Usuario_Revisar2' => $usuario3->name,
+                    'Id_Empleado' => $empleado->nombre_Empleado,
+                ];
+
+                // Enviar el correo electrónico al usuario
+                Mail::send('emails.redirigirA', $datosCorreo, function ($message) use ($email) {
+                    $message->to($email)
+                        ->subject('Documento reasignado a revisión');
+                });
+            }
+            $usuario = User::find($Id_Usuario_Revisar);
+            $usuario2 = User::find($Id_Usuario_Autor);
+            $usuario3 = User::find($Id_Usuario_Revisar2);
+            $empleado = Empleado::find($Id_Empleado);
+            if ($usuario) {
+                $email = $usuario->email;
+
+                // Definir los datos que se pasarán a la vista de correo electrónico
+                $datosCorreo = [
+                    'nombreUsuario' => $usuario->name,
+                    'idDocumento' => $Id_Documento,
+                    'Id_Usuario_Revisar' => $usuario2->name,
+                    'Id_Usuario_Revisar2' => $usuario3->name,
+                    'Id_Empleado' => $empleado->nombre_Empleado,
+
+                    // Otros datos relevantes para la plantilla de correo
+                ];
+
+                // Enviar el correo electrónico al usuario
+                Mail::send('emails.redirigirR', $datosCorreo, function ($message) use ($email) {
+                    $message->to($email)
+                        ->subject('Documento reasignado a revisión');
+                });
+            }
 
 
 
-
-
-
-
+        
+            return redirect()->back()->with('success', 'Archivo actualizado correctamente.');
+        }
 
 }
 

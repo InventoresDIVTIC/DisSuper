@@ -9,25 +9,7 @@ use BotMan\Drivers\Web\Extensions\Widget;
 
 class BotManController extends Controller
 {
-    /**
-     * Configure the BotMan widget.
-     */
-    public function configureWidget()
-    {
-        DriverManager::loadDriver(\BotMan\Drivers\Web\WebDriver::class);
 
-        $config = [
-            'title' => 'DisSuper',
-            // Otras configuraciones que puedas tener...
-        ];
-
-        $botman = BotManFactory::create($config);
-        $botman->middleware->received(new \BotMan\Drivers\Web\Extensions\Widget($config));
-    }
-
-    /**
-     * Place your BotMan logic here.
-     */
     public function handle()
     {
         $botman = app('botman');

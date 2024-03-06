@@ -175,14 +175,19 @@
                                                     </option>
                                                 @endforeach
                                             </select>
-                                            <div class="input-group-append">
-                                                <div class="input-group-text">
-                                                    <span class="fas fa-users"></span>
-                                                </div>
-                                            </div>
+                                            
                                         </div>
-                                        
-                                    </div>
+                                        @if(Auth::user()->id === $usuario->id || Auth::user()->roles[0]['nivel_permisos'] === 0 )
+                                            <div>
+                                                <label for="zonas"><i ></i> Escribe tu nueva contraseña:</label><br>
+                                                <div class="input-group mb-3">
+                                                    <input type="password" name="password" class="form-control" placeholder="Nueva Contraseña" required>
+                                                </div>        
+                                            </div>
+                                            @if ($errors->has('name'))
+                                                <span class="error-message">{{ $errors->first('name') }}</span>
+                                            @endif  
+                                        @endif  
                                  
                                     
                                     <div class="col-4">

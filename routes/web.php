@@ -20,6 +20,7 @@ use App\Http\Controllers\ChatbotController;
 use App\Http\Controllers\DocumentosController;
 use App\Http\Controllers\BotManController;
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -32,9 +33,8 @@ Route::middleware(['auth'])->group(function () {
     
     Route::middleware(['nivel_5'])->group(function () {
         Route::get('/index', [EmpleadoController::class, 'index']);
-        Route::resource('empleado', EmpleadoController::class);
+        Route::resource('/empleado', EmpleadoController::class);
         Route::get('/formulario', [DocumentosController::class, 'mostrarFormulario']);
-        
         Route::post('/subir-documento', [DocumentosController::class, 'procesarFormulario2']);
         Route::post('/guardar-documento', [DocumentosController::class, 'procesarFormulario2']);
         Route::post('/download/pdf/{id}', [DocumentosController::class, 'downloadPDF'])->name('download.pdf');
@@ -43,17 +43,31 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/descargar/documento/{id}', [DocumentosController::class, 'downloadPDF'])->name('descargar.documento');
         Route::get('/editar/documento/{id}', [DocumentosController::class, 'editarDocumento'])->name('editar.documento');
         Route::post('/guardar_edicion/{id}', [DocumentosController::class, 'guardarEdicion'])->name('guardar_edicion');
+        Route::get('forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+        Route::post('forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+        Route::get('reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+        Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
+        Route::resource('usuario', UserController::class)->only(['edit', 'update', 'show'])
+        ->middleware('check_user_ownership');
+        Route::get('/403', function () {
+            return view('403');
+        })->name('403');
+        Route::get('/404', function () {
+            return view('404');
+        })->name('404');
+        // Otras rutas nivel_0
     });
     
+
     Route::middleware(['nivel_0'])->group(function () {
-        
-        Route::resource('usuario', UserController::class);
+        Route::resource('usuario', UserController::class)->only(['destroy', 'create', 'store','index']);
         Route::resource('zonas', ZonasController::class);
         Route::resource('roles', RoleController::class);
         Route::post('/cancelar/documento/{id}', [DocumentosController::class, 'cancelarDocumento'])->name('cancelar.documento');
 
     });
 
+    
     Route::middleware(['nivel_3'])->group(function () {
         // Rutas protegidas que requieren el rol 'JEFATURA ZONAL DE PROCESO'
     });
@@ -67,17 +81,31 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('puestos/{puesto}/actividades/{actividad}', [PuestosController::class, 'detach'])->name('puestos.detach');
         Route::delete('actividades/{actividad}/indicadores/{indicador}', [ActividadesController::class, 'eliminarIndicador'])->name('actividades.eliminarIndicador');
         Route::get('/registro', [RegisterController::class, 'showRegistrationForm'])->name('registro');
-        Route::post('/registro', [RegisterController::class, 'register'])->name('register');
+        Route::post('/registro', [RegisterController::class, 'register']);
     });
+
+    Route::match(['get','post'], 'botman',[BotManController::class , "handle"]);
+    Route::post('/cambiar_estado/{id}', [DocumentosController::class, 'cambiarEstado'])->name('cambiar.estado');
+    Route::post('/rechazar/documento/{id}', [DocumentosController::class, 'rechazarDocumento'])->name('rechazar.documento');
+    Route::post('/procesar-formulario', [DocumentosController::class, 'procesarFormulario']);
+    Route::post('/cambiar-archivo/{documento}', [DocumentosController::class, 'cambiarArchivo'])->name('documento.cambiar-archivo');
+    Route::post('/redirigir-documento/{id}', [DocumentosController::class, 'redirigirDocumento'])->name('redirigir.documento');
 
 
 });
+
+
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::match(['get','post'], 'botman',[BotManController::class , "handle"]);
-Route::post('/cambiar_estado/{id}', [DocumentosController::class, 'cambiarEstado'])->name('cambiar.estado');
-Route::post('/rechazar/documento/{id}', [DocumentosController::class, 'rechazarDocumento'])->name('rechazar.documento');
-Route::post('/procesar-formulario', [DocumentosController::class, 'procesarFormulario']);
+
+
+
+// Luego, para configurar el widget, podrías hacerlo en algún punto de inicialización de tu aplicación
+
+
+
+
+
