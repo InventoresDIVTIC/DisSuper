@@ -53157,3 +53157,43 @@ select {
   color: red;
   cursor: pointer;
 }
+#tablaImagenes {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 400px;
+}
+.btn-quitar {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: inherit;
+}
+.custom-file-input-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  height: 150px; /* Ajusta la altura según sea necesario */
+}
+
+.custom-file-input-wrapper input[type="file"] {
+  position: absolute;
+  font-size: 100px;
+  opacity: 0;
+  right: 0;
+  top: 0;
+}
+
+.custom-file-input-label {
+  display: block;
+  padding: 10px;
+  text-align: center;
+}
+
+.drag-icon {
+  display: block;
+  margin: 0 auto;
+  width: 50px; /* Ajusta el tamaño del ícono según sea necesario */
+  height: 50px; /* Ajusta el tamaño del ícono según sea necesario */
+  background-image: url('ruta/a/tu/icono.png'); /* Ruta a tu ícono de arrastrar y soltar */
+  background-size: cover;
+}

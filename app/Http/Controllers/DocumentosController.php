@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Response;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\File;
-
+use Exception;
 
 
 
@@ -46,8 +46,11 @@ class DocumentosController extends Controller
         try {
             $request->validate([
                 'N_Llamada' => 'required',
-                'Introduccion' => 'required', 'string',
+                'Introduccion' => 'required|string',
+                'imagen' => 'required|array', // Validar que 'imagen' sea un array
+                'imagen.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Validar cada imagen individualmente
             ]);
+    
             // Obtener el ID del usuario que realiza el documento
             $Id_Usuario_Autor = auth()->id();
             // Obtener el ID del usuario al que se envía a revisión desde el formulario
@@ -55,6 +58,7 @@ class DocumentosController extends Controller
            
             $zonas_usuario = user::find($Id_Usuario_Autor)->zonas[0]["nombre_zona"];
 
+            
             // Obtener los datos del formulario
             $datosFormulario = [
                 'nombre_archivo' => $request->input('nombre_archivo'),
@@ -69,19 +73,24 @@ class DocumentosController extends Controller
                 'Status_Documento' => $request->input('Status_Documento'),
                 'contenido' => $request->input('contenido'),
                 'nombre_indicador' => $request->input('nombre_indicador'),
+             
                 // Otros campos del formulario según su estructura
                 'Zona_Autor' => $zonas_usuario,
 
             ];
 
+            
+            
             // Procesar los indicadores seleccionados y convertirlos en una cadena separada por comas
             $indicadores = implode(',', $datosFormulario['nombre_indicador']);
 
-            ///dd($datosFormulario);
+          
+    
             // Obtener el nombre del empleado al que se le hizo el documento
             $empleado = Empleado::find($datosFormulario['Id_Empleado']);
             $nombreEmpleado = $empleado->nombre; // Cambiar por el nombre real del empleado
-
+    
+            // Crear un nuevo documento
             $documento = new Documentos();
             $documento->N_llamada = $datosFormulario['N_Llamada'];
             $documento->Actividad = $datosFormulario['Actividad'];
@@ -96,27 +105,39 @@ class DocumentosController extends Controller
             $documento->contenido = $datosFormulario['contenido'];
             $documento->nombre_indicador = $indicadores;
             $documento->subido_hecho = 1;
-            
-            
+   
+   // Procesar las imágenes
+
+            // Procesar las imágenes
+            $nombresImagenes = []; // Array para almacenar los nombres de las imágenes
+
             if ($request->hasFile('imagen')) {
-                $photo = $request->file('imagen');
-                if ($photo->isValid()) {
-                    $imageName = time() . '.' . $photo->getClientOriginalExtension();
-                    
-                    // Mover la imagen a la carpeta deseada
-                    $photo->move(public_path('dist/img/imagenes_documentos'), $imageName);
-            
-                    // Asignar la ruta de la imagen al campo 'imagen' del documento
-                    $documento->imagen = 'dist/img/imagenes_documentos/' . $imageName;
-                } else {
-                    return redirect()->back()->withInput()->withErrors([
-                        'imagen' => 'El archivo de imagen no es válido.',
-                    ]);
+                foreach ($request->file('imagen') as $imagen) {
+                    if ($imagen->isValid()) {
+                        $nombreImagen = time() . '_' . $imagen->getClientOriginalName();
+
+                        // Mover la imagen a la carpeta deseada
+                        $imagen->move(public_path('dist/img/imagenes_documentos'), $nombreImagen);
+
+                        // Guardar el nombre de la imagen en el array
+                        $nombresImagenes[] = $nombreImagen;
+                    } else {
+                        return redirect()->back()->withInput()->withErrors([
+                            'imagen' => 'Uno o más archivos de imagen no son válidos.',
+                        ]);
+                    }
                 }
             }
 
+            $datosFormulario['imagenes_documento'] = $nombresImagenes;
 
-            
+            // Convertir los nombres de las imágenes a una cadena separada por comas
+            $cadenaImagenes = implode(',', $nombresImagenes);
+
+            // Asignar la cadena de nombres de imágenes al campo 'imagen'
+            $documento->imagen = $cadenaImagenes;
+    
+    
             // Guardar el documento
             $documento->save();
           

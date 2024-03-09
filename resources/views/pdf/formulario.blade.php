@@ -78,6 +78,16 @@
             size: 11;
         }
 
+        .escalado-horizontal {
+            width: 400px;
+            height: auto;
+        }
+
+        .escalado-vertical {
+            width: auto;
+            height: 250px;
+        }
+
     </style>
 </head>
 
@@ -85,6 +95,18 @@
 $nombreImagen = public_path('dist/img/cfe_Logo.jpg');
 
 $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nombreImagen));
+
+$i = 0;
+$EvidenciaBase64 = [];
+$ancho = [];
+$alto = [];
+foreach ($datosFormulario['imagenes_documento'] as $imagen) {
+    $imagenEvidencia = public_path('dist/img/imagenes_documentos/' . $imagen);
+    list($ancho[$i], $alto[$i]) = getimagesize($imagenEvidencia);
+    $EvidenciaBase64[$i] = "data:image/png;base64," . base64_encode(file_get_contents($imagenEvidencia));
+    $i++;
+}
+
 ?>
 <body>
     <div id="header">
@@ -151,8 +173,23 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
     </div>
 
     <div class="content">
-        <h2>Lipsum</h2>
-        <label class="col-sm-2 col-form-label">Introducción:</label>
+        @for ($im = 0; $im < $i; $im++)
+
+        <h2>Imagen: {{ $ancho[$im] }} x {{ $alto[$im] }} píxeles</h2>
+        <p>{{$datosFormulario['imagenes_documento'][0]}}</p>
+
+        @if ($ancho[$im] / $alto[$im] > 4000/2500)
+        <img src="<?php echo $EvidenciaBase64[$im] ?>" class="escalado-horizontal">
+        <p>400</p>
+        @else
+        <img src="<?php echo $EvidenciaBase64[$im] ?>" class="escalado-vertical">
+        <p>250</p>
+        @endif
+
+        @endfor
+        
+        
+        
         <!-- Lipsum content shortened for brevity -->
     </div>
 
