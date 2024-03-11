@@ -159,7 +159,7 @@ foreach ($datosFormulario['imagenes_documento'] as $imagen) {
     <div>
         <p>
 
-        Se realizó supervisión al ciclo <b>"Ciclo" Tarea {{$datosFormulario['Actividad']}}</b> asignada al <b>C. <{{$empleado['nombre_Empleado']}}</b>, R.P.E <b>{{$empleado->RPE_Empleado}} </b>realizado el día 18  de Octubre del 2023.
+        Se realizó supervisión al ciclo <b>"Ciclo" Tarea {{$datosFormulario['Actividad']}}</b> asignada al <b>C. {{$empleado['nombre_Empleado']}}</b>, R.P.E <b>{{$empleado->RPE_Empleado}} </b>realizado el día 18  de Octubre del 2023.
         </p>
     </div>
 
