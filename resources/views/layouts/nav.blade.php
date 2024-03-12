@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Proyecto DisSuper</title>
+  <title>DisSuper</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.bootstrap4.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="{{ secure_asset('dist/css/adminlte.css') }}">
+  <link rel="stylesheet" href="{{ asset('dist/css/adminlte.css') }}">
  
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -28,6 +28,7 @@
 
 
 
+
   
 
 
@@ -35,20 +36,20 @@
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{ secure_asset('plugins/fontawesome-free/css/all.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
   <!-- icheck bootstrap -->
-  <link rel="stylesheet" href="{{ secure_asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
   <!-- Theme style -->
-  <link rel="stylesheet" href="{{ secure_asset('dist/css/adminlte.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
 
-  <link rel="stylesheet" href="{{ secure_asset('dist/css/form_register.css') }}">
+  <link rel="stylesheet" href="{{ asset('dist/css/form_register.css') }}">
   <!-- CSS de SweetAlert -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.css">
 
   <!-- ION Slider -->
   <link rel="stylesheet" href="../../plugins/ion-rangeslider/css/ion.rangeSlider.min.css">
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css?v=3.2.0">
-  <script nonce="7db90ae7-5af2-4011-a9da-67aeb8c657a9">(function(w,d){!function(bb,bc,bd,be){bb[bd]=bb[bd]||{};bb[bd].executed=[];bb.zaraz={deferred:[],listeners:[]};bb.zaraz.q=[];bb.zaraz.f=function(bf){return async function(){var bg=Array.prototype.slice.call(arguments);bb.zaraz.q.push({m:bf,a:bg})}};for(const bh of["track","set","debug"])bb.zaraz[bh]=bb.zaraz._f(bh);bb.zaraz.init=()=>{var bi=bc.getElementsByTagName(be)[0],bj=bc.createElement(be),bk=bc.getElementsByTagName("title")[0];bk&&(bb[bd].t=bc.getElementsByTagName("title")[0].text);bb[bd].x=Math.random();bb[bd].w=bb.screen.width;bb[bd].h=bb.screen.height;bb[bd].j=bb.innerHeight;bb[bd].e=bb.innerWidth;bb[bd].l=bb.location.href;bb[bd].r=bc.referrer;bb[bd].k=bb.screen.colorDepth;bb[bd].n=bc.characterSet;bb[bd].o=(new Date).getTimezoneOffset();if(bb.dataLayer)for(const bo of Object.entries(Object.entries(dataLayer).reduce(((bp,bq)=>({...bp[1],...bq[1]})),{})))zaraz.set(bo[0],bo[1],{scope:"page"});bb[bd].q=[];for(;bb.zaraz.q.length;){const br=bb.zaraz.q.shift();bb[bd].q.push(br)}bj.defer=!0;for(const bs of[localStorage,sessionStorage])Object.keys(bs||{}).filter((bu=>bu.startsWith("_zaraz"))).forEach((bt=>{try{bb[bd]["z_"+bt.slice(7)]=JSON.parse(bs.getItem(bt))}catch{bb[bd]["z_"+bt.slice(7)]=bs.getItem(bt)}}));bj.referrerPolicy="origin";bj.src="/cdn-cgi/zaraz/s.js?z="+btoa(encodeURIComponent(JSON.stringify(bb[bd])));bi.parentNode.insertBefore(bj,bi)};["complete","interactive"].includes(bc.readyState)?zaraz.init():bb.addEventListener("DOMContentLoaded",zaraz.init)}(w,d,"zarazData","script");})(window,document);</script>
+  <script nonce="7db90ae7-5af2-4011-a9da-67aeb8c657a9">(function(w,d){!function(bb,bc,bd,be){bb[bd]=bb[bd]||{};bb[bd].executed=[];bb.zaraz={deferred:[],listeners:[]};bb.zaraz.q=[];bb.zaraz.f=function(bf){return async function(){var bg=Array.prototype.slice.call(arguments);bb.zaraz.q.push({m:bf,a:bg})}};for(const bh of["track","set","debug"])bb.zaraz[bh]=bb.zaraz.f(bh);bb.zaraz.init=()=>{var bi=bc.getElementsByTagName(be)[0],bj=bc.createElement(be),bk=bc.getElementsByTagName("title")[0];bk&&(bb[bd].t=bc.getElementsByTagName("title")[0].text);bb[bd].x=Math.random();bb[bd].w=bb.screen.width;bb[bd].h=bb.screen.height;bb[bd].j=bb.innerHeight;bb[bd].e=bb.innerWidth;bb[bd].l=bb.location.href;bb[bd].r=bc.referrer;bb[bd].k=bb.screen.colorDepth;bb[bd].n=bc.characterSet;bb[bd].o=(new Date).getTimezoneOffset();if(bb.dataLayer)for(const bo of Object.entries(Object.entries(dataLayer).reduce(((bp,bq)=>({...bp[1],...bq[1]})),{})))zaraz.set(bo[0],bo[1],{scope:"page"});bb[bd].q=[];for(;bb.zaraz.q.length;){const br=bb.zaraz.q.shift();bb[bd].q.push(br)}bj.defer=!0;for(const bs of[localStorage,sessionStorage])Object.keys(bs||{}).filter((bu=>bu.startsWith("_zaraz"))).forEach((bt=>{try{bb[bd]["z"+bt.slice(7)]=JSON.parse(bs.getItem(bt))}catch{bb[bd]["z_"+bt.slice(7)]=bs.getItem(bt)}}));bj.referrerPolicy="origin";bj.src="/cdn-cgi/zaraz/s.js?z="+btoa(encodeURIComponent(JSON.stringify(bb[bd])));bi.parentNode.insertBefore(bj,bi)};["complete","interactive"].includes(bc.readyState)?zaraz.init():bb.addEventListener("DOMContentLoaded",zaraz.init)}(w,d,"zarazData","script");})(window,document);</script>
   
 
   <script src="https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js"></script>
@@ -74,7 +75,7 @@
 </script>
 
  <!-- Agregar la etiqueta link para el favicon -->
- <link rel="icon" href="{{ secure_asset('dist/img/D.png') }}" type="image/x-icon">
+ <link rel="icon" href="{{ asset('dist/img/D.png') }}" type="image/x-icon">
 
 
 
@@ -86,7 +87,7 @@
 
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__wobble" src="{{ secure_asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTELogo" height="60" width="60">
+    <img class="animation__wobble" src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTELogo" height="60" width="60">
   </div>
 
   <!-- Navbar -->
@@ -205,9 +206,9 @@
       <div class="user-panel mt-3 pb-3 mb-3 d-flex justify-content-center align-items-center flex-column">
           <div class="image profile-image-container">
               @if(Auth::check() && Auth::user()->photo)
-                  <img src="{{ secure_asset(Auth::user()->photo) }}" alt="Foto de perfil" class="profile-image rounded-circle w-100" id="profileImage">
+                  <img src="{{ asset(Auth::user()->photo) }}" alt="Foto de perfil" class="profile-image rounded-circle w-100" id="profileImage">
               @else
-                  <img src="{{ secure_asset('dist/img/D.png') }}" alt="Imagen predeterminada" class="profile-image rounded-circle w-100" id="profileImage">
+                  <img src="{{ asset('dist/img/D.png') }}" alt="Imagen predeterminada" class="profile-image rounded-circle w-100" id="profileImage">
               @endif
           </div>
           <div class="d-block text-center mt-2">
@@ -507,8 +508,8 @@
 <!-- overlayScrollbars -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.13.0/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
-<script src="{{ secure_asset('dist/js/adminlte.js') }}"></script>
-<script src="{{ secure_asset('js/nav.js') }}"></script>
+<script src="{{ asset('dist/js/adminlte.js') }}"></script>
+<script src="{{ asset('js/nav.js') }}"></script>
 
 
 
