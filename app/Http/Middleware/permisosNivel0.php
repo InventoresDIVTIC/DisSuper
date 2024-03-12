@@ -25,6 +25,6 @@ class permisosNivel0
         }
 
         // No es Admin
-        return response()->json(['error' => 'Acceso no autorizado'], 403);
+        return redirect()->route('403')->with('error', 'Acceso no autorizado.');
     }
 }

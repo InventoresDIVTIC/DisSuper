@@ -11,11 +11,12 @@ use App\Models\Empleado;
 use App\Models\Notification; 
 use Illuminate\Support\Facades\Mail;
 use App\Models\IndicadorDocumento;
+use App\Models\Zona;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Response;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\File;
-
+use Exception;
 
 
 
@@ -45,39 +46,56 @@ class DocumentosController extends Controller
         try {
             $request->validate([
                 'N_Llamada' => 'required',
-                'Introduccion' => 'required', 'string',
+                'Introduccion' => 'required|string',
+                'imagen' => 'required|array', // Validar que 'imagen' sea un array
+                'imagen.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Validar cada imagen individualmente
             ]);
+    
             // Obtener el ID del usuario que realiza el documento
             $Id_Usuario_Autor = auth()->id();
             // Obtener el ID del usuario al que se envía a revisión desde el formulario
        
            
-            
+            $zonas_usuario = user::find($Id_Usuario_Autor)->zonas[0]["nombre_zona"];
 
+            
             // Obtener los datos del formulario
             $datosFormulario = [
                 'nombre_archivo' => $request->input('nombre_archivo'),
                 'N_Llamada' => $request->input('N_Llamada'),
                 'Actividad' => $request->input('Actividad'),
                 'Fecha_Actividad' => $request->input('Fecha_Actividad'),
+                'Fecha_Supervision' => $request->input('Fecha_Supervision'),
                 'Introduccion' => $request->input('Introduccion'),
                 'Id_Usuario_Revisar' => $request->input('Id_Usuario_Revisar'),
                 'Id_Empleado' => $request->input('Id_Empleado'),
                 'Tipo_Documento' => $request->input('Tipo_Documento'),
                 'Status_Documento' => $request->input('Status_Documento'),
                 'contenido' => $request->input('contenido'),
+                'nombre_indicador' => $request->input('nombre_indicador'),
+             
                 // Otros campos del formulario según su estructura
+                'Zona_Autor' => $zonas_usuario,
 
             ];
-            ///dd($datosFormulario);
+
+            
+            
+            // Procesar los indicadores seleccionados y convertirlos en una cadena separada por comas
+            $indicadores = implode(',', $datosFormulario['nombre_indicador']);
+
+          
+    
             // Obtener el nombre del empleado al que se le hizo el documento
             $empleado = Empleado::find($datosFormulario['Id_Empleado']);
             $nombreEmpleado = $empleado->nombre; // Cambiar por el nombre real del empleado
-
+    
+            // Crear un nuevo documento
             $documento = new Documentos();
             $documento->N_llamada = $datosFormulario['N_Llamada'];
             $documento->Actividad = $datosFormulario['Actividad'];
             $documento->Fecha_Actividad = $datosFormulario['Fecha_Actividad'];
+            $documento->Fecha_Supervision = $datosFormulario['Fecha_Supervision'];
             $documento->Introduccion = $datosFormulario['Introduccion'];
             $documento->Id_Usuario_Autor = $Id_Usuario_Autor;
             $documento->Id_Usuario_Revisar = $datosFormulario['Id_Usuario_Revisar'];
@@ -85,28 +103,41 @@ class DocumentosController extends Controller
             $documento->Tipo_Documento = $datosFormulario['Tipo_Documento'];
             $documento->Status_Documento = $datosFormulario['Status_Documento'];
             $documento->contenido = $datosFormulario['contenido'];
+            $documento->nombre_indicador = $indicadores;
             $documento->subido_hecho = 1;
-            
-            
+   
+   // Procesar las imágenes
+
+            // Procesar las imágenes
+            $nombresImagenes = []; // Array para almacenar los nombres de las imágenes
+
             if ($request->hasFile('imagen')) {
-                $photo = $request->file('imagen');
-                if ($photo->isValid()) {
-                    $imageName = time() . '.' . $photo->getClientOriginalExtension();
-                    
-                    // Mover la imagen a la carpeta deseada
-                    $photo->move(public_path('dist/img/imagenes_documentos'), $imageName);
-            
-                    // Asignar la ruta de la imagen al campo 'imagen' del documento
-                    $documento->imagen = 'dist/img/imagenes_documentos/' . $imageName;
-                } else {
-                    return redirect()->back()->withInput()->withErrors([
-                        'imagen' => 'El archivo de imagen no es válido.',
-                    ]);
+                foreach ($request->file('imagen') as $imagen) {
+                    if ($imagen->isValid()) {
+                        $nombreImagen = time() . '_' . $imagen->getClientOriginalName();
+
+                        // Mover la imagen a la carpeta deseada
+                        $imagen->move(public_path('dist/img/imagenes_documentos'), $nombreImagen);
+
+                        // Guardar el nombre de la imagen en el array
+                        $nombresImagenes[] = $nombreImagen;
+                    } else {
+                        return redirect()->back()->withInput()->withErrors([
+                            'imagen' => 'Uno o más archivos de imagen no son válidos.',
+                        ]);
+                    }
                 }
             }
 
+            $datosFormulario['imagenes_documento'] = $nombresImagenes;
 
-            
+            // Convertir los nombres de las imágenes a una cadena separada por comas
+            $cadenaImagenes = implode(',', $nombresImagenes);
+
+            // Asignar la cadena de nombres de imágenes al campo 'imagen'
+            $documento->imagen = $cadenaImagenes;
+    
+    
             // Guardar el documento
             $documento->save();
           
@@ -119,7 +150,8 @@ class DocumentosController extends Controller
             
             $documento->notifications()->save($notification);
 
-
+            
+            try{
             // Generar el PDF a partir de la vista del formulario
             $html = view('pdf.formulario', compact('datosFormulario', 'empleado'))->render();
             $options = new Options();
@@ -135,6 +167,11 @@ class DocumentosController extends Controller
 
             // Ruta donde se guardará el archivo
             $rutaGuardado = public_path('dist/archivos/' . $nombreArchivo);
+            
+            if (!File::isDirectory(public_path('dist/archivos'))) {
+                dd("No existe el directorio");
+            }
+
             // Guardar el archivo PDF en la ruta especificada
             file_put_contents($rutaGuardado, $pdfOutput);
             $ruta = 'dist/archivos/' . $nombreArchivo;
@@ -142,7 +179,11 @@ class DocumentosController extends Controller
             // Actualizar el documento con la ruta del archivo PDF
             $documento->nombre_archivo = $ruta;
             $documento->save();
-
+            }catch(\Exception $e){
+                $mensaje = 'Error: ' . $e->getMessage();
+                dd($mensaje);
+            }
+            
             // Obtener el ID del usuario seleccionado en el formulario
             $Id_Usuario_Revisar = $request->input('Id_Usuario_Revisar');
             $Id_Usuario_Autor = $documento->Id_Usuario_Autor;

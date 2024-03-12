@@ -10,6 +10,9 @@ use App\Models\Contrato;
 use App\Models\Zona;
 use App\Models\User;
 use App\Models\Documentos;
+use App\Models\actividades;
+use App\Models\Indicadores;
+use Carbon\Carbon;
 
 class EmpleadoController extends Controller
 {
@@ -37,7 +40,7 @@ class EmpleadoController extends Controller
     public function create()
     {
         $zonas = Zona::all();
-        $contratos = Contrato::all();
+        $contratos = Contrato::all();                             
         return view('empleados.agregar', compact('contratos','zonas'));
     }
 
@@ -82,6 +85,16 @@ class EmpleadoController extends Controller
         $usuarios = User::all(); // Obtén todos los usuarios
         $zonas = Zona::all();
         $contratos = Contrato::all();
+        $actividades = actividades::all();
+        $indicadores = Indicadores::all();
+        $fechaActual = Carbon::now()->toDateString();
+        // Obtener el último número de llamada de atención del empleado actual
+        $ultimoNumeroLlamada = Documentos::where('Id_Empleado', $Id_Empleado)
+                                        ->where('Tipo_Documento', 'LLAMADA DE ATENCION')
+                                        ->max('N_Llamada');
+        
+        // Verificar si el último número de llamada es nulo
+        
         
         // Obtener los documentos del empleado actual
         $documentos = Documentos::where('Id_Empleado', $Id_Empleado)->get();
@@ -91,8 +104,9 @@ class EmpleadoController extends Controller
         $contadorLlamadasAtencion = $documentos->where('Tipo_Documento', 'LLAMADA DE ATENCION')->count();
         $contadorActasAdministrativas = $documentos->where('Tipo_Documento', 'ACTA ADMINISTRATIVA')->count();
 
-        return view('empleados.show', compact('empleado', 'documentos', 'contratos', 'zonas', 'usuarios', 'contadorRendicionCuentas', 'contadorLlamadasAtencion', 'contadorActasAdministrativas'));
+        return view('empleados.show', compact('empleado','indicadores','fechaActual', 'documentos', 'ultimoNumeroLlamada', 'contratos', 'zonas', 'actividades', 'usuarios', 'contadorRendicionCuentas', 'contadorLlamadasAtencion', 'contadorActasAdministrativas'));
     }
+
 
     /**
      * Show the form for editing the specified resource.

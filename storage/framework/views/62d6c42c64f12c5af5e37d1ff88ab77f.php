@@ -1,7 +1,6 @@
-@extends('layouts.nav')
-  @section('content')
+  <?php $__env->startSection('content'); ?>
 
-  <style src="{{secure_asset('dist/css/hallazgosIndicadores.css')}}"></style>
+  <style src="<?php echo e(asset('dist/css/hallazgosIndicadores.css')); ?>"></style>
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Main content -->
@@ -17,32 +16,34 @@
                                     alt="User profile picture">
                                     
                                 </div>
-                                <h3 class="profile-username text-center">Nombre: {{ $empleado->nombre_Empleado }}</h3>
-                                <p class="text-muted text-center">RPE:{{ $empleado->RPE_Empleado }}</p>
+                                <h3 class="profile-username text-center">Nombre: <?php echo e($empleado->nombre_Empleado); ?></h3>
+                                <p class="text-muted text-center">RPE:<?php echo e($empleado->RPE_Empleado); ?></p>
                                 <ul class="list-group list-group-unbordered mb-3">
                                     <li class="list-group-item">
                                         <b>Zona de Trabajo: </b>
-                                        @if ($empleado->zonas->count() > 0)
-                                                    @foreach ($empleado->zonas as $zona)
-                                                        {{ $zona->nombre_zona }}
-                                                        @if (!$loop->last)
+                                        <?php if($empleado->zonas->count() > 0): ?>
+                                                    <?php $__currentLoopData = $empleado->zonas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $zona): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                        <?php echo e($zona->nombre_zona); ?>
+
+                                                        <?php if(!$loop->last): ?>
                                                             ,
-                                                        @endif
-                                                    @endforeach
-                                                @else
+                                                        <?php endif; ?>
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                <?php else: ?>
                                                     Sin zona asignada
-                                                @endif
+                                                <?php endif; ?>
                                     </li>
                                     <li class="list-group-item">
                                         <b>Encargado de la Zona: </b> 
-                                        @if ($empleado->zonas->count() > 0 && $empleado->zonas->first()->encargado)
-                                                        {{ $empleado->zonas->first()->encargado->name }}
-                                                    @else
+                                        <?php if($empleado->zonas->count() > 0 && $empleado->zonas->first()->encargado): ?>
+                                                        <?php echo e($empleado->zonas->first()->encargado->name); ?>
+
+                                                    <?php else: ?>
                                                         Sin encargado asignado
-                                                    @endif
+                                                    <?php endif; ?>
                                     </li>
                                     <li class="list-group-item">
-                                        <b>Fecha de Ingreso: {{ $empleado->fecha_ingreso }}</b>
+                                        <b>Fecha de Ingreso: <?php echo e($empleado->fecha_ingreso); ?></b>
                                     </li>
                                 </ul>
                             </div>
@@ -61,16 +62,16 @@
 
                     <div class="card-body">
                         <div class="tab-content">
-                        {{-- Informacion General --}}
+                        
                             <div class="active tab-pane" id="InformacionGeneral">
                                 <div class="card-body">
-                                    {{-- Contador de Documentos --}}
+                                    
                                     <div class="row">
                                         <div class="col-12 col-sm-4">
                                             <div class="info-box bg-light">
                                                 <div class="info-box-content">
                                                     <span class="info-box-text text-center text-muted">Rendición de Cuentas</span>
-                                                    <span class="info-box-number text-center text-muted mb-0">{{ $contadorRendicionCuentas }}</span>
+                                                    <span class="info-box-number text-center text-muted mb-0"><?php echo e($contadorRendicionCuentas); ?></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -79,7 +80,7 @@
                                             <div class="info-box bg-light">
                                                 <div class="info-box-content">
                                                     <span class="info-box-text text-center text-muted">Llamadas de Atención</span>
-                                                    <span class="info-box-number text-center text-muted mb-0">{{ $contadorLlamadasAtencion }}</span>
+                                                    <span class="info-box-number text-center text-muted mb-0"><?php echo e($contadorLlamadasAtencion); ?></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -88,7 +89,7 @@
                                             <div class="info-box bg-light">
                                                 <div class="info-box-content">
                                                     <span class="info-box-text text-center text-muted">Actas Administrativas</span>
-                                                    <span class="info-box-number text-center text-muted mb-0">{{ $contadorActasAdministrativas }}</span>
+                                                    <span class="info-box-number text-center text-muted mb-0"><?php echo e($contadorActasAdministrativas); ?></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -114,49 +115,49 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                    @foreach($documentos as $documento)
+                                                    <?php $__currentLoopData = $documentos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $documento): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                         <tr>
-                                                            <td>{{ $documento->id }}</td>
-                                                            <td>{{ $documento->Fecha_Actividad }}</td>
-                                                            <td>{{ $documento->Tipo_Documento }}</td>
-                                                            <td>{{ $documento->emisor->name }}</td>
-                                                            <td>{{ $documento->receptor->name }}</td>
-                                                            <td>{{ $documento->Status_Documento }}</td>
-                                                            <td id="contador_{{ $documento->id }}"></td>
+                                                            <td><?php echo e($documento->id); ?></td>
+                                                            <td><?php echo e($documento->Fecha_Actividad); ?></td>
+                                                            <td><?php echo e($documento->Tipo_Documento); ?></td>
+                                                            <td><?php echo e($documento->emisor->name); ?></td>
+                                                            <td><?php echo e($documento->receptor->name); ?></td>
+                                                            <td><?php echo e($documento->Status_Documento); ?></td>
+                                                            <td id="contador_<?php echo e($documento->id); ?>"></td>
                                                             <td>
-                                                                <form action="{{ route('download.pdf', ['id' => $documento->id]) }}" method="POST">
-                                                                    @csrf
+                                                                <form action="<?php echo e(route('download.pdf', ['id' => $documento->id])); ?>" method="POST">
+                                                                    <?php echo csrf_field(); ?>
                                                                     <button type="submit" class="btn btn-primary btn-sm btn-block">
                                                                         <i class="fas fa-download"></i> Descargar
                                                                     </button>
                                                                 </form>
-                                                                @if($documento->subido_hecho === 1 )
-                                                                    <button onclick="copiarDatos('{{ $documento->contenido }}', '{{ $documento->Introduccion }}')" class="btn btn-danger btn-sm btn-block">
+                                                                <?php if($documento->subido_hecho === 1 ): ?>
+                                                                    <button onclick="copiarDatos('<?php echo e($documento->contenido); ?>', '<?php echo e($documento->Introduccion); ?>')" class="btn btn-danger btn-sm btn-block">
                                                                         <i class="fas fa-copy"></i> Copiar
                                                                     </button>
-                                                                @endif
+                                                                <?php endif; ?>
                                                             </td>
                                                             
                                                         
 
                                                             <td>
-                                                                @if($documento->Status_Documento !== 'ACEPTADO' && $documento->Status_Documento !== 'CANCELADO' && Auth::id() === $documento->Id_Usuario_Revisar && $documento->Status_Documento !== 'EN EDICION')
-                                                                    <form action="{{ route('cambiar.estado', ['id' => $documento->id]) }}" method="POST">
-                                                                        @csrf
+                                                                <?php if($documento->Status_Documento !== 'ACEPTADO' && $documento->Status_Documento !== 'CANCELADO' && Auth::id() === $documento->Id_Usuario_Revisar && $documento->Status_Documento !== 'EN EDICION'): ?>
+                                                                    <form action="<?php echo e(route('cambiar.estado', ['id' => $documento->id])); ?>" method="POST">
+                                                                        <?php echo csrf_field(); ?>
                                                                         <button type="submit" class="btn btn-success btn-sm">
                                                                             <i class="fas fa-check"></i> Aceptar
                                                                         </button>
                                                                     </form>
-                                                                @elseif($documento->Status_Documento === 'ACEPTADO' && Auth::id() === $documento->Id_Usuario_Revisar)
+                                                                <?php elseif($documento->Status_Documento === 'ACEPTADO' && Auth::id() === $documento->Id_Usuario_Revisar): ?>
                                                                     <!-- Si el documento ya está aceptado, mostrar un mensaje o simplemente un texto -->
                                                                     <span><i class="fas fa-check-circle"></i> Documento aceptado</span>
-                                                                @else
+                                                                <?php else: ?>
                                                                     <!-- Otro mensaje si el usuario no es el destinatario -->
-                                                                @endif
+                                                                <?php endif; ?>
 
-                                                                @if($documento->Status_Documento === 'CANCELADO' && (Auth::id() === $documento->Id_Usuario_Autor || Auth::id() === $documento->Id_Usuario_Revisar))
+                                                                <?php if($documento->Status_Documento === 'CANCELADO' && (Auth::id() === $documento->Id_Usuario_Autor || Auth::id() === $documento->Id_Usuario_Revisar)): ?>
                                                                     <!-- Botón para ver el comentario cancelado -->
-                                                                    <button class="btn btn-info btn-sm" onclick="verComentarioCancelado('{{ $documento->comentario_cancelado }}')">
+                                                                    <button class="btn btn-info btn-sm" onclick="verComentarioCancelado('<?php echo e($documento->comentario_cancelado); ?>')">
                                                                         <i class="fas fa-comment"></i> Ver comentario
                                                                     </button>
 
@@ -167,28 +168,28 @@
                                                                             alert("Comentario Cancelado: " + comentario);
                                                                         }
                                                                     </script>
-                                                                @endif
+                                                                <?php endif; ?>
 
-                                                                @if($documento->Status_Documento !== 'EN EDICION' && $documento->Status_Documento !== 'CANCELADO' && Auth::id() === $documento->Id_Usuario_Revisar && $documento->Status_Documento !== 'ACEPTADO' )
-                                                                    <form id="formRechazarDocumento_{{ $documento->id }}" action="{{ route('rechazar.documento', ['id' => $documento->id]) }}" method="POST" onsubmit="return validarRechazoFormulario('{{ $documento->id }}')">
-                                                                        @csrf
-                                                                        <button type="button" class="btn btn-danger btn-sm" onclick="toggleComentario('{{ $documento->id }}')">
+                                                                <?php if($documento->Status_Documento !== 'EN EDICION' && $documento->Status_Documento !== 'CANCELADO' && Auth::id() === $documento->Id_Usuario_Revisar && $documento->Status_Documento !== 'ACEPTADO' ): ?>
+                                                                    <form id="formRechazarDocumento_<?php echo e($documento->id); ?>" action="<?php echo e(route('rechazar.documento', ['id' => $documento->id])); ?>" method="POST" onsubmit="return validarRechazoFormulario('<?php echo e($documento->id); ?>')">
+                                                                        <?php echo csrf_field(); ?>
+                                                                        <button type="button" class="btn btn-danger btn-sm" onclick="toggleComentario('<?php echo e($documento->id); ?>')">
                                                                             <i class="fas fa-times"></i> Rechazar
                                                                         </button>
-                                                                        <div id="comentarioContainer_{{ $documento->id }}" style="display: none;">
-                                                                            <label for="comentarioRechazo_{{ $documento->id }}">Comentario de rechazo:</label>
-                                                                            <textarea name="comentarioRechazo" placeholder="Escriba aquí el motivo por el que está rechazando el documento" id="comentarioRechazo_{{ $documento->id }}" rows="4" cols="50" required></textarea>
+                                                                        <div id="comentarioContainer_<?php echo e($documento->id); ?>" style="display: none;">
+                                                                            <label for="comentarioRechazo_<?php echo e($documento->id); ?>">Comentario de rechazo:</label>
+                                                                            <textarea name="comentarioRechazo" placeholder="Escriba aquí el motivo por el que está rechazando el documento" id="comentarioRechazo_<?php echo e($documento->id); ?>" rows="4" cols="50" required></textarea>
                                                                         </div>
-                                                                        <button type="submit" class="btn btn-danger btn-sm" id="btnRechazar_{{ $documento->id }}" style="display: none;">
+                                                                        <button type="submit" class="btn btn-danger btn-sm" id="btnRechazar_<?php echo e($documento->id); ?>" style="display: none;">
                                                                             <i class="fas fa-times"></i> Confirmar Rechazo
                                                                         </button>
                                                                     </form>
-                                                                @elseif($documento->Status_Documento === 'EN EDICION' && Auth::id() === $documento->Id_Usuario_Revisar)
+                                                                <?php elseif($documento->Status_Documento === 'EN EDICION' && Auth::id() === $documento->Id_Usuario_Revisar): ?>
                                                                     <!-- Si el documento ya está en edición, mostrar un mensaje o simplemente un texto -->
                                                                     <span><i class="fas fa-edit"></i> Documento enviado a revisión</span>
-                                                                @else
+                                                                <?php else: ?>
                                                                     <!-- Otro mensaje si el usuario no es el destinatario -->
-                                                                @endif
+                                                                <?php endif; ?>
 
                                                                 <script>
                                                                     function toggleComentario(documentoId) {
@@ -234,21 +235,21 @@
                                                                         return true;
                                                                     }
                                                                 </script>
-                                                                @if($documento->Status_Documento === 'ACEPTADO' && Auth::id() === $documento->Id_Usuario_Autor)
-                                                                    <form id="formArchivo_{{ $documento->id }}" action="{{ route('documento.cambiar-archivo', $documento->id) }}" method="post" enctype="multipart/form-data">
-                                                                        @csrf
+                                                                <?php if($documento->Status_Documento === 'ACEPTADO' && Auth::id() === $documento->Id_Usuario_Autor): ?>
+                                                                    <form id="formArchivo_<?php echo e($documento->id); ?>" action="<?php echo e(route('documento.cambiar-archivo', $documento->id)); ?>" method="post" enctype="multipart/form-data">
+                                                                        <?php echo csrf_field(); ?>
 
                                                                         <!-- Botón para mostrar el input -->
-                                                                        <button type="button" class="btn btn-primary" onclick="mostrarInput('{{ $documento->id }}')">Terminar</button>
+                                                                        <button type="button" class="btn btn-primary" onclick="mostrarInput('<?php echo e($documento->id); ?>')">Terminar</button>
 
                                                                         <!-- Campo del nuevo archivo (inicialmente oculto) -->
-                                                                        <input type="file" name="nuevo_archivo" id="nuevo_archivo_{{ $documento->id }}" accept=".pdf, .doc, .docx" style="display: none;" required>
+                                                                        <input type="file" name="nuevo_archivo" id="nuevo_archivo_<?php echo e($documento->id); ?>" accept=".pdf, .doc, .docx" style="display: none;" required>
 
                                                                         <!-- Botón para enviar el formulario -->
-                                                                        <button type="button" class="btn btn-success" onclick="enviarFormulario('{{ $documento->id }}')" style="display: none;">Enviar</button>
+                                                                        <button type="button" class="btn btn-success" onclick="enviarFormulario('<?php echo e($documento->id); ?>')" style="display: none;">Enviar</button>
 
                                                                         <!-- Botón para cerrar el input -->
-                                                                        <button type="button" class="btn btn-danger" onclick="cerrarInput('{{ $documento->id }}')" style="display: none;">X</button>
+                                                                        <button type="button" class="btn btn-danger" onclick="cerrarInput('<?php echo e($documento->id); ?>')" style="display: none;">X</button>
                                                                     </form>
 
                                                                     <script>
@@ -286,30 +287,30 @@
                                                                             }
                                                                         }
                                                                     </script>
-                                                                @endif
+                                                                <?php endif; ?>
                                                                 <!--Fin de boton de terminar de documento -->
 
                                                                 <!--boton de redirigir de documento -->
                                                                 <div class="container1">
-                                                                    @if($documento->Status_Documento === 'ENVIADO' && Auth::id() === $documento->Id_Usuario_Revisar)
-                                                                        <button type="button" class="btn btn-success btn-sm" onclick="mostrarRedireccion('{{ $documento->id }}')">
+                                                                    <?php if($documento->Status_Documento === 'ENVIADO' && Auth::id() === $documento->Id_Usuario_Revisar): ?>
+                                                                        <button type="button" class="btn btn-success btn-sm" onclick="mostrarRedireccion('<?php echo e($documento->id); ?>')">
                                                                             Redirigir
                                                                         </button>
 
-                                                                        <form id="formRedireccion_{{ $documento->id }}" action="{{ route('redirigir.documento', ['id' => $documento->id]) }}" method="POST" style="display: none;">
-                                                                            @csrf
+                                                                        <form id="formRedireccion_<?php echo e($documento->id); ?>" action="<?php echo e(route('redirigir.documento', ['id' => $documento->id])); ?>" method="POST" style="display: none;">
+                                                                            <?php echo csrf_field(); ?>
                                                                             <label for="nuevoIdUsuario">Seleccionar Usuario:</label>
-                                                                            <select class="form-control" id="nuevoIdUsuario_{{ $documento->id }}" name="nuevoIdUsuario" required>
-                                                                                @foreach($usuarios as $usuario)
-                                                                                    @if($usuario->id !== auth()->user()->id && $usuario->id !== 1 && $usuario->RPE_Empleado !== $empleado->RPE_Empleado) 
-                                                                                        <option value="{{ $usuario->id }}">{{ $usuario->name }}</option>
-                                                                                    @endif
-                                                                                @endforeach
+                                                                            <select class="form-control" id="nuevoIdUsuario_<?php echo e($documento->id); ?>" name="nuevoIdUsuario" required>
+                                                                                <?php $__currentLoopData = $usuarios; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $usuario): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                                    <?php if($usuario->id !== auth()->user()->id && $usuario->id !== 1 && $usuario->RPE_Empleado !== $empleado->RPE_Empleado): ?> 
+                                                                                        <option value="<?php echo e($usuario->id); ?>"><?php echo e($usuario->name); ?></option>
+                                                                                    <?php endif; ?>
+                                                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                                             </select>
                                                                             <button type="submit" class="btn btn-success btn-sm">Confirmar Redirección</button>
                                                                         </form>
-                                                                        <a href="javascript:void(0);" onclick="cerrarFormRedireccion('{{ $documento->id }}')" id="btnCerrarRedireccion_{{ $documento->id }}" style="font-size: 20px; color: red; text-decoration: none; display: none;">&times;</a>
-                                                                    @endif
+                                                                        <a href="javascript:void(0);" onclick="cerrarFormRedireccion('<?php echo e($documento->id); ?>')" id="btnCerrarRedireccion_<?php echo e($documento->id); ?>" style="font-size: 20px; color: red; text-decoration: none; display: none;">&times;</a>
+                                                                    <?php endif; ?>
                                                                 </div>
                                                                 <script>
                                                                     function mostrarRedireccion(documentoId) {
@@ -329,13 +330,13 @@
                                                                 </script>
                                                                 <!-- Fin de boton de redirigir de documento -->
 
-                                                                @if($documento->Status_Documento === 'EN EDICION' && Auth::id() === $documento->Id_Usuario_Autor)
+                                                                <?php if($documento->Status_Documento === 'EN EDICION' && Auth::id() === $documento->Id_Usuario_Autor): ?>
                                                                     <!-- Si el documento está en EDICION y el usuario es el autor, mostrar botón de Editar -->
-                                                                    <a href="{{ route('editar.documento', ['id' => $documento->id]) }}" class="btn btn-primary btn-sm">
+                                                                    <a href="<?php echo e(route('editar.documento', ['id' => $documento->id])); ?>" class="btn btn-primary btn-sm">
                                                                         <i class="fas fa-edit"></i> Editar
                                                                     </a>
                                                                     <!-- Si el documento está RECHAZADO y el usuario es el autor, mostrar enlace para ver el comentario -->
-                                                                    <a href="#" class="btn btn-info btn-sm" onclick="verComentario('{{ $documento->comentario_rechazado }}')">
+                                                                    <a href="#" class="btn btn-info btn-sm" onclick="verComentario('<?php echo e($documento->comentario_rechazado); ?>')">
                                                                         <i class="fas fa-comment"></i> Ver Nota
                                                                     </a>
 
@@ -346,25 +347,25 @@
                                                                             alert("Comentario: " + comentario);
                                                                         }
                                                                     </script>
-                                                                @endif
+                                                                <?php endif; ?>
 
                                                                 <div class="container">
-                                                                    @if(Auth::user()->roles[0]['nivel_permisos'] < 1 && $documento->Status_Documento !== 'CANCELADO' &&  $documento->Status_Documento !== 'TERMINADO' )
-                                                                        <form id="formCancelarDocumento_{{ $documento->id }}" action="{{ route('cancelar.documento', ['id' => $documento->id]) }}" method="POST" onsubmit="return validarFormulario('{{ $documento->id }}')">
-                                                                            @csrf
-                                                                            <textarea name="comentario" id="comentario_{{ $documento->id }}" placeholder="Escribe aquí el motivo de la cancelación del documento" rows="4" cols="50" style="display: none;"></textarea>
-                                                                            <button type="button" class="btn btn-warning btn-sm" onclick="toggleMotivo('{{ $documento->id }}')">
+                                                                    <?php if(Auth::user()->roles[0]['nivel_permisos'] < 1 && $documento->Status_Documento !== 'CANCELADO' &&  $documento->Status_Documento !== 'TERMINADO' ): ?>
+                                                                        <form id="formCancelarDocumento_<?php echo e($documento->id); ?>" action="<?php echo e(route('cancelar.documento', ['id' => $documento->id])); ?>" method="POST" onsubmit="return validarFormulario('<?php echo e($documento->id); ?>')">
+                                                                            <?php echo csrf_field(); ?>
+                                                                            <textarea name="comentario" id="comentario_<?php echo e($documento->id); ?>" placeholder="Escribe aquí el motivo de la cancelación del documento" rows="4" cols="50" style="display: none;"></textarea>
+                                                                            <button type="button" class="btn btn-warning btn-sm" onclick="toggleMotivo('<?php echo e($documento->id); ?>')">
                                                                             Cancelar
                                                                             </button>
-                                                                            <button type="submit" class="btn btn-danger btn-sm" id="btnCancelar_{{ $documento->id }}" style="display: none;">Confirmar Cancelación</button>
-                                                                            <button type="button" class="btn btn-secondary btn-sm" onclick="toggleMotivo('{{ $documento->id }}')" style="display: none;">X</button>
+                                                                            <button type="submit" class="btn btn-danger btn-sm" id="btnCancelar_<?php echo e($documento->id); ?>" style="display: none;">Confirmar Cancelación</button>
+                                                                            <button type="button" class="btn btn-secondary btn-sm" onclick="toggleMotivo('<?php echo e($documento->id); ?>')" style="display: none;">X</button>
                                                                         </form>
-                                                                    @endif
+                                                                    <?php endif; ?>
                                                                 </div>
 
                                                             </td>
                                                         </tr>
-                                                    @endforeach
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -389,53 +390,53 @@
                                         <li class="nav-item" style="width: 20%"><a class="nav-link text-center text-muted" href="#ListadoDocumentos" data-toggle="tab">Listado de Documentos</a></li>
                                         <li class="nav-item" style="width: 20%"><a class="nav-link text-center text-muted" href="#Subir_Doc" data-toggle="tab">Subir Documento</a></li>
 
-                                        @php
+                                        <?php
                                             $secuencia = ($contadorRendicionCuentas + $contadorLlamadasAtencion + $contadorActasAdministrativas) % 4;
-                                        @endphp
+                                        ?>
 
-                                        @if($secuencia === 0)
+                                        <?php if($secuencia === 0): ?>
                                             <!-- Mostrar Rendición de Cuentas si la secuencia es 0 -->
                                             <li class="nav-item" style="width: 33.3%"><a class="nav-link text-center text-muted" href="#GenerarRC" data-toggle="tab">Rendición de Cuentas</a></li>
-                                        @elseif($secuencia === 1 || $secuencia === 2)
+                                        <?php elseif($secuencia === 1 || $secuencia === 2): ?>
                                             <!-- Mostrar Llamada de Atención si la secuencia es 1 o 2 -->
                                             <li class="nav-item" style="width: 33.3%"><a class="nav-link text-center text-muted" href="#GenerarLlA" data-toggle="tab" id="llamadaAtencionTab">Llamada de Atención</a></li>
-                                        @elseif($secuencia === 3)
+                                        <?php elseif($secuencia === 3): ?>
                                         <!-- Mensaje sobre la necesidad de realizar un Acta Administrativa -->
                                         <li class="nav-item" style="width: 50%"><span class="nav-link text-center text-warning">Subir en el apartado de "Subir Documento" un Acta Administrativa ya que este empleado cuenta con 1 rendicion de cuentas y 2 llamadas de atención</span></li>
-                                        @endif
+                                        <?php endif; ?>
                                     </ul>
                                 </div>
 
-                    <div class="tab-content" id="custom-below-tabContent">
-                      <div class="active tab-pane" id="ListadoDocumentos">
-                        <div class="card-body p-0">
-                          <table class="table">
-                          <thead>
-                            <tr>
-                              
-                              <th style="width: 180px">Fecha</th>
-                              <th>Tipo Documento</th>
-                              <th>Emitido por</th>
-                              <th>Eviado a</th> 
-                              <th>Estado</th>
-                              <th></th> 
-                              <th style="width: 120px"></th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            @foreach($documentos as $documento)
-                              <tr>
-                                  <td>{{ $documento->Fecha_Actividad }}</td>
-                                  <td>{{ $documento->Tipo_Documento }}</td>
-                                  <td>{{ $documento->emisor->name }}</td>
-                                  <td>{{ $documento->receptor->name }}</td>
-                                  <td>{{ $documento->Status_Documento }}</td>
-                                  <td>
-                                    <a href="{{ asset($documento->nombre_archivo) }}">Descargar</a>
+                                <div class="tab-content" id="custom-below-tabContent">
+                                    <div class="active tab-pane" id="ListadoDocumentos">
+                                        <div class="card-body p-0">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                    
+                                                    <th style="width: 180px">Fecha</th>
+                                                    <th>Tipo Documento</th>
+                                                    <th>Emitido por</th>
+                                                    <th>Eviado a</th> 
+                                                    <th>Estado</th>
+                                                    <th></th> 
+                                                    <th style="width: 120px"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <?php $__currentLoopData = $documentos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $documento): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <tr>
+                                                        <td><?php echo e($documento->Fecha_Actividad); ?></td>
+                                                        <td><?php echo e($documento->Tipo_Documento); ?></td>
+                                                        <td><?php echo e($documento->emisor->name); ?></td>
+                                                        <td><?php echo e($documento->receptor->name); ?></td>
+                                                        <td><?php echo e($documento->Status_Documento); ?></td>
+                                                        <td>
+                                                            <a href="<?php echo e(asset($documento->nombre_archivo)); ?>">Descargar</a>
 
                                                         </td>
                                                     </tr>
-                                                    @endforeach
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -455,7 +456,7 @@
                                     <div class="tab-pane" id="Subir_Doc">
 
                                         <form method="POST" action="/guardar-documento"id="subirForm" enctype="multipart/form-data">
-                                            @csrf
+                                            <?php echo csrf_field(); ?>
                                             <div class="form-group row">
                                                 <div class="text-primary col-md-12">
                                                     <!-- Encabezado del formulario -->
@@ -466,36 +467,36 @@
                                             <div class="form-group row">
                                                 <label class="col-sm-1.8 col-form-label">Tipo de Documento: </label>
                                                 <div class="col-sm-3">
-                                                    @php
+                                                    <?php
                                                         $secuenciaDocumento = ($contadorRendicionCuentas + $contadorLlamadasAtencion + $contadorActasAdministrativas) % 4;
-                                                    @endphp
+                                                    ?>
 
-                                                    @if($secuenciaDocumento === 0)
+                                                    <?php if($secuenciaDocumento === 0): ?>
                                                         <!-- Mostrar opciones para Rendición de Cuentas -->
                                                         <select class="form-control" id="Tipo_Documento" name="Tipo_Documento" placeholder="Tipo de Documento">
                                                             <option>RENDICION DE CUENTAS</option>
                                                         </select>
-                                                    @elseif($secuenciaDocumento === 1 || $secuenciaDocumento === 2)
+                                                    <?php elseif($secuenciaDocumento === 1 || $secuenciaDocumento === 2): ?>
                                                         <!-- Mostrar opciones para Llamada de Atención -->
                                                         <select class="form-control" id="Tipo_Documento" name="Tipo_Documento" placeholder="Tipo de Documento">
                                                             <option>LLAMADA DE ATENCION</option>
                                                         </select>
-                                                    @elseif($secuenciaDocumento === 3)
+                                                    <?php elseif($secuenciaDocumento === 3): ?>
                                                         <!-- Mostrar opciones para Acta Administrativa -->
                                                         <select class="form-control" id="Tipo_Documento" name="Tipo_Documento" placeholder="Tipo de Documento">
                                                             <option>ACTA ADMINISTRATIVA</option>
                                                         </select>
-                                                    @endif
+                                                    <?php endif; ?>
                                                 </div>
 
                                                 <label class="col-sm-1.8 col-form-label">Encargado de Revisión: </label>
                                                 <div class="col-sm-3">
                                                     <select class="form-control" id="Id_Usuario_Revisar" placeholder="Encargado de Revisión" name="Id_Usuario_Revisar">
-                                                        @foreach($usuarios as $index => $usuario)
-                                                        @if($usuario->id !== auth()->user()->id && $usuario->id !== 1 &&$usuario->RPE_Empleado !== $empleado->RPE_Empleado) 
-                                                                <option value="{{ $usuario->id }}">{{ $usuario->name }}</option>
-                                                            @endif
-                                                        @endforeach
+                                                        <?php $__currentLoopData = $usuarios; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $usuario): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                        <?php if($usuario->id !== auth()->user()->id && $usuario->id !== 1 &&$usuario->RPE_Empleado !== $empleado->RPE_Empleado): ?> 
+                                                                <option value="<?php echo e($usuario->id); ?>"><?php echo e($usuario->name); ?></option>
+                                                            <?php endif; ?>
+                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                     </select>
                                                 </div>
                                             </div>
@@ -519,7 +520,7 @@
                                                 document.getElementById('nombreArchivoSeleccionado').textContent = 'Nombre del archivo: ' + nombreArchivo;
                                                 }
                                             </script>
-                                            <input type="hidden" name="Id_Empleado" id="Id_Empleado" value="{{$empleado->id}}">
+                                            <input type="hidden" name="Id_Empleado" id="Id_Empleado" value="<?php echo e($empleado->id); ?>">
                                             <input type="hidden" name="Status_Documento" id="Status_Documento" value="ENVIADO">
 
                                             <div class="form-group row">
@@ -550,8 +551,8 @@
 
 
                                     <div class="tab-pane" id="GenerarLlA">
-                                        <form action="{{ url('/procesar-formulario') }}"id="llamadaAtencionForm" method="POST" enctype="multipart/form-data">
-                                        @csrf
+                                        <form action="<?php echo e(url('/procesar-formulario')); ?>"id="llamadaAtencionForm" method="POST" enctype="multipart/form-data">
+                                        <?php echo csrf_field(); ?>
                                             <div class="form-group row">
                                                 <div class="text-primary col-md-12">
                                                     <!-- Encabezado del formulario -->
@@ -565,7 +566,7 @@
                                                 <label for="N_Llamada" class="col-sm-1.8 col-form-label">N. Llamada</label>
                                                 <div class="col-sm-1"> <!-- Cambiado a col-sm-1 para reducir el ancho -->
                                                     <!-- El valor de N. Llamada se autoincrementará y no será modificable -->
-                                                    <input type="number" class="form-control" id="N_Llamada" name="N_Llamada" placeholder="N. llamada" value="{{ $ultimoNumeroLlamada + 1 }}" readonly>
+                                                    <input type="number" class="form-control" id="N_Llamada" name="N_Llamada" placeholder="N. llamada" value="<?php echo e($ultimoNumeroLlamada + 1); ?>" readonly>
                                                 </div>
 
                                                 <label class="col-sm-1.5 col-form-label">Actividad</label>
@@ -575,16 +576,16 @@
                                                         <!-- Agregar una opción por defecto si es necesario -->
                                                         <option value="">Selecciona una actividad</option>
                                                         <!-- Iterar sobre las actividades y mostrarlas en el select -->
-                                                        @foreach($actividades as $actividad)
-                                                            <option value="{{ $actividad->id }}">{{ $actividad->name }}</option>
-                                                        @endforeach
+                                                        <?php $__currentLoopData = $actividades; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $actividad): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                            <option value="<?php echo e($actividad->id); ?>"><?php echo e($actividad->name); ?></option>
+                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                     </select>
                                                 </div>
 
                                                 <label class="col-sm-1.5 col-form-label">Fecha de la supervision</label>
                                                 <div class="col-sm-3">
                                                     <!-- El campo de Fecha con la fecha actual y no editable -->
-                                                    <input type="date" class="form-control" id="Fecha_Supervision" name="Fecha_Supervision" value="{{ $fechaActual }}" readonly>
+                                                    <input type="date" class="form-control" id="Fecha_Supervision" name="Fecha_Supervision" value="<?php echo e($fechaActual); ?>" readonly>
                                                 </div>
 
                                             </div>
@@ -593,7 +594,7 @@
                                                 <label class="col-sm-1.5 col-form-label">Fecha de la actividad</label>
                                                 <div class="col-sm-3">
                                                     <!-- El campo de Fecha con la fecha actual y editable -->
-                                                    <input type="date" class="form-control" id="Fecha_Actividad" name="Fecha_Actividad" value="{{ $fechaActual }}">
+                                                    <input type="date" class="form-control" id="Fecha_Actividad" name="Fecha_Actividad" value="<?php echo e($fechaActual); ?>">
                                                 </div>
                                             </div>
 
@@ -601,9 +602,9 @@
                                                 <label class="col-sm-1.5 col-form-label">Indicadores afectados:</label>
                                                 <div class="select-wrapper">
                                                     <select id="nombre_indicador" onchange="agregarFila()">
-                                                        @foreach($indicadores as $indicador)
-                                                            <option value="{{ $indicador->Nombre_Indicador }}">{{ $indicador->Nombre_Indicador }}</option>
-                                                        @endforeach
+                                                        <?php $__currentLoopData = $indicadores; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $indicador): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                            <option value="<?php echo e($indicador->Nombre_Indicador); ?>"><?php echo e($indicador->Nombre_Indicador); ?></option>
+                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                     </select>
                                                 </div>
                                                 <table id="tabla" class="custom-table">
@@ -647,7 +648,7 @@
                                             </script>
                                     
 
-                                            <input type="hidden" name="Id_Empleado" id="Id_Empleado" value="{{$empleado->id}}">
+                                            <input type="hidden" name="Id_Empleado" id="Id_Empleado" value="<?php echo e($empleado->id); ?>">
                                             <input type="hidden" name="Tipo_Documento" id="Tipo_Documento" value="LLAMADA DE ATENCION">
                                             <input type="hidden" name="Status_Documento" id="Status_Documento" value="ENVIADO">
                                     
@@ -657,9 +658,9 @@
                                                 <div class="col-sm-12">
                                                     <textarea class="form-control"id="Introduccion"name="Introduccion" rows="3" placeholder="Explique de manera general el motivo de la Rendición de Cuentas"></textarea>
                                                 </div>
-                                                @if ($errors->has('Introduccion'))
-                                                    <span class="error-message">{{ $errors->first('Introduccion') }}</span>
-                                                @endif
+                                                <?php if($errors->has('Introduccion')): ?>
+                                                    <span class="error-message"><?php echo e($errors->first('Introduccion')); ?></span>
+                                                <?php endif; ?>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="inputCargo" class="col-sm-12 col-form-label">Explicación</label>
@@ -742,11 +743,11 @@
                                                 <div class="col-sm-9">
                                                     <div class="form-group">
                                                         <select class="form-control" id="Id_Usuario_Revisar" name="Id_Usuario_Revisar">
-                                                            @foreach($usuarios as $usuario)
-                                                                @if($usuario->id !== auth()->user()->id && $usuario->id !== 1 &&$usuario->RPE_Empleado !== $empleado->RPE_Empleado) 
-                                                                    <option value="{{ $usuario->id }}">{{ $usuario->name }}</option>
-                                                                @endif
-                                                            @endforeach
+                                                            <?php $__currentLoopData = $usuarios; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $usuario): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                <?php if($usuario->id !== auth()->user()->id && $usuario->id !== 1 &&$usuario->RPE_Empleado !== $empleado->RPE_Empleado): ?> 
+                                                                    <option value="<?php echo e($usuario->id); ?>"><?php echo e($usuario->name); ?></option>
+                                                                <?php endif; ?>
+                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -799,43 +800,52 @@
 
                             <div class="tab-pane" id="ModInfo">
                         
-                                <form method="POST"id="tuFormularioId" action="{{ route('empleado.update', $empleado->id) }}">
-                                    @csrf
-                                    @method('PATCH')
+                                <form method="POST"id="tuFormularioId" action="<?php echo e(route('empleado.update', $empleado->id)); ?>">
+                                    <?php echo csrf_field(); ?>
+                                    <?php echo method_field('PATCH'); ?>
                                 
-                                    <input type="hidden" class="form-control" id="RPE_Empleado" maxlength="5" value="{{ $empleado->RPE_Empleado }}" name="RPE_Empleado" placeholder="RPE">
+                                    <input type="hidden" class="form-control" id="RPE_Empleado" maxlength="5" value="<?php echo e($empleado->RPE_Empleado); ?>" name="RPE_Empleado" placeholder="RPE">
                                 
 
                                     <div class="form-group">
                                         <label for="nombre_Empleado"><i class="fas fa-user"></i> Nombre:</label>
-                                        <input type="text" class="form-control" id="nombre_Empleado" name="nombre_Empleado"value="{{ $empleado->nombre_Empleado }}" placeholder="Nombre">
+                                        <input type="text" class="form-control" id="nombre_Empleado" name="nombre_Empleado"value="<?php echo e($empleado->nombre_Empleado); ?>" placeholder="Nombre">
                                     </div>
-                                    @if ($errors->has('nombre_Empleado'))
-                                        <span class="error-message">{{ $errors->first('nombre_Empleado') }}</span>
-                                    @endif
+                                    <?php if($errors->has('nombre_Empleado')): ?>
+                                        <span class="error-message"><?php echo e($errors->first('nombre_Empleado')); ?></span>
+                                    <?php endif; ?>
 
                                     <div class="form-group">
                                         <label for="contrato_id"><i class="fas fa-file-contract"></i> Contrato:</label>
                                         <select name="contrato" id="contrato" class="form-control">
-                                            @foreach($contratos as $contrato)
-                                                <option value="{{ $contrato->id }}" {{ $empleado->contrato_id == $contrato->id ? 'selected' : '' }}>
-                                                    {{ $contrato->name }}
+                                            <?php $__currentLoopData = $contratos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $contrato): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <option value="<?php echo e($contrato->id); ?>" <?php echo e($empleado->contrato_id == $contrato->id ? 'selected' : ''); ?>>
+                                                    <?php echo e($contrato->name); ?>
+
                                                 </option>
-                                            @endforeach
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </select>
                                     </div>
-                                    @if ($errors->has('contrato'))
-                                        <span class="error-message">{{ $errors->first('contrato') }}</span>
-                                    @endif
+                                    <?php if($errors->has('contrato')): ?>
+                                        <span class="error-message"><?php echo e($errors->first('contrato')); ?></span>
+                                    <?php endif; ?>
 
                                     <label for="zonas"><i ></i> Selecciona una Zona:</label><br>
                                     <div class="input-group mb-3">
-                                        <select id="zonas" name="zonas[]" class="form-control @error('zona') is-invalid @enderror">
-                                            @foreach ($zonas as $zona)
-                                            <option value="{{ $zona->id }}" {{ in_array($zona->id, $empleado->zonas->pluck('id')->toArray()) ? 'selected' : '' }}>
-                                                {{ $zona->nombre_zona }}
+                                        <select id="zonas" name="zonas[]" class="form-control <?php $__errorArgs = ['zona'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>">
+                                            <?php $__currentLoopData = $zonas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $zona): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <option value="<?php echo e($zona->id); ?>" <?php echo e(in_array($zona->id, $empleado->zonas->pluck('id')->toArray()) ? 'selected' : ''); ?>>
+                                                <?php echo e($zona->nombre_zona); ?>
+
                                             </option>
-                                            @endforeach
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </select>
                                         <div class="input-group-append">
                                             <div class="input-group-text">
@@ -843,17 +853,17 @@
                                             </div>
                                         </div>
                                 </div>
-                                @if ($errors->has('zona'))
-                                    <span class="error-message">{{ $errors->first('zona') }}</span>
-                                @endif
+                                <?php if($errors->has('zona')): ?>
+                                    <span class="error-message"><?php echo e($errors->first('zona')); ?></span>
+                                <?php endif; ?>
 
                                     <div class="form-group">
                                         <label for="fecha_ingreso"><i class="fas fa-calendar"></i> Fecha Ingreso:</label>
-                                        <input type="date" class="form-control" name="fecha_ingreso" id="fecha_ingreso"value="{{ $empleado->fecha_ingreso }}" required>
+                                        <input type="date" class="form-control" name="fecha_ingreso" id="fecha_ingreso"value="<?php echo e($empleado->fecha_ingreso); ?>" required>
                                     </div>
-                                    @if ($errors->has('fecha_ingreso'))
-                                        <span class="error-message">{{ $errors->first('fecha_ingreso') }}</span>
-                                    @endif
+                                    <?php if($errors->has('fecha_ingreso')): ?>
+                                        <span class="error-message"><?php echo e($errors->first('fecha_ingreso')); ?></span>
+                                    <?php endif; ?>
 
                                     <div class="form-group row">
                                         <div class="offset-sm-2 col-sm-10">
@@ -925,30 +935,30 @@ function iniciarContador(documentoId, fechaCreacion, duracionPredeterminada) {
 }
 
 // Llamar a la función inicialmente para iniciar los contadores para cada documento
-@foreach($documentos as $documento)
+<?php $__currentLoopData = $documentos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $documento): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
     // Obtener el estado del documento y la fecha de creación en milisegundos
-    var estado{{ $documento->id }} = "{{ $documento->Status_Documento }}";
-    var fechaCreacion{{ $documento->id }} = new Date("{{ $documento->created_at }}").getTime();
+    var estado<?php echo e($documento->id); ?> = "<?php echo e($documento->Status_Documento); ?>";
+    var fechaCreacion<?php echo e($documento->id); ?> = new Date("<?php echo e($documento->created_at); ?>").getTime();
     
     // Definir la duración predeterminada en milisegundos según el estado del documento
-    var duracionPredeterminada{{ $documento->id }} = 18 * 60 * 60 * 1000; // Duración predeterminada de 24 horas
+    var duracionPredeterminada<?php echo e($documento->id); ?> = 18 * 60 * 60 * 1000; // Duración predeterminada de 24 horas
     
     // Ajustar la duración según el estado del documento
-    if (estado{{ $documento->id }} === 'EN EDICION' ) {
+    if (estado<?php echo e($documento->id); ?> === 'EN EDICION' ) {
         // Duración de 24 horas para documentos en edición o aceptados
-        duracionPredeterminada{{ $documento->id }} = 19 * 60 * 60 * 1000;
+        duracionPredeterminada<?php echo e($documento->id); ?> = 19 * 60 * 60 * 1000;
     }
-    if (estado{{ $documento->id }} === 'ACEPTADO' ) {
+    if (estado<?php echo e($documento->id); ?> === 'ACEPTADO' ) {
         // Duración de 24 horas para documentos en edición o aceptados
-        duracionPredeterminada{{ $documento->id }} = 20 * 60 * 60 * 1000;
+        duracionPredeterminada<?php echo e($documento->id); ?> = 20 * 60 * 60 * 1000;
     }
     
     // Iniciar el contador para el documento actual si cumple con las condiciones
-    @if($documento->Status_Documento !== 'CANCELADO' && $documento->Status_Documento !== 'TERMINADO' )
-        iniciarContador({{ $documento->id }}, fechaCreacion{{ $documento->id }}, duracionPredeterminada{{ $documento->id }});
-    @endif
+    <?php if($documento->Status_Documento !== 'CANCELADO' && $documento->Status_Documento !== 'TERMINADO' ): ?>
+        iniciarContador(<?php echo e($documento->id); ?>, fechaCreacion<?php echo e($documento->id); ?>, duracionPredeterminada<?php echo e($documento->id); ?>);
+    <?php endif; ?>
     
-@endforeach
+<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 
 
@@ -982,6 +992,8 @@ function iniciarContador(documentoId, fechaCreacion, duracionPredeterminada) {
                                         return true;
                                     }
                                     </script>
-<script src="{{ asset('dist/js/slidebar.js') }}"></script>
-<script src="{{asset('dist/js/mostrarHallazgos.js')}}"></script>
-@endsection
+<script src="<?php echo e(asset('dist/js/slidebar.js')); ?>"></script>
+<script src="<?php echo e(asset('dist/js/mostrarHallazgos.js')); ?>"></script>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\DisSuper\resources\views/empleados/show.blade.php ENDPATH**/ ?>

@@ -25,10 +25,11 @@ return new class extends Migration
             $table->string('Id_Usuario_Revisar2')->nullable();
             $table->integer("Id_Usuario_Revisar");   //a quien se manda a revisar
             $table->integer("Id_Usuario_Cancelacion")->nullable();   //a quien se manda a revisar
-
+            $table->string('nombre_indicador')->nullable();
             $table->text("N_Llamada")->nullable();
-            $table->integer("Actividad")->nullable();
-            $table->date("Fecha_Actividad")->nullable();
+            $table->string("Actividad")->nullable();
+            $table->date("Fecha_Actividad")->nullable();    //Fecha de la actividad a evaluar
+            $table->date("Fecha_Supervision")->nullable();  //Fecha del documento
             $table->text("Introduccion")->nullable();
             $table->string('nombre_archivo')->nullable(); 
             $table->text('contenido')->nullable();

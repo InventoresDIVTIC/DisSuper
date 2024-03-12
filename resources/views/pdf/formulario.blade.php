@@ -1,11 +1,10 @@
-
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Plantilla Dissuper 1</title>
+    <title>Llamada de atención</title>
 
     
     <style>
@@ -79,6 +78,16 @@
             size: 11;
         }
 
+        .escalado-horizontal {
+            width: 400px;
+            height: auto;
+        }
+
+        .escalado-vertical {
+            width: auto;
+            height: 250px;
+        }
+
     </style>
 </head>
 
@@ -86,6 +95,18 @@
 $nombreImagen = public_path('dist/img/cfe_Logo.jpg');
 
 $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nombreImagen));
+
+$i = 0;
+$EvidenciaBase64 = [];
+$ancho = [];
+$alto = [];
+foreach ($datosFormulario['imagenes_documento'] as $imagen) {
+    $imagenEvidencia = public_path('dist/img/imagenes_documentos/' . $imagen);
+    list($ancho[$i], $alto[$i]) = getimagesize($imagenEvidencia);
+    $EvidenciaBase64[$i] = "data:image/png;base64," . base64_encode(file_get_contents($imagenEvidencia));
+    $i++;
+}
+
 ?>
 <body>
     <div id="header">
@@ -115,10 +136,10 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
 
     <div class="datos_Documento">
         <b>
-        Lugar, {{now()->format('d/F/Y')}}<br><br>
+        {{$datosFormulario['Zona_Autor']}}, Jalisco, {{now()->format('d/F/Y')}}<br><br>
         Asunto:{{$datosFormulario['Tipo_Documento']}}<br>
-        Actividad Supervisada:<br>
-        Fecha de Actividad:<br>
+        Actividad Supervisada:{{$datosFormulario['Actividad']}}<br>
+        Fecha de Actividad:{{$datosFormulario['Fecha_Supervision']}}<br>
         Fecha de Supervision: {{$datosFormulario['Fecha_Actividad']}}<br><br>
         </b>
 
@@ -138,7 +159,7 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
     <div>
         <p>
 
-        Se realizó supervisión al ciclo <b>"Ciclo" Tarea {{$datosFormulario['Actividad']}}</b> asignada al <b>C. <{{$empleado['nombre_Empleado']}}</b>, R.P.E <b>{{$empleado->RPE_Empleado}} </b>realizado el día 18  de Octubre del 2023.
+        Se realizó supervisión al ciclo <b>"Ciclo" Tarea {{$datosFormulario['Actividad']}}</b> asignada al <b>C. {{$empleado['nombre_Empleado']}}</b>, R.P.E <b>{{$empleado->RPE_Empleado}} </b>realizado el día 18  de Octubre del 2023.
         </p>
     </div>
 
@@ -152,8 +173,23 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
     </div>
 
     <div class="content">
-        <h2>Lipsum</h2>
-        <label class="col-sm-2 col-form-label">Introducción:</label>
+        @for ($im = 0; $im < $i; $im++)
+
+        <h2>Imagen: {{ $ancho[$im] }} x {{ $alto[$im] }} píxeles</h2>
+        <p>{{$datosFormulario['imagenes_documento'][0]}}</p>
+
+        @if ($ancho[$im] / $alto[$im] > 4000/2500)
+        <img src="<?php echo $EvidenciaBase64[$im] ?>" class="escalado-horizontal">
+        <p>400</p>
+        @else
+        <img src="<?php echo $EvidenciaBase64[$im] ?>" class="escalado-vertical">
+        <p>250</p>
+        @endif
+
+        @endfor
+        
+        
+        
         <!-- Lipsum content shortened for brevity -->
     </div>
 

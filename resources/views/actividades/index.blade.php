@@ -17,8 +17,8 @@
                 <form action="{{ route('actividades.store') }}" method="POST" class="form-inline">
                     @csrf
                     <div class="input-group">
-                        <input class="form-control" id="nombre_actividad" name="nombre_actividad" placeholder="Nombre de la nueva actividad" style="width: 35%;">
-                        <input class="form-control" id="clave_actividad" name="clave_actividad" placeholder="Clave de la actividad" style="width: 25%;">
+                        <input class="form-control" id="clave_actividad" name="clave_actividad"  placeholder="Clave de la actividad" style="width: 35%;">
+                        <input class="form-control" id="nombre_actividad" name="nombre_actividad" placeholder="Nombre de la nueva actividad" style="width: 25%;">
                         <div class="input-group-append">
                             <button class="btn btn-primary" type="submit">
                                 <i class="fas fa-plus"></i> Agregar Actividad

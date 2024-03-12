@@ -26,6 +26,6 @@ class JefaturaZonalProcesoTrabajoMiddleware
         }
 
         // No es uno de los roles de jefatura zonal de proceso de trabajo
-        return response()->json(['error' => 'Acceso no autorizado'], 403);
+        return redirect()->route('403')->with('error', 'Acceso no autorizado.');
     }
 }
