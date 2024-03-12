@@ -1,64 +1,58 @@
 @extends('layouts.nav')
-  @section('content')
 
-  <style src="{{asset('dist/css/hallazgosIndicadores.css')}}"></style>
-
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
+@section('content')
+<div class="card">
+    <div class="card-header">
         <div class="row">
-          <div class="col-md-3">
-
-            <!-- Profile Image -->
-            <div class="card card-primary card-outline">
-              <div class="card-body box-profile">
-                <div class="text-center">
-                  <img class="profile-user-img img-fluid img-circle"
-                       src="../../dist/img/logo.png"
-                       alt="User profile picture">
-                       
-                </div>
-                <h3 class="profile-username text-center">Nombre: {{ $empleado->nombre_Empleado }}</h3>
-                <p class="text-muted text-center">RPE:{{ $empleado->RPE_Empleado }}
-                   
-                </p>
-                <ul class="list-group list-group-unbordered mb-3">
-                  <li class="list-group-item">
-                    <b>Zona de Trabajo: </b>
-                    @if ($empleado->zonas->count() > 0)
-                                    @foreach ($empleado->zonas as $zona)
-                                        {{ $zona->nombre_zona }}
-                                        @if (!$loop->last)
-                                            ,
+            <div class="col-md-4">
+                  <!-- Profile Image -->
+                    <div class="card card-primary card-outline">
+                    <div class="card-body box-profile">
+                        <div class="text-center">
+                        <img class="profile-user-img img-fluid img-circle"
+                            src="../../dist/img/logo.png"
+                            alt="User profile picture">
+                            
+                        </div>
+                        <h3 class="profile-username text-center">Nombre: {{ $empleado->nombre_Empleado }}</h3>
+                        <p class="text-muted text-center">RPE:{{ $empleado->RPE_Empleado }}
+                        
+                        </p>
+                        <ul class="list-group list-group-unbordered mb-3">
+                        <li class="list-group-item">
+                            <b>Zona de Trabajo: </b>
+                            @if ($empleado->zonas->count() > 0)
+                                            @foreach ($empleado->zonas as $zona)
+                                                {{ $zona->nombre_zona }}
+                                                @if (!$loop->last)
+                                                    ,
+                                                @endif
+                                            @endforeach
+                                        @else
+                                            Sin zona asignada
                                         @endif
-                                    @endforeach
-                                @else
-                                    Sin zona asignada
-                                @endif
-                  </li>
-                  <li class="list-group-item">
-                    <b>Encargado de la Zona: </b> 
-                    @if ($empleado->zonas->count() > 0 && $empleado->zonas->first()->encargado)
-                                    {{ $empleado->zonas->first()->encargado->name }}
-                                @else
-                                    Sin encargado asignado
-                                @endif
-                  </li>
-                  <li class="list-group-item">
-                  <b>Fecha de Ingreso: {{ $empleado->fecha_ingreso }}</b>
-                  </li>
-                </ul>
-              </div>
-              <!-- /.card-body -->
+                        </li>
+                        <li class="list-group-item">
+                            <b>Encargado de la Zona: </b> 
+                            @if ($empleado->zonas->count() > 0 && $empleado->zonas->first()->encargado)
+                                            {{ $empleado->zonas->first()->encargado->name }}
+                                        @else
+                                            Sin encargado asignado
+                                        @endif
+                        </li>
+                        <li class="list-group-item">
+                        <b>Fecha de Ingreso: {{ $empleado->fecha_ingreso }}</b>
+                        </li>
+                        </ul>
+                    </div>
+                    <!-- /.card-body -->
+                    </div>
             </div>
-          </div>
-
-          
-
-
-          <!-- Contenido Principal -->
-          <div class="col-md-9">
+        </div>
+    </div>
+    <div class="card-body">
+         <!-- Contenido Principal -->
+         <div class="col-md-9">
             <div class="card">
               <div class="card-header p-2">
                 <ul class="nav nav-pills">
@@ -105,8 +99,8 @@
                       <div class="row">
                         <div class="col-sm-12">
                             <h4 class="text-center">Ultimos Documentos Registrados</h4>
-                        </div>
-                        <table class="table">
+                            <div class="table-responsive">
+                            <table id="example1" class="table table-bordered table-striped">
                           <thead>
                             <tr>
                               <th>Id</th>
@@ -375,6 +369,8 @@
                           </tbody>
                           </table>
                       </div>
+                      </div>
+                    </div>
                     </div>
                   </div>
                   <script>
@@ -1023,6 +1019,8 @@ function iniciarContador(documentoId, fechaCreacion, duracionPredeterminada) {
                                         return true;
                                     }
                                     </script>
-<script src="{{ asset('dist/js/slidebar.js') }}"></script>
-<script src="{{asset('dist/js/mostrarHallazgos.js')}}"></script>
+    </div>
+
+
+       
 @endsection
