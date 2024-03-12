@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.bootstrap4.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="{{ secure_asset('dist/css/adminlte.css') }}">
+  <link rel="stylesheet" href="<?php echo e(secure_asset('dist/css/adminlte.css')); ?>">
  
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -35,13 +35,13 @@
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{ secure_asset('plugins/fontawesome-free/css/all.min.css') }}">
+  <link rel="stylesheet" href="<?php echo e(secure_asset('plugins/fontawesome-free/css/all.min.css')); ?>">
   <!-- icheck bootstrap -->
-  <link rel="stylesheet" href="{{ secure_asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
+  <link rel="stylesheet" href="<?php echo e(secure_asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css')); ?>">
   <!-- Theme style -->
-  <link rel="stylesheet" href="{{ secure_asset('dist/css/adminlte.min.css') }}">
+  <link rel="stylesheet" href="<?php echo e(secure_asset('dist/css/adminlte.min.css')); ?>">
 
-  <link rel="stylesheet" href="{{ secure_asset('dist/css/form_register.css') }}">
+  <link rel="stylesheet" href="<?php echo e(secure_asset('dist/css/form_register.css')); ?>">
   <!-- CSS de SweetAlert -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.css">
 
@@ -74,7 +74,7 @@
 </script>
 
  <!-- Agregar la etiqueta link para el favicon -->
- <link rel="icon" href="{{ secure_asset('dist/img/D.png') }}" type="image/x-icon">
+ <link rel="icon" href="<?php echo e(secure_asset('dist/img/D.png')); ?>" type="image/x-icon">
 
 
 
@@ -86,7 +86,7 @@
 
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__wobble" src="{{ secure_asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTELogo" height="60" width="60">
+    <img class="animation__wobble" src="<?php echo e(secure_asset('dist/img/AdminLTELogo.png')); ?>" alt="AdminLTELogo" height="60" width="60">
   </div>
 
   <!-- Navbar -->
@@ -162,23 +162,24 @@
       <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
                 <i class="far fa-bell"></i>
-                <span class="badge badge-warning navbar-badge">{{ $notifications->count() }}</span>
+                <span class="badge badge-warning navbar-badge"><?php echo e($notifications->count()); ?></span>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <span class="dropdown-item dropdown-header">{{ $notifications->count() }} Notificaciones</span>
+                <span class="dropdown-item dropdown-header"><?php echo e($notifications->count()); ?> Notificaciones</span>
                 <div class="dropdown-divider"></div>
-                @foreach($notifications as $notification)
-                    @php
+                <?php $__currentLoopData = $notifications; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $notification): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php
                         // Truncar el mensaje a 40 caracteres
                         $truncatedMessage = strlen($notification->message) > 40 ? substr($notification->message, 0, 30) . '...' : $notification->message;
-                    @endphp
+                    ?>
                     <a href="#" class="dropdown-item">
-                        <i class="fas fa-envelope mr-2"></i> {{ $truncatedMessage }}
-                        <span class="float-right text-muted text-sm">{{ $notification->created_at->diffForHumans() }}</span>
+                        <i class="fas fa-envelope mr-2"></i> <?php echo e($truncatedMessage); ?>
+
+                        <span class="float-right text-muted text-sm"><?php echo e($notification->created_at->diffForHumans()); ?></span>
                     </a>
                     <div class="dropdown-divider"></div>
-                @endforeach
-                <a href="{{ route('notificaciones.mostrar') }}" class="dropdown-item dropdown-footer">Ver todas las notificaciones</a>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                <a href="<?php echo e(route('notificaciones.mostrar')); ?>" class="dropdown-item dropdown-footer">Ver todas las notificaciones</a>
             </div>
         </li>
       <li class="nav-item">
@@ -195,7 +196,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="/index" class="brand-link">
-      <img src="{{ asset('dist/img/D.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <img src="<?php echo e(asset('dist/img/D.png')); ?>" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">isSuper</span>
     </a>
 
@@ -204,28 +205,28 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex justify-content-center align-items-center flex-column">
           <div class="image profile-image-container">
-              @if(Auth::check() && Auth::user()->photo)
-                  <img src="{{ secure_asset(Auth::user()->photo) }}" alt="Foto de perfil" class="profile-image rounded-circle w-100" id="profileImage">
-              @else
-                  <img src="{{ secure_asset('dist/img/D.png') }}" alt="Imagen predeterminada" class="profile-image rounded-circle w-100" id="profileImage">
-              @endif
+              <?php if(Auth::check() && Auth::user()->photo): ?>
+                  <img src="<?php echo e(secure_asset(Auth::user()->photo)); ?>" alt="Foto de perfil" class="profile-image rounded-circle w-100" id="profileImage">
+              <?php else: ?>
+                  <img src="<?php echo e(secure_asset('dist/img/D.png')); ?>" alt="Imagen predeterminada" class="profile-image rounded-circle w-100" id="profileImage">
+              <?php endif; ?>
           </div>
           <div class="d-block text-center mt-2">
               <div id="userContainer" class="user-container">
-                  <label for="profileImage" class="user-label" id="userLabel">{{ Auth::user()->name }}</label>
+                  <label for="profileImage" class="user-label" id="userLabel"><?php echo e(Auth::user()->name); ?></label>
                   <div class="profile-options" id="profileOptions">
-                    <a href="{{ route('usuario.show', ['usuario' => Auth::user()->id]) }}">Ver perfil</a>
+                    <a href="<?php echo e(route('usuario.show', ['usuario' => Auth::user()->id])); ?>">Ver perfil</a>
 
                       
                       <form action="/logout" method="POST">
-                          @csrf <!-- Agrega el campo CSRF para protección contra ataques CSRF -->
+                          <?php echo csrf_field(); ?> <!-- Agrega el campo CSRF para protección contra ataques CSRF -->
                           <button type="submit">Cerrar sesión</button>
                       </form>
                   </div>
               </div>
-              @if(!Auth::check())
+              <?php if(!Auth::check()): ?>
                   <a href="/login">Iniciar sesión</a>
-              @endif
+              <?php endif; ?>
           </div>
       </div>
 
@@ -251,7 +252,7 @@
   <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
    
     <!-- Usuarios -->
-    @if(Auth::user()->roles[0]['nivel_permisos'] < 1 )
+    <?php if(Auth::user()->roles[0]['nivel_permisos'] < 1 ): ?>
     <li class="nav-item menu-open">
       <a href="#" class="nav-link active">
         <i class="nav-icon fas fa-users"></i>
@@ -262,26 +263,26 @@
       </a>
       <ul class="nav nav-treeview">
         <li class="nav-item">
-          <a href="{{ route('usuario.index') }}" class="nav-link {{ Request::is('usuario') ? 'active' : '' }}">
+          <a href="<?php echo e(route('usuario.index')); ?>" class="nav-link <?php echo e(Request::is('usuario') ? 'active' : ''); ?>">
             <i class="fas fa-list-ul nav-icon"></i>
             <p>Listado de usuarios</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="/register" class="nav-link {{ Request::is('register') ? 'active' : '' }}">
+          <a href="/register" class="nav-link <?php echo e(Request::is('register') ? 'active' : ''); ?>">
             <i class="fas fa-user-plus nav-icon"></i>
             <p>Registrar usuario</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link {{ Request::is('usuario/') && !Request::is('usuario/create') ? 'active' : '' }}">
+          <a href="#" class="nav-link <?php echo e(Request::is('usuario/') && !Request::is('usuario/create') ? 'active' : ''); ?>">
             <i class="fas fa-edit nav-icon"></i>
             <p>Modificar Usuario</p>
           </a>
         </li>
       </ul>
     </li>
-    @endif
+    <?php endif; ?>
  
 
   
@@ -296,19 +297,19 @@
       </a>
       <ul class="nav nav-treeview">
         <li class="nav-item">
-          <a href="/index" class="nav-link {{ Request::is('index') ? 'active' : '' }}">
+          <a href="/index" class="nav-link <?php echo e(Request::is('index') ? 'active' : ''); ?>">
             <i class="fas fa-list-ul nav-icon"></i>
             <p>Mi listado</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link {{ Request::is('empleado/') && !Request::is('empleado/create') ? 'active' : '' }}">
+          <a href="#" class="nav-link <?php echo e(Request::is('empleado/') && !Request::is('empleado/create') ? 'active' : ''); ?>">
             <i class="fas fa-user nav-icon"></i>
             <p>Perfil de empleado</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="/empleado/create" class="nav-link {{ Request::is('empleado/create*') ? 'active' : '' }}">
+          <a href="/empleado/create" class="nav-link <?php echo e(Request::is('empleado/create*') ? 'active' : ''); ?>">
             <i class="fas fa-user-plus nav-icon"></i>
             <p>Agregar Empleado</p>
           </a>
@@ -320,7 +321,7 @@
 
 
     <!-- Indicadores -->
-    @if(Auth::user()->roles[0]['nivel_permisos'] <= 3)
+    <?php if(Auth::user()->roles[0]['nivel_permisos'] <= 3): ?>
     <li class="nav-item menu-open">
           <a href="#" class="nav-link active">
             <i class="nav-icon fas fa-briefcase"></i>
@@ -331,23 +332,23 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="/indicadores" class="nav-link {{ Request::is('indicadores') ? 'active' : '' }}">
+              <a href="/indicadores" class="nav-link <?php echo e(Request::is('indicadores') ? 'active' : ''); ?>">
                 <i class="fas fa-list-ul nav-icon"></i>
                 <p>Listado de Indicadores</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="/indicadores/create" class="nav-link {{ Request::is('indicadores/create') ? 'active' : '' }}">
+              <a href="/indicadores/create" class="nav-link <?php echo e(Request::is('indicadores/create') ? 'active' : ''); ?>">
                 <i class="fas fa-list-ul nav-icon"></i>
                 <p>Crear Indicadores</p>
               </a>
             </li>
         </ul>
     </li>
-    @endif
+    <?php endif; ?>
 
     
-    @if(Auth::user()->roles[0]['nivel_permisos'] <= 1)
+    <?php if(Auth::user()->roles[0]['nivel_permisos'] <= 1): ?>
     <!-- Puestos -->
     <li class="nav-item menu-open">
       <a href="#" class="nav-link active">
@@ -359,31 +360,31 @@
       </a>
       <ul class="nav nav-treeview">
         <li class="nav-item">
-          <a href="/puestos" class="nav-link {{ Request::is('puestos') ? 'active' : '' }}">
+          <a href="/puestos" class="nav-link <?php echo e(Request::is('puestos') ? 'active' : ''); ?>">
             <i class="fas fa-list-ul nav-icon"></i>
             <p>Listado de Puestos</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="/puestos/create" class="nav-link {{ Request::is('puestos/create') ? 'active' : '' }}">
+          <a href="/puestos/create" class="nav-link <?php echo e(Request::is('puestos/create') ? 'active' : ''); ?>">
             <i class="fas fa-user-plus nav-icon"></i>
             <p>Añadir Puestos</p>
           </a>
         </li>
         <li class="nav-item">
-        <a href="#" class="nav-link {{ Request::is('puestos/') && !Request::is('puestos/create') ? 'active' : '' }}">
+        <a href="#" class="nav-link <?php echo e(Request::is('puestos/') && !Request::is('puestos/create') ? 'active' : ''); ?>">
             <i class="fas fa-user-plus nav-icon"></i>
             <p>Funciones de Puesto</p>
           </a>
         </li>
       </ul>
     </li>
-    @endif
+    <?php endif; ?>
 
 
 
 
-    @if(Auth::user()->roles[0]['nivel_permisos'] <= 0)
+    <?php if(Auth::user()->roles[0]['nivel_permisos'] <= 0): ?>
     <!-- Zonas -->
     <li class="nav-item menu-open">
       <a href="#" class="nav-link active">
@@ -395,20 +396,20 @@
       </a>
       <ul class="nav nav-treeview">
         <li class="nav-item">
-          <a href="/zonas" class="nav-link {{ Request::is('zonas') ? 'active' : '' }}">
+          <a href="/zonas" class="nav-link <?php echo e(Request::is('zonas') ? 'active' : ''); ?>">
             <i class="fas fa-list-ul nav-icon"></i>
             <p>Listado Zonas</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link {{ Request::is('zonas/') && !Request::is('zonas/create') ? 'active' : '' }}">
+          <a href="#" class="nav-link <?php echo e(Request::is('zonas/') && !Request::is('zonas/create') ? 'active' : ''); ?>">
             <i class="fas fa-edit nav-icon"></i>
             <p>Modificar Zonas</p>
           </a>
         </li>
       </ul>
     </li>
-    @endif
+    <?php endif; ?>
   
 
     <!-- Otros -->
@@ -422,22 +423,22 @@
       </a>
       <ul class="nav nav-treeview">
         <li class="nav-item">
-          <a href="/contratos" class="nav-link {{ Request::is('contratos') ? 'active' : '' }}">
+          <a href="/contratos" class="nav-link <?php echo e(Request::is('contratos') ? 'active' : ''); ?>">
             <i class="fas fa-list-ul nav-icon"></i>
             <p>Contratos</p>
           </a>
         </li>
-        @if(Auth::user()->roles[0]['nivel_permisos'] <= 0)
+        <?php if(Auth::user()->roles[0]['nivel_permisos'] <= 0): ?>
         <li class="nav-item">
-          <a href="/roles" class="nav-link {{ Request::is('roles') ? 'active' : '' }}">
+          <a href="/roles" class="nav-link <?php echo e(Request::is('roles') ? 'active' : ''); ?>">
             <i class="fas fa-list-ul nav-icon"></i>
             <p>Roles</p>
           </a>
         </li>
-        @endif
+        <?php endif; ?>
   
         <li class="nav-item">
-          <a href="/actividades" class="nav-link {{ Request::is('actividades') ? 'active' : '' }}">
+          <a href="/actividades" class="nav-link <?php echo e(Request::is('actividades') ? 'active' : ''); ?>">
             <i class="fas fa-list-ul nav-icon"></i>
             <p>Actividades</p>
           </a>
@@ -465,7 +466,7 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        @yield('content')
+        <?php echo $__env->yieldContent('content'); ?>
       </div><!--/. container-fluid -->
     </section>
     <!-- /.content -->
@@ -507,8 +508,8 @@
 <!-- overlayScrollbars -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.13.0/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
-<script src="{{ secure_asset('dist/js/adminlte.js') }}"></script>
-<script src="{{ secure_asset('js/nav.js') }}"></script>
+<script src="<?php echo e(secure_asset('dist/js/adminlte.js')); ?>"></script>
+<script src="<?php echo e(secure_asset('js/nav.js')); ?>"></script>
 
 
 
@@ -531,4 +532,4 @@
 
 
 </body>
-</html>
+</html><?php /**PATH C:\laragon\www\DisSuper\resources\views/layouts/nav.blade.php ENDPATH**/ ?>
