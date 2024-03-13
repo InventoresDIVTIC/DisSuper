@@ -392,10 +392,10 @@
 
                                     @if($secuencia === 0)
                                         <!-- Mostrar Rendición de Cuentas si la secuencia es 0 -->
-                                        <li class="nav-item" style="width: 33.3%"><a class="nav-link text-center text-muted" href="#GenerarRC" data-toggle="tab">Rendición de Cuentas</a></li>
+                                        <!--<li class="nav-item" style="width: 33.3%"><a class="nav-link text-center text-muted" href="#GenerarRC" data-toggle="tab">Rendición de Cuentas</a></li>-->
                                     @elseif($secuencia === 1 || $secuencia === 2)
                                         <!-- Mostrar Llamada de Atención si la secuencia es 1 o 2 -->
-                                        <li class="nav-item" style="width: 33.3%"><a class="nav-link text-center text-muted" href="#GenerarLlA" data-toggle="tab" id="llamadaAtencionTab">Llamada de Atención</a></li>
+                                        <!--<li class="nav-item" style="width: 33.3%"><a class="nav-link text-center text-muted" href="#GenerarLlA" data-toggle="tab" id="llamadaAtencionTab">Llamada de Atención</a></li>-->
                                     @elseif($secuencia === 3)
                                     <!-- Mensaje sobre la necesidad de realizar un Acta Administrativa -->
                                     <li class="nav-item" style="width: 50%"><span class="nav-link text-center text-warning">Subir en el apartado de "Subir Documento" un Acta Administrativa ya que este empleado cuenta con 1 rendicion de cuentas y 2 llamadas de atención</span></li>
@@ -545,7 +545,7 @@
                                     </form>
                                 </div>  <!--    TAB-PANE SUBIR DOC -->
                                 
-                                <div class="tab-pane" id="GenerarLlA">
+                                <div class="tab-pane" id="GenerarLlA" hidden>
                                     <form action="{{ url('/procesar-formulario') }}"id="llamadaAtencionForm" method="POST" enctype="multipart/form-data">
                                     @csrf
                                         <div class="form-group row">
