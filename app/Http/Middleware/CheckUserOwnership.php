@@ -15,12 +15,16 @@ class CheckUserOwnership
         $user = User::find($userId); // Buscar el usuario en la base de datos
 
         // Verificar si el usuario autenticado es el propietario del perfil 
-
+        
         if ($user && $user->id === auth()->id() || Auth::user()->roles[0]['nivel_permisos'] === 0 || Auth::user()->roles[0]['nivel_permisos'] === 1 || Auth::user()->roles[0]['nivel_permisos'] === 2) {
+            
             return $next($request);
+        }
+        else{
+            return redirect()->route('403')->with('error', 'Acceso no autorizado.');
         }
 
         // Redireccionar con un mensaje de acceso no autorizado si el usuario no es el propietario del perfil
-        return redirect()->route('403')->with('error', 'Acceso no autorizado.');
+        return view('/index');
     }
 }

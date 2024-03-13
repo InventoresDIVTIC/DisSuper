@@ -19,10 +19,6 @@
             box-sizing: border-box;
         }
 
-        .content {
-            page-break-after: always;
-            
-        }
 
         #header {
             position: fixed;
@@ -37,7 +33,7 @@
             align-items: flex-start;
         }
 
-        #footer {
+        .footer {
             position: fixed;
             bottom: 0;
             left: 0;
@@ -50,6 +46,7 @@
 
         .text-footer {
             font-size: 10px;
+            text-align: center;
         }
 
         .text-header {
@@ -86,6 +83,18 @@
         .escalado-vertical {
             width: auto;
             height: 250px;
+        }
+
+        .content {
+            text-align: justify;
+        }
+
+        .images {
+            text-align: center;
+        }
+
+        .indicadores {
+            
         }
 
     </style>
@@ -125,7 +134,7 @@ foreach ($datosFormulario['imagenes_documento'] as $imagen) {
         </label>
     </div>
 
-    <div id="footer">
+    <div class="footer">
         <label class="text-footer">
             AV ADOLF HORN 3513, Col. Lopéz Cotilla C.P.45654, Tlaquepaque, Jalisco<br>
             Tel.: (33) 36 78 85 04 y 36 78 85 90   <a href="https://www.cfe.gob.mx" target="_blank">www.cfe.gob.mx</a><br>
@@ -147,9 +156,9 @@ foreach ($datosFormulario['imagenes_documento'] as $imagen) {
 
     <div class="datos_Empleado">
         <b>
-        {{$empleado['nombre_Empleado']}}<br>
-        Auxiliar Comercial <br>
-        R.T.T {{$empleado['RPE_Empleado']}}<br>
+        {{$datosFormulario['nombre_usuario']}}<br>
+        {{$datosFormulario['Puesto_Autor']}} <br>
+        R.T.T {{$datosFormulario['rpe_usuario']}}<br>
         Centro de Integración de Consumo Toluquilla<br>
         Presenta<br><br>
         </b>
@@ -159,43 +168,47 @@ foreach ($datosFormulario['imagenes_documento'] as $imagen) {
     <div>
         <p>
 
-        Se realizó supervisión al ciclo <b>"Ciclo" Tarea {{$datosFormulario['Actividad']}}</b> asignada al <b>C. {{$empleado['nombre_Empleado']}}</b>, R.P.E <b>{{$empleado->RPE_Empleado}} </b>realizado el día 18  de Octubre del 2023.
+        Se realizó supervisión a la actividad<b> {{$datosFormulario['Actividad']}}</b> asignada al <b>C. {{$empleado['nombre_Empleado']}}</b>, R.P.E <b>{{$empleado->RPE_Empleado}} </b>realizado el día 18  de Octubre del 2023.
         </p>
     </div>
 
+    <h2>Introduction</h2>
     <div class="content">
-        <h1>Plantilla Dissuper 1</h1>
-        <p><strong>Autor:</strong> JESUS EDUARDO QUINTERO GOMEZ</p>
-        <p><strong>Fecha:</strong> December 2023</p>
+        
+        <p>{{$datosFormulario['Introduccion']}}</p>
+    </div>
 
-        <h2>Introduction</h2>
-        <p>Este es un texto de ejemplo.</p>
+    <h2>Indicadores Afectados</h2>
+    <div class="content">
+        <ul>
+        <?php
+        foreach ($datosFormulario['nombre_indicador'] as $indicador) { 
+            
+            echo nl2br("• ".$indicador . "\n");
+            
+        }
+        ?>
+        </ul>
+        
     </div>
 
     <div class="content">
+        <h2>Contenido</h2>
+        <p>{{$datosFormulario['contenido']}}</p>
+    </div>
+
+    <h2>Imagenes de Evidencia:</h2>
+    <div class="images">
+        
         @for ($im = 0; $im < $i; $im++)
-
-        <h2>Imagen: {{ $ancho[$im] }} x {{ $alto[$im] }} píxeles</h2>
-        <p>{{$datosFormulario['imagenes_documento'][0]}}</p>
-
         @if ($ancho[$im] / $alto[$im] > 4000/2500)
         <img src="<?php echo $EvidenciaBase64[$im] ?>" class="escalado-horizontal">
-        <p>400</p>
         @else
         <img src="<?php echo $EvidenciaBase64[$im] ?>" class="escalado-vertical">
-        <p>250</p>
         @endif
-
+        <br><br>
         @endfor
         
-        
-        
-        <!-- Lipsum content shortened for brevity -->
-    </div>
-
-    <div class="content">
-        <h2>Lipsum</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. ...</p>
     </div>
     
 </body>

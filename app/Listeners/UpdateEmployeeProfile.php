@@ -20,10 +20,14 @@ class UpdateEmployeeProfile implements ShouldQueue
     // Buscar al empleado por RPE
     $empleado = Empleado::where('RPE_Empleado', $user->RPE_Empleado)->first();
 
-    if (!$empleado) {
+    if (!$empleado && $user->RPE_Empleado != '00000') {
         // Si no tiene un empleado, crear uno
         $empleado = new Empleado();
         $empleado->RPE_Empleado = $user->RPE_Empleado;
+    }
+    else if($user->RPE_Empleado == '00000'){
+        alert('Se ha cambiado la contraseña correctamente');
+        return view('/index');
     }
 
     // Actualizar los campos del empleado según los datos del usuario

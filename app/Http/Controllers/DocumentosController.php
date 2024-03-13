@@ -12,6 +12,7 @@ use App\Models\Notification;
 use Illuminate\Support\Facades\Mail;
 use App\Models\IndicadorDocumento;
 use App\Models\Zona;
+use App\Models\Actividades;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Response;
 use Carbon\Carbon;
@@ -57,13 +58,20 @@ class DocumentosController extends Controller
        
            
             $zonas_usuario = user::find($Id_Usuario_Autor)->zonas[0]["nombre_zona"];
+            $puesto_usuario = user::find($Id_Usuario_Autor)->roles[0]['name'];
+
+            $usuario = [
+                'nombre' => user::find($Id_Usuario_Autor)->name,
+                'rpe' => user::find($Id_Usuario_Autor)->RPE_Empleado
+            ];
+            
 
             
             // Obtener los datos del formulario
             $datosFormulario = [
                 'nombre_archivo' => $request->input('nombre_archivo'),
                 'N_Llamada' => $request->input('N_Llamada'),
-                'Actividad' => $request->input('Actividad'),
+                'Actividad' => actividades::find($request->input('Actividad'))->name,
                 'Fecha_Actividad' => $request->input('Fecha_Actividad'),
                 'Fecha_Supervision' => $request->input('Fecha_Supervision'),
                 'Introduccion' => $request->input('Introduccion'),
@@ -76,9 +84,10 @@ class DocumentosController extends Controller
              
                 // Otros campos del formulario según su estructura
                 'Zona_Autor' => $zonas_usuario,
-
+                'Puesto_Autor' => $puesto_usuario,
+                'nombre_usuario' =>user::find($Id_Usuario_Autor)->name,
+                'rpe_usuario' => user::find($Id_Usuario_Autor)->RPE_Empleado,
             ];
-
             
             
             // Procesar los indicadores seleccionados y convertirlos en una cadena separada por comas
@@ -130,6 +139,7 @@ class DocumentosController extends Controller
             }
 
             $datosFormulario['imagenes_documento'] = $nombresImagenes;
+
 
             // Convertir los nombres de las imágenes a una cadena separada por comas
             $cadenaImagenes = implode(',', $nombresImagenes);

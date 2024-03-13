@@ -31,11 +31,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-<<<<<<< HEAD
-            'RPE_Empleado' => ['required',  'string','unique:users','unique:empleados'],
-=======
             'RPE_Empleado' => ['required',  'string','unique:users', 'unique:empleados'],
->>>>>>> 53b08c25425a91a2ed47761af868c9336d95e5f3
             'fecha_registro'=>['required'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'role' => ['required', 'exists:roles,id'], // Validar que el rol seleccionado existe en la tabla roles

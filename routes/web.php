@@ -43,18 +43,19 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/descargar/documento/{id}', [DocumentosController::class, 'downloadPDF'])->name('descargar.documento');
         Route::get('/editar/documento/{id}', [DocumentosController::class, 'editarDocumento'])->name('editar.documento');
         Route::post('/guardar_edicion/{id}', [DocumentosController::class, 'guardarEdicion'])->name('guardar_edicion');
-        Route::get('forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
-        Route::post('forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
-        Route::get('reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+        Route::get('/forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+        Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+        Route::get('/reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
         Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
-        Route::resource('usuario', UserController::class)->only(['edit', 'update', 'show'])
+        Route::resource('/usuario', UserController::class)->only(['edit', 'update', 'show','index'])
         ->middleware('check_user_ownership');
-        Route::get('/403', function () {
-            return view('403');
-        })->name('403');
+        
         Route::get('/404', function () {
             return view('404');
         })->name('404');
+        Route::get('/403', function () {
+            return view('403');
+        })->name('403');
         Route::match(['get','post'], 'botman',[BotManController::class , "handle"]);
         Route::post('/cambiar_estado/{id}', [DocumentosController::class, 'cambiarEstado'])->name('cambiar.estado');
         Route::post('/rechazar/documento/{id}', [DocumentosController::class, 'rechazarDocumento'])->name('rechazar.documento');
@@ -67,9 +68,9 @@ Route::middleware(['auth'])->group(function () {
     
 
     Route::middleware(['nivel_0'])->group(function () {
-        Route::resource('usuario', UserController::class)->only(['destroy', 'create', 'store','index']);
-        Route::resource('zonas', ZonasController::class);
-        Route::resource('roles', RoleController::class);
+        Route::resource('/usuario', UserController::class)->only(['destroy', 'create', 'store']);
+        Route::resource('/zonas', ZonasController::class);
+        Route::resource('/roles', RoleController::class);
         Route::post('/cancelar/documento/{id}', [DocumentosController::class, 'cancelarDocumento'])->name('cancelar.documento');
         Route::get('/registro', [RegisterController::class, 'showRegistrationForm'])->name('registro');
         Route::post('/registro', [RegisterController::class, 'register']);
@@ -82,13 +83,13 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::middleware(['nivel_1'])->group(function () {
-        Route::resource('contratos', ContratoController::class);
-        Route::resource('puestos', PuestosController::class);
-        Route::resource('funciones_puestos', FuncionesPuestosController::class);
-        Route::resource('indicadores', IndicadoresController::class);
-        Route::resource('actividades', ActividadesController::class);
-        Route::delete('puestos/{puesto}/actividades/{actividad}', [PuestosController::class, 'detach'])->name('puestos.detach');
-        Route::delete('actividades/{actividad}/indicadores/{indicador}', [ActividadesController::class, 'eliminarIndicador'])->name('actividades.eliminarIndicador');
+        Route::resource('/contratos', ContratoController::class);
+        Route::resource('/puestos', PuestosController::class);
+        Route::resource('/funciones_puestos', FuncionesPuestosController::class);
+        Route::resource('/indicadores', IndicadoresController::class);
+        Route::resource('/actividades', ActividadesController::class);
+        Route::delete('/puestos/{puesto}/actividades/{actividad}', [PuestosController::class, 'detach'])->name('puestos.detach');
+        Route::delete('/actividades/{actividad}/indicadores/{indicador}', [ActividadesController::class, 'eliminarIndicador'])->name('actividades.eliminarIndicador');
         Route::get('/registro', [RegisterController::class, 'showRegistrationForm'])->name('registro');
         Route::post('/registro', [RegisterController::class, 'register']);
     });

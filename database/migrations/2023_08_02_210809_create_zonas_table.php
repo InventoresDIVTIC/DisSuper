@@ -21,7 +21,7 @@ return new class extends Migration
         });
         DB::table('zonas')->insert([
      
-            'nombre_zona' => 'Sin Zona',
+            'nombre_zona' => 'Guadalajara',
             'Encargado' => 1,
         ]);
 
