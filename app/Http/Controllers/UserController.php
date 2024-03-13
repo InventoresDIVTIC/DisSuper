@@ -103,7 +103,7 @@ class UserController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
-
+        
         // Obtener el usuario que deseas actualizar
         $usuario = User::findOrFail($id);
 
@@ -143,15 +143,14 @@ class UserController extends Controller
                 ]);
             }
         }
-       
         $usuario->save();
         event(new UserUpdated($usuario));
         // Guardar los cambios en la base de datos
       
         
-
+        alert("Todos los cambios han sigo guardados correctamente");
         // Redirigir a una página de confirmación o de detalles del usuario
-        return redirect()->route('usuario.index', $id)->with('success', 'Los cambios se han guardado correctamente.');
+        return redirect('/index')->with('success', 'Los cambios se han guardado correctamente.');
     }
      
 

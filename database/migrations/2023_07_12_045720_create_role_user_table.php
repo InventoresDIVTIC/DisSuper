@@ -22,6 +22,7 @@ class CreateRoleUserTable extends Migration
             'email' => 'admin@ejemplo.com',
             'fecha_registro' => '2023-08-25',
             'password' => bcrypt('123456789'),
+            'RPE_Empleado' => '00000'
         ]);
 
         // Obtener el rol "Admin"
