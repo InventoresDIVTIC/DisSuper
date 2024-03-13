@@ -21,9 +21,6 @@ jobs:
       - name: Install dependencies
         run: composer install --no-dev --prefer-dist --no-scripts --no-progress --no-suggest
 
-      - name: Update dependencies
-        run: composer update
-
       - name: 📝 Add Environment File
         run: cp .env.DisSuper .env  # Configura tus variables de entorno de Laravel en los secretos de GitHub
 
