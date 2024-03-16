@@ -24,6 +24,12 @@ jobs:
       - name: Update dependencies
         run: composer update  
 
+      - name: Clear cache, routes and views
+        run: |
+          php artisan cache:clear
+          php artisan route:clear
+          php artisan view:clear
+
       - name: 📝 Add Environment File
         run: cp .env.DisSuper .env  # Configura tus variables de entorno de Laravel en los secretos de GitHub
 
