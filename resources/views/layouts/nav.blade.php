@@ -101,7 +101,7 @@
         <a href="/index" class="nav-link">Inicio</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contacto</a>
+        <a href="/contact" class="nav-link">Contacto</a>
       </li>
     </ul>
 

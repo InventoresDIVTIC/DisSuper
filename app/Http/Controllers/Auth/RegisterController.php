@@ -13,6 +13,9 @@ use App\Models\Role;
 use App\Models\Zona;
 use App\Models\Contrato;
 use App\Models\Empleado;
+use Illuminate\Support\Facades\Mail;
+use Symfony\Component\Mime\Part\TextPart;
+
 
 
 class RegisterController extends Controller
@@ -59,6 +62,22 @@ class RegisterController extends Controller
          // Asociar el usuario a la zona seleccionada
          $zona = Zona::find($data['zonas']);
          $user->zonas()->attach($zona);
+
+
+        $pdfPath = public_path('dist/img/codigo_conducta.pdf');
+
+        // Enviar el correo electrónico al usuario seleccionado
+        Mail::send([], [], function ($message) use ($data, $pdfPath) {
+            $message->to($data['email'])
+                    ->subject('Bienvenido a nuestro sitio');
+        
+            // Adjuntar el archivo PDF
+            $message->attach($pdfPath);
+        
+          
+        });
+
+        
 
         event(new UserCreated($user));
         return $user;
