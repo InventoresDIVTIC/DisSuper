@@ -11,7 +11,7 @@
                         <div class="card-body box-profile">
                             <div class="text-center">
                             <img class="profile-user-img img-fluid img-circle"
-                                src="../../dist/img/logo.png"
+                                src="/dist/img/logo.png"
                                 alt="User profile picture">
                                 
                             </div>
