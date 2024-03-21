@@ -1,28 +1,31 @@
-name: Sharedhosting deploy
+name: Laravel FTP Deploy
 
 on:
   push:
     branches:
-      - master
+      - master # Ajusta esto a tu rama por defecto si es necesario
 
 jobs:
-  deploy:
+  ftp-deploy:
+    name: Deploy on FTP server
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout del repositorio
+      - name: 🛒 Checkout code
         uses: actions/checkout@v2
 
-      - name: Configurar entorno PHP
+      - name: 🛠️ Set up PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: "8.1.0"
+          php-version: "8.1" # Versión de PHP que coincida con tu proyecto
+          extensions: mbstring, dom, xml, ctype, iconv, bcmath # Agrega las extensiones necesarias
+          tools: composer
 
-      - name: Install dependencies
-        run: composer install --no-dev --prefer-dist --no-scripts --no-progress --no-suggest
+      - name: 🔄 Update composer
+        run: composer update
 
-      - name: Update dependencies
-        run: composer update  
+      - name: ⬇️ Install Dependencies
+        run: composer install --no-dev --optimize-autoloader
 
       - name: Clear cache, routes and views
         run: |
@@ -30,16 +33,21 @@ jobs:
           php artisan route:clear
           php artisan view:clear
 
-      - name: 📝 Add Environment File
-        run: cp .env.DisSuper .env  # Configura tus variables de entorno de Laravel en los secretos de GitHub
+      - name: 📝 Addd files
+        run: |
+          cp -r .env.example .env  
+          cp -r ./public/* ./
+          cp -r .htaccess.example .htaccess
+          cp -r index.php.example index.php
 
       - name: 🔑 Generate Key
         run: php artisan key:generate
 
-      - name: Deploy to shared hosting
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      - name: 🚀 FTP Deploy
+        uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
-          server: ftp.innovusweb.com
+          server: 66.225.201.137
           username: dissuper2@innovusweb.com
           password: ${{ secrets.FTP_ACCESO }}
+          local-dir: ./
           git-ftp-args: --insecure # Elimina --insecure si tu servidor FTP soporta conexiones seguras
