@@ -392,10 +392,10 @@
 
                                     @if($secuencia === 0)
                                         <!-- Mostrar Rendición de Cuentas si la secuencia es 0 -->
-                                        <!--<li class="nav-item" style="width: 33.3%"><a class="nav-link text-center text-muted" href="#GenerarRC" data-toggle="tab">Rendición de Cuentas</a></li>-->
+                                        <li class="nav-item" style="width: 33.3%"><a class="nav-link text-center text-muted" href="#GenerarRC" data-toggle="tab">Rendición de Cuentas</a></li>
                                     @elseif($secuencia === 1 || $secuencia === 2)
                                         <!-- Mostrar Llamada de Atención si la secuencia es 1 o 2 -->
-                                        <!--<li class="nav-item" style="width: 33.3%"><a class="nav-link text-center text-muted" href="#GenerarLlA" data-toggle="tab" id="llamadaAtencionTab">Llamada de Atención</a></li>-->
+                                        <li class="nav-item" style="width: 33.3%"><a class="nav-link text-center text-muted" href="#GenerarLlA" data-toggle="tab" id="llamadaAtencionTab">Llamada de Atención</a></li>
                                     @elseif($secuencia === 3)
                                     <!-- Mensaje sobre la necesidad de realizar un Acta Administrativa -->
                                     <li class="nav-item" style="width: 50%"><span class="nav-link text-center text-warning">Subir en el apartado de "Subir Documento" un Acta Administrativa ya que este empleado cuenta con 1 rendicion de cuentas y 2 llamadas de atención</span></li>
@@ -544,8 +544,254 @@
                                         </script>
                                     </form>
                                 </div>  <!--    TAB-PANE SUBIR DOC -->
+
+                                <div class="tab-pane" id="GenerarRC">
+                                    <form action="{{ url('/procesar-formulario') }}"id="llamadaAtencionForm" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                        <div class="form-group row">
+                                            <div class="text-primary col-md-12">
+                                                <!-- Encabezado del formulario -->
+                                                <label class="col-sm-12 text-center"><h3>Generar Rendición de Cuentas</h3></label>
+                                            </div>
+                                        </div>
+                                    
+                                        <button type="button" onclick="pegarDatos()" class="btn btn-primary">Pegar Datos</button><br><br>
+
+                                        <div class="form-group row">
+                                            <label for="N_Llamada" class="col-sm-1.8 col-form-label">N. Llamada</label>
+                                            <div class="col-sm-1"> <!-- Cambiado a col-sm-1 para reducir el ancho -->
+                                                <!-- El valor de N. Llamada se autoincrementará y no será modificable -->
+                                                <input type="number" class="form-control" id="N_Llamada" name="N_Llamada" placeholder="N. Rendicion" value="{{ $ultimoNumeroLlamada + 1 }}" readonly>
+                                            </div>
+
+                                            <label class="col-sm-1.5 col-form-label">Actividad</label>
+                                            <div class="col-sm-3">
+                                                <!-- El campo de Actividad como un select -->
+                                                <select class="form-control" id="Actividad" name="Actividad">
+                                                    <!-- Agregar una opción por defecto si es necesario -->
+                                                    <option value="">Selecciona una actividad</option>
+                                                    <!-- Iterar sobre las actividades y mostrarlas en el select -->
+                                                    @foreach($actividades as $actividad)
+                                                        <option value="{{ $actividad->id }}">{{ $actividad->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            <label class="col-sm-1.5 col-form-label">Fecha de la supervision</label>
+                                            <div class="col-sm-3">
+                                                <!-- El campo de Fecha con la fecha actual y no editable -->
+                                                <input type="date" class="form-control" id="Fecha_Supervision" name="Fecha_Supervision" value="{{ $fechaActual }}" readonly>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-1.5 col-form-label">Fecha de la actividad</label>
+                                            <div class="col-sm-3">
+                                                <!-- El campo de Fecha con la fecha actual y editable -->
+                                                <input type="date" class="form-control" id="Fecha_Actividad" name="Fecha_Actividad" value="{{ $fechaActual }}">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-1.5 col-form-label">Indicadores afectados:</label>
+                                            <div class="select-wrapper">
+                                                <select id="nombre_indicador" onchange="agregarFila()">
+                                                    @foreach($indicadores as $indicador)
+                                                        <option value="{{ $indicador->Nombre_Indicador }}">{{ $indicador->Nombre_Indicador }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <table id="tabla" class="custom-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Indicador</th>
+                                                        <th>Eliminar</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <script>
+                                        function agregarFila() {
+                                            var opcionSeleccionada = document.getElementById("nombre_indicador").value;
+                                            var tablaBody = document.getElementById("tabla").getElementsByTagName("tbody")[0];
+                                            var fila = tablaBody.insertRow();
+
+                                            var celdaOpcion = fila.insertCell(0);
+                                            celdaOpcion.textContent = opcionSeleccionada;
+
+                                            // Agregar el valor seleccionado al arreglo de indicadores
+                                            var indicadoresInput = document.createElement("input");
+                                            indicadoresInput.type = "hidden";
+                                            indicadoresInput.name = "nombre_indicador[]";
+                                            indicadoresInput.value = opcionSeleccionada;
+                                            fila.appendChild(indicadoresInput);
+
+                                            var celdaBoton = fila.insertCell(1);
+                                            var deleteIcon = document.createElement("span");
+                                            deleteIcon.textContent = "❌";
+                                            deleteIcon.className = "delete-icon";
+                                            deleteIcon.onclick = function() {
+                                                fila.parentNode.removeChild(fila);
+                                            };
+
+                                            celdaBoton.appendChild(deleteIcon);
+                                        }
+                                        </script>
                                 
-                                <div class="tab-pane" id="GenerarLlA" hidden>
+
+                                        <input type="hidden" name="Id_Empleado" id="Id_Empleado" value="{{$empleado->id}}">
+                                        <input type="hidden" name="Tipo_Documento" id="Tipo_Documento" value="RENDICION DE CUENTAS">
+                                        <input type="hidden" name="Status_Documento" id="Status_Documento" value="ENVIADO">
+                                
+                                        <!-- Introducción del primer indicador -->
+                                        <div class="form-group row">
+                                            <label for="inputCargo" class="col-sm-12 col-form-label">Introducción</label>
+                                            <div class="col-sm-12">
+                                                <textarea class="form-control"id="Introduccion"name="Introduccion" rows="3" placeholder="Explique de manera general el motivo de la Rendición de Cuentas"></textarea>
+                                            </div>
+                                            @if ($errors->has('Introduccion'))
+                                                <span class="error-message">{{ $errors->first('Introduccion') }}</span>
+                                            @endif
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="inputCargo" class="col-sm-12 col-form-label">Explicación</label>
+                                            <div class="col-sm-12">
+                                                <textarea class="form-control"id="contenido"name="contenido" rows="11" placeholder="Explique de manera detallada y especifica el motivo de la Rendición de Cuentas"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-1.9 col-form-label">Imágenes de evidencia:</label>
+                                            <div class="col-sm-10" style="height: 200px; border: 2px solid #ccc; border-radius: 5px; padding: 10px;">
+                                                <div class="custom-file" style="height: 100%;">
+                                                    <input class="custom-file-input" type="file" id="imagen" name="imagen[]" onchange="mostrarNombre()" multiple accept="image/*" style="border: none; height: calc(100% - 2px);">
+
+                                                    <label class="custom-file-label" for="imagen">Arrastra y suelta imágenes aquí, o haz clic para seleccionar...</label>
+                                                    <i class="fas fa-cloud-upload-alt" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"></i>
+                                                </div>
+                                                <span id="ArchivoSeleccionado"></span>
+                                            </div>
+                                        </div>
+
+                                        <table id="tablaImagenes" class="custom-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Nombre del archivo</th>
+                                                    <th>Quitar</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+
+                                        <script>
+                                            function mostrarNombre() {
+                                                const input = document.getElementById('imagen');
+                                                const files = input.files;
+                                                const tablaImagenes = document.getElementById('tablaImagenes').getElementsByTagName('tbody')[0];
+
+                                                for (let i = 0; i < files.length; i++) {
+                                                    const file = files[i];
+                                                    if (file.type.startsWith('image/')) {
+                                                        const nombreArchivo = file.name;
+                                                        const fila = document.createElement('tr');
+                                                        const celdaNombre = document.createElement('td');
+                                                        celdaNombre.textContent = nombreArchivo;
+                                                        fila.appendChild(celdaNombre);
+
+                                                        const celdaQuitar = document.createElement('td');
+                                                        const botonQuitar = document.createElement('button');
+                                                        botonQuitar.textContent = "❌";
+                                                        botonQuitar.className = "btn-quitar";
+                                                        botonQuitar.addEventListener('click', function() {
+                                                            fila.remove();
+                                                            actualizarContador();
+                                                        });
+                                                        celdaQuitar.appendChild(botonQuitar);
+                                                        fila.appendChild(celdaQuitar);
+
+                                                        // Asignar un ID único a la fila
+                                                        fila.id = 'imagen_' + i;
+
+                                                        tablaImagenes.appendChild(fila);
+                                                    } else {
+                                                        alert('El archivo "' + file.name + '" no es una imagen y no será agregado.');
+                                                    }
+                                                }
+
+                                                // Actualizar el contador de imágenes
+                                                actualizarContador();
+                                            }
+
+                                            function actualizarContador() {
+                                                const cantidadImagenes = document.getElementById('tablaImagenes').getElementsByTagName('tbody')[0].getElementsByTagName('tr').length;
+                                                document.getElementById('ArchivoSeleccionado').innerText = 'Número de archivos: ' + cantidadImagenes;
+                                            }
+                                        </script>
+
+                                        <div class="form-group row">
+                                            <label for="inputCargo" class="col-sm-2 col-form-label">Usuario a mandar a revisión</label>
+                                            <div class="col-sm-9">
+                                                <div class="form-group">
+                                                    <select class="form-control" id="Id_Usuario_Revisar" name="Id_Usuario_Revisar">
+                                                        @foreach($usuarios as $usuario)
+                                                            @if($usuario->id !== auth()->user()->id && $usuario->id !== 1 &&$usuario->RPE_Empleado !== $empleado->RPE_Empleado) 
+                                                                <option value="{{ $usuario->id }}">{{ $usuario->name }}</option>
+                                                            @endif
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="offset-sm-2 col-sm-10">
+                                                <button type="submit"  class="btn btn-danger">Enviar</button>
+                                            </div>
+                                        </div>
+                            
+                                    </form>
+
+                                    <script>
+                                        document.addEventListener('DOMContentLoaded', function () {
+                                            const form = document.getElementById('llamadaAtencionForm');
+
+                                            form.addEventListener('submit', function (event) {
+                                                const nLlamada = document.getElementById('N_Llamada').value;
+                                                const actividad = document.getElementById('Actividad').value;
+                                                const fechaActividad = document.getElementById('Fecha_Actividad').value;
+                                                const introduccion = document.getElementById('Introduccion').value;
+                                                const contenido = document.getElementById('contenido').value;
+                                                const usuarioRevisar = document.getElementById('Id_Usuario_Revisar').value;
+
+                                                if (!nLlamada || !actividad || !fechaActividad || !introduccion || !contenido || !imagen || !usuarioRevisar) {
+                                                    alert('Por favor, completa todos los campos antes de enviar el formulario.');
+                                                    event.preventDefault();
+                                                }
+                                            });
+                                        });
+                                    </script>
+                
+                                    <script>
+                                        function pegarDatos() {
+                                            if (window.datosCopiados) {
+                                                document.getElementById('contenido').value = window.datosCopiados.contenido || '';
+                                                document.getElementById('Introduccion').value = window.datosCopiados.Introduccion || '';
+                                            } else {
+                                                alert('No se han copiado datos aún.');
+                                            }
+                                        }
+                                    </script>
+
+            
+            
+                                </div><!-- /.tab-pane Generar Llamada Atencion -->
+                                
+                                <div class="tab-pane" id="GenerarLlA">
                                     <form action="{{ url('/procesar-formulario') }}"id="llamadaAtencionForm" method="POST" enctype="multipart/form-data">
                                     @csrf
                                         <div class="form-group row">
