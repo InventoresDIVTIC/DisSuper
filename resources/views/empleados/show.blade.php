@@ -775,21 +775,11 @@
                                             });
                                         });
                                     </script>
-                
-                                    <script>
-                                        function pegarDatos() {
-                                            if (window.datosCopiados) {
-                                                document.getElementById('contenido').value = window.datosCopiados.contenido || '';
-                                                document.getElementById('Introduccion').value = window.datosCopiados.Introduccion || '';
-                                            } else {
-                                                alert('No se han copiado datos aún.');
-                                            }
-                                        }
-                                    </script>
+            
 
             
             
-                                </div><!-- /.tab-pane Generar Llamada Atencion -->
+                                </div><!-- /.tab-pane Generar Rendicion de Cuentas -->
                                 
                                 <div class="tab-pane" id="GenerarLlA">
                                     <form action="{{ url('/procesar-formulario') }}"id="llamadaAtencionForm" method="POST" enctype="multipart/form-data">

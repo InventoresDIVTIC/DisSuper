@@ -5,12 +5,19 @@
 <!-- CSS de SweetAlert -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.css">
 
+<style>
+  /* Estilos personalizados para el ejemplo */
+  .custom-card {
+    margin-bottom: 20px;
+  }
+</style>
+
 <body class="hold-transition sidebar-mini">
   <div class="container">
     <section class="content">
       <div class="row justify-content-center">
-        <div class="col-md-12">
-          <div class="card card-primary">
+        <div class="col-sm-4 col-md-6">
+          <div class="card custom-card">
             <div class="card-header">
               <h3 class="card-title"><i class="fas fa-user-plus"></i> Registrar Indicador</h3>
             </div>

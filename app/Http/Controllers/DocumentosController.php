@@ -113,7 +113,13 @@ class DocumentosController extends Controller
             $documento->Status_Documento = $datosFormulario['Status_Documento'];
             $documento->contenido = $datosFormulario['contenido'];
             $documento->nombre_indicador = $indicadores;
-            $documento->subido_hecho = 1;
+            if($datosFormulario['Tipo_Documento'] == "LLAMADA DE ATENCION"){
+                $documento->subido_hecho = 1;
+            }
+            else if($datosFormulario['Tipo_Documento'] == "RENDICION DE CUENTAS"){
+                $documento->subido_hecho = 1;
+            }
+            
    
    // Procesar las imágenes
 
