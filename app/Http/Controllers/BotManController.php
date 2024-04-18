@@ -232,8 +232,1896 @@ class BotManController extends Controller
                 $botman->reply('La seguridad en el trabajo es responsabilidad de todos y debes seguir las normas y procedimientos.');
             } elseif (preg_match('/política de diversidad e inclusión/i', $message)) {
                 $botman->reply('La empresa puede tener una política de diversidad e inclusión para promover la igualdad de oportunidades.');
-            } elseif (preg_match('/derecho a la información/i', $message)) {
-                $botman->reply('Tienes derecho a recibir información clara y precisa sobre tus derechos y obligaciones laborales.');
+            } elseif (preg_match('/Que es un indicador/iu', $message)) {
+                $botman->reply('Un indicador es una ');
+            } elseif (preg_match('/incentivos por productividad/i', $message)) {
+                $botman->reply('Puedes recibir incentivos por productividad de acuerdo a tu rendimiento laboral.');
+            } elseif (preg_match('/que es un indicador/i', $message)) {
+                $botman->reply('Un indicador es uno de los requerimentos que se debe cumplir en una labor');
+            } elseif (preg_match('/como añado un indicador/i', $message)) {
+                $botman->reply('Para añadir un indicador necesitas tener los permisos necesarios. Si los tienes solo tienes que is al apartado indicadores y añadirlo');
+            } elseif (preg_match('/como veo mi sueldo/i', $message)) {
+                $botman->reply('Puedes revisar tu contrato, tu nomina o preguntarle a tu superior');
+            } elseif (preg_match('/un documento no me llego/i', $message)) {
+                $botman->reply('Si un documento generado por otra persona no te ha llegado pidele que se asegure si lo mando a la persona correcta, si lo hizo reporta el problema con el administrador del sistema y dale la informacion del documento');
+            } elseif (preg_match('/orden llevan los documentos/i', $message)) {
+                $botman->reply('Los documentos se generan en el siguiente orden: 2 rendiciones de cuentas, 1 llamada de atencion y 1 acta administrativa ');
+            } elseif (preg_match('/orden se generan los documentos/i', $message)) {
+                $botman->reply('Los documentos se generan en el siguiente orden: 2 rendiciones de cuentas, 1 llamada de atencion y 1 acta administrativa ');
+            } elseif (preg_match('/que es una llamada de atencion/i', $message)) {
+                $botman->reply('Una llamada de atencion es un documento que se genera cuando un empleado ha fallado en cumplir sus indicadores en 3 o mas labores');
+            } elseif (preg_match('/que es una rendicion de cuentas/i', $message)) {
+                $botman->reply('Una endicion de cuentas es un documento que se genera cuando un empleado ha fallado en cumplir con un indicador en una labor');
+            } elseif (preg_match('/que es un acta administrativa/i', $message)) {
+                $botman->reply('Un acta administrativa es un documento que se genera cuando un empleado ha fallado en cumplir con un indicador en 4 o mas labores');
+            } elseif (preg_match('/que es un puesto/i', $message)) {
+                $botman->reply('Un puesto es el trabajo que tiene un empleado relacionado con sus actividades');
+            } elseif (preg_match('/para que es un puesto/i', $message)) {
+                $botman->reply('Para conocer el puesto del empleado y sus actividades relacionadas');
+            } elseif (preg_match('/para que sirven los puestos/i', $message)) {
+                $botman->reply('Para conocer el puesto del empleado y sus actividades relacionadas');
+            } elseif (preg_match('/porque me pide el puesto/i', $message)) {
+                $botman->reply('Para conocer el puesto del empleado y sus actividades relacionadas');
+            } elseif (preg_match('/que tipos de contratos hay/i', $message)) {
+                $botman->reply('4 tipos: Eventual sindicalizado, base sindicalizado, eventual confianza y base confianza');
+            } elseif (preg_match('/contrato eventual sindicalizado/i', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('/contrato base sindicalizado/i', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('/contrato eventual confianza/i', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('/contrato base confianza/i', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('/modificar contrato/iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('/cambiar contrato de empleado/iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('/cambiar contrato del empleado/iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('/que es una zona/iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('/para que sirve una zona/iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('/modificar zona/iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('/agregar zona/iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('/crear zona/iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('/añadir zona/iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('/ver zonas/iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('/eliminar zonas/iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('/quitar zonas/iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('/que son los roles/iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('/cuales son los roles/iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('/para que sirven los roles/iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('/agregar roles/iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('/crear roles/iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('/añadir roles/iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('/ver roles/iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('/eliminar roles/iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('/quitar zonas/iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('//iu', $message)) {
+                $botman->reply('');
             } else {
                 $botman->reply("Lo siento, no tengo información sobre eso en este momento. ¿Puedo ayudarte con algo más?");
             }
