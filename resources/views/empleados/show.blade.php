@@ -394,7 +394,7 @@
 
                                         @if($secuencia === 0)
                                             <!-- Mostrar Rendición de Cuentas si la secuencia es 0 -->
-                                            <li class="nav-item" style="width: 33.3%"><a class="nav-link text-center text-muted" href="#GenerarRC" data-toggle="tab">Rendición de Cuentas</a></li>
+                                            <li class="nav-item" style="width: 33.3%"><a class="nav-link text-center text-muted" href="#GenerarLlA" data-toggle="tab">Rendición de Cuentas</a></li>
                                         @elseif($secuencia === 1 || $secuencia === 2)
                                             <!-- Mostrar Llamada de Atención si la secuencia es 1 o 2 -->
                                             <li class="nav-item" style="width: 33.3%"><a class="nav-link text-center text-muted" href="#GenerarLlA" data-toggle="tab" id="llamadaAtencionTab">Llamada de Atención</a></li>
@@ -549,14 +549,49 @@
                                             <div class="form-group row">
                                                 <div class="text-primary col-md-12">
                                                     <!-- Encabezado del formulario -->
-                                                    <label class="col-sm-12 text-center"><h3>Generar Llamada de Atención</h3></label>
+                                                    <label class="col-sm-12 text-center"><h3>Generar Documento</h3></label>
                                                 </div>
                                             </div>
                                         
                                             <button type="button" onclick="pegarDatos()" class="btn btn-primary">Pegar Datos</button><br><br>
 
+
+
+
+
                                             <div class="form-group row">
-                                                <label for="N_Llamada" class="col-sm-1.8 col-form-label">N. Llamada</label>
+                                            <label class="col-sm-1.8 col-form-label">Tipo de Documento: </label>
+                                                <div class="col-sm-3">
+                                                    @php
+                                                        $secuenciaDocumento = ($contadorRendicionCuentas + $contadorLlamadasAtencion + $contadorActasAdministrativas) % 4;
+                                                    @endphp
+
+                                                    @if($secuenciaDocumento === 0)
+                                                        <!-- Mostrar opciones para Rendición de Cuentas -->
+                                                        <select class="form-control" id="Tipo_Documento" name="Tipo_Documento" placeholder="Tipo de Documento">
+                                                            <option>RENDICION DE CUENTAS</option>
+                                                        </select>
+                                                    @elseif($secuenciaDocumento === 1 || $secuenciaDocumento === 2)
+                                                        <!-- Mostrar opciones para Llamada de Atención -->
+                                                        <select class="form-control" id="Tipo_Documento" name="Tipo_Documento" placeholder="Tipo de Documento">
+                                                            <option>LLAMADA DE ATENCION</option>
+                                                        </select>
+                                                    @elseif($secuenciaDocumento === 3)
+                                                        <!-- Mostrar opciones para Acta Administrativa -->
+                                                        <select class="form-control" id="Tipo_Documento" name="Tipo_Documento" placeholder="Tipo de Documento">
+                                                            <option>ACTA ADMINISTRATIVA</option>
+                                                        </select>
+                                                    @endif
+                                                </div>
+                                            </div>
+
+
+
+
+
+
+                                            <div class="form-group row">
+                                                <label for="N_Llamada" class="col-sm-1.8 col-form-label">N. Documento</label>
                                                 <div class="col-sm-1"> <!-- Cambiado a col-sm-1 para reducir el ancho -->
                                                     <!-- El valor de N. Llamada se autoincrementará y no será modificable -->
                                                     <input type="number" class="form-control" id="N_Llamada" name="N_Llamada" placeholder="N. llamada" value="{{ $ultimoNumeroLlamada + 1 }}" readonly>
@@ -642,7 +677,7 @@
                                     
 
                                             <input type="hidden" name="Id_Empleado" id="Id_Empleado" value="{{$empleado->id}}">
-                                            <input type="hidden" name="Tipo_Documento" id="Tipo_Documento" value="LLAMADA DE ATENCION">
+                                            
                                             <input type="hidden" name="Status_Documento" id="Status_Documento" value="ENVIADO">
                                     
                                             <!-- Introducción del primer indicador -->

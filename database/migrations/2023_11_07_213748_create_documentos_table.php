@@ -26,6 +26,7 @@ return new class extends Migration
             $table->integer("Id_Usuario_Revisar");   //a quien se manda a revisar
             $table->integer("Id_Usuario_Cancelacion")->nullable();   //a quien se manda a revisar
             $table->string('nombre_indicador')->nullable();
+            $table->string('valor_indicador')->nullable();
             $table->text("N_Llamada")->nullable();
             $table->string("Actividad")->nullable();
             $table->date("Fecha_Actividad")->nullable();
