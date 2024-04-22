@@ -270,194 +270,172 @@ class BotManController extends Controller
                 $botman->reply('');
             } elseif (preg_match('/contrato base confianza/i', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/modificar contrato/iu', $message)) {
-                $botman->reply('');
             } elseif (preg_match('/cambiar contrato de empleado/iu', $message)) {
                 $botman->reply('');
             } elseif (preg_match('/cambiar contrato del empleado/iu', $message)) {
                 $botman->reply('');
             } elseif (preg_match('/que es una zona/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Las zonas son areas donde se ofrece un servicio y hay una sede que la atienda');
             } elseif (preg_match('/para que sirve una zona/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Las zonas sirven para identificar el área al que pertenece un empleado');
             } elseif (preg_match('/ver zonas/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Para ver las zonas registradas en el sistema hay que dirigirnos al apartado de listado de zonas en el menu de zonas. Si este menú no aparece es señal de que no se tienen los permisos suficientes para acceder');
             } elseif (preg_match('/que son los roles/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Los roles son los puestos que ocupan los usuarios del sistema. Estos determinan los permisos del respectivo usuario en el sistema.');
             } elseif (preg_match('/cuales son los roles/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Los roles actuales que maneja el sistema son: Jefatura inmediata, Jefatura zonal de proceso, Jefatura zonal de proceso de trabajo, Superintendente de zona, Subjerente de trabajo y Gerente divisional');
             } elseif (preg_match('/para que sirven los roles/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/agregar roles/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/crear roles/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/añadir roles/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Los roles sirven para identificar el puesto del respectivo usuario y los permisos del mismo en el sistema');
             } elseif (preg_match('/ver roles/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/eliminar roles/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Para ver los roles del sistema solo es necesario ir al apartado de roles en el menú de Otros. Si este menú no aparece es señal de que no se tienen los permisos suficientes para acceder');
             } elseif (preg_match('/que es RPE/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('El RPE es el identificador unico de empleado que se manejan en los sistemas de la empresa');
             } elseif (preg_match('/es el RPE/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('El RPE es el identificador unico de empleado que se manejan en los sistemas de la empresa');
             } elseif (preg_match('/no existe RPE/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Si busca un empleado y no lo encuentra por RPE le sugerimos que revise si la búsqueda se hizo correctamente, y en caso de serlo así, reportar la falta del mismo a su superior');
             } elseif (preg_match('/no hay RPE/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Si busca un empleado y no lo encuentra por RPE le sugerimos que revise si la búsqueda se hizo correctamente, y en caso de serlo así, reportar la falta del mismo a su superior');
             } elseif (preg_match('/no encuentro RPE/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Si busca un empleado y no lo encuentra por RPE le sugerimos que revise si la búsqueda se hizo correctamente, y en caso de serlo así, reportar la falta del mismo a su superior');
             } elseif (preg_match('/no existe un RPE/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Si busca un empleado y no lo encuentra por RPE le sugerimos que revise si la búsqueda se hizo correctamente, y en caso de serlo así, reportar la falta del mismo a su superior');
             } elseif (preg_match('/no hay un RPE/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Si busca un empleado y no lo encuentra por RPE le sugerimos que revise si la búsqueda se hizo correctamente, y en caso de serlo así, reportar la falta del mismo a su superior');
             } elseif (preg_match('/RPE no existe/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Si busca un empleado y no lo encuentra por RPE le sugerimos que revise si la búsqueda se hizo correctamente, y en caso de serlo así, reportar la falta del mismo a su superior');
             } elseif (preg_match('/RPE no encontrado/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Si busca un empleado y no lo encuentra por RPE le sugerimos que revise si la búsqueda se hizo correctamente, y en caso de serlo así, reportar la falta del mismo a su superior');
             } elseif (preg_match('/RPE inexistente/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Si busca un empleado y no lo encuentra por RPE le sugerimos que revise si la búsqueda se hizo correctamente, y en caso de serlo así, reportar la falta del mismo a su superior');
             } elseif (preg_match('/para que es el boton ver perfil/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Sirve para ver los datos de los empleados, además de acceder al menu en el que se pueden crear documentos acerca del mismo empleado');
             } elseif (preg_match('/para que es ver perfil/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Sirve para ver los datos de los empleados, además de acceder al menu en el que se pueden crear documentos acerca del mismo empleado');
             } elseif (preg_match('/que sirve ver perfil/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Sirve para ver los datos de los empleados, además de acceder al menu en el que se pueden crear documentos acerca del mismo empleado');
             } elseif (preg_match('/que sirve el boton ver perfil/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Sirve para ver los datos de los empleados, además de acceder al menu en el que se pueden crear documentos acerca del mismo empleado');
             } elseif (preg_match('/no encuentro una opcion/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Si usten no encuentra una opción, preguntame cual es la opción que buscas. Si mi respuesta no te ayuda lo mas seguro es que no tengas los permisos necesarios para acceder a esa opcion');
             } elseif (preg_match('/no encuentro un boton/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Si usten no encuentra una opción, preguntame cual es la opción que buscas. Si mi respuesta no te ayuda lo mas seguro es que no tengas los permisos necesarios para acceder a esa opcion');
             } elseif (preg_match('/cuales son los terminos y condiciones/iu', $message)) {
                 $botman->reply('');
             } elseif (preg_match('/donde ver los terminos y condiciones/iu', $message)) {
                 $botman->reply('');
             } elseif (preg_match('/RPE repetido/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Si usted ha encontrado un RPE repetido, le pedimos reportarlo con su superior o el administrador del sistema para su pronta corrección');
             } elseif (preg_match('/que es listado de usuarios/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('El listado de usuarios es el menú en el que se pueden visualizar todos los usuarios registrados en el sistema');
             } elseif (preg_match('/que es listado de indicadores/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('El listado de indicadores es el menú en el que se pueden visualizar todos los indicadores registrados en el sistema');
             } elseif (preg_match('/que es mi listado/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Mi listado es el menú en el que se pueden visualizar todos los empleados registrados en el sistema');
             } elseif (preg_match('/que es listado de zonas/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('El listado de zonas es el menú en el que se pueden visualizar todas las zonas registrados en el sistema');
             } elseif (preg_match('/donde esta listado de usuarios/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('El listado de usuarios se encuentra en el menú de usuarios');
             } elseif (preg_match('/donde esta listado de empleados/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('El listado de empleados se encuentra en el menú de empleados, en el área de mi listado');
             } elseif (preg_match('/donde esta mi listado/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Mi listado se encuentra en el menú de empleados');
             } elseif (preg_match('/donde esta listado de indicadores/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('El listado de indicadores se encuentra en el menú de indicadores');
             } elseif (preg_match('/donde esta listado de puestos/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('El listado de puestos se encuentra en el menú de puestos');
             } elseif (preg_match('/donde esta listado de zonas/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde esta el listado de usuarios/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde esta el listado de empleados/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde esta el listado de indicadores/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde esta el listado de puestos/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde esta el listado de zonas/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('El listado de zonas se encuentra en el menú de zonas');
             } elseif (preg_match('/donde registrar usuarios/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Para registrar usuarios hay que entrar al menu de usuarios en la opción de registrar usuario y completar el formulario correspondiente');
             } elseif (preg_match('/como registrar usuarios/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Para registrar usuarios hay que entrar al menu de usuarios en la opción de registrar usuario y completar el formulario correspondiente');
             } elseif (preg_match('/puedo registrar usuarios/iu', $message)) {
                 $botman->reply('');
             } elseif (preg_match('/donde registrar un usuario/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Para registrar usuarios hay que entrar al menu de usuarios en la opción de registrar usuario y completar el formulario correspondiente');
             } elseif (preg_match('/como registrar un usuario/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde registrar un usuario/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Para registrar usuarios hay que entrar al menu de usuarios en la opción de registrar usuario y completar el formulario correspondiente');
             } elseif (preg_match('/donde añadir un usuario/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Para añadir usuarios hay que entrar al menu de usuarios en la opción de registrar usuario y completar el formulario correspondiente');
             } elseif (preg_match('/como añadir un usuario/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Para añadir usuarios hay que entrar al menu de usuarios en la opción de registrar usuario y completar el formulario correspondiente');
             } elseif (preg_match('/puedo añadir un usuario/iu', $message)) {
                 $botman->reply('');
             } elseif (preg_match('/donde añadir usuarios/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Para añadir usuarios hay que entrar al menu de usuarios en la opción de registrar usuario y completar el formulario correspondiente');
             } elseif (preg_match('/como añadir usuarios/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Para añadir usuarios hay que entrar al menu de usuarios en la opción de registrar usuario y completar el formulario correspondiente');
             } elseif (preg_match('/puedo añadir usuarios/iu', $message)) {
                 $botman->reply('');
             } elseif (preg_match('/donde crear usuarios/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Para crear usuarios hay que entrar al menu de usuarios en la opción de registrar usuario y completar el formulario correspondiente');
             } elseif (preg_match('/como crear usuarios/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Para crear usuarios hay que entrar al menu de usuarios en la opción de registrar usuario y completar el formulario correspondiente');
             } elseif (preg_match('/puedo crear usuarios/iu', $message)) {
                 $botman->reply('');
             } elseif (preg_match('/donde crear un usuario/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Para crear usuarios hay que entrar al menu de usuarios en la opción de registrar usuario y completar el formulario correspondiente');
             } elseif (preg_match('/como crear un usuario/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Para crear usuarios hay que entrar al menu de usuarios en la opción de registrar usuario y completar el formulario correspondiente');
             } elseif (preg_match('/puedo crear un usuario/iu', $message)) {
                 $botman->reply('');
             } elseif (preg_match('/donde agregar usuarios/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Para agregar usuarios hay que entrar al menu de usuarios en la opción de registrar usuario y completar el formulario correspondiente');
             } elseif (preg_match('/donde agregar un usuario/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Para agregar usuarios hay que entrar al menu de usuarios en la opción de registrar usuario y completar el formulario correspondiente');
             } elseif (preg_match('/como agregar usuarios/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Para agregar usuarios hay que entrar al menu de usuarios en la opción de registrar usuario y completar el formulario correspondiente');
             } elseif (preg_match('/como agregar un usuario/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Para agregar usuarios hay que entrar al menu de usuarios en la opción de registrar usuario y completar el formulario correspondiente');
             } elseif (preg_match('/puedo agregar un usuario/iu', $message)) {
                 $botman->reply('');
             } elseif (preg_match('/puedo agregar usuarios/iu', $message)) {
                 $botman->reply('');
             } elseif (preg_match('/donde registrar empleados/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Para registrar empleados hay que entrar al menu de empleados en la opción de agregar empleado y completar el formulario correspondiente');
             } elseif (preg_match('/como registrar empleados/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Para registrar empleados hay que entrar al menu de empleados en la opción de agregar empleado y completar el formulario correspondiente');
             } elseif (preg_match('/puedo registrar un empleado/iu', $message)) {
                 $botman->reply('');
             } elseif (preg_match('/donde registrar un empleado/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Para registrar empleados hay que entrar al menu de empleados en la opción de agregar empleado y completar el formulario correspondiente');
             } elseif (preg_match('/como registrar un empleado/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Para registrar empleados hay que entrar al menu de empleados en la opción de agregar empleado y completar el formulario correspondiente');
             } elseif (preg_match('/puedo registrar un empleado/iu', $message)) {
                 $botman->reply('');
             } elseif (preg_match('/donde añadir empleados/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Para añadir empleados hay que entrar al menu de empleados en la opción de agregar empleado y completar el formulario correspondiente');
             } elseif (preg_match('/como añadir empleados/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Para añadir empleados hay que entrar al menu de empleados en la opción de agregar empleado y completar el formulario correspondiente');
             } elseif (preg_match('/puedo añadir empleados/iu', $message)) {
                 $botman->reply('');
             } elseif (preg_match('/donde añadir un empleado/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Para añadir empleados hay que entrar al menu de empleados en la opción de agregar empleado y completar el formulario correspondiente');
             } elseif (preg_match('/como añadir un empleado/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Para añadir empleados hay que entrar al menu de empleados en la opción de agregar empleado y completar el formulario correspondiente');
             } elseif (preg_match('/puedo añadir un empleado/iu', $message)) {
                 $botman->reply('');
             } elseif (preg_match('/donde crear empleados/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Para crear empleados hay que entrar al menu de empleados en la opción de agregar empleado y completar el formulario correspondiente');
             } elseif (preg_match('/como crear empleados/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Para crear empleados hay que entrar al menu de empleados en la opción de agregar empleado y completar el formulario correspondiente');
             } elseif (preg_match('/puedo crear empleados/iu', $message)) {
                 $botman->reply('');
             } elseif (preg_match('/donde crear un empleado/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Para crear empleados hay que entrar al menu de empleados en la opción de agregar empleado y completar el formulario correspondiente');
             } elseif (preg_match('/como crear un empleado/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Para crear empleados hay que entrar al menu de empleados en la opción de agregar empleado y completar el formulario correspondiente');
             } elseif (preg_match('/puedo crear un empleado/iu', $message)) {
                 $botman->reply('');
             } elseif (preg_match('/donde agregar empleados/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Para agregar empleados hay que entrar al menu de empleados en la opción de agregar empleado y completar el formulario correspondiente');
             } elseif (preg_match('/donde agregar un empleado/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Para agregar empleados hay que entrar al menu de empleados en la opción de agregar empleado y completar el formulario correspondiente');
             } elseif (preg_match('/como agregar empleados/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Para agregar empleados hay que entrar al menu de empleados en la opción de agregar empleado y completar el formulario correspondiente');
             } elseif (preg_match('/como agregar un empleado/iu', $message)) {
-                $botman->reply('');
+                $botman->reply('Para agregar empleados hay que entrar al menu de empleados en la opción de agregar empleado y completar el formulario correspondiente');
             } elseif (preg_match('/puedo agregar un empleado/iu', $message)) {
                 $botman->reply('');
             } elseif (preg_match('/puedo agregar empleados/iu', $message)) {
