@@ -555,10 +555,6 @@
                                         
                                             <button type="button" onclick="pegarDatos()" class="btn btn-primary">Pegar Datos</button><br><br>
 
-
-
-
-
                                             <div class="form-group row">
                                             <label class="col-sm-1.8 col-form-label">Tipo de Documento: </label>
                                                 <div class="col-sm-3">
@@ -584,11 +580,6 @@
                                                     @endif
                                                 </div>
                                             </div>
-
-
-
-
-
 
                                             <div class="form-group row">
                                                 <label for="N_Llamada" class="col-sm-1.8 col-form-label">N. Documento</label>
