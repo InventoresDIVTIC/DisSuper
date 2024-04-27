@@ -100,13 +100,13 @@ class BotManController extends Controller
                 $botman->reply(' Después de 6 horas de trabajo continuo, tienes derecho a un período de descanso de al menos 30 minutos.');
             } elseif (preg_match('/tiempo maximo de trabajo extra/i', $message)) {
                 $botman->reply('El máximo de horas extra permitido por día es de 3 horas, y por semana es de 9 horas.');
-            } elseif (preg_match('/(derecho|vacaiones)\s+/iu', $message)) {
+            } elseif (preg_match('/derecho.*vacaiones\s+/iu', $message)) {
                 $botman->reply('Tienes derecho a un periodo de vacaciones anuales pagadas que varía dependiendo de tu antigüedad en el empleo, pero generalmente son al menos 6 días hábiles.');
             } elseif (preg_match('/renunciar\s+/i', $message)) {
                 $botman->reply('Si quieres renunciar debes notificar por escrito a tu empleador con al menos 15 días de anticipación tu decisión de renunciar.');
             } elseif (preg_match('/tipos de contratos/i', $message)) {
                 $botman->reply('La Ley Federal del Trabajo reconoce contratos por tiempo indefinido, por tiempo determinado, de obra o servicio determinado, y por temporada.');
-            } elseif (preg_match('/(derechos|despido injusto)/i', $message)) {
+            } elseif (preg_match('/derechos.*despido injusto/i', $message)) {
                 $botman->reply('Tienes derecho a recibir una indemnización y a demandar reinstalación en tu puesto de trabajo.');
             } elseif (preg_match('/(obligaciones|jefe)/i', $message)) {
                 $botman->reply('El empleador está obligado a proporcionar un ambiente de trabajo seguro y saludable, así como a cumplir con las normativas de seguridad e higiene laboral.');
@@ -308,13 +308,9 @@ class BotManController extends Controller
                 $botman->reply('Si busca un empleado y no lo encuentra por RPE le sugerimos que revise si la búsqueda se hizo correctamente, y en caso de serlo así, reportar la falta del mismo a su superior');
             } elseif (preg_match('/RPE inexistente/iu', $message)) {
                 $botman->reply('Si busca un empleado y no lo encuentra por RPE le sugerimos que revise si la búsqueda se hizo correctamente, y en caso de serlo así, reportar la falta del mismo a su superior');
-            } elseif (preg_match('/para que es el boton ver perfil/iu', $message)) {
+            } elseif (preg_match('/para que es.*ver perfil/iu', $message)) {
                 $botman->reply('Sirve para ver los datos de los empleados, además de acceder al menu en el que se pueden crear documentos acerca del mismo empleado');
-            } elseif (preg_match('/para que es ver perfil/iu', $message)) {
-                $botman->reply('Sirve para ver los datos de los empleados, además de acceder al menu en el que se pueden crear documentos acerca del mismo empleado');
-            } elseif (preg_match('/que sirve ver perfil/iu', $message)) {
-                $botman->reply('Sirve para ver los datos de los empleados, además de acceder al menu en el que se pueden crear documentos acerca del mismo empleado');
-            } elseif (preg_match('/que sirve el boton ver perfil/iu', $message)) {
+            } elseif (preg_match('/que sirve.*ver perfil/iu', $message)) {
                 $botman->reply('Sirve para ver los datos de los empleados, además de acceder al menu en el que se pueden crear documentos acerca del mismo empleado');
             } elseif (preg_match('/no encuentro una opcion/iu', $message)) {
                 $botman->reply('Si usten no encuentra una opción, preguntame cual es la opción que buscas. Si mi respuesta no te ayuda lo mas seguro es que no tengas los permisos necesarios para acceder a esa opcion');
@@ -352,869 +348,447 @@ class BotManController extends Controller
                 $botman->reply('Para registrar usuarios hay que entrar al menu de usuarios en la opción de registrar usuario y completar el formulario correspondiente');
             } elseif (preg_match('/puedo registrar usuarios/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde registrar un usuario/iu', $message)) {
+            } elseif (preg_match('/donde registrar.*usuario/iu', $message)) {
                 $botman->reply('Para registrar usuarios hay que entrar al menu de usuarios en la opción de registrar usuario y completar el formulario correspondiente');
-            } elseif (preg_match('/como registrar un usuario/iu', $message)) {
+            } elseif (preg_match('/como registrar.*usuario/iu', $message)) {
                 $botman->reply('Para registrar usuarios hay que entrar al menu de usuarios en la opción de registrar usuario y completar el formulario correspondiente');
-            } elseif (preg_match('/donde añadir un usuario/iu', $message)) {
+            } elseif (preg_match('/donde añadir.*usuario/iu', $message)) {
                 $botman->reply('Para añadir usuarios hay que entrar al menu de usuarios en la opción de registrar usuario y completar el formulario correspondiente');
-            } elseif (preg_match('/como añadir un usuario/iu', $message)) {
+            } elseif (preg_match('/como añadir.*usuario/iu', $message)) {
                 $botman->reply('Para añadir usuarios hay que entrar al menu de usuarios en la opción de registrar usuario y completar el formulario correspondiente');
-            } elseif (preg_match('/puedo añadir un usuario/iu', $message)) {
+            } elseif (preg_match('/puedo añadir.*usuario/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde añadir usuarios/iu', $message)) {
-                $botman->reply('Para añadir usuarios hay que entrar al menu de usuarios en la opción de registrar usuario y completar el formulario correspondiente');
-            } elseif (preg_match('/como añadir usuarios/iu', $message)) {
-                $botman->reply('Para añadir usuarios hay que entrar al menu de usuarios en la opción de registrar usuario y completar el formulario correspondiente');
-            } elseif (preg_match('/puedo añadir usuarios/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde crear usuarios/iu', $message)) {
+            } elseif (preg_match('/donde crear.*usuario/iu', $message)) {
                 $botman->reply('Para crear usuarios hay que entrar al menu de usuarios en la opción de registrar usuario y completar el formulario correspondiente');
-            } elseif (preg_match('/como crear usuarios/iu', $message)) {
+            } elseif (preg_match('/como crear.*usuario/iu', $message)) {
                 $botman->reply('Para crear usuarios hay que entrar al menu de usuarios en la opción de registrar usuario y completar el formulario correspondiente');
-            } elseif (preg_match('/puedo crear usuarios/iu', $message)) {
+            } elseif (preg_match('/puedo crear.*usuario/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde crear un usuario/iu', $message)) {
-                $botman->reply('Para crear usuarios hay que entrar al menu de usuarios en la opción de registrar usuario y completar el formulario correspondiente');
-            } elseif (preg_match('/como crear un usuario/iu', $message)) {
-                $botman->reply('Para crear usuarios hay que entrar al menu de usuarios en la opción de registrar usuario y completar el formulario correspondiente');
-            } elseif (preg_match('/puedo crear un usuario/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde agregar usuarios/iu', $message)) {
+            } elseif (preg_match('/donde agregar.*usuario/iu', $message)) {
                 $botman->reply('Para agregar usuarios hay que entrar al menu de usuarios en la opción de registrar usuario y completar el formulario correspondiente');
-            } elseif (preg_match('/donde agregar un usuario/iu', $message)) {
+            } elseif (preg_match('/como agregar.*usuario/iu', $message)) {
                 $botman->reply('Para agregar usuarios hay que entrar al menu de usuarios en la opción de registrar usuario y completar el formulario correspondiente');
-            } elseif (preg_match('/como agregar usuarios/iu', $message)) {
-                $botman->reply('Para agregar usuarios hay que entrar al menu de usuarios en la opción de registrar usuario y completar el formulario correspondiente');
-            } elseif (preg_match('/como agregar un usuario/iu', $message)) {
-                $botman->reply('Para agregar usuarios hay que entrar al menu de usuarios en la opción de registrar usuario y completar el formulario correspondiente');
-            } elseif (preg_match('/puedo agregar un usuario/iu', $message)) {
+            } elseif (preg_match('/puedo agregar.*usuario/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/puedo agregar usuarios/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde registrar empleados/iu', $message)) {
+            } elseif (preg_match('/donde registrar.*empleado/iu', $message)) {
                 $botman->reply('Para registrar empleados hay que entrar al menu de empleados en la opción de agregar empleado y completar el formulario correspondiente');
-            } elseif (preg_match('/como registrar empleados/iu', $message)) {
+            } elseif (preg_match('/como registrar.*empleado/iu', $message)) {
                 $botman->reply('Para registrar empleados hay que entrar al menu de empleados en la opción de agregar empleado y completar el formulario correspondiente');
-            } elseif (preg_match('/puedo registrar un empleado/iu', $message)) {
+            } elseif (preg_match('/puedo registrar.*empleado/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde registrar un empleado/iu', $message)) {
-                $botman->reply('Para registrar empleados hay que entrar al menu de empleados en la opción de agregar empleado y completar el formulario correspondiente');
-            } elseif (preg_match('/como registrar un empleado/iu', $message)) {
-                $botman->reply('Para registrar empleados hay que entrar al menu de empleados en la opción de agregar empleado y completar el formulario correspondiente');
-            } elseif (preg_match('/puedo registrar un empleado/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde añadir empleados/iu', $message)) {
+            } elseif (preg_match('/donde añadir.*empleado/iu', $message)) {
                 $botman->reply('Para añadir empleados hay que entrar al menu de empleados en la opción de agregar empleado y completar el formulario correspondiente');
-            } elseif (preg_match('/como añadir empleados/iu', $message)) {
+            } elseif (preg_match('/como añadir.*empleado/iu', $message)) {
                 $botman->reply('Para añadir empleados hay que entrar al menu de empleados en la opción de agregar empleado y completar el formulario correspondiente');
-            } elseif (preg_match('/puedo añadir empleados/iu', $message)) {
+            } elseif (preg_match('/puedo añadir.*empleado/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde añadir un empleado/iu', $message)) {
-                $botman->reply('Para añadir empleados hay que entrar al menu de empleados en la opción de agregar empleado y completar el formulario correspondiente');
-            } elseif (preg_match('/como añadir un empleado/iu', $message)) {
-                $botman->reply('Para añadir empleados hay que entrar al menu de empleados en la opción de agregar empleado y completar el formulario correspondiente');
-            } elseif (preg_match('/puedo añadir un empleado/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde crear empleados/iu', $message)) {
+            } elseif (preg_match('/donde crear.*empleado/iu', $message)) {
                 $botman->reply('Para crear empleados hay que entrar al menu de empleados en la opción de agregar empleado y completar el formulario correspondiente');
-            } elseif (preg_match('/como crear empleados/iu', $message)) {
+            } elseif (preg_match('/como crear.*empleado/iu', $message)) {
                 $botman->reply('Para crear empleados hay que entrar al menu de empleados en la opción de agregar empleado y completar el formulario correspondiente');
-            } elseif (preg_match('/puedo crear empleados/iu', $message)) {
+            } elseif (preg_match('/puedo crear.*empleado/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde crear un empleado/iu', $message)) {
-                $botman->reply('Para crear empleados hay que entrar al menu de empleados en la opción de agregar empleado y completar el formulario correspondiente');
-            } elseif (preg_match('/como crear un empleado/iu', $message)) {
-                $botman->reply('Para crear empleados hay que entrar al menu de empleados en la opción de agregar empleado y completar el formulario correspondiente');
-            } elseif (preg_match('/puedo crear un empleado/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde agregar empleados/iu', $message)) {
+            } elseif (preg_match('/donde agregar.*empleado/iu', $message)) {
                 $botman->reply('Para agregar empleados hay que entrar al menu de empleados en la opción de agregar empleado y completar el formulario correspondiente');
-            } elseif (preg_match('/donde agregar un empleado/iu', $message)) {
+            } elseif (preg_match('/como agregar.*empleado/iu', $message)) {
                 $botman->reply('Para agregar empleados hay que entrar al menu de empleados en la opción de agregar empleado y completar el formulario correspondiente');
-            } elseif (preg_match('/como agregar empleados/iu', $message)) {
-                $botman->reply('Para agregar empleados hay que entrar al menu de empleados en la opción de agregar empleado y completar el formulario correspondiente');
-            } elseif (preg_match('/como agregar un empleado/iu', $message)) {
-                $botman->reply('Para agregar empleados hay que entrar al menu de empleados en la opción de agregar empleado y completar el formulario correspondiente');
-            } elseif (preg_match('/puedo agregar un empleado/iu', $message)) {
+            } elseif (preg_match('/puedo agregar.*empleado/iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('/como modificar.*usuario/iu', $message)) {
+                $botman->reply('Para modificar un usuario necesitas colocar el cursor sobre el nombre de usuario sobre el menu de opciones, posteriormente apareceran 2 opciones debajo. Abre la opcion de ver perfil y se abrirá una vista en la que podras modificar los datos del usuario');
+            } elseif (preg_match('/donde modificar.*usuario/iu', $message)) {
+                $botman->reply('Para modificar un usuario necesitas colocar el cursor sobre el nombre de usuario sobre el menu de opciones, posteriormente apareceran 2 opciones debajo. Abre la opcion de ver perfil y se abrirá una vista en la que podras modificar los datos del usuario');
+            } elseif (preg_match('/puedo modificar.*usuario/iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('/como modificar.*empleado/iu', $message)) {
+                $botman->reply('Para modificar los datos de un empleado solo tienes que ir a tu listado, apretar el botón de "ver perfil" del respectivo empleados y cuando se abra la vista correspondiente ir a la ultima opcion para modificar los datos del empleado');
+            } elseif (preg_match('/donde modificar.*empleado/iu', $message)) {
+                $botman->reply('Para modificar los datos de un empleado solo tienes que ir a tu listado, apretar el botón de "ver perfil" del respectivo empleados y cuando se abra la vista correspondiente ir a la ultima opcion para modificar los datos del empleado');
+           } elseif (preg_match('/puedo modificar.*empleado/iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('/como editar.*usuario/iu', $message)) {
+                $botman->reply('Para editar un usuario necesitas colocar el cursor sobre el nombre de usuario sobre el menu de opciones, posteriormente apareceran 2 opciones debajo. Abre la opcion de ver perfil y se abrirá una vista en la que podras editar los datos del usuario');
+            } elseif (preg_match('/donde editar.*usuario/iu', $message)) {
+                $botman->reply('Para editar un usuario necesitas colocar el cursor sobre el nombre de usuario sobre el menu de opciones, posteriormente apareceran 2 opciones debajo. Abre la opcion de ver perfil y se abrirá una vista en la que podras editar los datos del usuario');
+            } elseif (preg_match('/puedo editar.*usuario/iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('/como editar.*empleado/iu', $message)) {
+                $botman->reply('Para editar los datos de un empleado solo tienes que ir a tu listado, apretar el botón de "ver perfil" del respectivo empleados y cuando se abra la vista correspondiente ir a la ultima opcion para editar los datos del empleado');
+            } elseif (preg_match('/donde editar.*empleado/iu', $message)) {
+                $botman->reply('Para editar los datos de un empleado solo tienes que ir a tu listado, apretar el botón de "ver perfil" del respectivo empleados y cuando se abra la vista correspondiente ir a la ultima opcion para editar los datos del empleado');
+            } elseif (preg_match('/puedo editar.*empleados/iu', $message)) {
+                $botman->reply('');
+            } elseif (preg_match('/donde eliminar.*usuario/iu', $message)) {
+                $botman->reply('Para eliminar un usuario solo tienes que ir al listado de usuarios, buscar el usuario en cuestión y dar click en el respectivo boton de eliminar del usuario');
+            } elseif (preg_match('/como eliminar.*usuario/iu', $message)) {
+                $botman->reply('Para eliminar un usuario solo tienes que ir al listado de usuarios, buscar el usuario en cuestión y dar click en el respectivo boton de eliminar del usuario');
+            } elseif (preg_match('/puedo eliminar.*usuario/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/puedo agregar empleados/iu', $message)) {
+            } elseif (preg_match('/donde quitar.*usuario/iu', $message)) {
+                $botman->reply('Para eliminar un usuario solo tienes que ir al listado de usuarios, buscar el usuario en cuestión y dar click en el respectivo boton de eliminar del usuario');
+            } elseif (preg_match('/como quitar.*usuario/iu', $message)) {
+                $botman->reply('Para eliminar un usuario solo tienes que ir al listado de usuarios, buscar el usuario en cuestión y dar click en el respectivo boton de eliminar del usuario');
+            } elseif (preg_match('/puedo quitar.*usuario/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/como modificar un usuario/iu', $message)) {
+            } elseif (preg_match('/donde eliminar.*empleado/iu', $message)) {
+                $botman->reply('Para eliminar un empleado solo tienes que ir a mi listado, buscar el empleado en cuestión y dar click en el respectivo boton de eliminar del empleado');
+            } elseif (preg_match('/como eliminar.*empleado/iu', $message)) {
+                $botman->reply('Para eliminar un empleado solo tienes que ir a mi listado, buscar el empleado en cuestión y dar click en el respectivo boton de eliminar del empleado');
+            } elseif (preg_match('/puedo eliminar.*empleado/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/como modificar usuarios/iu', $message)) {
+            } elseif (preg_match('/donde quitar.*empleado/iu', $message)) {
+                $botman->reply('Para eliminar un empleado solo tienes que ir a mi listado, buscar el empleado en cuestión y dar click en el respectivo boton de eliminar del empleado');
+            } elseif (preg_match('/como quitar.*empleado/iu', $message)) {
+                $botman->reply('Para eliminar un empleado solo tienes que ir a mi listado, buscar el empleado en cuestión y dar click en el respectivo boton de eliminar del empleado');
+           } elseif (preg_match('/puedo quitar.*empleado/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde modificar usuarios/iu', $message)) {
+            } elseif (preg_match('/donde crear.*indicador/iu', $message)) {
+                $botman->reply('Para crear el indicador solo hay que ir al apartado de crear indicador en el menu de indicadores, llenar el formulario y dar click en guardar');
+            } elseif (preg_match('/como crear.*indicador/iu', $message)) {
+                $botman->reply('Para crear el indicador solo hay que ir al apartado de crear indicador en el menu de indicadores, llenar el formulario y dar click en guardar');
+            } elseif (preg_match('/puedo crear.*indicador/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde modificar un usuario/iu', $message)) {
+            } elseif (preg_match('/donde añadir.*indicador/iu', $message)) {
+                $botman->reply('Para añadir el indicador solo hay que ir al apartado de crear indicador en el menu de indicadores, llenar el formulario y dar click en guardar');
+            } elseif (preg_match('/como añadir.*indicador/iu', $message)) {
+                $botman->reply('Para añadir el indicador solo hay que ir al apartado de crear indicador en el menu de indicadores, llenar el formulario y dar click en guardar');
+            } elseif (preg_match('/puedo añadir.*indicador/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/puedo modificar un usuario/iu', $message)) {
+            } elseif (preg_match('/donde registrar.*indicador/iu', $message)) {
+                $botman->reply('Para registrar el indicador solo hay que ir al apartado de crear indicador en el menu de indicadores, llenar el formulario y dar click en guardar');
+            } elseif (preg_match('/como registrar.*indicador/iu', $message)) {
+                $botman->reply('Para registrar el indicador solo hay que ir al apartado de crear indicador en el menu de indicadores, llenar el formulario y dar click en guardar');
+            } elseif (preg_match('/puedo registrar.*indicador/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/puedo modificar usuarios/iu', $message)) {
+            } elseif (preg_match('/donde agregar.*indicador/iu', $message)) {
+                $botman->reply('Para agregar el indicador solo hay que ir al apartado de crear indicador en el menu de indicadores, llenar el formulario y dar click en guardar');
+            } elseif (preg_match('/como agregar.*indicador/iu', $message)) {
+                $botman->reply('Para agregar el indicador solo hay que ir al apartado de crear indicador en el menu de indicadores, llenar el formulario y dar click en guardar');
+            } elseif (preg_match('/puedo agregar.*indicador/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/como modificar empleados/iu', $message)) {
+            } elseif (preg_match('/donde modificar.*indicador/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/como modificar un empleado/iu', $message)) {
+            } elseif (preg_match('/como modificar.*indicador/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde modificar un empleado/iu', $message)) {
+            } elseif (preg_match('/puedo modificar.*indicador/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde modificar emplados/iu', $message)) {
+            } elseif (preg_match('/donde editar.*indicador/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/puedo modificar empleados/iu', $message)) {
+            } elseif (preg_match('/como editar.*indicador/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/puedo modificar un empleados/iu', $message)) {
+            } elseif (preg_match('/puedo editar.*indicador/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/como editar un usuario/iu', $message)) {
+            } elseif (preg_match('/donde eliminar.*indicador/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/como editar usuarios/iu', $message)) {
+            } elseif (preg_match('/como eliminar.*indicador/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde editar usuarios/iu', $message)) {
+            } elseif (preg_match('/puedo eliminar.*indicador/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde editar un usuario/iu', $message)) {
+            } elseif (preg_match('/donde quitar.*indicador/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/puedo editar un usuario/iu', $message)) {
+            } elseif (preg_match('/como quitar.*indicador/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/puedo editar usuarios/iu', $message)) {
+            } elseif (preg_match('/puedo quitar.*indicador/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/como editar empleados/iu', $message)) {
+            } elseif (preg_match('/donde registrar.*puesto/iu', $message)) {
+                $botman->reply('Para registrar un puesto solo hay que ir al apartado de añadir puestos en el menu de Puestos, llenar el formulario y dar click en guardar');
+            } elseif (preg_match('/como registrar.*puesto/iu', $message)) {
+                $botman->reply('Para registrar un puesto solo hay que ir al apartado de añadir puestos en el menu de Puestos, llenar el formulario y dar click en guardar');
+            } elseif (preg_match('/puedo registrar.*puesto/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/como editar un empleado/iu', $message)) {
+            } elseif (preg_match('/donde añadir.*puesto/iu', $message)) {
+                $botman->reply('Para añadir un puesto solo hay que ir al apartado de añadir puestos en el menu de Puestos, llenar el formulario y dar click en guardar');
+            } elseif (preg_match('/como añadir.*puesto/iu', $message)) {
+                $botman->reply('Para añadir un puesto solo hay que ir al apartado de añadir puestos en el menu de Puestos, llenar el formulario y dar click en guardar');
+            } elseif (preg_match('/puedo añadir.*puesto/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde editar un empleado/iu', $message)) {
+            } elseif (preg_match('/donde agregar.*puesto/iu', $message)) {
+                $botman->reply('Para agregar un puesto solo hay que ir al apartado de añadir puestos en el menu de Puestos, llenar el formulario y dar click en guardar');
+            } elseif (preg_match('/como agregar.*puesto/iu', $message)) {
+                $botman->reply('Para agregar un puesto solo hay que ir al apartado de añadir puestos en el menu de Puestos, llenar el formulario y dar click en guardar');
+            } elseif (preg_match('/puedo agregar.*puesto/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde editar emplados/iu', $message)) {
+            } elseif (preg_match('/donde crear.*puesto/iu', $message)) {
+                $botman->reply('Para crear un puesto solo hay que ir al apartado de añadir puestos en el menu de Puestos, llenar el formulario y dar click en guardar');
+            } elseif (preg_match('/como crear.*puesto/iu', $message)) {
+                $botman->reply('Para crear un puesto solo hay que ir al apartado de añadir puestos en el menu de Puestos, llenar el formulario y dar click en guardar');
+            } elseif (preg_match('/puedo crear.*puesto/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/puedo editar empleados/iu', $message)) {
+            } elseif (preg_match('/donde modificar.*puesto/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/puedo editar un empleados/iu', $message)) {
+            } elseif (preg_match('/como modificar.*puesto/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde eliminar usuarios/iu', $message)) {
+            } elseif (preg_match('/puedo modificar.*puesto/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde eliminar un usuario/iu', $message)) {
+            } elseif (preg_match('/donde editar.*puesto/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/como eliminar usuarios/iu', $message)) {
+            } elseif (preg_match('/como editar.*puesto/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/como eliminar un usuario/iu', $message)) {
+            } elseif (preg_match('/puedo editar.*puesto/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/puedo eliminar usuarios/iu', $message)) {
+            } elseif (preg_match('/donde eliminar.*puesto/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/puedo eliminar un usuario/iu', $message)) {
+            } elseif (preg_match('/como eliminar.*puesto/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde quitar un usuario/iu', $message)) {
+            } elseif (preg_match('/puedo eliminar.*puesto/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde quitar usuarios/iu', $message)) {
+            } elseif (preg_match('/donde quitar.*puesto/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/como quitar usuarios/iu', $message)) {
+            } elseif (preg_match('/como quitar.*puesto/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/como quitar un usuario/iu', $message)) {
+            } elseif (preg_match('/puedo quitar.*puesto/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/puedo quitar usuarios/iu', $message)) {
+            } elseif (preg_match('/que es.*funcion de puesto/iu', $message)) {
+                $botman->reply('Las funciones de puesto son las funciones que se asignan a determinados puestos dentro de la empresa');
+            } elseif (preg_match('/que son.*funciones de puesto/iu', $message)) {
+                $botman->reply('Las funciones de puesto son las funciones que se asignan a determinados puestos dentro de la empresa');
+            } elseif (preg_match('/sirven.*funciones de puesto/iu', $message)) {
+                $botman->reply('Las funciones de puesto sirven para listar las respectivas funciones con las que debe cumplir el respectivo empleado con el puesto asignado');
+            } elseif (preg_match('/sirve.*funcion de puesto/iu', $message)) {
+                $botman->reply('Las funciones de puesto sirven para listar las respectivas funciones con las que debe cumplir el respectivo empleado con el puesto asignado');
+            } elseif (preg_match('/donde crear.*funcion de puesto/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/puedo quitar un usuario/iu', $message)) {
+            } elseif (preg_match('/como crear.*funcion de puesto/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde eliminar empleados/iu', $message)) {
+            } elseif (preg_match('/puedo crear.*funcion de puesto/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde eliminar un empleado/iu', $message)) {
+            } elseif (preg_match('/donde registrar.*funcion de puesto/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/como eliminar empleados/iu', $message)) {
+            } elseif (preg_match('/como registrar.*funcion de puesto/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/como eliminar un empleado/iu', $message)) {
+            } elseif (preg_match('/puedo registrar.*funcion de puesto/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/puedo eliminar empleados/iu', $message)) {
+            } elseif (preg_match('/donde añadir.*funcion de puesto/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/puedo eliminar un empleado/iu', $message)) {
+            } elseif (preg_match('/como añadir.*funcion de puesto/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde quitar empleados/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde quitar un empleado/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como quitar un empleado/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como quitar empleados/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo quitar empleados/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo quitar un empleado/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde crear indicadores/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde crear un indicador/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como crear un indicador/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como crear indicadores/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo crear indicadores/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo crear un indicador/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde añadir indicadores/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde añadir un indicador/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como añadir un indicador/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como añadir indicadores/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo añadir indicadores/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo añadir un indicador/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde registrar indicadores/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde registrar un indicador/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como registrar un indicador/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como registrar indicadores/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo registrar indicadores/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo registrar un indicador/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde agregar indicadores/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde agregar un indicador/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como agregar indicadores/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como agregar un indicador/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo agregar un indicador/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo agregar indicadores/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde modificar indicadores/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde modificar un indicador/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como modificar indicadores/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como modificar un indicador/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo modificar un indicador/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo modificar indicadores/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde editar indicadores/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde editar un indicador/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como editar indicadores/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como editar un indicador/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo editar un indicador/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo editar indicadores/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde eliminar indicadores/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde eliminar un indicador/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como eliminar un indicador/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como eliminar indicadores/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo eliminar indicadores/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo eliminar un indicador/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde quitar indicadores/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde quitar un indicador/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como quitar un indicador/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como quitar indicadores/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo quitar indicadores/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo quitar un indicador/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde registrar puestos/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde registrar un puesto/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como registrar un puesto/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como registrar puestos/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo registrar puestos/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo registrar un puesto/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde añadir puestos/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde añadir un puesto/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como añadir puestos/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como añadir un puesto/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo añadir un puesto/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo añadir puestos/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde agregar puestos/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde agregar un puesto/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como agregar puestos/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como agregar un puesto/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo agregar un puesto/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo agregar puestos/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde crear puestos/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde crear un puesto/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como crear un puesto/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como crear puestos/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo crear puestos/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo crear un puesto/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde modificar puestos/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde modificar un puesto/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como modificar puestos/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como modificar un puesto/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo modificar puestos/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo modificar un puesto/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde editar puestos/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde editar un puesto/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como editar puestos/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como editar un puesto/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo editar puestos/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo editar un puesto/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde eliminar puestos/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde eliminar un puesto/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como eliminar puestos/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como eliminar un puesto/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo eliminar puestos/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo eliminar un puesto/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde quitar puestos/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde quitar un puesto/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como quitar puestos/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como quitar un puesto/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo quitar puestos/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo quitar un puesto/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/que es una funcion de puesto/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/que son las funciones de puesto/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/sirven funciones de puesto/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/sirve funcion de puesto/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde crear una funcion de puesto/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde crear funciones de puesto/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como crear funciones de puesto/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como crear una funcion de puesto/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo crear una funcion de puesto/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo crear funciones de puesto/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde registrar funciones de puestos/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde registrar una funcion de puesto/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como registrar funciones de puesto/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como registrar una funcion de puesto/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo registrar funciones de puesto/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo registrar una funcion de puesto/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde añadir funciones de puesto/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde añadir una funcion de puesto/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como añadir funciones de puesto/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como añadir una funcion de puesto/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo añadir funciones de puesto/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo añadir una funcion de puesto/iu', $message)) {
+            } elseif (preg_match('/puedo añadir.*funcion de puesto/iu', $message)) {
                 $botman->reply('');
             } elseif (preg_match('/donde agregar funciones de puesto/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde agregar una funcion de puesto/iu', $message)) {
+            } elseif (preg_match('/donde agregar.*funcion de puesto/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/como agregar funciones de puesto/iu', $message)) {
+            } elseif (preg_match('/como agregar.*funcion de puesto/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/como agregar una funcion de puesto/iu', $message)) {
+            } elseif (preg_match('/puedo agregar.*funcion de puesto/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/puedo agregar una funcion de puesto/iu', $message)) {
+            } elseif (preg_match('/donde modificar.*funcion de puesto/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/puedo agregar funciones de puesto/iu', $message)) {
+            } elseif (preg_match('/como modificar.*funcion de puesto/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde modificar funciones de puesto/iu', $message)) {
+            } elseif (preg_match('/puedo modificar.*funcion de puesto/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde modificar una funcion de puesto/iu', $message)) {
+            } elseif (preg_match('/donde editar.*funcion de puesto/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/como modificar funciones de puesto/iu', $message)) {
+            } elseif (preg_match('/como editar.*funcion de puesto/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/como modificar una funcion de puesto/iu', $message)) {
+            } elseif (preg_match('/puedo editar.*funcion de puesto/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/puedo modificar funciones de puesto/iu', $message)) {
+            } elseif (preg_match('/donde eliminar.*funcion de puesto/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/puedo modificar una funcion de puesto/iu', $message)) {
+            } elseif (preg_match('/como eliminar.*funcion de puesto/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde editar funciones de puesto/iu', $message)) {
+            } elseif (preg_match('/puedo eliminar.*funcion de puesto/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde editar una funcion de puesto/iu', $message)) {
+            } elseif (preg_match('/donde quitar.*funcion de puesto/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/como editar funciones de puesto/iu', $message)) {
+            } elseif (preg_match('/como quitar.*funcion de puesto/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/como editar una funcion de puesto/iu', $message)) {
+            } elseif (preg_match('/puedo quitar.*funcion de puesto/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/puedo editar funciones de puesto/iu', $message)) {
+            } elseif (preg_match('/donde agregar.*zona/iu', $message)) {
+                $botman->reply('Para agregar una zona solo hay que ir al apartado de kistado de zonas en el menu de Zonas, llenar los datos de la nueva zona en la parte superior y dar click en el boton agregar zona');
+            } elseif (preg_match('/como agregar.*zona/iu', $message)) {
+                $botman->reply('Para agregar una zona solo hay que ir al apartado de kistado de zonas en el menu de Zonas, llenar los datos de la nueva zona en la parte superior y dar click en el boton agregar zona');
+            } elseif (preg_match('/puedo agregar.*zona/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/puedo editar una funcion de puesto/iu', $message)) {
+            } elseif (preg_match('/donde crear.*zona/iu', $message)) {
+                $botman->reply('Para crear una zona solo hay que ir al apartado de kistado de zonas en el menu de Zonas, llenar los datos de la nueva zona en la parte superior y dar click en el boton agregar zona');
+            } elseif (preg_match('/como crear.*zona/iu', $message)) {
+                $botman->reply('Para crear una zona solo hay que ir al apartado de kistado de zonas en el menu de Zonas, llenar los datos de la nueva zona en la parte superior y dar click en el boton agregar zona');
+            } elseif (preg_match('/puedo crear.*zona/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde eliminar una funcion de puesto/iu', $message)) {
+            } elseif (preg_match('/donde añadir.*zona/iu', $message)) {
+                $botman->reply('Para añadir una zona solo hay que ir al apartado de kistado de zonas en el menu de Zonas, llenar los datos de la nueva zona en la parte superior y dar click en el boton agregar zona');
+            } elseif (preg_match('/como añadir.*zona/iu', $message)) {
+                $botman->reply('Para añadir una zona solo hay que ir al apartado de listado de zonas en el menu de Zonas, llenar los datos de la nueva zona en la parte superior y dar click en el boton agregar zona');
+            } elseif (preg_match('/puedo añadir.*zona/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde eliminar funciones de puesto/iu', $message)) {
+            } elseif (preg_match('/donde registrar.*zona/iu', $message)) {
+                $botman->reply('Para registrar una zona solo hay que ir al apartado de listado de zonas en el menu de Zonas, llenar los datos de la nueva zona en la parte superior y dar click en el boton agregar zona');
+            } elseif (preg_match('/como registrar.*zona/iu', $message)) {
+                $botman->reply('Para registrar una zona solo hay que ir al apartado de listado de zonas en el menu de Zonas, llenar los datos de la nueva zona en la parte superior y dar click en el boton agregar zona');
+            } elseif (preg_match('/puedo registrar.*zona/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/como eliminar una funcion de puesto/iu', $message)) {
+            } elseif (preg_match('/donde modificar.*zona/iu', $message)) {
+                $botman->reply('Para modificar una zona solo hay que ir al apartado de listado de zonas en el menu de Zonas, buscar la respectiva zona en el listado y presionar al respectivo boton de modificar. Posteriormente llenar el formulario con los nuevos datos y guardar');
+            } elseif (preg_match('/como modificar.*zona/iu', $message)) {
+                $botman->reply('Para modificar una zona solo hay que ir al apartado de listado de zonas en el menu de Zonas, buscar la respectiva zona en el listado y presionar al respectivo boton de modificar. Posteriormente llenar el formulario con los nuevos datos y guardar');
+            } elseif (preg_match('/puedo modificar.*zona/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/como eliminar funciones de puesto/iu', $message)) {
+            } elseif (preg_match('/donde editar.*zona/iu', $message)) {
+                $botman->reply('Para editar una zona solo hay que ir al apartado de listado de zonas en el menu de Zonas, buscar la respectiva zona en el listado y presionar al respectivo boton de modificar. Posteriormente llenar el formulario con los nuevos datos y guardar');
+            } elseif (preg_match('/como editar.*zona/iu', $message)) {
+                $botman->reply('Para editar una zona solo hay que ir al apartado de listado de zonas en el menu de Zonas, buscar la respectiva zona en el listado y presionar al respectivo boton de modificar. Posteriormente llenar el formulario con los nuevos datos y guardar');
+            } elseif (preg_match('/puedo editar.*zona/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/puedo eliminar funciones de puesto/iu', $message)) {
+            } elseif (preg_match('/donde eliminar.*zona/iu', $message)) {
+                $botman->reply('Para editar una zona solo hay que ir al apartado de listado de zonas en el menu de Zonas, buscar la respectiva zona en el listado y presionar al respectivo boton de eliminar');
+            } elseif (preg_match('/como eliminar.*zona/iu', $message)) {
+                $botman->reply('Para eliminar una zona solo hay que ir al apartado de listado de zonas en el menu de Zonas, buscar la respectiva zona en el listado y presionar al respectivo boton de eliminar');
+            } elseif (preg_match('/puedo eliminar.*zona/iu', $message)) {
+                $botman->reply('Para eliminar una zona solo hay que ir al apartado de listado de zonas en el menu de Zonas, buscar la respectiva zona en el listado y presionar al respectivo boton de eliminar');
+            } elseif (preg_match('/donde quitar.*zona/iu', $message)) {
+                $botman->reply('Para quitar una zona solo hay que ir al apartado de listado de zonas en el menu de Zonas, buscar la respectiva zona en el listado y presionar al respectivo boton de eliminar');
+            } elseif (preg_match('/como quitar.*zona/iu', $message)) {
+                $botman->reply('Para quitar una zona solo hay que ir al apartado de listado de zonas en el menu de Zonas, buscar la respectiva zona en el listado y presionar al respectivo boton de eliminar');
+            } elseif (preg_match('/puedo quitar.*zona/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/puedo eliminar una funcion de puesto/iu', $message)) {
+            } elseif (preg_match('/donde registrar.*contrato/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde quitar funciones de puesto/iu', $message)) {
+            } elseif (preg_match('/como registrar.*contrato/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde quitar una funcion de puesto/iu', $message)) {
+            } elseif (preg_match('/puedo registrar.*contrato/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/como quitar funciones de puesto/iu', $message)) {
+            } elseif (preg_match('/donde añadir.*contrato/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/como quitar una funcion de puesto/iu', $message)) {
+            } elseif (preg_match('/como añadir.*contrato/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/puedo quitar funciones de puesto/iu', $message)) {
+            } elseif (preg_match('/puedo añadir.*contrato/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/puedo quitar una funcion de puesto/iu', $message)) {
+            } elseif (preg_match('/donde agregar.*contrato/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde agregar zonas/iu', $message)) {
+            } elseif (preg_match('/como agregar.*contrato/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde agregar una zona/iu', $message)) {
+            } elseif (preg_match('/puedo agregar.*contrato/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/como agregar zonas/iu', $message)) {
+            } elseif (preg_match('/donde crear.*contrato/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/como agregar una zona/iu', $message)) {
+            } elseif (preg_match('/como crear.*contrato/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/puedo agregar una zona/iu', $message)) {
+            } elseif (preg_match('/puedo crear.*contrato/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/puedo agregar zonas/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde crear zonas/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde crear una zona/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como crear zonas/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como crear una zona/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo crear zonas/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo crear una zona/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde añadir zonas/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde añadir una zona/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como añadir zonas/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como añadir una zona/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo añadir zonas/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo añadir una zona/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde registrar zonas/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde registrar una zona/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como registrar zonas/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como registrar una zona/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo registrar zonas/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo registrar una zona/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde modificar zonas/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde modificar una zona/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como modificar una zona/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como modificar zonas/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo modificar zonas/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo modificar una zona/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde editar zonas/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde editar una zona/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como editar zonas/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como editar una zona/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo editar zonas/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo editar una zona/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde eliminar zonas/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde eliminar una zona/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como eliminar zonas/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como eliminar una zona/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo eliminar zonas/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo eliminar una zona/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde quitar zonas/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde quitar una zona/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como quitar zonas/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como quitar una zona/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo quitar zonas/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo quitar una zona/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde registrar contratos/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde registrar un contrato/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como registrar un contrato/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como registrar contratos/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo registrar contratos/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo registrar un contrato/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde añadir contratos/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde añadir un contrato/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como añadir contratos/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como añadir un contrato/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo añadir un contrato/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo añadir contratos/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde agregar contratos/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde agregar un contrato/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como agregar contratos/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como agregar un contrato/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo agregar un contrato/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo agregar contratos/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde crear contratos/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde crear un contrato/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como crear un contrato/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como crear contratos/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo crear contratos/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo crear un contrato/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde modificar contratos/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde modificar un contrato/iu', $message)) {
+            } elseif (preg_match('/donde modificar.*contrato/iu', $message)) {
                 $botman->reply('');
             } elseif (preg_match('/como modificar contratos/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/como modificar un contrato/iu', $message)) {
+            } elseif (preg_match('/como modificar.*contrato/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/puedo modificar contratos/iu', $message)) {
+            } elseif (preg_match('/puedo modificar.*contrato/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/puedo modificar un contrato/iu', $message)) {
+            } elseif (preg_match('/donde editar.*contrato/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde editar contratos/iu', $message)) {
+            } elseif (preg_match('/como editar.*contrato/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde editar un contrato/iu', $message)) {
+            } elseif (preg_match('/puedo editar.*contrato/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/como editar contratos/iu', $message)) {
+            } elseif (preg_match('/donde eliminar.*contrato/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/como editar un contrato/iu', $message)) {
+            } elseif (preg_match('/como eliminar.*contrato/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/puedo editar contratos/iu', $message)) {
+            } elseif (preg_match('/puedo eliminar.*contrato/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/puedo editar un contrato/iu', $message)) {
+            } elseif (preg_match('/donde quitar.*contrato/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde eliminar contratos/iu', $message)) {
+            } elseif (preg_match('/como quitar.*contrato/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde eliminar un contrato/iu', $message)) {
+            } elseif (preg_match('/puedo quitar.*contrato/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/como eliminar contratos/iu', $message)) {
+            } elseif (preg_match('/donde registrar.*rol/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/como eliminar un contrato/iu', $message)) {
+            } elseif (preg_match('/como registrar.*rol/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/puedo eliminar contratos/iu', $message)) {
+            } elseif (preg_match('/puedo registrar.*rol/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/puedo eliminar un contrato/iu', $message)) {
+            } elseif (preg_match('/donde añadir.*rol/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde quitar contratos/iu', $message)) {
+            } elseif (preg_match('/como añadir.*rol/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde quitar un contrato/iu', $message)) {
+            } elseif (preg_match('/puedo añadir.*rol/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/como quitar contratos/iu', $message)) {
+            } elseif (preg_match('/donde agregar.*rol/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/como quitar un contrato/iu', $message)) {
+            } elseif (preg_match('/como agregar.*rol/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/puedo quitar contratos/iu', $message)) {
+            } elseif (preg_match('/puedo agregar.*rol/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/puedo quitar un contrato/iu', $message)) {
+            } elseif (preg_match('/donde crear.*rol/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde registrar roles/iu', $message)) {
+            } elseif (preg_match('/como crear.*rol/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde registrar un rol/iu', $message)) {
+            } elseif (preg_match('/puedo crear.*rol/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/como registrar un rol/iu', $message)) {
+            } elseif (preg_match('/donde modificar.*rol/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/como registrar roles/iu', $message)) {
+            } elseif (preg_match('/como modificar.*rol/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/puedo registrar roles/iu', $message)) {
+            } elseif (preg_match('/puedo modificar.*rol/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/puedo registrar un rol/iu', $message)) {
+            } elseif (preg_match('/donde editar.*rol/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde añadir roles/iu', $message)) {
+            } elseif (preg_match('/como editar.*rol/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde añadir un rol/iu', $message)) {
+            } elseif (preg_match('/puedo editar.*rol/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/como añadir roles/iu', $message)) {
+            } elseif (preg_match('/donde eliminar.*rol/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/como añadir un rol/iu', $message)) {
+            } elseif (preg_match('/como eliminar.*rol/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/puedo añadir un rol/iu', $message)) {
+            } elseif (preg_match('/puedo eliminar.*rol/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/puedo añadir roles/iu', $message)) {
+            } elseif (preg_match('/donde quitar.*rol/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde agregar roles/iu', $message)) {
+            } elseif (preg_match('/como quitar.*rol/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde agregar un rol/iu', $message)) {
+            } elseif (preg_match('/puedo quitar.*rol/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/como agregar roles/iu', $message)) {
+            } elseif (preg_match('/donde agregar.*actividad/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/como agregar un rol/iu', $message)) {
+            } elseif (preg_match('/como agregar.*actividad/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/puedo agregar un rol/iu', $message)) {
+            } elseif (preg_match('/puedo agregar.*actividad/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/puedo agregar roles/iu', $message)) {
+            } elseif (preg_match('/donde crear.*actividad/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde crear roles/iu', $message)) {
+            } elseif (preg_match('/como crear.*actividad/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde crear un rol/iu', $message)) {
+            } elseif (preg_match('/puedo crear.*actividad/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/como crear un rol/iu', $message)) {
+            } elseif (preg_match('/donde añadir.*actividad/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/como crear roles/iu', $message)) {
+            } elseif (preg_match('/como añadir.*actividad/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/puedo crear roles/iu', $message)) {
+            } elseif (preg_match('/puedo añadir.*actividad/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/puedo crear un rol/iu', $message)) {
+            } elseif (preg_match('/donde registrar.*actividad/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde modificar roles/iu', $message)) {
+            } elseif (preg_match('/como registrar.*actividad/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde modificar un rol/iu', $message)) {
+            } elseif (preg_match('/puedo registrar.*actividad/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/como modificar roles/iu', $message)) {
+            } elseif (preg_match('/donde modificar.*actividad/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/como modificar un rol/iu', $message)) {
+            } elseif (preg_match('/como modificar.*actividad/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/puedo modificar roles/iu', $message)) {
+            } elseif (preg_match('/puedo modificar.*actividad/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/puedo modificar un rol/iu', $message)) {
+            } elseif (preg_match('/donde editar.*actividad/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde editar roles/iu', $message)) {
+            } elseif (preg_match('/como editar.*actividad/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde editar un rol/iu', $message)) {
+            } elseif (preg_match('/puedo editar.*actividad/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/como editar roles/iu', $message)) {
+            } elseif (preg_match('/donde eliminar.*actividad/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/como editar un rol/iu', $message)) {
+            } elseif (preg_match('/como eliminar.*actividad/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/puedo editar roles/iu', $message)) {
+            } elseif (preg_match('/puedo eliminar.*actividad/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/puedo editar un rol/iu', $message)) {
+            } elseif (preg_match('/donde quitar.*actividad/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde eliminar roles/iu', $message)) {
+            } elseif (preg_match('/como quitar.*actividad/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde eliminar un rol/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como eliminar roles/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como eliminar un rol/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo eliminar roles/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo eliminar un rol/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde quitar roles/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde quitar un rol/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como quitar roles/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como quitar un rol/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo quitar roles/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo quitar un rol/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde agregar actividades/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde agregar una actividad/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como agregar actividades/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como agregar una actividad/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo agregar una actividad/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo agregar actividades/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde crear actividades/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde crear una actividad/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como crear actividades/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como crear una actividad/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo crear actividades/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo crear una actividad/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde añadir actividades/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde añadir una actividad/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como añadir actividades/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como añadir una actividad/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo añadir actividades/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo añadir una actividad/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde registrar actividades/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde registrar una actividad/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como registrar actividades/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como registrar una actividad/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo registrar actividades/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo registrar una actividad/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde modificar actividades/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde modificar una actividad/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como modificar una actividad/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como modificar actividades/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo modificar actividades/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo modificar una actividad/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde editar actividades/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde editar una actividad/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como editar actividades/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como editar una actividad/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo editar actividades/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo editar una actividad/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde eliminar actividades/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde eliminar una actividad/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como eliminar actividades/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como eliminar una actividad/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo eliminar actividades/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo eliminar una actividad/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde quitar actividades/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/donde quitar una actividad/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como quitar actividades/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/como quitar una actividad/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo quitar actividades/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/puedo quitar una actividad/iu', $message)) {
+            } elseif (preg_match('/puedo quitar.*actividad/iu', $message)) {
                 $botman->reply('');
             } elseif (preg_match('//iu', $message)) {
                 $botman->reply('');
