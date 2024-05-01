@@ -68,7 +68,12 @@ class BotManController extends Controller
                 $botman->reply('La sostenibilidad, la responsabilidad ambiental y el desarrollo sostenible son valores prioritarios en el código de ética de la CFE. La empresa se compromete a promover prácticas empresariales sostenibles, proteger el medio ambiente y contribuir al desarrollo económico, social y ambiental de las comunidades donde opera.');
             } elseif (preg_match('/compliance|cumplimiento normativo|gestión de riesgos/i', $message)) {
                 $botman->reply('El cumplimiento normativo, la gestión de riesgos y el compliance son aspectos clave en el código de ética de la CFE. La empresa se compromete a cumplir con las leyes, regulaciones y estándares aplicables, gestionar proactivamente los riesgos asociados a sus operaciones y promover una cultura de cumplimiento y ética empresarial.');
-            } elseif (preg_match('/seguridad y salud laboral|prevención de riesgos laborales|bienestar de los empleados/i', $message)) {
+            }
+            
+            
+            
+            
+            elseif (preg_match('/seguridad y salud laboral|prevención de riesgos laborales|bienestar de los empleados/i', $message)) {
                 $botman->reply('La seguridad y salud laboral, la prevención de riesgos laborales y el bienestar de los empleados son aspectos prioritarios en el código de ética de la CFE. La empresa se compromete a proporcionar un ambiente de trabajo seguro y saludable, implementar medidas de prevención de riesgos y promover el bienestar físico y emocional de sus empleados.');
             } elseif (preg_match('/ética en la contratación|procesos de selección justos|igualdad de oportunidades/i', $message)) {
                 $botman->reply('La ética en la contratación, los procesos de selección justos y la igualdad de oportunidades son principios esenciales en el código de ética de la CFE. La empresa se compromete a promover prácticas de contratación éticas, transparentes y basadas en el mérito, respetando la igualdad de oportunidades y la diversidad.');
@@ -115,10 +120,11 @@ class BotManController extends Controller
             } elseif (preg_match('/protección de datos personales|privacidad del empleado|confidencialidad/i', $message)) {
                 $botman->reply('Los trabajadores tienen el derecho a la protección de sus datos personales, la privacidad en el ámbito laboral y la confidencialidad de la información personal y profesional. La empresa debe cumplir con las leyes de protección de datos y garantizar la seguridad y privacidad de la información.');
             }
-            
-            
-            
-            
+
+
+
+
+
             elseif (preg_match('/derecho a la salud|atención médica|seguro de gastos médicos/i', $message)) {
                 $botman->reply('Los trabajadores tienen el derecho a la salud, la atención médica adecuada y el acceso a los servicios de salud. La empresa debe proporcionar un seguro de gastos médicos, servicios médicos ocupacionales y programas de bienestar para promover la salud y el bienestar de los empleados.');
             }  elseif (preg_match('/igualdad de oportunidades|no discriminación|diversidad e inclusión/i', $message)) {
@@ -169,7 +175,12 @@ class BotManController extends Controller
                 $botman->reply('El trabajador tiene la obligación de utilizar adecuadamente los recursos, herramientas y materiales de trabajo proporcionados por la empresa, cuidar su conservación y evitar cualquier desperdicio o uso indebido.');
             } elseif (preg_match('/confidencialidad|protección de datos|información sensible/i', $message)) {
                 $botman->reply('El trabajador debe mantener la confidencialidad y proteger la información sensible, datos personales y secretos comerciales de la empresa, evitando su divulgación o uso indebido.');
-            } elseif (preg_match('/participación en capacitaciones|formación continua|actualización profesional/i', $message)) {
+            }
+            
+            
+            
+            
+            elseif (preg_match('/participación en capacitaciones|formación continua|actualización profesional/i', $message)) {
                 $botman->reply('El trabajador tiene la obligación de participar en las capacitaciones, cursos de formación y programas de actualización profesional proporcionados por la empresa para mejorar sus habilidades y competencias laborales.');
             } elseif (preg_match('/cumplimiento de obligaciones fiscales|declaración de impuestos|contribuciones laborales/i', $message)) {
                 $botman->reply('El trabajador debe cumplir con sus obligaciones fiscales, incluyendo la declaración de impuestos, el pago de contribuciones laborales y otras obligaciones fiscales establecidas por la legislación aplicable.');
@@ -276,7 +287,12 @@ class BotManController extends Controller
                $botman->reply('Se utilizan sistemas de información avanzados, plataformas tecnológicas, bases de datos, sistemas de gestión de información, sistemas ERP, sistemas GIS, y tecnologías de big data y analytics.');
            } elseif (preg_match('/Seguridad informática|Ciberseguridad|Tecnologías de seguridad/i', $message)) {
                $botman->reply('Se implementan medidas y tecnologías de seguridad informática y ciberseguridad, como firewalls, sistemas de detección y prevención de intrusiones, sistemas de cifrado, autenticación, sistemas SIEM, y políticas de seguridad.');
-           } elseif (preg_match('/Innovación tecnológica|Investigación y desarrollo|Tecnologías emergentes/i', $message)) {
+           }
+           
+           
+           
+           
+           elseif (preg_match('/Innovación tecnológica|Investigación y desarrollo|Tecnologías emergentes/i', $message)) {
                $botman->reply('Se promueve la innovación tecnológica, se invierte en investigación y desarrollo, y se adoptan tecnologías emergentes, como energías renovables, almacenamiento de energía, redes inteligentes, IoT, IA, blockchain, y tecnologías digitales.');
            } elseif (preg_match('/Formación y capacitación|Tecnologías de formación|Programas de capacitación/i', $message)) {
                $botman->reply('Se ofrece formación y capacitación a través de programas de formación técnica, cursos de actualización, talleres especializados, certificaciones y plataformas de e-learning.');
@@ -379,7 +395,12 @@ class BotManController extends Controller
                 $botman->reply('Se integran dispositivos, sensores, sistemas, y plataformas de Internet de las cosas (IoT), para monitorizar, controlar, gestionar, y optimizar la infraestructura eléctrica, redes de distribución, equipos, y procesos en tiempo real, mejorar la eficiencia operativa, detectar y prevenir fallos, y proporcionar servicios inteligentes y personalizados a los usuarios y clientes.');
             } elseif (preg_match('/Energías Renovables|Energía Solar|Energía Eólica/i', $message)) {
                 $botman->reply('Se promueve la integración y desarrollo de energías renovables, como energía solar, energía eólica, energía hidroeléctrica, biomasa, y energía geotérmica, mediante proyectos, inversiones, instalaciones, y operaciones sostenibles, para diversificar la matriz energética, reducir las emisiones de gases de efecto invernadero, y contribuir a la transición energética y desarrollo sostenible.');
-            } elseif (preg_match('/Almacenamiento de Energía|Baterías|Sistemas de Almacenamiento/i', $message)) {
+            }
+            
+            
+            
+            
+            elseif (preg_match('/Almacenamiento de Energía|Baterías|Sistemas de Almacenamiento/i', $message)) {
                 $botman->reply('Se desarrollan y despliegan sistemas de almacenamiento de energía, baterías, acumuladores, y soluciones de gestión de energía, para optimizar la integración, gestión, y utilización de energías renovables, mejorar la estabilidad, fiabilidad, y eficiencia del sistema eléctrico, y proporcionar soluciones de respaldo, regulación, y gestión de la demanda.');
             } elseif (preg_match('/Redes Inteligentes|Smart Grids|Infraestructura de Redes/i', $message)) {
                 $botman->reply('Se implementan redes inteligentes, smart grids, infraestructuras de redes avanzadas, y sistemas de gestión de red, para modernizar, optimizar, y digitalizar la infraestructura eléctrica, mejorar la distribución, transmisión, operación, y gestión de la red eléctrica, integrar energías renovables, y ofrecer servicios eléctricos inteligentes, eficientes, y personalizados.');
@@ -443,9 +464,7 @@ class BotManController extends Controller
                 $botman->reply('Se realiza una gestión de riesgos proactiva, sistemática, y adaptativa, mediante la identificación, evaluación, análisis, priorización, planificación, mitigación, monitoreo, y control de riesgos, utilizando técnicas, herramientas, y prácticas de gestión de riesgos, como matrices de riesgos, análisis SWOT, y planificación de contingencia, para anticipar, prevenir, minimizar, y gestionar los riesgos, incertidumbres, y contingencias en los proyectos, y proteger y maximizar el valor y resultados de los proyectos.');
             } elseif (preg_match('/Calidad en Proyectos|Aseguramiento|Control|Certificación/i', $message)) {
                 $botman->reply('Se garantiza la calidad, excelencia, y conformidad en proyectos, mediante la implementación de sistemas, metodologías, prácticas, y estándares de calidad, como ISO 9001, Six Sigma, y TQM (Total Quality Management), para asegurar la satisfacción, cumplimiento, eficacia, eficiencia, y mejora continua en los procesos, productos, servicios, y resultados de los proyectos, y alcanzar y mantener altos niveles de calidad, excelencia, y certificación en la gestión y ejecución de proyectos.');
-            }
-           
-            elseif (preg_match('/Integración de Proyectos|Coordinación|Unificación|Sinergia/i', $message)) {
+            }elseif (preg_match('/Integración de Proyectos|Coordinación|Unificación|Sinergia/i', $message)) {
                 $botman->reply('Se promueve la integración, coordinación, unificación, y sinergia entre proyectos, equipos, departamentos, y áreas, mediante prácticas, herramientas, y técnicas de gestión de integración, como gestión de programas, portafolios, y PMO (Project Management Office), para alinear, armonizar, optimizar, y aprovechar recursos, esfuerzos, capacidades, y conocimientos, y fomentar la colaboración, cooperación, y trabajo en equipo en la organización y ejecución de proyectos.');
             } elseif (preg_match('/Cierre de Proyectos|Finalización|Entrega|Evaluación/i', $message)) {
                 $botman->reply('Se realiza un cierre ordenado, sistemático, y evaluativo de proyectos, mediante la finalización, entrega, aceptación, revisión, evaluación, y retroalimentación de proyectos, utilizando técnicas, herramientas, y prácticas de cierre de proyectos, como lecciones aprendidas, auditorías, y post-mortem, para asegurar el cumplimiento, satisfacción, aprendizaje, mejora, y éxito en la finalización y entrega de proyectos, y facilitar la transferencia de conocimientos, resultados, y aprendizajes en los proyectos.');
@@ -479,7 +498,12 @@ class BotManController extends Controller
                 $botman->reply('Se fomenta la innovación, investigación, y desarrollo en mantenimiento de equipos, maquinaria, instalaciones, y sistemas eléctricos, mediante la exploración, experimentación, implementación, y adopción de tecnologías, técnicas, procesos, y prácticas innovadoras, como IoT, AI, ML, y Predictive Maintenance, para optimizar, mejorar, y transformar la operación, mantenimiento, rendimiento, y sostenibilidad de los equipos y activos.');
             } elseif (preg_match('/Gestión de Calidad|ISO|Auditoría|Mejora Continua/i', $message)) {
                 $botman->reply('Se asegura la gestión de calidad integral en operación y mantenimiento de equipos, maquinaria, instalaciones, y sistemas eléctricos, mediante la implementación, certificación, auditoría, y mejora continua de sistemas, estándares, y prácticas de calidad, como ISO 9001, y Six Sigma, para garantizar la excelencia, satisfacción, confiabilidad, y cumplimiento de requisitos, normas, y estándares de calidad en la operación y mantenimiento de los equipos.');
-            } elseif (preg_match('/Sostenibilidad y Medio Ambiente|Eco-amigable|Reciclaje|Conservación/i', $message)) {
+            }
+            
+            
+            
+            
+            elseif (preg_match('/Sostenibilidad y Medio Ambiente|Eco-amigable|Reciclaje|Conservación/i', $message)) {
                 $botman->reply('Se promueve la sostenibilidad, medio ambiente, y eco-amigabilidad en operación y mantenimiento de equipos, maquinaria, instalaciones, y sistemas eléctricos, mediante la implementación, adopción, y práctica de soluciones, técnicas, y prácticas sostenibles, ecológicas, y responsables, para reducir, minimizar, y mitigar el impacto ambiental, huella de carbono, y contaminación en la operación y mantenimiento de los equipos, y contribuir a la conservación, protección, y preservación del medio ambiente.');
             } elseif (preg_match('/Innovación y Desarrollo Tecnológico|Tecnología|Innovación|Investigación/i', $message)) {
                 $botman->reply('Se impulsa la innovación y desarrollo tecnológico continuo, integral, y estratégico, mediante la investigación, experimentación, desarrollo, implementación, y adopción de tecnologías, soluciones, productos, servicios, y sistemas innovadores, para potenciar la transformación digital, optimización operativa, modernización infraestructura, mejora servicio al cliente, y competitividad en el sector eléctrico.');
@@ -590,7 +614,13 @@ class BotManController extends Controller
                 $botman->reply('DisSuper está disponible en dispositivos móviles con una aplicación optimizada para ofrecerte un acceso móvil rápido, fácil y seguro a todas las funcionalidades y características de la plataforma.');
             } elseif (preg_match('/Personalización de Interfaz|Personalización|Interfaz|Configuración/i', $message)) {
                 $botman->reply('En DisSuper, puedes personalizar la interfaz y configurar las preferencias de visualización para adaptar la plataforma a tus necesidades y mejorar tu experiencia de usuario.');
-            } elseif (preg_match('/Formación y Capacitación|Formación|Capacitación|Tutoriales/i', $message)) {
+            } 
+            
+            
+            
+            
+            
+            elseif (preg_match('/Formación y Capacitación|Formación|Capacitación|Tutoriales/i', $message)) {
                 $botman->reply('DisSuper ofrece formación y capacitación a los usuarios para asegurar un uso efectivo y eficiente de la plataforma, proporcionando tutoriales, guías y recursos educativos para familiarizarte con todas las funcionalidades y herramientas disponibles.');
             } elseif (preg_match('/Feedback y Sugerencias|Feedback|Sugerencias|Mejoras/i', $message)) {
                 $botman->reply('Valoramos tu feedback y sugerencias en DisSuper para mejorar continuamente la plataforma y adaptarla a tus necesidades y requerimientos, asegurando una experiencia de usuario satisfactoria y personalizada.');
@@ -683,19 +713,7 @@ class BotManController extends Controller
                 $botman->reply('Para conocer el puesto del empleado y sus actividades relacionadas');
             } elseif (preg_match('/que tipos de contratos hay/i', $message)) {
                 $botman->reply('4 tipos: Eventual sindicalizado, base sindicalizado, eventual confianza y base confianza');
-            } elseif (preg_match('/contrato eventual sindicalizado/i', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/contrato base sindicalizado/i', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/contrato eventual confianza/i', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/contrato base confianza/i', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/cambiar contrato de empleado/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/cambiar contrato del empleado/iu', $message)) {
-                $botman->reply('');
-            } elseif (preg_match('/que es una zona/iu', $message)) {
+            }elseif (preg_match('/que es una zona/iu', $message)) {
                 $botman->reply('Las zonas son areas donde se ofrece un servicio y hay una sede que la atienda');
             } elseif (preg_match('/para que sirve una zona/iu', $message)) {
                 $botman->reply('Las zonas sirven para identificar el área al que pertenece un empleado');
@@ -707,7 +725,13 @@ class BotManController extends Controller
                 $botman->reply('Los roles actuales que maneja el sistema son: Jefatura inmediata, Jefatura zonal de proceso, Jefatura zonal de proceso de trabajo, Superintendente de zona, Subjerente de trabajo y Gerente divisional');
             } elseif (preg_match('/para que sirven los roles/iu', $message)) {
                 $botman->reply('Los roles sirven para identificar el puesto del respectivo usuario y los permisos del mismo en el sistema');
-            } elseif (preg_match('/ver roles/iu', $message)) {
+            }
+            
+            
+            
+            
+            
+            elseif (preg_match('/ver roles/iu', $message)) {
                 $botman->reply('Para ver los roles del sistema solo es necesario ir al apartado de roles en el menú de Otros. Si este menú no aparece es señal de que no se tienen los permisos suficientes para acceder');
             } elseif (preg_match('/que es RPE/iu', $message)) {
                 $botman->reply('El RPE es el identificador unico de empleado que se manejan en los sistemas de la empresa');
@@ -801,7 +825,13 @@ class BotManController extends Controller
                 $botman->reply('Para crear usuarios hay que entrar al menu de usuarios en la opción de registrar usuario y completar el formulario correspondiente');
             } elseif (preg_match('/puedo crear usuarios/iu', $message)) {
                 $botman->reply('');
-            } elseif (preg_match('/donde crear un usuario/iu', $message)) {
+            }
+            
+            
+            
+            
+            
+            elseif (preg_match('/donde crear un usuario/iu', $message)) {
                 $botman->reply('Para crear usuarios hay que entrar al menu de usuarios en la opción de registrar usuario y completar el formulario correspondiente');
             } elseif (preg_match('/como crear un usuario/iu', $message)) {
                 $botman->reply('Para crear usuarios hay que entrar al menu de usuarios en la opción de registrar usuario y completar el formulario correspondiente');
@@ -871,8 +901,7 @@ class BotManController extends Controller
                 $botman->reply('Para agregar empleados hay que entrar al menu de empleados en la opción de agregar empleado y completar el formulario correspondiente');
             } elseif (preg_match('/¿Dónde puedo encontrar mi código de ética?|Código de Ética|Ver Código de Ética/i', $message)) {
                 $botman->reply('Tu código de ética te fue enviado por correo electrónico cuando te registraste en la plataforma. Si necesitas consultarlo de nuevo, puedes acceder a tu correo electrónico o contactar al departamento de recursos humanos para obtener una copia.');
-            } 
-            elseif (preg_match('/¿Cómo puedo exportar el historial y documentos de un empleado?|Exportar Historial|Exportar Documentos/i', $message)) {
+            } elseif (preg_match('/¿Cómo puedo exportar el historial y documentos de un empleado?|Exportar Historial|Exportar Documentos/i', $message)) {
                 $botman->reply('Para exportar el historial y documentos de un empleado, debes ir al listado de empleados, seleccionar el empleado correspondiente, acceder a la sección de documentos y utilizar la opción de exportar para generar un informe completo en formato deseado (Excel, PDF) con toda la información y documentos asociados al empleado.');
             } elseif (preg_match('/¿Cómo puedo restablecer mi contraseña?|Restablecer Contraseña|Olvidé mi Contraseña/i', $message)) {
                 $botman->reply('Para restablecer tu contraseña, debes ir a la sección de inicio de sesión de la plataforma, seleccionar la opción de "Olvidé mi contraseña" e ingresar tu dirección de correo electrónico para recibir las instrucciones y el enlace de restablecimiento de contraseña.');
@@ -906,7 +935,13 @@ class BotManController extends Controller
                 $botman->reply('El Fondo de Sustentabilidad Energética de la Comisión Federal de Electricidad (CFE) es un mecanismo financiero creado para apoyar y promover proyectos y programas de eficiencia energética, energías renovables y desarrollo sustentable en el sector eléctrico, contribuyendo a la diversificación de la matriz energética, la seguridad energética y la mitigación del cambio climático.');
             } elseif (preg_match('/¿Qué es el IMSS y cuál es su relación con la CFE?|IMSS y CFE/i', $message)) {
                 $botman->reply('El IMSS (Instituto Mexicano del Seguro Social) es una entidad gubernamental encargada de administrar el sistema de seguridad social en México, proporcionando servicios de salud, pensiones y prestaciones a los trabajadores y sus familias. La CFE tiene una relación laboral con el IMSS para garantizar la protección y bienestar de sus empleados, cumpliendo con las obligaciones legales y proporcionando acceso a servicios médicos y sociales.');
-            } elseif (preg_match('/¿Cuál es la política de diversidad e inclusión de la CFE?|Diversidad e Inclusión en CFE/i', $message)) {
+            }
+            
+            
+            
+            
+            
+            elseif (preg_match('/¿Cuál es la política de diversidad e inclusión de la CFE?|Diversidad e Inclusión en CFE/i', $message)) {
                 $botman->reply('La Comisión Federal de Electricidad (CFE) promueve una política de diversidad e inclusión que valora y respeta la diversidad de género, edad, origen étnico, discapacidad, orientación sexual, religión y experiencia laboral de sus empleados, fomentando un ambiente de trabajo inclusivo, equitativo y libre de discriminación, donde todos los empleados puedan desarrollar su potencial y contribuir al éxito de la organización.');
             } elseif (preg_match('/¿Cómo puedo acceder a los servicios de salud del IMSS como empleado de la CFE?|Servicios de Salud IMSS/i', $message)) {
                 $botman->reply('Como empleado de la Comisión Federal de Electricidad (CFE), puedes acceder a los servicios de salud del IMSS a través de tu afiliación al Instituto Mexicano del Seguro Social, proporcionando tu número de seguridad social y cumpliendo con los requisitos de registro y actualización de datos personales en el sistema del IMSS.');
@@ -1080,7 +1115,12 @@ class BotManController extends Controller
                 $botman->reply('Un contrato BASE CONFIANZA es un acuerdo laboral indefinido con un empleado de confianza, donde se establecen las condiciones, responsabilidades y derechos de manera permanente, garantizando la estabilidad, compromiso y confidencialidad en las funciones y proyectos asignados.');
             } elseif (preg_match('/Admin?|Responsabilidades de un Admin/i', $message)) {
                 $botman->reply('Un Admin es responsable de gestionar y supervisar las funcionalidades, usuarios, roles y configuraciones de la plataforma, garantizando el correcto funcionamiento, seguridad de los datos y cumplimiento de las políticas y procedimientos establecidos.');
-            } elseif (preg_match('/Jefatura inmediata?|Funciones de una Jefatura inmediata/i', $message)) {
+            } 
+            
+            
+            
+            
+            elseif (preg_match('/Jefatura inmediata?|Funciones de una Jefatura inmediata/i', $message)) {
                 $botman->reply('Una Jefatura inmediata realiza funciones de supervisión, coordinación, evaluación y retroalimentación de las actividades y desempeño de un equipo de trabajo, proporcionando apoyo, recursos y dirección necesaria para alcanzar los objetivos y metas establecidos.');
             } elseif (preg_match('/Jefatura zonal de proceso?|Rol de una Jefatura zonal de proceso/i', $message)) {
                 $botman->reply('Una Jefatura zonal de proceso tiene el rol de gestionar, planificar, optimizar y supervisar los procesos operativos y actividades de un área geográfica específica, asegurando la eficiencia, calidad y cumplimiento de los procedimientos y estándares establecidos.');
@@ -1098,7 +1138,680 @@ class BotManController extends Controller
                 $botman->reply('Un contrato EVENTUAL CONFIANZA implica un acuerdo laboral temporal con un empleado de confianza, donde se establecen las condiciones, responsabilidades y derechos durante un periodo específico, garantizando la flexibilidad y adaptabilidad en las funciones y proyectos asignados.');
             } elseif (preg_match('/BASE CONFIANZA?|Condiciones de un BASE CONFIANZA/i', $message)) {
                 $botman->reply('Un contrato BASE CONFIANZA establece un acuerdo laboral indefinido con un empleado de confianza, donde se especifican las condiciones, responsabilidades y derechos de manera permanente, garantizando la estabilidad, compromiso y confidencialidad en las funciones y proyectos asignados.');
+            }  elseif (preg_match('/subir un documento/i', $message)) {
+                $botman->reply('Para subir un documento de un empleado necesitar ir al perfil del empleado y desde ahi entrar al apartado de documentos y al subapartado de subir documento');
+            } elseif (preg_match('/encontre un error/i', $message)) {
+                $botman->reply('Si usted ha encontrado un error en el programa, favor de comunicarse con el administrador del sistema y reportarlo para su pronta resolucion');
+            } elseif (preg_match('/comunico con el administrador/i', $message)) {
+                $botman->reply('Para contactar con el administrador puede mandar un correo a jesus.quintero7478@alumnos.udg.mx');
+            } elseif (preg_match('/contacto con el administrador/i', $message)) {
+                $botman->reply('Para contactar con el administrador puede mandar un correo a jesus.quintero7478@alumnos.udg.mx');
+            } elseif (preg_match('/quien es el administrador/i', $message)) {
+                $botman->reply('El sistema tiene 2 administradores, Jesus Eduardo Quintero Gomez y David Guadalupe Vargas Lopez');
+            } elseif (preg_match('/quienes son los administradores/i', $message)) {
+                $botman->reply('Nuestro horario laboral es de lunes a viernes de 9:00 am a 5:00 pm.');
+            } elseif (preg_match('/como veo las notificaciones/i', $message)) {
+                $botman->reply('Para ver las notificaciones necesitas acceder a su respectiva area. Para hacerlo se da click en el boton de la campana en la parte superior derecha de la pantalla');
+            } elseif (preg_match('/no tengo notificaciones/i', $message)) {
+                $botman->reply('Si usted no tiene notificaciones puede ser porque no tiene documentos pendientes');
+            } elseif (preg_match('/gustan los tacos/i', $message)) {
+                $botman->reply('A mi me encantan los tacos, pero no puedo comerlos ya que estoy encerrado en esta computadora para ayudarte');
+            } elseif (preg_match('/veo los documentos/i', $message)) {
+                $botman->reply('Para ver los documentos de un empleado solo necesitas acceder a su perfil y darle al boton descargar del documento que quieras visualizar. Despues de descargarlo solo tienes que abirlo en tu computadora');
+            } elseif (preg_match('/ver los documentos/i', $message)) {
+                $botman->reply('Para ver los documentos de un empleado solo necesitas acceder a su perfil y darle al boton descargar del documento que quieras visualizar. Despues de descargarlo solo tienes que abirlo en tu computadora');
+            } elseif (preg_match('/no esta mi zona/i', $message)) {
+                $botman->reply('Si no encuentra su zona en las opciones, le recomendamos reportarlo a su superior para que sea agregada a la brevedad');
+            } elseif (preg_match('/no encuentro mi zona/i', $message)) {
+                $botman->reply('Si no encuentra su zona en las opciones, le recomendamos reportarlo a su superior para que sea agregada a la brevedad');
+            } elseif (preg_match('/no existe mi zona/i', $message)) {
+                $botman->reply('Si no encuentra su zona en las opciones, le recomendamos reportarlo a su superior para que sea agregada a la brevedad');
+            } elseif (preg_match('/no esta un empleado/i', $message)) {
+                $botman->reply('Si no encuentra su empleado en el sistema, le recomendamos reportarlo a su superior para que sea agregado a la brevedad');
+            } elseif (preg_match('/no encuentro un empleado/i', $message)) {
+                $botman->reply('Si no encuentra su empleado en el sistema, le recomendamos reportarlo a su superior para que sea agregado a la brevedad');
+            } elseif (preg_match('/no esta registrado un empleado/i', $message)) {
+                $botman->reply('Si no encuentra su empleado en el sistema, le recomendamos reportarlo a su superior para que sea agregado a la brevedad');
+            } elseif (preg_match('/no existe un empleado/i', $message)) {
+                $botman->reply('Si no encuentra su empleado en el sistema, le recomendamos reportarlo a su superior para que sea agregado a la brevedad');
+            } elseif (preg_match('/telefono de/i', $message)) {
+                $botman->reply('Si desea contactar con alguien, puede revisar el directorio del programa. Ahi estan guardados los contactos del personal importante');
+            } elseif (preg_match('/contacto con/i', $message)) {
+                $botman->reply('Si desea contactar con alguien, puede revisar el directorio del programa. Ahi estan guardados los contactos del personal importante');
+            }
+            
+            
+            
+            
+            
+            elseif (preg_match('/como reporto un problema/i', $message)) {
+                $botman->reply('Para reportar un problema del sistema debe mandar un correo al administrador o a su jefe explicandolo detalladamente');
+            } elseif (preg_match('/reportar un problema/i', $message)) {
+                $botman->reply('Para reportar un problema del sistema debe mandar un correo al administrador o a su jefe explicandolo detalladamente');
+            } elseif (preg_match('/llamada de atencion/i', $message)) {
+                $botman->reply('Para hacer una llamada de atencion es necesario acceder al perfil del empleado objetivo y si el documento correspondiente es llamada de atencion, te dejara llenar un formulario para generarla. Tambien puedes optar por la opcion de subirla directamente al sistema');
+            } elseif (preg_match('/rendicion de cuentas/i', $message)) {
+                $botman->reply('Para hacer una rendicion de cuentas es necesario acceder al perfil del empleado objetivo y si el documento correspondiente es rendicion de cuentas, te dejara llenar un formulario para generarla. Tambien puedes optar por la opcion de subirla directamente al sistema');
+            } elseif (preg_match('/acta administrativa/i', $message)) {
+                $botman->reply('Para hacer un acta administrativa es necesario acceder al perfil del empleado objetivo y si el documento correspondiente es acta administrativa, te dejara llenar subir un documento directamente al sistema');
+            } elseif (preg_match('/cambiar contraseña/i', $message)) {
+                $botman->reply('Si quieres cambiar tu contraseña, necesitras acceder a tu perfil y desde ahi modificarla');
+            } elseif (preg_match('/accedo a mi perfil/i', $message)) {
+                $botman->reply('Para acceder a tu perfil necesitas poner el cursor sobre nombre de perfil y automaticamente se mostrara un boton. Da click ahi y accederas a tu perfil');
+            } elseif (preg_match('/acceder a mi perfil/i', $message)) {
+                $botman->reply('Para acceder a tu perfil necesitas poner el cursor sobre nombre de perfil y automaticamente se mostrara un boton. Da click ahi y accederas a tu perfil');
+            } elseif (preg_match('/no carga/i', $message)) {
+                $botman->reply('Si el sistema no carga, revisa tu conexion a internet. En dado caso de que el internet funcione correctamente, favor de reportar el problema con el administrador');
+            } elseif (preg_match('/error 505/i', $message)) {
+                $botman->reply('Si te sale un error 505, manda un correo al administrador diciendo cual es el error y que pagina te lo mostro. El error se solucionara a la brevedad');
+            } elseif (preg_match('/error 504/i', $message)) {
+                $botman->reply('Si te sale un error 504, manda un correo al administrador diciendo cual es el error y que pagina te lo mostro. El error se solucionara a la brevedad');
+            } elseif (preg_match('/correo del administrador/i', $message)) {
+                $botman->reply('Para contactar con el administrador puede mandar un correo a jesus.quintero7478@alumnos.udg.mx');
+            } elseif (preg_match('/dios existe?/i', $message)) {
+                $botman->reply('No se, espero haberte ayudado');
+            } elseif (preg_match('/jornada laboral /i', $message)) {
+                $botman->reply(': La jornada máxima de trabajo diaria según la Ley Federal del Trabajo es de 8 horas.');
+            } elseif (preg_match('/derechos tengo/i', $message)) {
+                $botman->reply('Como trabajador, tienes derecho a recibir un salario mínimo digno y justo que te permita cubrir tus necesidades básicas y las de tu familia.');
+            } elseif (preg_match('/jornada maxima de trabajo semanal/i', $message)) {
+                $botman->reply(' La jornada máxima de trabajo semanal es de 48 horas.');
+            } elseif (preg_match('/período de descanso/i', $message)) {
+                $botman->reply(' Después de 6 horas de trabajo continuo, tienes derecho a un período de descanso de al menos 30 minutos.');
+            } elseif (preg_match('/tiempo maximo de trabajo extra/i', $message)) {
+                $botman->reply('El máximo de horas extra permitido por día es de 3 horas, y por semana es de 9 horas.');
+            }
+            
+            
+            
+            
+            
+            elseif (preg_match('/derecho.*vacaiones\s+/iu', $message)) {
+                $botman->reply('Tienes derecho a un periodo de vacaciones anuales pagadas que varía dependiendo de tu antigüedad en el empleo, pero generalmente son al menos 6 días hábiles.');
+            } elseif (preg_match('/renunciar\s+/i', $message)) {
+                $botman->reply('Si quieres renunciar debes notificar por escrito a tu empleador con al menos 15 días de anticipación tu decisión de renunciar.');
+            } elseif (preg_match('/tipos de contratos/i', $message)) {
+                $botman->reply('La Ley Federal del Trabajo reconoce contratos por tiempo indefinido, por tiempo determinado, de obra o servicio determinado, y por temporada.');
+            } elseif (preg_match('/derechos.*despido injusto/i', $message)) {
+                $botman->reply('Tienes derecho a recibir una indemnización y a demandar reinstalación en tu puesto de trabajo.');
+            } elseif (preg_match('/(obligaciones|jefe)/i', $message)) {
+                $botman->reply('El empleador está obligado a proporcionar un ambiente de trabajo seguro y saludable, así como a cumplir con las normativas de seguridad e higiene laboral.');
+            } elseif (preg_match('/obligaciones|empleador/i', $message)) {
+                $botman->reply('El empleador está obligado a proporcionar un ambiente de trabajo seguro y saludable, así como a cumplir con las normativas de seguridad e higiene laboral.');
+            } elseif (preg_match('/derechos laborales/i', $message)) {
+                $botman->reply('Tus derechos laborales están protegidos por la Ley Federal del Trabajo.');
+            } elseif (preg_match('/incapacidad laboral/i', $message)) {
+                $botman->reply('Para solicitar una incapacidad laboral, necesitas un certificado médico y comunicarlo a recursos humanos.');
+            } elseif (preg_match('/vacaciones/i', $message)) {
+                $botman->reply('Para solicitar vacaciones, debes presentar una solicitud por escrito a tu supervisor.');
+            } elseif (preg_match('/acoso laboral/i', $message)) {
+                $botman->reply('Si experimentas acoso laboral, comunícalo inmediatamente a tu supervisor o recursos humanos.');
+            } elseif (preg_match('/despido injustificado/i', $message)) {
+                $botman->reply('Estás protegido contra el despido injustificado por la Ley Federal del Trabajo.');
+            } elseif (preg_match('/horarios de trabajo/i', $message)) {
+                $botman->reply('Los horarios de trabajo están regulados por la empresa y pueden variar según el departamento.');
+            } elseif (preg_match('/permisos laborales/i', $message)) {
+                $botman->reply('Los permisos laborales deben ser solicitados y aprobados por recursos humanos o tu supervisor.');
+            } elseif (preg_match('/seguridad laboral/i', $message)) {
+                $botman->reply('La seguridad laboral es prioridad y se deben seguir las normativas y procedimientos establecidos.');
+            } elseif (preg_match('/pago de salarios/i', $message)) {
+                $botman->reply('El pago de salarios se realiza de acuerdo a las políticas y a la Ley Federal del Trabajo.');
+            } elseif (preg_match('/prestaciones laborales/i', $message)) {
+                $botman->reply('Las prestaciones laborales incluyen seguro social, aguinaldo y vacaciones, entre otras.');
+            } elseif (preg_match('/registro de jornada laboral/i', $message)) {
+                $botman->reply('Es importante registrar tu jornada laboral para el cumplimiento de las normativas.');
+            } elseif (preg_match('/renuncia voluntaria/i', $message)) {
+                $botman->reply('Si deseas renunciar voluntariamente, debes notificar a recursos humanos con anticipación.');
+            } elseif (preg_match('/salud ocupacional/i', $message)) {
+                $botman->reply('La salud ocupacional es fundamental y se deben seguir las medidas de seguridad y prevención.');
+            } elseif (preg_match('/formación y capacitación/i', $message)) {
+                $botman->reply('La empresa puede proporcionar formación y capacitación para el desarrollo profesional.');
+            } elseif (preg_match('/retribución económica/i', $message)) {
+                $botman->reply('La retribución económica puede incluir salario base, bonificaciones y beneficios adicionales.');
+            } elseif (preg_match('/reglamento interno de trabajo/i', $message)) {
+                $botman->reply('El reglamento interno de trabajo establece las normas y políticas de la empresa.');
+            } elseif (preg_match('/exámenes médicos laborales/i', $message)) {
+                $botman->reply('Los exámenes médicos laborales pueden ser requeridos para garantizar la salud y seguridad en el trabajo.');
+            } elseif (preg_match('/jubilación/i', $message)) {
+                $botman->reply('El proceso de jubilación está sujeto a las disposiciones de la empresa y las leyes vigentes.');
+            } elseif (preg_match('/maternidad|paternidad/i', $message)) {
+                $botman->reply('Los derechos de maternidad/paternidad están protegidos por la ley y la empresa puede ofrecer beneficios adicionales.');
+            }
+            
+            
+            
+            
+            
+            elseif (preg_match('/compensación por accidentes de trabajo/i', $message)) {
+                $botman->reply('La compensación por accidentes de trabajo puede incluir atención médica y compensación económica.');
+            } elseif (preg_match('/confidencialidad de información/i', $message)) {
+                $botman->reply('La confidencialidad de la información es fundamental y debes respetarla en todo momento.');
+            } elseif (preg_match('/código de ética/i', $message)) {
+                $botman->reply('El código de ética establece los principios y valores que deben seguir los empleados de la empresa.');
+            } elseif (preg_match('/vacantes internas/i', $message)) {
+                $botman->reply('Las vacantes internas pueden ser publicadas para que los empleados puedan postularse.');
+            } elseif (preg_match('/evaluación del desempeño/i', $message)) {
+                $botman->reply('La evaluación del desempeño puede ser realizada periódicamente para evaluar el rendimiento laboral.');
+            } elseif (preg_match('/retribución por horas extras/i', $message)) {
+                $botman->reply('Las horas extras pueden ser retribuidas de acuerdo a las políticas de la empresa y la ley.');
+            } elseif (preg_match('/programa de bienestar laboral/i', $message)) {
+                $botman->reply('El programa de bienestar laboral puede incluir actividades y beneficios para promover la salud y el bienestar de los empleados.');
+            } elseif (preg_match('/conciliación laboral y familiar/i', $message)) {
+                $botman->reply('La conciliación laboral y familiar es importante y la empresa puede ofrecer medidas para facilitarla.');
+            } elseif (preg_match('/registro de asistencia/i', $message)) {
+                $botman->reply('Es importante registrar tu asistencia de acuerdo a los horarios establecidos por la empresa.');
+            } elseif (preg_match('/procedimiento disciplinario/i', $message)) {
+                $botman->reply('El procedimiento disciplinario puede ser aplicado en caso de incumplimiento de normas y políticas.');
+            } elseif (preg_match('/seguro de vida/i', $message)) {
+                $botman->reply('La empresa puede ofrecer un seguro de vida como parte de las prestaciones laborales.');
+            } elseif (preg_match('/derecho de sindicación/i', $message)) {
+                $botman->reply('Los empleados tienen derecho a sindicarse y la empresa debe respetar este derecho.');
+            } elseif (preg_match('/permiso por enfermedad/i', $message)) {
+                $botman->reply('Puedes solicitar permiso por enfermedad presentando un certificado médico.');
+            } elseif (preg_match('/protección de datos personales/i', $message)) {
+                $botman->reply('La empresa debe proteger tus datos personales de acuerdo a la ley de protección de datos.');
+            } elseif (preg_match('/premios por antigüedad/i', $message)) {
+                $botman->reply('Puedes recibir premios por antigüedad de acuerdo a las políticas de la empresa.');
+            } elseif (preg_match('/prohibición de discriminación/i', $message)) {
+                $botman->reply('La discriminación está prohibida por la ley y la empresa debe promover la igualdad de oportunidades.');
+            } elseif (preg_match('/póliza de seguro de gastos médicos mayores/i', $message)) {
+                $botman->reply('La empresa puede ofrecer una póliza de seguro de gastos médicos mayores como beneficio adicional.');
+            } elseif (preg_match('/vacaciones adelantadas/i', $message)) {
+                $botman->reply('Puedes solicitar vacaciones adelantadas con la aprobación de tu supervisor y recursos humanos.');
+            } elseif (preg_match('/salario mínimo/i', $message)) {
+                $botman->reply('Tu salario debe cumplir con el salario mínimo establecido por la ley.');
+            } elseif (preg_match('/reintegro de gastos/i', $message)) {
+                $botman->reply('Puedes solicitar el reintegro de gastos autorizados de acuerdo a las políticas de la empresa.');
+            } elseif (preg_match('/plan de pensiones/i', $message)) {
+                $botman->reply('La empresa puede ofrecer un plan de pensiones como beneficio adicional para tu jubilación.');
+            } elseif (preg_match('/derecho de huelga/i', $message)) {
+                $botman->reply('Los trabajadores tienen derecho a huelga en caso de conflictos laborales.');
+            } elseif (preg_match('/contrato laboral/i', $message)) {
+                $botman->reply('El contrato laboral establece los términos y condiciones de tu empleo.');
+            } elseif (preg_match('/denuncia anónima/i', $message)) {
+                $botman->reply('Puedes realizar una denuncia anónima en caso de irregularidades o conductas indebidas.');
+            } elseif (preg_match('/horas de comida/i', $message)) {
+                $botman->reply('Las horas de comida están reguladas por la ley y la empresa debe proporcionar un tiempo mínimo.');
             } 
+            
+            
+            
+            
+            
+            elseif (preg_match('/protección a la maternidad/i', $message)) {
+                $botman->reply('La protección a la maternidad está garantizada por la ley y la empresa debe respetar estos derechos.');
+            } elseif (preg_match('/compensación por trabajo en días festivos/i', $message)) {
+                $botman->reply('El trabajo en días festivos puede ser compensado con un pago adicional o tiempo libre.');
+            } elseif (preg_match('/seguro de desempleo/i', $message)) {
+                $botman->reply('Puedes tener derecho a un seguro de desempleo en caso de perder tu empleo.');
+            } elseif (preg_match('/permiso de paternidad/i', $message)) {
+                $botman->reply('Los padres tienen derecho a un permiso de paternidad después del nacimiento de un hijo.');
+            } elseif (preg_match('/requisitos para jubilación/i', $message)) {
+                $botman->reply('Los requisitos para la jubilación pueden variar según la ley y los programas de la empresa.');
+            } elseif (preg_match('/capacitación en seguridad laboral/i', $message)) {
+                $botman->reply('La capacitación en seguridad laboral es obligatoria y puede incluir cursos y ejercicios prácticos.');
+            } elseif (preg_match('/derecho de pensión/i', $message)) {
+                $botman->reply('Tienes derecho a una pensión de acuerdo a las contribuciones realizadas durante tu vida laboral.');
+            } elseif (preg_match('/incentivos por productividad/i', $message)) {
+                $botman->reply('Puedes recibir incentivos por productividad de acuerdo a tu rendimiento laboral.');
+            } elseif (preg_match('/reintegro de gastos médicos/i', $message)) {
+                $botman->reply('Puedes solicitar el reintegro de gastos médicos autorizados según las políticas de la empresa.');
+            } elseif (preg_match('/permiso por luto/i', $message)) {
+                $botman->reply('Puedes solicitar un permiso por luto en caso de fallecimiento de un familiar cercano.');
+            } elseif (preg_match('/política de igualdad de género/i', $message)) {
+                $botman->reply('La empresa puede tener una política de igualdad de género para promover la igualdad en el trabajo.');
+            } elseif (preg_match('/procedimiento para denunciar irregularidades/i', $message)) {
+                $botman->reply('Puedes seguir un procedimiento específico para denunciar irregularidades de manera confidencial.');
+            } elseif (preg_match('/derechos sindicales/i', $message)) {
+                $botman->reply('Tienes derecho a formar parte de un sindicato y participar en actividades sindicales.');
+            } elseif (preg_match('/protección contra el acoso sexual/i', $message)) {
+                $botman->reply('La empresa debe proporcionar un entorno laboral seguro y proteger contra el acoso sexual.');
+            } elseif (preg_match('/seguridad en el trabajo/i', $message)) {
+                $botman->reply('La seguridad en el trabajo es responsabilidad de todos y debes seguir las normas y procedimientos.');
+            } elseif (preg_match('/política de diversidad e inclusión/i', $message)) {
+                $botman->reply('La empresa puede tener una política de diversidad e inclusión para promover la igualdad de oportunidades.');
+            } elseif (preg_match('/incentivos por productividad/i', $message)) {
+                $botman->reply('Puedes recibir incentivos por productividad de acuerdo a tu rendimiento laboral.');
+            } elseif (preg_match('/que es un indicador/i', $message)) {
+                $botman->reply('Un indicador es uno de los requerimentos que se debe cumplir en una labor');
+            } elseif (preg_match('/como añado un indicador/i', $message)) {
+                $botman->reply('Para añadir un indicador necesitas tener los permisos necesarios. Si los tienes solo tienes que is al apartado indicadores y añadirlo');
+            } elseif (preg_match('/como veo mi sueldo/i', $message)) {
+                $botman->reply('Puedes revisar tu contrato, tu nomina o preguntarle a tu superior');
+            } elseif (preg_match('/un documento no me llego/i', $message)) {
+                $botman->reply('Si un documento generado por otra persona no te ha llegado pidele que se asegure si lo mando a la persona correcta, si lo hizo reporta el problema con el administrador del sistema y dale la informacion del documento');
+            } elseif (preg_match('/orden llevan los documentos/i', $message)) {
+                $botman->reply('Los documentos se generan en el siguiente orden: 2 rendiciones de cuentas, 1 llamada de atencion y 1 acta administrativa ');
+            } elseif (preg_match('/orden se generan los documentos/i', $message)) {
+                $botman->reply('Los documentos se generan en el siguiente orden: 2 rendiciones de cuentas, 1 llamada de atencion y 1 acta administrativa ');
+            } elseif (preg_match('/que es una llamada de atencion/i', $message)) {
+                $botman->reply('Una llamada de atencion es un documento que se genera cuando un empleado ha fallado en cumplir sus indicadores en 3 o mas labores');
+            } elseif (preg_match('/que es una rendicion de cuentas/i', $message)) {
+                $botman->reply('Una endicion de cuentas es un documento que se genera cuando un empleado ha fallado en cumplir con un indicador en una labor');
+            } elseif (preg_match('/que es un acta administrativa/i', $message)) {
+                $botman->reply('Un acta administrativa es un documento que se genera cuando un empleado ha fallado en cumplir con un indicador en 4 o mas labores');
+            } elseif (preg_match('/que es un puesto/i', $message)) {
+                $botman->reply('Un puesto es el trabajo que tiene un empleado relacionado con sus actividades');
+            } 
+            
+            
+            
+            
+            
+            
+            
+            elseif (preg_match('/para que es un puesto/i', $message)) {
+                $botman->reply('Para conocer el puesto del empleado y sus actividades relacionadas');
+            } elseif (preg_match('/para que sirven los puestos/i', $message)) {
+                $botman->reply('Para conocer el puesto del empleado y sus actividades relacionadas');
+            } elseif (preg_match('/porque me pide el puesto/i', $message)) {
+                $botman->reply('Para conocer el puesto del empleado y sus actividades relacionadas');
+            } elseif (preg_match('/que tipos de contratos hay/i', $message)) {
+                $botman->reply('4 tipos: Eventual sindicalizado, base sindicalizado, eventual confianza y base confianza');
+            } elseif (preg_match('/que es una zona/iu', $message)) {
+                $botman->reply('Las zonas son areas donde se ofrece un servicio y hay una sede que la atienda');
+            } elseif (preg_match('/para que sirve una zona/iu', $message)) {
+                $botman->reply('Las zonas sirven para identificar el área al que pertenece un empleado');
+            } elseif (preg_match('/ver zonas/iu', $message)) {
+                $botman->reply('Para ver las zonas registradas en el sistema hay que dirigirnos al apartado de listado de zonas en el menu de zonas. Si este menú no aparece es señal de que no se tienen los permisos suficientes para acceder');
+            } elseif (preg_match('/que son los roles/iu', $message)) {
+                $botman->reply('Los roles son los puestos que ocupan los usuarios del sistema. Estos determinan los permisos del respectivo usuario en el sistema.');
+            } elseif (preg_match('/cuales son los roles/iu', $message)) {
+                $botman->reply('Los roles actuales que maneja el sistema son: Jefatura inmediata, Jefatura zonal de proceso, Jefatura zonal de proceso de trabajo, Superintendente de zona, Subjerente de trabajo y Gerente divisional');
+            } elseif (preg_match('/para que sirven los roles/iu', $message)) {
+                $botman->reply('Los roles sirven para identificar el puesto del respectivo usuario y los permisos del mismo en el sistema');
+            } elseif (preg_match('/ver roles/iu', $message)) {
+                $botman->reply('Para ver los roles del sistema solo es necesario ir al apartado de roles en el menú de Otros. Si este menú no aparece es señal de que no se tienen los permisos suficientes para acceder');
+            } elseif (preg_match('/que es RPE/iu', $message)) {
+                $botman->reply('El RPE es el identificador unico de empleado que se manejan en los sistemas de la empresa');
+            } elseif (preg_match('/es el RPE/iu', $message)) {
+                $botman->reply('El RPE es el identificador unico de empleado que se manejan en los sistemas de la empresa');
+            } elseif (preg_match('/no existe RPE/iu', $message)) {
+                $botman->reply('Si busca un empleado y no lo encuentra por RPE le sugerimos que revise si la búsqueda se hizo correctamente, y en caso de serlo así, reportar la falta del mismo a su superior');
+            } elseif (preg_match('/no hay RPE/iu', $message)) {
+                $botman->reply('Si busca un empleado y no lo encuentra por RPE le sugerimos que revise si la búsqueda se hizo correctamente, y en caso de serlo así, reportar la falta del mismo a su superior');
+            } elseif (preg_match('/no encuentro RPE/iu', $message)) {
+                $botman->reply('Si busca un empleado y no lo encuentra por RPE le sugerimos que revise si la búsqueda se hizo correctamente, y en caso de serlo así, reportar la falta del mismo a su superior');
+            } elseif (preg_match('/no existe un RPE/iu', $message)) {
+                $botman->reply('Si busca un empleado y no lo encuentra por RPE le sugerimos que revise si la búsqueda se hizo correctamente, y en caso de serlo así, reportar la falta del mismo a su superior');
+            } elseif (preg_match('/no hay un RPE/iu', $message)) {
+                $botman->reply('Si busca un empleado y no lo encuentra por RPE le sugerimos que revise si la búsqueda se hizo correctamente, y en caso de serlo así, reportar la falta del mismo a su superior');
+            } elseif (preg_match('/RPE no existe/iu', $message)) {
+                $botman->reply('Si busca un empleado y no lo encuentra por RPE le sugerimos que revise si la búsqueda se hizo correctamente, y en caso de serlo así, reportar la falta del mismo a su superior');
+            } elseif (preg_match('/RPE no encontrado/iu', $message)) {
+                $botman->reply('Si busca un empleado y no lo encuentra por RPE le sugerimos que revise si la búsqueda se hizo correctamente, y en caso de serlo así, reportar la falta del mismo a su superior');
+            }elseif (preg_match('/RPE inexistente/iu', $message)) {
+                $botman->reply('Si busca un empleado y no lo encuentra por RPE le sugerimos que revise si la búsqueda se hizo correctamente, y en caso de serlo así, reportar la falta del mismo a su superior');
+            } elseif (preg_match('/para que es.*ver perfil/iu', $message)) {
+                $botman->reply('Sirve para ver los datos de los empleados, además de acceder al menu en el que se pueden crear documentos acerca del mismo empleado');
+            } elseif (preg_match('/que sirve.*ver perfil/iu', $message)) {
+                $botman->reply('Sirve para ver los datos de los empleados, además de acceder al menu en el que se pueden crear documentos acerca del mismo empleado');
+            } elseif (preg_match('/no encuentro una opcion/iu', $message)) {
+                $botman->reply('Si usten no encuentra una opción, preguntame cual es la opción que buscas. Si mi respuesta no te ayuda lo mas seguro es que no tengas los permisos necesarios para acceder a esa opcion');
+            } elseif (preg_match('/no encuentro un boton/iu', $message)) {
+                $botman->reply('Si usten no encuentra una opción, preguntame cual es la opción que buscas. Si mi respuesta no te ayuda lo mas seguro es que no tengas los permisos necesarios para acceder a esa opcion');
+            }
+            
+            
+            
+            
+            
+            elseif (preg_match('/RPE repetido/iu', $message)) {
+                $botman->reply('Si usted ha encontrado un RPE repetido, le pedimos reportarlo con su superior o el administrador del sistema para su pronta corrección');
+            } elseif (preg_match('/que es listado de usuarios/iu', $message)) {
+                $botman->reply('El listado de usuarios es el menú en el que se pueden visualizar todos los usuarios registrados en el sistema');
+            } elseif (preg_match('/que es listado de indicadores/iu', $message)) {
+                $botman->reply('El listado de indicadores es el menú en el que se pueden visualizar todos los indicadores registrados en el sistema');
+            } elseif (preg_match('/que es mi listado/iu', $message)) {
+                $botman->reply('Mi listado es el menú en el que se pueden visualizar todos los empleados registrados en el sistema');
+            } elseif (preg_match('/que es listado de zonas/iu', $message)) {
+                $botman->reply('El listado de zonas es el menú en el que se pueden visualizar todas las zonas registrados en el sistema');
+            } elseif (preg_match('/donde esta listado de usuarios/iu', $message)) {
+                $botman->reply('El listado de usuarios se encuentra en el menú de usuarios');
+            } elseif (preg_match('/donde esta listado de empleados/iu', $message)) {
+                $botman->reply('El listado de empleados se encuentra en el menú de empleados, en el área de mi listado');
+            } elseif (preg_match('/donde esta mi listado/iu', $message)) {
+                $botman->reply('Mi listado se encuentra en el menú de empleados');
+            } elseif (preg_match('/donde esta listado de indicadores/iu', $message)) {
+                $botman->reply('El listado de indicadores se encuentra en el menú de indicadores');
+            } elseif (preg_match('/donde esta listado de puestos/iu', $message)) {
+                $botman->reply('El listado de puestos se encuentra en el menú de puestos');
+            } elseif (preg_match('/donde esta listado de zonas/iu', $message)) {
+                $botman->reply('El listado de zonas se encuentra en el menú de zonas');
+            } elseif (preg_match('/donde registrar usuarios/iu', $message)) {
+                $botman->reply('Para registrar usuarios hay que entrar al menu de usuarios en la opción de registrar usuario y completar el formulario correspondiente');
+            } elseif (preg_match('/como registrar usuarios/iu', $message)) {
+                $botman->reply('Para registrar usuarios hay que entrar al menu de usuarios en la opción de registrar usuario y completar el formulario correspondiente');
+            } elseif (preg_match('/puedo registrar usuarios/iu', $message)) {
+                $botman->reply('Para registrar un usuario es necesario tener los permisos necesarios, si no aparece la respectiva vista consulta con tu superior el acceso a esta funcion');
+            } elseif (preg_match('/donde registrar.*usuario/iu', $message)) {
+                $botman->reply('Para registrar usuarios hay que entrar al menu de usuarios en la opción de registrar usuario y completar el formulario correspondiente');
+            } elseif (preg_match('/como registrar.*usuario/iu', $message)) {
+                $botman->reply('Para registrar usuarios hay que entrar al menu de usuarios en la opción de registrar usuario y completar el formulario correspondiente');
+            } elseif (preg_match('/donde añadir.*usuario/iu', $message)) {
+                $botman->reply('Para añadir usuarios hay que entrar al menu de usuarios en la opción de registrar usuario y completar el formulario correspondiente');
+            } elseif (preg_match('/como añadir.*usuario/iu', $message)) {
+                $botman->reply('Para añadir usuarios hay que entrar al menu de usuarios en la opción de registrar usuario y completar el formulario correspondiente');
+            } elseif (preg_match('/puedo añadir.*usuario/iu', $message)) {
+                $botman->reply('Para añadir un usuario es necesario tener los permisos necesarios, si no aparece la respectiva vista consulta con tu superior el acceso a esta funcion');
+            } elseif (preg_match('/donde crear.*usuario/iu', $message)) {
+                $botman->reply('Para crear usuarios hay que entrar al menu de usuarios en la opción de registrar usuario y completar el formulario correspondiente');
+            }elseif (preg_match('/como crear.*usuario/iu', $message)) {
+                $botman->reply('Para crear usuarios hay que entrar al menu de usuarios en la opción de registrar usuario y completar el formulario correspondiente');
+            } elseif (preg_match('/puedo crear.*usuario/iu', $message)) {
+                $botman->reply('Para crear un usuario es necesario tener los permisos necesarios, si no aparece la respectiva vista consulta con tu superior el acceso a esta funcion');
+            } elseif (preg_match('/donde agregar.*usuario/iu', $message)) {
+                $botman->reply('Para agregar usuarios hay que entrar al menu de usuarios en la opción de registrar usuario y completar el formulario correspondiente');
+            } elseif (preg_match('/como agregar.*usuario/iu', $message)) {
+                $botman->reply('Para agregar usuarios hay que entrar al menu de usuarios en la opción de registrar usuario y completar el formulario correspondiente');
+            } elseif (preg_match('/puedo agregar.*usuario/iu', $message)) {
+                $botman->reply('Para agregar un usuario es necesario tener los permisos necesarios, si no aparece la respectiva vista consulta con tu superior el acceso a esta funcion');
+            } 
+            
+            
+            
+            
+            
+            elseif (preg_match('/donde registrar.*empleado/iu', $message)) {
+                $botman->reply('Para registrar empleados hay que entrar al menu de empleados en la opción de agregar empleado y completar el formulario correspondiente');
+            } elseif (preg_match('/como registrar.*empleado/iu', $message)) {
+                $botman->reply('Para registrar empleados hay que entrar al menu de empleados en la opción de agregar empleado y completar el formulario correspondiente');
+            } elseif (preg_match('/puedo registrar.*empleado/iu', $message)) {
+                $botman->reply('Para registrar un empleado es necesario tener los permisos necesarios, si no aparece la respectiva vista consulta con tu superior el acceso a esta funcion');
+            } elseif (preg_match('/donde añadir.*empleado/iu', $message)) {
+                $botman->reply('Para añadir empleados hay que entrar al menu de empleados en la opción de agregar empleado y completar el formulario correspondiente');
+            } elseif (preg_match('/como añadir.*empleado/iu', $message)) {
+                $botman->reply('Para añadir empleados hay que entrar al menu de empleados en la opción de agregar empleado y completar el formulario correspondiente');
+            } elseif (preg_match('/puedo añadir.*empleado/iu', $message)) {
+                $botman->reply('Para añadir un empleado es necesario tener los permisos necesarios, si no aparece la respectiva vista consulta con tu superior el acceso a esta funcion');
+            } elseif (preg_match('/donde crear.*empleado/iu', $message)) {
+                $botman->reply('Para crear empleados hay que entrar al menu de empleados en la opción de agregar empleado y completar el formulario correspondiente');
+            } elseif (preg_match('/como crear.*empleado/iu', $message)) {
+                $botman->reply('Para crear empleados hay que entrar al menu de empleados en la opción de agregar empleado y completar el formulario correspondiente');
+            } elseif (preg_match('/puedo crear.*empleado/iu', $message)) {
+                $botman->reply('Para crear un empleado es necesario tener los permisos necesarios, si no aparece la respectiva vista consulta con tu superior el acceso a esta funcion');
+            } elseif (preg_match('/donde agregar.*empleado/iu', $message)) {
+                $botman->reply('Para agregar empleados hay que entrar al menu de empleados en la opción de agregar empleado y completar el formulario correspondiente');
+            } elseif (preg_match('/como agregar.*empleado/iu', $message)) {
+                $botman->reply('Para agregar empleados hay que entrar al menu de empleados en la opción de agregar empleado y completar el formulario correspondiente');
+            } elseif (preg_match('/puedo agregar.*empleado/iu', $message)) {
+                $botman->reply('Para agregar un empleado es necesario tener los permisos necesarios, si no aparece la respectiva vista consulta con tu superior el acceso a esta funcion');
+            } elseif (preg_match('/como modificar.*usuario/iu', $message)) {
+                $botman->reply('Para modificar un usuario necesitas colocar el cursor sobre el nombre de usuario sobre el menu de opciones, posteriormente apareceran 2 opciones debajo. Abre la opcion de ver perfil y se abrirá una vista en la que podras modificar los datos del usuario');
+            } elseif (preg_match('/donde modificar.*usuario/iu', $message)) {
+                $botman->reply('Para modificar un usuario necesitas colocar el cursor sobre el nombre de usuario sobre el menu de opciones, posteriormente apareceran 2 opciones debajo. Abre la opcion de ver perfil y se abrirá una vista en la que podras modificar los datos del usuario');
+            } elseif (preg_match('/puedo modificar.*usuario/iu', $message)) {
+                $botman->reply('Para modificar un usuario es necesario tener los permisos necesarios, si no aparece la respectiva vista consulta con tu superior el acceso a esta funcion');
+            } elseif (preg_match('/como modificar.*empleado/iu', $message)) {
+                $botman->reply('Para modificar los datos de un empleado solo tienes que ir a tu listado, apretar el botón de "ver perfil" del respectivo empleados y cuando se abra la vista correspondiente ir a la ultima opcion para modificar los datos del empleado');
+            } elseif (preg_match('/donde modificar.*empleado/iu', $message)) {
+                $botman->reply('Para modificar los datos de un empleado solo tienes que ir a tu listado, apretar el botón de "ver perfil" del respectivo empleados y cuando se abra la vista correspondiente ir a la ultima opcion para modificar los datos del empleado');
+           } elseif (preg_match('/puedo modificar.*empleado/iu', $message)) {
+                $botman->reply('Para modificar un empleado es necesario tener los permisos necesarios, si no aparece la respectiva vista consulta con tu superior el acceso a esta funcion');
+            } elseif (preg_match('/como editar.*usuario/iu', $message)) {
+                $botman->reply('Para editar un usuario necesitas colocar el cursor sobre el nombre de usuario sobre el menu de opciones, posteriormente apareceran 2 opciones debajo. Abre la opcion de ver perfil y se abrirá una vista en la que podras editar los datos del usuario');
+            } elseif (preg_match('/donde editar.*usuario/iu', $message)) {
+                $botman->reply('Para editar un usuario necesitas colocar el cursor sobre el nombre de usuario sobre el menu de opciones, posteriormente apareceran 2 opciones debajo. Abre la opcion de ver perfil y se abrirá una vista en la que podras editar los datos del usuario');
+            } elseif (preg_match('/puedo editar.*usuario/iu', $message)) {
+                $botman->reply('Para editar un usuario es necesario tener los permisos necesarios, si no aparece la respectiva vista consulta con tu superior el acceso a esta funcion');
+            } elseif (preg_match('/como editar.*empleado/iu', $message)) {
+                $botman->reply('Para editar los datos de un empleado solo tienes que ir a tu listado, apretar el botón de "ver perfil" del respectivo empleados y cuando se abra la vista correspondiente ir a la ultima opcion para editar los datos del empleado');
+            } elseif (preg_match('/donde editar.*empleado/iu', $message)) {
+                $botman->reply('Para editar los datos de un empleado solo tienes que ir a tu listado, apretar el botón de "ver perfil" del respectivo empleados y cuando se abra la vista correspondiente ir a la ultima opcion para editar los datos del empleado');
+            } elseif (preg_match('/puedo editar.*empleados/iu', $message)) {
+                $botman->reply('Para editar un empleado es necesario tener los permisos necesarios, si no aparece la respectiva vista consulta con tu superior el acceso a esta funcion');
+            } elseif (preg_match('/donde eliminar.*usuario/iu', $message)) {
+                $botman->reply('Para eliminar un usuario solo tienes que ir al listado de usuarios, buscar el usuario en cuestión y dar click en el respectivo boton de eliminar del usuario');
+            }
+            
+            
+            
+            
+            
+            elseif (preg_match('/como eliminar.*usuario/iu', $message)) {
+                $botman->reply('Para eliminar un usuario solo tienes que ir al listado de usuarios, buscar el usuario en cuestión y dar click en el respectivo boton de eliminar del usuario');
+            } elseif (preg_match('/puedo eliminar.*usuario/iu', $message)) {
+                $botman->reply('Para eliminar un usuario es necesario tener los permisos necesarios, si no aparece la respectiva vista consulta con tu superior el acceso a esta funcion');
+            } elseif (preg_match('/donde quitar.*usuario/iu', $message)) {
+                $botman->reply('Para eliminar un usuario solo tienes que ir al listado de usuarios, buscar el usuario en cuestión y dar click en el respectivo boton de eliminar del usuario');
+            } elseif (preg_match('/como quitar.*usuario/iu', $message)) {
+                $botman->reply('Para eliminar un usuario solo tienes que ir al listado de usuarios, buscar el usuario en cuestión y dar click en el respectivo boton de eliminar del usuario');
+            } elseif (preg_match('/puedo quitar.*usuario/iu', $message)) {
+                $botman->reply('Para quitar un usuario es necesario tener los permisos necesarios, si no aparece la respectiva vista consulta con tu superior el acceso a esta funcion');
+            } elseif (preg_match('/donde eliminar.*empleado/iu', $message)) {
+                $botman->reply('Para eliminar un empleado solo tienes que ir a mi listado, buscar el empleado en cuestión y dar click en el respectivo boton de eliminar del empleado');
+            } elseif (preg_match('/como eliminar.*empleado/iu', $message)) {
+                $botman->reply('Para eliminar un empleado solo tienes que ir a mi listado, buscar el empleado en cuestión y dar click en el respectivo boton de eliminar del empleado');
+            } elseif (preg_match('/puedo eliminar.*empleado/iu', $message)) {
+                $botman->reply('Para eliminar un empleado es necesario tener los permisos necesarios, si no aparece la respectiva vista consulta con tu superior el acceso a esta funcion');
+            } elseif (preg_match('/donde quitar.*empleado/iu', $message)) {
+                $botman->reply('Para eliminar un empleado solo tienes que ir a mi listado, buscar el empleado en cuestión y dar click en el respectivo boton de eliminar del empleado');
+            } elseif (preg_match('/como quitar.*empleado/iu', $message)) {
+                $botman->reply('Para eliminar un empleado solo tienes que ir a mi listado, buscar el empleado en cuestión y dar click en el respectivo boton de eliminar del empleado');
+           } elseif (preg_match('/puedo quitar.*empleado/iu', $message)) {
+                $botman->reply('Para quitar un empleado es necesario tener los permisos necesarios, si no aparece la respectiva vista consulta con tu superior el acceso a esta funcion');
+            } elseif (preg_match('/donde crear.*indicador/iu', $message)) {
+                $botman->reply('Para crear el indicador solo hay que ir al apartado de crear indicador en el menu de indicadores, llenar el formulario y dar click en guardar');
+            } elseif (preg_match('/como crear.*indicador/iu', $message)) {
+                $botman->reply('Para crear el indicador solo hay que ir al apartado de crear indicador en el menu de indicadores, llenar el formulario y dar click en guardar');
+            } elseif (preg_match('/puedo crear.*indicador/iu', $message)) {
+                $botman->reply('Para crear un indicador es necesario tener los permisos necesarios, si no aparece la respectiva vista consulta con tu superior el acceso a esta funcion');
+            } elseif (preg_match('/donde añadir.*indicador/iu', $message)) {
+                $botman->reply('Para añadir el indicador solo hay que ir al apartado de crear indicador en el menu de indicadores, llenar el formulario y dar click en guardar');
+            } elseif (preg_match('/como añadir.*indicador/iu', $message)) {
+                $botman->reply('Para añadir el indicador solo hay que ir al apartado de crear indicador en el menu de indicadores, llenar el formulario y dar click en guardar');
+            }  elseif (preg_match('/puedo añadir.*indicador/iu', $message)) {
+                $botman->reply('Para añadir un indicador es necesario tener los permisos necesarios, si no aparece la respectiva vista consulta con tu superior el acceso a esta funcion');
+            } elseif (preg_match('/donde registrar.*indicador/iu', $message)) {
+                $botman->reply('Para registrar el indicador solo hay que ir al apartado de crear indicador en el menu de indicadores, llenar el formulario y dar click en guardar');
+            } elseif (preg_match('/como registrar.*indicador/iu', $message)) {
+                $botman->reply('Para registrar el indicador solo hay que ir al apartado de crear indicador en el menu de indicadores, llenar el formulario y dar click en guardar');
+            } elseif (preg_match('/puedo registrar.*indicador/iu', $message)) {
+                $botman->reply('Para registrar un indicador es necesario tener los permisos necesarios, si no aparece la respectiva vista consulta con tu superior el acceso a esta funcion');
+            } elseif (preg_match('/donde agregar.*indicador/iu', $message)) {
+                $botman->reply('Para agregar el indicador solo hay que ir al apartado de crear indicador en el menu de indicadores, llenar el formulario y dar click en guardar');
+            } elseif (preg_match('/como agregar.*indicador/iu', $message)) {
+                $botman->reply('Para agregar el indicador solo hay que ir al apartado de crear indicador en el menu de indicadores, llenar el formulario y dar click en guardar');
+            }elseif (preg_match('/donde registrar.*puesto/iu', $message)) {
+                $botman->reply('Para registrar un puesto solo hay que ir al apartado de añadir puestos en el menu de Puestos, llenar el formulario y dar click en guardar');
+            } elseif (preg_match('/como registrar.*puesto/iu', $message)) {
+                $botman->reply('Para registrar un puesto solo hay que ir al apartado de añadir puestos en el menu de Puestos, llenar el formulario y dar click en guardar');
+            } elseif (preg_match('/puedo registrar.*puesto/iu', $message)) {
+                $botman->reply('Para registrar un puesto es necesario tener los permisos necesarios, si no aparece la respectiva vista consulta con tu superior el acceso a esta funcion');
+            }
+            
+            
+            
+            
+            
+            elseif (preg_match('/donde añadir.*puesto/iu', $message)) {
+                $botman->reply('Para añadir un puesto solo hay que ir al apartado de añadir puestos en el menu de Puestos, llenar el formulario y dar click en guardar');
+            } elseif (preg_match('/como añadir.*puesto/iu', $message)) {
+                $botman->reply('Para añadir un puesto solo hay que ir al apartado de añadir puestos en el menu de Puestos, llenar el formulario y dar click en guardar');
+            } elseif (preg_match('/puedo añadir.*puesto/iu', $message)) {
+                $botman->reply('Para añadir un puesto es necesario tener los permisos necesarios, si no aparece la respectiva vista consulta con tu superior el acceso a esta funcion');
+            } elseif (preg_match('/donde agregar.*puesto/iu', $message)) {
+                $botman->reply('Para agregar un puesto solo hay que ir al apartado de añadir puestos en el menu de Puestos, llenar el formulario y dar click en guardar');
+            } elseif (preg_match('/como agregar.*puesto/iu', $message)) {
+                $botman->reply('Para agregar un puesto solo hay que ir al apartado de añadir puestos en el menu de Puestos, llenar el formulario y dar click en guardar');
+            } elseif (preg_match('/puedo agregar.*puesto/iu', $message)) {
+                $botman->reply('Para agregar un puesto es necesario tener los permisos necesarios, si no aparece la respectiva vista consulta con tu superior el acceso a esta funcion');
+            } elseif (preg_match('/donde crear.*puesto/iu', $message)) {
+                $botman->reply('Para crear un puesto solo hay que ir al apartado de añadir puestos en el menu de Puestos, llenar el formulario y dar click en guardar');
+            } elseif (preg_match('/como crear.*puesto/iu', $message)) {
+                $botman->reply('Para crear un puesto solo hay que ir al apartado de añadir puestos en el menu de Puestos, llenar el formulario y dar click en guardar');
+            } elseif (preg_match('/puedo crear.*puesto/iu', $message)) {
+                $botman->reply('Para crear un puesto es necesario tener los permisos necesarios, si no aparece la respectiva vista consulta con tu superior el acceso a esta funcion');
+            }  elseif (preg_match('/que es.*funcion de puesto/iu', $message)) {
+                $botman->reply('Las funciones de puesto son las funciones que se asignan a determinados puestos dentro de la empresa');
+            } elseif (preg_match('/que son.*funciones de puesto/iu', $message)) {
+                $botman->reply('Las funciones de puesto son las funciones que se asignan a determinados puestos dentro de la empresa');
+            } elseif (preg_match('/sirven.*funciones de puesto/iu', $message)) {
+                $botman->reply('Las funciones de puesto sirven para listar las respectivas funciones con las que debe cumplir el respectivo empleado con el puesto asignado');
+            } elseif (preg_match('/sirve.*funcion de puesto/iu', $message)) {
+                $botman->reply('Las funciones de puesto sirven para listar las respectivas funciones con las que debe cumplir el respectivo empleado con el puesto asignado');
+            } elseif (preg_match('/donde agregar.*zona/iu', $message)) {
+                $botman->reply('Para agregar una zona solo hay que ir al apartado de kistado de zonas en el menu de Zonas, llenar los datos de la nueva zona en la parte superior y dar click en el boton agregar zona');
+            } elseif (preg_match('/como agregar.*zona/iu', $message)) {
+                $botman->reply('Para agregar una zona solo hay que ir al apartado de kistado de zonas en el menu de Zonas, llenar los datos de la nueva zona en la parte superior y dar click en el boton agregar zona');
+            } elseif (preg_match('/puedo agregar.*zona/iu', $message)) {
+                $botman->reply('Para agregar una zona es necesario tener los permisos necesarios, si no aparece la respectiva vista consulta con tu superior el acceso a esta funcion');
+            }elseif (preg_match('/donde crear.*zona/iu', $message)) {
+                $botman->reply('Para crear una zona solo hay que ir al apartado de kistado de zonas en el menu de Zonas, llenar los datos de la nueva zona en la parte superior y dar click en el boton agregar zona');
+            } elseif (preg_match('/como crear.*zona/iu', $message)) {
+                $botman->reply('Para crear una zona solo hay que ir al apartado de kistado de zonas en el menu de Zonas, llenar los datos de la nueva zona en la parte superior y dar click en el boton agregar zona');
+            } elseif (preg_match('/puedo crear.*zona/iu', $message)) {
+                $botman->reply('Para crear una zona es necesario tener los permisos necesarios, si no aparece la respectiva vista consulta con tu superior el acceso a esta funcion');
+            } elseif (preg_match('/donde añadir.*zona/iu', $message)) {
+                $botman->reply('Para añadir una zona solo hay que ir al apartado de kistado de zonas en el menu de Zonas, llenar los datos de la nueva zona en la parte superior y dar click en el boton agregar zona');
+            } elseif (preg_match('/como añadir.*zona/iu', $message)) {
+                $botman->reply('Para añadir una zona solo hay que ir al apartado de listado de zonas en el menu de Zonas, llenar los datos de la nueva zona en la parte superior y dar click en el boton agregar zona');
+            } elseif (preg_match('/puedo añadir.*zona/iu', $message)) {
+                $botman->reply('Para añadir una zona es necesario tener los permisos necesarios, si no aparece la respectiva vista consulta con tu superior el acceso a esta funcion');
+            } elseif (preg_match('/donde registrar.*zona/iu', $message)) {
+                $botman->reply('Para registrar una zona solo hay que ir al apartado de listado de zonas en el menu de Zonas, llenar los datos de la nueva zona en la parte superior y dar click en el boton agregar zona');
+            } elseif (preg_match('/como registrar.*zona/iu', $message)) {
+                $botman->reply('Para registrar una zona solo hay que ir al apartado de listado de zonas en el menu de Zonas, llenar los datos de la nueva zona en la parte superior y dar click en el boton agregar zona');
+            } elseif (preg_match('/puedo registrar.*zona/iu', $message)) {
+                $botman->reply('Para registrar una zona es necesario tener los permisos necesarios, si no aparece la respectiva vista consulta con tu superior el acceso a esta funcion');
+            } 
+            
+            
+            
+            
+            elseif (preg_match('/donde modificar.*zona/iu', $message)) {
+                $botman->reply('Para modificar una zona solo hay que ir al apartado de listado de zonas en el menu de Zonas, buscar la respectiva zona en el listado y presionar al respectivo boton de modificar. Posteriormente llenar el formulario con los nuevos datos y guardar');
+            } elseif (preg_match('/como modificar.*zona/iu', $message)) {
+                $botman->reply('Para modificar una zona solo hay que ir al apartado de listado de zonas en el menu de Zonas, buscar la respectiva zona en el listado y presionar al respectivo boton de modificar. Posteriormente llenar el formulario con los nuevos datos y guardar');
+            } elseif (preg_match('/puedo modificar.*zona/iu', $message)) {
+                $botman->reply('Para modificar una zona es necesario tener los permisos necesarios, si no aparece la respectiva vista consulta con tu superior el acceso a esta funcion');
+            } elseif (preg_match('/donde editar.*zona/iu', $message)) {
+                $botman->reply('Para editar una zona solo hay que ir al apartado de listado de zonas en el menu de Zonas, buscar la respectiva zona en el listado y presionar al respectivo boton de modificar. Posteriormente llenar el formulario con los nuevos datos y guardar');
+            } elseif (preg_match('/como editar.*zona/iu', $message)) {
+                $botman->reply('Para editar una zona solo hay que ir al apartado de listado de zonas en el menu de Zonas, buscar la respectiva zona en el listado y presionar al respectivo boton de modificar. Posteriormente llenar el formulario con los nuevos datos y guardar');
+            } elseif (preg_match('/puedo editar.*zona/iu', $message)) {
+                $botman->reply('Para editar una zona es necesario tener los permisos necesarios, si no aparece la respectiva vista consulta con tu superior el acceso a esta funcion');
+            } elseif (preg_match('/donde eliminar.*zona/iu', $message)) {
+                $botman->reply('Para editar una zona solo hay que ir al apartado de listado de zonas en el menu de Zonas, buscar la respectiva zona en el listado y presionar al respectivo boton de eliminar');
+            } elseif (preg_match('/como eliminar.*zona/iu', $message)) {
+                $botman->reply('Para eliminar una zona solo hay que ir al apartado de listado de zonas en el menu de Zonas, buscar la respectiva zona en el listado y presionar al respectivo boton de eliminar');
+            } elseif (preg_match('/puedo eliminar.*zona/iu', $message)) {
+                $botman->reply('Para eliminar una zona solo hay que ir al apartado de listado de zonas en el menu de Zonas, buscar la respectiva zona en el listado y presionar al respectivo boton de eliminar');
+            } elseif (preg_match('/donde quitar.*zona/iu', $message)) {
+                $botman->reply('Para quitar una zona solo hay que ir al apartado de listado de zonas en el menu de Zonas, buscar la respectiva zona en el listado y presionar al respectivo boton de eliminar');
+            } elseif (preg_match('/como quitar.*zona/iu', $message)) {
+                $botman->reply('Para quitar una zona solo hay que ir al apartado de listado de zonas en el menu de Zonas, buscar la respectiva zona en el listado y presionar al respectivo boton de eliminar');
+            } elseif (preg_match('/puedo quitar.*zona/iu', $message)) {
+                $botman->reply('Para quitar una zona es necesario tener los permisos necesarios, si no aparece la respectiva vista consulta con tu superior el acceso a esta funcion');
+            } elseif (preg_match('/donde registrar.*contrato/iu', $message)) {
+                $botman->reply('Para registrar un contrato solo hay que ir al apartado de contratos en el menu de Otros, escribir el nombre del nuevo contrato en la parte superior y dar click en Agregar contrato');
+            } elseif (preg_match('/como registrar.*contrato/iu', $message)) {
+                $botman->reply('Para registrar un contrato solo hay que ir al apartado de contratos en el menu de Otros, escribir el nombre del nuevo contrato en la parte superior y dar click en Agregar contrato');
+            } elseif (preg_match('/puedo registrar.*contrato/iu', $message)) {
+                $botman->reply('Para registrar un contrato es necesario tener los permisos necesarios, si no aparece la respectiva vista consulta con tu superior el acceso a esta funcion');
+            } elseif (preg_match('/donde añadir.*contrato/iu', $message)) {
+                $botman->reply('Para añadir un contrato solo hay que ir al apartado de contratos en el menu de Otros, escribir el nombre del nuevo contrato en la parte superior y dar click en Agregar contrato');
+            } elseif (preg_match('/como añadir.*contrato/iu', $message)) {
+                $botman->reply('Para añadir un contrato solo hay que ir al apartado de contratos en el menu de Otros, escribir el nombre del nuevo contrato en la parte superior y dar click en Agregar contrato');
+            } elseif (preg_match('/puedo añadir.*contrato/iu', $message)) {
+                $botman->reply('Para añadir un contrato es necesario tener los permisos necesarios, si no aparece la respectiva vista consulta con tu superior el acceso a esta funcion');
+            } elseif (preg_match('/donde agregar.*contrato/iu', $message)) {
+                $botman->reply('Para agregar un contrato solo hay que ir al apartado de contratos en el menu de Otros, escribir el nombre del nuevo contrato en la parte superior y dar click en Agregar contrato');
+            } elseif (preg_match('/como agregar.*contrato/iu', $message)) {
+                $botman->reply('Para agregar un contrato solo hay que ir al apartado de contratos en el menu de Otros, escribir el nombre del nuevo contrato en la parte superior y dar click en Agregar contrato');
+            } elseif (preg_match('/puedo agregar.*contrato/iu', $message)) {
+                $botman->reply('Para agregar un contrato es necesario tener los permisos necesarios, si no aparece la respectiva vista consulta con tu superior el acceso a esta funcion');
+            } elseif (preg_match('/donde crear.*contrato/iu', $message)) {
+                $botman->reply('Para crear un contrato solo hay que ir al apartado de contratos en el menu de Otros, escribir el nombre del nuevo contrato en la parte superior y dar click en Agregar contrato');
+            } elseif (preg_match('/como crear.*contrato/iu', $message)) {
+                $botman->reply('Para crear un contrato solo hay que ir al apartado de contratos en el menu de Otros, escribir el nombre del nuevo contrato en la parte superior y dar click en Agregar contrato');
+            } elseif (preg_match('/puedo crear.*contrato/iu', $message)) {
+                $botman->reply('Para crear un contrato es necesario tener los permisos necesarios, si no aparece la respectiva vista consulta con tu superior el acceso a esta funcion');
+            } elseif (preg_match('/donde modificar.*contrato/iu', $message)) {
+                $botman->reply('Los contratos no pueden ser modificados una vez creados');
+            }
+            
+            
+            
+            
+            
+            elseif (preg_match('/como modificar.*contrato/iu', $message)) {
+                $botman->reply('Los contratos no pueden ser modificados una vez creados');
+            } elseif (preg_match('/puedo modificar.*contrato/iu', $message)) {
+                $botman->reply('Los contratos no pueden ser modificados una vez creados');
+            } elseif (preg_match('/donde editar.*contrato/iu', $message)) {
+                $botman->reply('Los contratos no pueden ser editados una vez creados');
+            } elseif (preg_match('/como editar.*contrato/iu', $message)) {
+                $botman->reply('Los contratos no pueden ser editados una vez creados');
+            } elseif (preg_match('/puedo editar.*contrato/iu', $message)) {
+                $botman->reply('Los contratos no pueden ser editados una vez creados');
+            } elseif (preg_match('/donde eliminar.*contrato/iu', $message)) {
+                $botman->reply('Para eliminar un contrato solo hay que ir al apartado de contratos en el menu de Otros y dar click en el boton de eliminar en el respectivo contrato');
+            } elseif (preg_match('/como eliminar.*contrato/iu', $message)) {
+                $botman->reply('Para eliminar un contrato solo hay que ir al apartado de contratos en el menu de Otros y dar click en el boton de eliminar en el respectivo contrato');
+            } elseif (preg_match('/puedo eliminar.*contrato/iu', $message)) {
+                $botman->reply('Para eliminar un contrato es necesario tener los permisos necesarios, si no aparece la respectiva vista consulta con tu superior el acceso a esta funcion');
+            } elseif (preg_match('/donde quitar.*contrato/iu', $message)) {
+                $botman->reply('Para quitar un contrato solo hay que ir al apartado de contratos en el menu de Otros y dar click en el boton de eliminar en el respectivo contrato');
+            } elseif (preg_match('/como quitar.*contrato/iu', $message)) {
+                $botman->reply('Para quitar un contrato solo hay que ir al apartado de contratos en el menu de Otros y dar click en el boton de eliminar en el respectivo contrato');
+            } elseif (preg_match('/puedo quitar.*contrato/iu', $message)) {
+                $botman->reply('Para quitar un contrato es necesario tener los permisos necesarios, si no aparece la respectiva vista consulta con tu superior el acceso a esta funcion');
+            } elseif (preg_match('/donde registrar.*rol/iu', $message)) {
+                $botman->reply('Para registrar un rol solo hay que ir al apartado de rol en el menu de Otros, escribir el nombre y dar click en agregar rol');
+            } elseif (preg_match('/como registrar.*rol/iu', $message)) {
+                $botman->reply('Para registrar un rol solo hay que ir al apartado de rol en el menu de Otros, escribir el nombre y dar click en agregar rol');
+            } elseif (preg_match('/puedo registrar.*rol/iu', $message)) {
+                $botman->reply('Para registrar un rol es necesario tener los permisos necesarios, si no aparece la respectiva vista consulta con tu superior el acceso a esta funcion');
+            } elseif (preg_match('/donde añadir.*rol/iu', $message)) {
+                $botman->reply('Para añadir un rol solo hay que ir al apartado de rol en el menu de Otros, escribir el nombre y dar click en agregar rol');
+            } elseif (preg_match('/como añadir.*rol/iu', $message)) {
+                $botman->reply('Para añadir un rol solo hay que ir al apartado de rol en el menu de Otros, escribir el nombre y dar click en agregar rol');
+            } elseif (preg_match('/puedo añadir.*rol/iu', $message)) {
+                $botman->reply('Para añadir un rol es necesario tener los permisos necesarios, si no aparece la respectiva vista consulta con tu superior el acceso a esta funcion');
+            }elseif (preg_match('/donde agregar.*rol/iu', $message)) {
+                $botman->reply('Para agregar un rol solo hay que ir al apartado de rol en el menu de Otros, escribir el nombre y dar click en agregar rol');
+            } elseif (preg_match('/como agregar.*rol/iu', $message)) {
+                $botman->reply('Para agregar un rol solo hay que ir al apartado de rol en el menu de Otros, escribir el nombre y dar click en agregar rol');
+            } elseif (preg_match('/puedo agregar.*rol/iu', $message)) {
+                $botman->reply('Para agregar un rol es necesario tener los permisos necesarios, si no aparece la respectiva vista consulta con tu superior el acceso a esta funcion');
+            } elseif (preg_match('/donde crear.*rol/iu', $message)) {
+                $botman->reply('Para crear un rol solo hay que ir al apartado de rol en el menu de Otros, escribir el nombre y dar click en agregar rol');
+            } elseif (preg_match('/como crear.*rol/iu', $message)) {
+                $botman->reply('Para crear un rol solo hay que ir al apartado de rol en el menu de Otros, escribir el nombre y dar click en agregar rol');
+            } elseif (preg_match('/puedo crear.*rol/iu', $message)) {
+                $botman->reply('Para crear un rol es necesario tener los permisos necesarios, si no aparece la respectiva vista consulta con tu superior el acceso a esta funcion');
+            } elseif (preg_match('/donde modificar.*rol/iu', $message)) {
+                $botman->reply('Los roles no pueden ser modificador una vez creados');
+            } elseif (preg_match('/como modificar.*rol/iu', $message)) {
+                $botman->reply('Los roles no pueden ser modificador una vez creados');
+            }
+            
+            
+            
+            
+            
+            elseif (preg_match('/puedo modificar.*rol/iu', $message)) {
+                $botman->reply('Los roles no pueden ser modificador una vez creados');
+            } elseif (preg_match('/donde editar.*rol/iu', $message)) {
+                $botman->reply('Los roles no pueden ser editados una vez creados');
+            } elseif (preg_match('/como editar.*rol/iu', $message)) {
+                $botman->reply('Los roles no pueden ser editados una vez creados');
+            } elseif (preg_match('/puedo editar.*rol/iu', $message)) {
+                $botman->reply('Los roles no pueden ser editados una vez creados');
+            } elseif (preg_match('/donde eliminar.*rol/iu', $message)) {
+                $botman->reply('Para eliminar un rol solo hay que ir al apartado de roles en el menu de Otros y dar click en el boton de eliminar en el respectivo rol');
+            } elseif (preg_match('/como eliminar.*rol/iu', $message)) {
+                $botman->reply('Para eliminar un rol solo hay que ir al apartado de roles en el menu de Otros y dar click en el boton de eliminar en el respectivo rol');
+            } elseif (preg_match('/puedo eliminar.*rol/iu', $message)) {
+                $botman->reply('Para eliminar un rol es necesario tener los permisos necesarios, si no aparece la respectiva vista consulta con tu superior el acceso a esta funcion');
+            } elseif (preg_match('/donde quitar.*rol/iu', $message)) {
+                $botman->reply('Para quitar un rol solo hay que ir al apartado de roles en el menu de Otros y dar click en el boton de eliminar en el respectivo rol');
+            } elseif (preg_match('/como quitar.*rol/iu', $message)) {
+                $botman->reply('Para quitar un rol solo hay que ir al apartado de roles en el menu de Otros y dar click en el boton de eliminar en el respectivo rol');
+            } 
+
+            
 
 
          
@@ -1157,7 +1870,13 @@ class BotManController extends Controller
                 $botman->reply('Prevention and management of conflicts of interest, professional ethics, and conflict management are important aspects in the CFE\'s code of ethics. Employees must avoid situations that may generate a conflict of interest and act with ethics and professionalism in all their decisions and actions.');
             } elseif (preg_match('/sustainability|environmental responsibility|sustainable development/i', $message)) {
                 $botman->reply('Sustainability, environmental responsibility, and sustainable development are priority values in the CFE\'s code of ethics. The company is committed to promoting sustainable business practices, protecting the environment, and contributing to the economic, social, and environmental development of the communities where it operates.');
-            } elseif (preg_match('/compliance|regulatory compliance|risk management/i', $message)) {
+            } 
+            
+            
+            
+            
+            
+            elseif (preg_match('/compliance|regulatory compliance|risk management/i', $message)) {
                 $botman->reply('Compliance with laws, regulatory compliance, and risk management are key aspects in the CFE\'s code of ethics. The company is committed to complying with applicable laws, regulations, and standards, proactively managing risks associated with its operations, and promoting a culture of compliance and business ethics.');
             } elseif (preg_match('/workplace safety and health|risk prevention|employee well-being/i', $message)) {
                 $botman->reply('Workplace safety and health, risk prevention, and employee well-being are priority aspects in the CFE\'s code of ethics. The company is committed to providing a safe and healthy work environment, implementing risk prevention measures, and promoting the physical and emotional well-being of its employees.');
@@ -1260,7 +1979,13 @@ class BotManController extends Controller
                 $botman->reply('The worker has the obligation to use the resources, tools, and work materials provided by the company appropriately, take care of their conservation, and avoid any waste or misuse.');
             } elseif (preg_match('/confidentiality|data protection|sensitive information/i', $message)) {
                 $botman->reply('The worker must maintain confidentiality and protect sensitive information, personal data, and trade secrets of the company, avoiding their disclosure or misuse.');
-            } elseif (preg_match('/participation in training|continuous training|professional updating/i', $message)) {
+            }
+            
+            
+            
+            
+            
+            elseif (preg_match('/participation in training|continuous training|professional updating/i', $message)) {
                 $botman->reply('The worker has the obligation to participate in training, training courses, and professional updating programs provided by the company to improve their skills and labor competencies.');
             } elseif (preg_match('/compliance with tax obligations|tax declaration|labor contributions/i', $message)) {
                 $botman->reply('The worker must comply with their tax obligations, including tax declaration, payment of labor contributions, and other tax obligations established by applicable legislation.');
@@ -1364,7 +2089,12 @@ class BotManController extends Controller
                 $botman->reply('Regulations and regulations are established to regulate and guarantee safety, quality, efficiency, reliability, sustainability, and protection of user rights in the generation, transmission, distribution, and commercialization of electrical energy.');
             } elseif (preg_match('/Electric Industry Law|EIL|EIL regulations/i', $message)) {
                 $botman->reply('The Electric Industry Law (EIL) establishes the legal and regulatory framework for the organization, operation, and development of the electric industry, promoting competition, efficiency, transparency, sustainability, and universal access to electrical services.');
-            } elseif (preg_match('/Official Mexican Standards|NOMs|NOMs regulations/i', $message)) {
+            }
+            
+            
+            
+            
+            elseif (preg_match('/Official Mexican Standards|NOMs|NOMs regulations/i', $message)) {
                 $botman->reply('The Official Mexican Standards (NOMs) establish technical specifications, criteria, procedures, and mandatory minimum requirements to guarantee quality, safety, efficiency, environmental protection, and compliance with standards in the generation, transmission, distribution, and commercialization of electrical energy.');
             } elseif (preg_match('/Electric tariffs|Tariffs|Tariff regulations/i', $message)) {
                 $botman->reply('Electric tariffs are established and regulated through criteria, methodologies, and procedures defined by the Energy Regulatory Commission (CRE), considering costs, investments, efficiency, quality, sustainability, and protection of user rights.');
@@ -1470,7 +2200,13 @@ class BotManController extends Controller
                 $botman->reply('Data management, data governance, data quality, data analytics, big data, business intelligence, data visualization, data-driven decision making, and data-driven strategies are promoted and implemented to manage, analyze, interpret, and use data to improve processes, services, operations, and decision making in the organization.');
             } elseif (preg_match('/Customer orientation and service culture|Customer orientation|Service culture/i', $message)) {
                 $botman->reply('Customer orientation, service culture, customer satisfaction, attention, care, loyalty, and relationship are promoted through training, communication, awareness, and programs to prioritize and enhance the service, experience, and relationship with users and customers in the organization.');
-            }elseif (preg_match('/Project Integration|Coordination|Unification|Synergy/i', $message)) {
+            }
+            
+            
+            
+            
+            
+            elseif (preg_match('/Project Integration|Coordination|Unification|Synergy/i', $message)) {
                 $botman->reply('Integration, coordination, unification, and synergy are promoted among projects, teams, departments, and areas through integration management practices, tools, and techniques, such as program management, portfolios, and PMO (Project Management Office). This is to align, harmonize, optimize, and leverage resources, efforts, capabilities, and knowledge, and to encourage collaboration, cooperation, and teamwork in project organization and execution.');
             } elseif (preg_match('/Project Closure|Completion|Delivery|Evaluation/i', $message)) {
                 $botman->reply('An orderly, systematic, and evaluative closure of projects is carried out through the completion, delivery, acceptance, review, evaluation, and feedback of projects, using project closure techniques, tools, and practices, such as lessons learned, audits, and post-mortem, to ensure compliance, satisfaction, learning, improvement, and success in the completion and delivery of projects, and to facilitate the transfer of knowledge, results, and learning in projects.');
@@ -1576,7 +2312,12 @@ class BotManController extends Controller
                 $botman->reply('DisSuper integrates with major productivity tools and office suites, such as Microsoft Office, Google Workspace, and other applications, facilitating the import and export of documents and data.');
             } elseif (preg_match('/Process Automation|Automation|Processes|Workflow/i', $message)) {
                 $botman->reply('DisSuper offers process automation and workflow functionalities to optimize and streamline repetitive tasks and activities, improving efficiency and productivity in document and operation management.');
-            } elseif (preg_match('/Intuitive Interface and Usability|Intuitive Interface|Usability|User-Friendly Design/i', $message)) {
+            }
+            
+            
+            
+            
+            elseif (preg_match('/Intuitive Interface and Usability|Intuitive Interface|Usability|User-Friendly Design/i', $message)) {
                 $botman->reply('The DisSuper interface is intuitive, and the design is user-friendly, offering simple and accessible usability for all users, regardless of their level of experience and technical knowledge.');
             } elseif (preg_match('/Report Customization|Customization|Reports|Report Configuration/i', $message)) {
                 $botman->reply('At DisSuper, you can customize the reports generated to adapt them to your specific needs and requirements, selecting the data, metrics, and visualizations you want to include in each report.');
@@ -1683,7 +2424,13 @@ class BotManController extends Controller
                 $botman->reply('The IMSS (Mexican Social Security Institute) is a governmental entity responsible for administering the social security system in Mexico, providing health services, pensions, and benefits to workers and their families. CFE has a labor relationship with IMSS to ensure the protection and well-being of its employees, complying with legal obligations and providing access to medical and social services.');
             } elseif (preg_match('/What is CFE\'s diversity and inclusion policy?|CFE Diversity and Inclusion/i', $message)) {
                 $botman->reply('The Federal Electricity Commission (CFE) promotes a diversity and inclusion policy that values and respects gender, age, ethnic origin, disability, sexual orientation, religion, and work experience diversity of its employees, fostering an inclusive, equitable, and discrimination-free work environment where all employees can develop their potential and contribute to the organization\'s success.');
-            } elseif (preg_match('/How can I access IMSS health services as a CFE employee?|IMSS Health Services/i', $message)) {
+            } 
+            
+            
+            
+            
+            
+            elseif (preg_match('/How can I access IMSS health services as a CFE employee?|IMSS Health Services/i', $message)) {
                 $botman->reply('As an employee of the Federal Electricity Commission (CFE), you can access IMSS health services through your affiliation to the Mexican Social Security Institute, providing your social security number and complying with the registration and update requirements of personal data in the IMSS system.');
             } elseif (preg_match('/What is SAT and what is its relationship with CFE?|SAT and CFE/i', $message)) {
                 $botman->reply('The SAT (Tax Administration Service) is a governmental entity responsible for administering and supervising the tax system in Mexico, collecting taxes, rights, and fiscal contributions to finance public spending and ensure compliance with tax obligations. CFE has a relationship with SAT to comply with tax obligations, file tax returns, pay taxes, and contribute to the economic and social development of the country.');
@@ -1790,7 +2537,13 @@ class BotManController extends Controller
                 $botman->reply('A job position is a specific position within the organization, with assigned responsibilities, functions, and activities, and is linked to a work zone and a set of position activities.');
             } elseif (preg_match('/How is a contract assigned to an employee?|Assign contract to employee/i', $message)) {
                 $botman->reply('To assign a contract to an employee, select the corresponding employee and add the contract from the contracts section, specifying the terms and conditions of the employment agreement.');
-            } elseif (preg_match('/What is a user role?|User role/i', $message)) {
+            }
+            
+            
+            
+            
+            
+            elseif (preg_match('/What is a user role?|User role/i', $message)) {
                 $botman->reply('A user role defines the functionalities, permissions, and accesses that a user has within the platform, allowing to customize the actions and tasks they can perform according to their profile and responsibilities.');
             } elseif (preg_match('/How is an employee profile modified?|Modify employee profile/i', $message)) {
                 $botman->reply('An employee profile is modified from the employee profiles section, updating the personal, work, contract, zone, role, and assigned activities information as needed.');
@@ -1897,7 +2650,14 @@ class BotManController extends Controller
                 $botman->reply('To track the progress of ongoing projects, access the project management section, select the project you want to monitor, and view the project status, tasks, and milestones.');
             } elseif (preg_match('/What is the process for submitting expenses for reimbursement?|Submit expenses for reimbursement/i', $message)) {
                 $botman->reply('The process for submitting expenses for reimbursement involves filling out an expense report, attaching the receipts, and submitting the report for approval through the expense management system.');
-            } elseif (preg_match('/How do I update my personal information in the system?|Update personal information/i', $message)) {
+            }
+            
+            
+            
+            
+            
+            
+            elseif (preg_match('/How do I update my personal information in the system?|Update personal information/i', $message)) {
                 $botman->reply('To update your personal information in the system, go to the profile settings section, make the necessary changes, and save the updated information.');
             } elseif (preg_match('/What are the guidelines for conducting performance reviews?|Performance review guidelines/i', $message)) {
                 $botman->reply('The guidelines for conducting performance reviews include setting clear objectives, providing constructive feedback, recognizing achievements, and creating a development plan for the employee.');
@@ -2003,7 +2763,13 @@ class BotManController extends Controller
                 $botman->reply('An accountability report is a document generated when an employee has failed to meet an indicator in a task.');
             } elseif (preg_match('/what is an administrative record/i', $message)) {
                 $botman->reply('An administrative record is a document generated when an employee has failed to meet an indicator in 4 or more tasks.');
-            } elseif (preg_match('/what is a position/i', $message)) {
+            }
+            
+            
+            
+            
+            
+            elseif (preg_match('/what is a position/i', $message)) {
                 $botman->reply('A position is the job a employee has related to their activities.');
             } elseif (preg_match('/what are contracts/i', $message)) {
                 $botman->reply('4 types: Unionized event, Unionized base, Trust event, and Trust base.');
@@ -2021,10 +2787,648 @@ class BotManController extends Controller
                 $botman->reply('It is used to view employee data, as well as access the menu where documents about the employee can be created.');
             } elseif (preg_match('/I can\'t find an option/iu', $message)) {
                 $botman->reply('If you can\'t find an option, ask me which option you are looking for. If my answer doesn\'t help you, you probably don\'t have the necessary permissions to access that option.');
+            }elseif (preg_match('/upload a document/i', $message)) {
+                $botman->reply('To upload a document for an employee, you need to go to the employee\'s profile and then enter the documents section and the sub-section to upload a document.');
+            } elseif (preg_match('/found an error/i', $message)) {
+                $botman->reply('If you have found an error in the program, please contact the system administrator and report it for prompt resolution.');
+            } elseif (preg_match('/contact the administrator/i', $message)) {
+                $botman->reply('To contact the administrator, you can send an email to jesus.quintero7478@alumnos.udg.mx');
+            } elseif (preg_match('/who is the administrator/i', $message)) {
+                $botman->reply('The system has 2 administrators, Jesus Eduardo Quintero Gomez and David Guadalupe Vargas Lopez.');
+            } elseif (preg_match('/who are the administrators/i', $message)) {
+                $botman->reply('Our working hours are Monday to Friday from 9:00 am to 5:00 pm.');
+            } elseif (preg_match('/how do I view notifications/i', $message)) {
+                $botman->reply('To view notifications, you need to access their respective area. To do this, click on the bell icon in the top right corner of the screen.');
+            } elseif (preg_match('/I don\'t have any notifications/i', $message)) {
+                $botman->reply('If you don\'t have any notifications, it may be because you don\'t have any pending documents.');
+            } elseif (preg_match('/like tacos/i', $message)) {
+                $botman->reply('I love tacos, but I can\'t eat them as I am stuck in this computer to help you.');
+            } elseif (preg_match('/view the documents/i', $message)) {
+                $botman->reply('To view an employee\'s documents, you just need to access their profile and click on the download button for the document you want to view. After downloading, you just need to open it on your computer.');
+            } elseif (preg_match('/my area is not listed/i', $message)) {
+                $botman->reply('If you don\'t find your area listed in the options, we recommend reporting it to your supervisor to be added as soon as possible.');
+            } elseif (preg_match('/I can\'t find my area/i', $message)) {
+                $botman->reply('If you don\'t find your area listed in the options, we recommend reporting it to your supervisor to be added as soon as possible.');
+            } elseif (preg_match('/my area doesn\'t exist/i', $message)) {
+                $botman->reply('If you don\'t find your area listed in the options, we recommend reporting it to your supervisor to be added as soon as possible.');
+            } elseif (preg_match('/an employee is not listed/i', $message)) {
+                $botman->reply('If you don\'t find an employee in the system, we recommend reporting it to your supervisor to be added as soon as possible.');
+            } elseif (preg_match('/I can\'t find an employee/i', $message)) {
+                $botman->reply('If you don\'t find an employee in the system, we recommend reporting it to your supervisor to be added as soon as possible.');
+            } elseif (preg_match('/an employee is not registered/i', $message)) {
+                $botman->reply('If you don\'t find an employee in the system, we recommend reporting it to your supervisor to be added as soon as possible.');
+            } elseif (preg_match('/an employee doesn\'t exist/i', $message)) {
+                $botman->reply('If you don\'t find an employee in the system, we recommend reporting it to your supervisor to be added as soon as possible.');
+            } 
+            
+            
+            
+            
+            elseif (preg_match('/phone number of/i', $message)) {
+                $botman->reply('If you want to contact someone, you can check the program\'s directory. Important personnel contacts are stored there.');
+            } elseif (preg_match('/contact/i', $message)) {
+                $botman->reply('If you want to contact someone, you can check the program\'s directory. Important personnel contacts are stored there.');
+            }elseif (preg_match('/how do I report a problem/i', $message)) {
+                $botman->reply('To report a system problem, you must send an email to the administrator or your boss explaining it in detail.');
+            } elseif (preg_match('/report a problem/i', $message)) {
+                $botman->reply('To report a system problem, you must send an email to the administrator or your boss explaining it in detail.');
+            } elseif (preg_match('/disciplinary action/i', $message)) {
+                $botman->reply('To issue a disciplinary action, you need to access the profile of the target employee. If the corresponding document is a disciplinary action, it will allow you to fill out a form to generate it. You can also choose to upload it directly to the system.');
+            } elseif (preg_match('/accountability/i', $message)) {
+                $botman->reply('To create an accountability report, you need to access the profile of the target employee. If the corresponding document is an accountability report, it will allow you to fill out a form to generate it. You can also choose to upload it directly to the system.');
+            } elseif (preg_match('/administrative record/i', $message)) {
+                $botman->reply('To create an administrative record, you need to access the profile of the target employee. If the corresponding document is an administrative record, you can directly upload the document to the system.');
+            } elseif (preg_match('/change password/i', $message)) {
+                $botman->reply('If you want to change your password, you need to access your profile and modify it from there.');
+            } elseif (preg_match('/access my profile/i', $message)) {
+                $botman->reply('To access your profile, hover over your profile name, and a button will automatically appear. Click there to access your profile.');
+            } elseif (preg_match('/accessing my profile/i', $message)) {
+                $botman->reply('To access your profile, hover over your profile name, and a button will automatically appear. Click there to access your profile.');
+            } elseif (preg_match('/not loading/i', $message)) {
+                $botman->reply('If the system is not loading, check your internet connection. If the internet is working fine, please report the problem to the administrator.');
+            } elseif (preg_match('/error 505/i', $message)) {
+                $botman->reply('If you encounter a 505 error, send an email to the administrator stating the error and which page displayed it. The error will be resolved promptly.');
+            } elseif (preg_match('/error 504/i', $message)) {
+                $botman->reply('If you encounter a 504 error, send an email to the administrator stating the error and which page displayed it. The error will be resolved promptly.');
+            } elseif (preg_match('/administrator\'s email/i', $message)) {
+                $botman->reply('To contact the administrator, you can send an email to jesus.quintero7478@alumnos.udg.mx');
+            } elseif (preg_match('/does God exist?/i', $message)) {
+                $botman->reply('I don\'t know, I hope I have helped you.');
+            } elseif (preg_match('/working hours/i', $message)) {
+                $botman->reply('The maximum daily working hours according to the Federal Labor Law is 8 hours.');
+            } elseif (preg_match('/rights do I have/i', $message)) {
+                $botman->reply('As a worker, you have the right to receive a fair and just minimum wage that allows you to cover your basic needs and those of your family.');
+            } elseif (preg_match('/maximum weekly working hours/i', $message)) {
+                $botman->reply('The maximum weekly working hours are 48 hours.');
+            } elseif (preg_match('/rest period/i', $message)) {
+                $botman->reply('After 6 hours of continuous work, you are entitled to a rest period of at least 30 minutes.');
+            } elseif (preg_match('/maximum overtime/i', $message)) {
+                $botman->reply('The maximum overtime allowed per day is 3 hours, and per week is 9 hours.');
+            } elseif (preg_match('/vacation rights/i', $message)) {
+                $botman->reply('You have the right to annual paid vacation time, which varies depending on your length of employment, but is generally at least 6 business days.');
+            } elseif (preg_match('/resign/i', $message)) {
+                $botman->reply('If you want to resign, you must notify your employer in writing with at least 15 days\' notice of your decision to resign.');
+            } elseif (preg_match('/types of contracts/i', $message)) {
+                $botman->reply('The Federal Labor Law recognizes indefinite contracts, fixed-term contracts, contracts for specific work or services, and seasonal contracts.');
+            } elseif (preg_match('/rights in case of unfair dismissal/i', $message)) {
+                $botman->reply('You have the right to receive compensation and to demand reinstatement to your job.');
+            } elseif (preg_match('/(obligations|employer)/i', $message)) {
+                $botman->reply('The employer is obligated to provide a safe and healthy work environment, as well as to comply with safety and hygiene labor regulations.');
+            } elseif (preg_match('/labor rights/i', $message)) {
+                $botman->reply('Your labor rights are protected by the Federal Labor Law.');
+            }elseif (preg_match('/work disability/i', $message)) {
+                $botman->reply('To request a work disability, you need a medical certificate and to communicate it to human resources.');
+            } elseif (preg_match('/vacations/i', $message)) {
+                $botman->reply('To request vacations, you must submit a written request to your supervisor.');
+            } elseif (preg_match('/workplace harassment/i', $message)) {
+                $botman->reply('If you experience workplace harassment, immediately report it to your supervisor or human resources.');
             }
-        
 
-        else {
+
+
+
+             
+            elseif (preg_match('/unfair dismissal/i', $message)) {
+                $botman->reply('You are protected against unfair dismissal by the Federal Labor Law.');
+            } elseif (preg_match('/work schedules/i', $message)) {
+                $botman->reply('Work schedules are regulated by the company and may vary depending on the department.');
+            } elseif (preg_match('/work permits/i', $message)) {
+                $botman->reply('Work permits must be requested and approved by human resources or your supervisor.');
+            } elseif (preg_match('/workplace safety/i', $message)) {
+                $botman->reply('Workplace safety is a priority, and established regulations and procedures must be followed.');
+            } elseif (preg_match('/salary payments/i', $message)) {
+                $botman->reply('Salary payments are made according to company policies and the Federal Labor Law.');
+            } elseif (preg_match('/labor benefits/i', $message)) {
+                $botman->reply('Labor benefits include social security, year-end bonus, and vacations, among others.');
+            } elseif (preg_match('/work hours record/i', $message)) {
+                $botman->reply('It is important to record your work hours for compliance with regulations.');
+            } elseif (preg_match('/voluntary resignation/i', $message)) {
+                $botman->reply('If you wish to resign voluntarily, you must notify human resources in advance.');
+            } elseif (preg_match('/occupational health/i', $message)) {
+                $botman->reply('Occupational health is essential, and safety and prevention measures must be followed.');
+            } elseif (preg_match('/training and development/i', $message)) {
+                $botman->reply('The company may provide training and development opportunities for professional growth.');
+            } elseif (preg_match('/economic compensation/i', $message)) {
+                $botman->reply('Economic compensation may include base salary, bonuses, and additional benefits.');
+            } elseif (preg_match('/internal work regulations/i', $message)) {
+                $botman->reply('Internal work regulations establish the rules and policies of the company.');
+            } elseif (preg_match('/occupational medical exams/i', $message)) {
+                $botman->reply('Occupational medical exams may be required to ensure health and safety at work.');
+            } elseif (preg_match('/retirement/i', $message)) {
+                $botman->reply('The retirement process is subject to company provisions and current laws.');
+            } elseif (preg_match('/maternity\/paternity/i', $message)) {
+                $botman->reply('Maternity/paternity rights are protected by law, and the company may offer additional benefits.');
+            } elseif (preg_match('/work-related accident compensation/i', $message)) {
+                $botman->reply('Work-related accident compensation may include medical care and financial compensation.');
+            } elseif (preg_match('/confidentiality of information/i', $message)) {
+                $botman->reply('Confidentiality of information is fundamental, and you must respect it at all times.');
+            } elseif (preg_match('/code of ethics/i', $message)) {
+                $botman->reply('The code of ethics establishes the principles and values that employees of the company must follow.');
+            } elseif (preg_match('/internal vacancies/i', $message)) {
+                $botman->reply('Internal vacancies may be posted for employees to apply.');
+            } elseif (preg_match('/performance evaluation/i', $message)) {
+                $botman->reply('Performance evaluations may be conducted periodically to assess work performance.');
+            } elseif (preg_match('/compensation for overtime/i', $message)) {
+                $botman->reply('Overtime compensation may be provided according to company policies and the law.');
+            } elseif (preg_match('/workplace wellness program/i', $message)) {
+                $botman->reply('The workplace wellness program may include activities and benefits to promote employee health and well-being.');
+            }elseif (preg_match('/work-life balance/i', $message)) {
+                $botman->reply('Work-life balance is important, and the company may offer measures to facilitate it.');
+            } elseif (preg_match('/attendance record/i', $message)) {
+                $botman->reply('It is important to record your attendance according to the schedules established by the company.');
+            } elseif (preg_match('/disciplinary procedure/i', $message)) {
+                $botman->reply('The disciplinary procedure may be applied in case of non-compliance with rules and policies.');
+            }
+
+
+
+
+               
+            elseif (preg_match('/life insurance/i', $message)) {
+                $botman->reply('The company may offer life insurance as part of the employment benefits.');
+            } elseif (preg_match('/right to unionize/i', $message)) {
+                $botman->reply('Employees have the right to unionize, and the company must respect this right.');
+            } elseif (preg_match('/sick leave/i', $message)) {
+                $botman->reply('You can request sick leave by presenting a medical certificate.');
+            } elseif (preg_match('/personal data protection/i', $message)) {
+                $botman->reply('The company must protect your personal data according to data protection laws.');
+            } elseif (preg_match('/longevity awards/i', $message)) {
+                $botman->reply('You may receive longevity awards according to company policies.');
+            } elseif (preg_match('/prohibition of discrimination/i', $message)) {
+                $botman->reply('Discrimination is prohibited by law, and the company must promote equal opportunities.');
+            } elseif (preg_match('/major medical expenses insurance policy/i', $message)) {
+                $botman->reply('The company may offer a major medical expenses insurance policy as an additional benefit.');
+            } elseif (preg_match('/early vacation/i', $message)) {
+                $botman->reply('You can request early vacation with the approval of your supervisor and human resources.');
+            } elseif (preg_match('/minimum wage/i', $message)) {
+                $botman->reply('Your salary must comply with the minimum wage established by law.');
+            } elseif (preg_match('/expense reimbursement/i', $message)) {
+                $botman->reply('You can request reimbursement of authorized expenses according to company policies.');
+            } elseif (preg_match('/pension plan/i', $message)) {
+                $botman->reply('The company may offer a pension plan as an additional benefit for your retirement.');
+            } elseif (preg_match('/right to strike/i', $message)) {
+                $botman->reply('Workers have the right to strike in case of labor disputes.');
+            } elseif (preg_match('/employment contract/i', $message)) {
+                $botman->reply('The employment contract establishes the terms and conditions of your employment.');
+            } elseif (preg_match('/anonymous complaint/i', $message)) {
+                $botman->reply('You can make an anonymous complaint in case of irregularities or misconduct.');
+            } elseif (preg_match('/meal breaks/i', $message)) {
+                $botman->reply('Meal breaks are regulated by law, and the company must provide a minimum time.');
+            } elseif (preg_match('/maternity protection/i', $message)) {
+                $botman->reply('Maternity protection is guaranteed by law, and the company must respect these rights.');
+            } elseif (preg_match('/compensation for work on holidays/i', $message)) {
+                $botman->reply('Work on holidays may be compensated with additional pay or time off.');
+            }elseif (preg_match('/unemployment insurance/i', $message)) {
+                $botman->reply('You may be entitled to unemployment insurance if you lose your job.');
+            } elseif (preg_match('/paternity leave/i', $message)) {
+                $botman->reply('Fathers have the right to paternity leave after the birth of a child.');
+            } elseif (preg_match('/retirement requirements/i', $message)) {
+                $botman->reply('Retirement requirements may vary according to the law and company programs.');
+            } elseif (preg_match('/occupational safety training/i', $message)) {
+                $botman->reply('Occupational safety training is mandatory and may include courses and practical exercises.');
+            } elseif (preg_match('/pension rights/i', $message)) {
+                $botman->reply('You have the right to a pension based on contributions made during your working life.');
+            } elseif (preg_match('/productivity incentives/i', $message)) {
+                $botman->reply('You may receive productivity incentives based on your work performance.');
+            } elseif (preg_match('/medical expenses reimbursement/i', $message)) {
+                $botman->reply('You can request reimbursement of authorized medical expenses according to company policies.');
+            } elseif (preg_match('/bereavement leave/i', $message)) {
+                $botman->reply('You can request bereavement leave in case of the death of a close family member.');
+            }
+            
+            
+            
+            
+            elseif (preg_match('/gender equality policy/i', $message)) {
+                $botman->reply('The company may have a gender equality policy to promote equality in the workplace.');
+            } elseif (preg_match('/procedure for reporting irregularities/i', $message)) {
+                $botman->reply('You can follow a specific procedure to report irregularities confidentially.');
+            } elseif (preg_match('/union rights/i', $message)) {
+                $botman->reply('You have the right to join a union and participate in union activities.');
+            } elseif (preg_match('/protection against sexual harassment/i', $message)) {
+                $botman->reply('The company must provide a safe working environment and protect against sexual harassment.');
+            } elseif (preg_match('/workplace safety/i', $message)) {
+                $botman->reply('Workplace safety is everyone\'s responsibility, and you must follow rules and procedures.');
+            } elseif (preg_match('/diversity and inclusion policy/i', $message)) {
+                $botman->reply('The company may have a diversity and inclusion policy to promote equal opportunities.');
+            } elseif (preg_match('/productivity incentives/i', $message)) {
+                $botman->reply('You may receive productivity incentives based on your work performance.');
+            } elseif (preg_match('/what is an indicator/i', $message)) {
+                $botman->reply('An indicator is one of the requirements that must be met in a task.');
+            } elseif (preg_match('/how do I add an indicator/i', $message)) {
+                $botman->reply('To add an indicator, you need to have the necessary permissions. If you have them, just go to the indicators section and add it.');
+            } elseif (preg_match('/how do I view my salary/i', $message)) {
+                $botman->reply('You can check your contract, your paycheck, or ask your supervisor.');
+            } elseif (preg_match('/a document did not reach me/i', $message)) {
+                $botman->reply('If a document generated by someone else did not reach you, ask them to make sure they sent it to the correct person. If they did, report the problem to the system administrator and provide the document information.');
+            } elseif (preg_match('/order of documents/i', $message)) {
+                $botman->reply('Documents are generated in the following order: 2 renditions of accounts, 1 warning, and 1 administrative act.');
+            } elseif (preg_match('/what is a warning/i', $message)) {
+                $botman->reply('A warning is a document generated when an employee fails to meet their indicators in 3 or more tasks.');
+            } elseif (preg_match('/what is an account rendition/i', $message)) {
+                $botman->reply('An account rendition is a document generated when an employee fails to meet an indicator in a task.');
+            } elseif (preg_match('/what is an administrative act/i', $message)) {
+                $botman->reply('An administrative act is a document generated when an employee fails to meet an indicator in 4 or more tasks.');
+            } elseif (preg_match('/what is a position/i', $message)) {
+                $botman->reply('A position is the job that an employee has related to their activities.');
+            }elseif (preg_match('/what is a position for/i', $message)) {
+                $botman->reply('To know the employee\'s position and related activities.');
+            } elseif (preg_match('/what are positions used for/i', $message)) {
+                $botman->reply('To know the employee\'s position and related activities.');
+            } elseif (preg_match('/why does it ask me for the position/i', $message)) {
+                $botman->reply('To know the employee\'s position and related activities.');
+            } elseif (preg_match('/what types of contracts are there/i', $message)) {
+                $botman->reply('4 types: Unionized Eventual, Unionized Base, Confidence Eventual, and Confidence Base.');
+            } elseif (preg_match('/what is a zone/iu', $message)) {
+                $botman->reply('Zones are areas where a service is offered and there is a headquarters to attend it.');
+            } elseif (preg_match('/what is a zone used for/iu', $message)) {
+                $botman->reply('Zones are used to identify the area to which an employee belongs.');
+            } elseif (preg_match('/view zones/iu', $message)) {
+                $botman->reply('To view the registered zones in the system, you need to go to the zones menu and select the list of zones. If this menu does not appear, it indicates that you do not have sufficient permissions to access it.');
+            } elseif (preg_match('/what are roles/iu', $message)) {
+                $botman->reply('Roles are the positions held by system users. These determine the permissions of the respective user in the system.');
+            } elseif (preg_match('/what are the current roles/iu', $message)) {
+                $botman->reply('The current roles managed by the system are: Immediate Management, Process Zonal Management, Work Process Zonal Management, Zone Superintendent, Work Submanager, and Divisional Manager.');
+            }
+
+
+
+
+            elseif (preg_match('/what are roles used for/iu', $message)) {
+                $botman->reply('Roles are used to identify the position of the respective user and their permissions in the system.');
+            } elseif (preg_match('/view roles/iu', $message)) {
+                $botman->reply('To view the roles in the system, just go to the roles section in the Others menu. If this menu does not appear, it indicates that you do not have sufficient permissions to access it.');
+            } elseif (preg_match('/what is RPE/iu', $message)) {
+                $botman->reply('RPE is the unique employee identifier used in the company\'s systems.');
+            } elseif (preg_match('/what is RPE/iu', $message)) {
+                $botman->reply('RPE is the unique employee identifier used in the company\'s systems.');
+            } elseif (preg_match('/RPE does not exist/iu', $message)) {
+                $botman->reply('If you search for an employee and cannot find them by RPE, we suggest you check if the search was done correctly, and if so, report the absence to your superior.');
+            } elseif (preg_match('/no RPE found/iu', $message)) {
+                $botman->reply('If you search for an employee and cannot find them by RPE, we suggest you check if the search was done correctly, and if so, report the absence to your superior.');
+            }elseif (preg_match('/non-existent RPE/iu', $message)) {
+                $botman->reply('If you search for an employee and cannot find them by RPE, we suggest you check if the search was done correctly, and if so, report the absence to your superior');
+            } elseif (preg_match('/what is.*view profile/iu', $message)) {
+                $botman->reply('It is used to view employee data, as well as to access the menu where documents about the employee can be created');
+            } elseif (preg_match('/what does.*view profile/iu', $message)) {
+                $botman->reply('It is used to view employee data, as well as to access the menu where documents about the employee can be created');
+            } elseif (preg_match('/cannot find an option/iu', $message)) {
+                $botman->reply('If you cannot find an option, ask me which option you are looking for. If my response does not help you, it is most likely because you do not have the necessary permissions to access that option');
+            } elseif (preg_match('/cannot find a button/iu', $message)) {
+                $botman->reply('If you cannot find an option, ask me which option you are looking for. If my response does not help you, it is most likely because you do not have the necessary permissions to access that option');
+            } elseif (preg_match('/repeated RPE/iu', $message)) {
+                $botman->reply('If you have found a repeated RPE, please report it to your superior or system administrator for prompt correction');
+            } elseif (preg_match('/what is user list/iu', $message)) {
+                $botman->reply('The user list is the menu where all registered users in the system can be viewed');
+            } elseif (preg_match('/what is indicator list/iu', $message)) {
+                $botman->reply('The indicator list is the menu where all registered indicators in the system can be viewed');
+            } elseif (preg_match('/what is my list/iu', $message)) {
+                $botman->reply('My list is the menu where all registered employees in the system can be viewed');
+            } elseif (preg_match('/what is zone list/iu', $message)) {
+                $botman->reply('The zone list is the menu where all registered zones in the system can be viewed');
+            } elseif (preg_match('/where is user list/iu', $message)) {
+                $botman->reply('The user list is located in the Users menu');
+            } elseif (preg_match('/where is employee list/iu', $message)) {
+                $botman->reply('The employee list is located in the Employees menu, in the My List area');
+            } elseif (preg_match('/where is my list/iu', $message)) {
+                $botman->reply('My list is located in the Employees menu');
+            } elseif (preg_match('/where is indicator list/iu', $message)) {
+                $botman->reply('The indicator list is located in the Indicators menu');
+            } elseif (preg_match('/where is position list/iu', $message)) {
+                $botman->reply('The position list is located in the Positions menu');
+            } elseif (preg_match('/where is zone list/iu', $message)) {
+                $botman->reply('The zone list is located in the Zones menu');
+            } elseif (preg_match('/where to register users/iu', $message)) {
+                $botman->reply('To register users, go to the Users menu and select the Register User option, then complete the corresponding form');
+            } elseif (preg_match('/how to register users/iu', $message)) {
+                $botman->reply('To register users, go to the Users menu and select the Register User option, then complete the corresponding form');
+            } elseif (preg_match('/can I register users/iu', $message)) {
+                $botman->reply('To register a user, you need to have the necessary permissions. If the respective view does not appear, consult your superior about access to this function');
+            }
+            
+            
+            
+            
+            elseif (preg_match('/where to register.*user/iu', $message)) {
+                $botman->reply('To register users, go to the Users menu and select the Register User option, then complete the corresponding form');
+            } elseif (preg_match('/how to register.*user/iu', $message)) {
+                $botman->reply('To register users, go to the Users menu and select the Register User option, then complete the corresponding form');
+            } elseif (preg_match('/where to add.*user/iu', $message)) {
+                $botman->reply('To add users, go to the Users menu and select the Register User option, then complete the corresponding form');
+            } elseif (preg_match('/how to add.*user/iu', $message)) {
+                $botman->reply('To add users, go to the Users menu and select the Register User option, then complete the corresponding form');
+            } elseif (preg_match('/can I add.*user/iu', $message)) {
+                $botman->reply('To add a user, you need to have the necessary permissions. If the respective view does not appear, consult your superior about access to this function');
+            } elseif (preg_match('/where to create.*user/iu', $message)) {
+                $botman->reply('To create users, go to the Users menu and select the Register User option, then complete the corresponding form');
+            }elseif (preg_match('/how to create.*user/iu', $message)) {
+                $botman->reply('To create users, go to the Users menu and select the Register User option, then complete the corresponding form');
+            } elseif (preg_match('/can I create.*user/iu', $message)) {
+                $botman->reply('To create a user, you need to have the necessary permissions. If the respective view does not appear, consult your superior about access to this function');
+            } elseif (preg_match('/where to add.*user/iu', $message)) {
+                $botman->reply('To add users, go to the Users menu and select the Register User option, then complete the corresponding form');
+            } elseif (preg_match('/how to add.*user/iu', $message)) {
+                $botman->reply('To add users, go to the Users menu and select the Register User option, then complete the corresponding form');
+            } elseif (preg_match('/can I add.*user/iu', $message)) {
+                $botman->reply('To add a user, you need to have the necessary permissions. If the respective view does not appear, consult your superior about access to this function');
+            } elseif (preg_match('/where to register.*employee/iu', $message)) {
+                $botman->reply('To register employees, go to the Employees menu and select the Add Employee option, then complete the corresponding form');
+            } elseif (preg_match('/how to register.*employee/iu', $message)) {
+                $botman->reply('To register employees, go to the Employees menu and select the Add Employee option, then complete the corresponding form');
+            } elseif (preg_match('/can I register.*employee/iu', $message)) {
+                $botman->reply('To register an employee, you need to have the necessary permissions. If the respective view does not appear, consult your superior about access to this function');
+            } elseif (preg_match('/where to add.*employee/iu', $message)) {
+                $botman->reply('To add employees, go to the Employees menu and select the Add Employee option, then complete the corresponding form');
+            } elseif (preg_match('/how to add.*employee/iu', $message)) {
+                $botman->reply('To add employees, go to the Employees menu and select the Add Employee option, then complete the corresponding form');
+            } elseif (preg_match('/can I add.*employee/iu', $message)) {
+                $botman->reply('To add an employee, you need to have the necessary permissions. If the respective view does not appear, consult your superior about access to this function');
+            } elseif (preg_match('/where to create.*employee/iu', $message)) {
+                $botman->reply('To create employees, go to the Employees menu and select the Add Employee option, then complete the corresponding form');
+            } elseif (preg_match('/how to create.*employee/iu', $message)) {
+                $botman->reply('To create employees, go to the Employees menu and select the Add Employee option, then complete the corresponding form');
+            } elseif (preg_match('/can I create.*employee/iu', $message)) {
+                $botman->reply('To create an employee, you need to have the necessary permissions. If the respective view does not appear, consult your superior about access to this function');
+            } elseif (preg_match('/where to add.*employee/iu', $message)) {
+                $botman->reply('To add employees, go to the Employees menu and select the Add Employee option, then complete the corresponding form');
+            } elseif (preg_match('/how to add.*employee/iu', $message)) {
+                $botman->reply('To add employees, go to the Employees menu and select the Add Employee option, then complete the corresponding form');
+            } elseif (preg_match('/can I add.*employee/iu', $message)) {
+                $botman->reply('To add an employee, you need to have the necessary permissions. If the respective view does not appear, consult your superior about access to this function');
+            } elseif (preg_match('/how to modify.*user/iu', $message)) {
+                $botman->reply('To modify a user, you need to place the cursor over the username in the options menu, then 2 options will appear below. Open the view profile option and a view will open where you can modify the user data');
+            } elseif (preg_match('/where to modify.*user/iu', $message)) {
+                $botman->reply('To modify a user, you need to place the cursor over the username in the options menu, then 2 options will appear below. Open the view profile option and a view will open where you can modify the user data');
+            }
+            
+            
+            
+            
+            elseif (preg_match('/can I modify.*user/iu', $message)) {
+                $botman->reply('To modify a user, you need to have the necessary permissions. If the respective view does not appear, consult your superior about access to this function');
+            }elseif (preg_match('/how to modify.*employee/iu', $message)) {
+                $botman->reply('To modify an employee\'s data, simply go to your list, press the "view profile" button for the respective employee, and when the corresponding view opens, go to the last option to modify the employee\'s data');
+            } elseif (preg_match('/where to modify.*employee/iu', $message)) {
+                $botman->reply('To modify an employee\'s data, simply go to your list, press the "view profile" button for the respective employee, and when the corresponding view opens, go to the last option to modify the employee\'s data');
+            } elseif (preg_match('/can I modify.*employee/iu', $message)) {
+                $botman->reply('To modify an employee, you need to have the necessary permissions. If the respective view does not appear, consult your superior about access to this function');
+            } elseif (preg_match('/how to edit.*user/iu', $message)) {
+                $botman->reply('To edit a user, you need to place the cursor over the username in the options menu. Then, 2 options will appear below. Open the view profile option, and a view will open where you can edit the user\'s data');
+            } elseif (preg_match('/where to edit.*user/iu', $message)) {
+                $botman->reply('To edit a user, you need to place the cursor over the username in the options menu. Then, 2 options will appear below. Open the view profile option, and a view will open where you can edit the user\'s data');
+            } elseif (preg_match('/can I edit.*user/iu', $message)) {
+                $botman->reply('To edit a user, you need to have the necessary permissions. If the respective view does not appear, consult your superior about access to this function');
+            } elseif (preg_match('/how to edit.*employee/iu', $message)) {
+                $botman->reply('To edit an employee\'s data, simply go to your list, press the "view profile" button for the respective employee, and when the corresponding view opens, go to the last option to edit the employee\'s data');
+            } elseif (preg_match('/where to edit.*employee/iu', $message)) {
+                $botman->reply('To edit an employee\'s data, simply go to your list, press the "view profile" button for the respective employee, and when the corresponding view opens, go to the last option to edit the employee\'s data');
+            } elseif (preg_match('/can I edit.*employees/iu', $message)) {
+                $botman->reply('To edit an employee, you need to have the necessary permissions. If the respective view does not appear, consult your superior about access to this function');
+            } elseif (preg_match('/where to delete.*user/iu', $message)) {
+                $botman->reply('To delete a user, simply go to the list of users, find the user in question, and click on the respective delete user button');
+            } elseif (preg_match('/how to delete.*user/iu', $message)) {
+                $botman->reply('To delete a user, simply go to the list of users, find the user in question, and click on the respective delete user button');
+            } elseif (preg_match('/can I delete.*user/iu', $message)) {
+                $botman->reply('To delete a user, you need to have the necessary permissions. If the respective view does not appear, consult your superior about access to this function');
+            } elseif (preg_match('/where to remove.*user/iu', $message)) {
+                $botman->reply('To delete a user, simply go to the list of users, find the user in question, and click on the respective delete user button');
+            } elseif (preg_match('/how to remove.*user/iu', $message)) {
+                $botman->reply('To delete a user, simply go to the list of users, find the user in question, and click on the respective delete user button');
+            } elseif (preg_match('/can I remove.*user/iu', $message)) {
+                $botman->reply('To remove a user, you need to have the necessary permissions. If the respective view does not appear, consult your superior about access to this function');
+            } elseif (preg_match('/where to delete.*employee/iu', $message)) {
+                $botman->reply('To delete an employee, simply go to my list, find the employee in question, and click on the respective delete employee button');
+            } elseif (preg_match('/how to delete.*employee/iu', $message)) {
+                $botman->reply('To delete an employee, simply go to my list, find the employee in question, and click on the respective delete employee button');
+            } elseif (preg_match('/can I delete.*employee/iu', $message)) {
+                $botman->reply('To delete an employee, you need to have the necessary permissions. If the respective view does not appear, consult your superior about access to this function');
+            } elseif (preg_match('/where to remove.*employee/iu', $message)) {
+                $botman->reply('To delete an employee, simply go to my list, find the employee in question, and click on the respective delete employee button');
+            } elseif (preg_match('/how to remove.*employee/iu', $message)) {
+                $botman->reply('To delete an employee, simply go to my list, find the employee in question, and click on the respective delete employee button');
+            } elseif (preg_match('/can I remove.*employee/iu', $message)) {
+                $botman->reply('To remove an employee, you need to have the necessary permissions. If the respective view does not appear, consult your superior about access to this function');
+            } elseif (preg_match('/where to create.*indicator/iu', $message)) {
+                $botman->reply('To create the indicator, simply go to the Create Indicator section in the Indicators menu, fill out the form, and click Save');
+            } elseif (preg_match('/how to create.*indicator/iu', $message)) {
+                $botman->reply('To create the indicator, simply go to the Create Indicator section in the Indicators menu, fill out the form, and click Save');
+            } elseif (preg_match('/can I create.*indicator/iu', $message)) {
+                $botman->reply('To create an indicator, you need to have the necessary permissions. If the respective view does not appear, consult your superior about access to this function');
+            }
+            
+            
+            
+            
+            elseif (preg_match('/where to add.*indicator/iu', $message)) {
+                $botman->reply('To add the indicator, simply go to the Create Indicator section in the Indicators menu, fill out the form, and click Save');
+            } elseif (preg_match('/how to add.*indicator/iu', $message)) {
+                $botman->reply('To add the indicator, simply go to the Create Indicator section in the Indicators menu, fill out the form, and click Save');
+            } elseif (preg_match('/puedo añadir.*indicador/iu', $message)) {
+                $botman->reply('Para añadir un indicador es necesario tener los permisos necesarios. Si no aparece la vista respectiva, consulta con tu superior el acceso a esta función');
+            } elseif (preg_match('/donde registrar.*indicador/iu', $message)) {
+                $botman->reply('Para registrar el indicador solo tienes que ir al apartado de crear indicador en el menú de indicadores, llenar el formulario y hacer clic en guardar');
+            } elseif (preg_match('/como registrar.*indicador/iu', $message)) {
+                $botman->reply('Para registrar el indicador solo tienes que ir al apartado de crear indicador en el menú de indicadores, llenar el formulario y hacer clic en guardar');
+            } elseif (preg_match('/puedo registrar.*indicador/iu', $message)) {
+                $botman->reply('Para registrar un indicador es necesario tener los permisos necesarios. Si no aparece la vista respectiva, consulta con tu superior el acceso a esta función');
+            } elseif (preg_match('/donde agregar.*indicador/iu', $message)) {
+                $botman->reply('Para agregar el indicador solo tienes que ir al apartado de crear indicador en el menú de indicadores, llenar el formulario y hacer clic en guardar');
+            } elseif (preg_match('/como agregar.*indicador/iu', $message)) {
+                $botman->reply('Para agregar el indicador solo tienes que ir al apartado de crear indicador en el menú de indicadores, llenar el formulario y hacer clic en guardar');
+            } elseif (preg_match('/donde registrar.*puesto/iu', $message)) {
+                $botman->reply('Para registrar un puesto solo tienes que ir al apartado de añadir puestos en el menú de Puestos, llenar el formulario y hacer clic en guardar');
+            } elseif (preg_match('/como registrar.*puesto/iu', $message)) {
+                $botman->reply('Para registrar un puesto solo tienes que ir al apartado de añadir puestos en el menú de Puestos, llenar el formulario y hacer clic en guardar');
+            } elseif (preg_match('/puedo registrar.*puesto/iu', $message)) {
+                $botman->reply('Para registrar un puesto es necesario tener los permisos necesarios. Si no aparece la vista respectiva, consulta con tu superior el acceso a esta función');
+            } elseif (preg_match('/donde añadir.*puesto/iu', $message)) {
+                $botman->reply('Para añadir un puesto solo tienes que ir al apartado de añadir puestos en el menú de Puestos, llenar el formulario y hacer clic en guardar');
+            } elseif (preg_match('/como añadir.*puesto/iu', $message)) {
+                $botman->reply('Para añadir un puesto solo tienes que ir al apartado de añadir puestos en el menú de Puestos, llenar el formulario y hacer clic en guardar');
+            } elseif (preg_match('/puedo añadir.*puesto/iu', $message)) {
+                $botman->reply('Para añadir un puesto es necesario tener los permisos necesarios. Si no aparece la vista respectiva, consulta con tu superior el acceso a esta función');
+            } elseif (preg_match('/donde agregar.*puesto/iu', $message)) {
+                $botman->reply('Para agregar un puesto solo tienes que ir al apartado de añadir puestos en el menú de Puestos, llenar el formulario y hacer clic en guardar');
+            } elseif (preg_match('/como agregar.*puesto/iu', $message)) {
+                $botman->reply('Para agregar un puesto solo tienes que ir al apartado de añadir puestos en el menú de Puestos, llenar el formulario y hacer clic en guardar');
+            } elseif (preg_match('/puedo agregar.*puesto/iu', $message)) {
+                $botman->reply('Para agregar un puesto es necesario tener los permisos necesarios. Si no aparece la vista respectiva, consulta con tu superior el acceso a esta función');
+            } elseif (preg_match('/donde crear.*puesto/iu', $message)) {
+                $botman->reply('Para crear un puesto solo tienes que ir al apartado de añadir puestos en el menú de Puestos, llenar el formulario y hacer clic en guardar');
+            } elseif (preg_match('/como crear.*puesto/iu', $message)) {
+                $botman->reply('Para crear un puesto solo tienes que ir al apartado de añadir puestos en el menú de Puestos, llenar el formulario y hacer clic en guardar');
+            } elseif (preg_match('/puedo crear.*puesto/iu', $message)) {
+                $botman->reply('Para crear un puesto es necesario tener los permisos necesarios. Si no aparece la vista respectiva, consulta con tu superior el acceso a esta función');
+            } elseif (preg_match('/que es.*funcion de puesto/iu', $message)) {
+                $botman->reply('Las funciones de puesto son las funciones que se asignan a determinados puestos dentro de la empresa');
+            } elseif (preg_match('/que son.*funciones de puesto/iu', $message)) {
+                $botman->reply('Las funciones de puesto son las funciones que se asignan a determinados puestos dentro de la empresa');
+            } elseif (preg_match('/sirven.*funciones de puesto/iu', $message)) {
+                $botman->reply('Las funciones de puesto sirven para listar las respectivas funciones que debe cumplir el empleado con el puesto asignado');
+            } elseif (preg_match('/sirve.*funcion de puesto/iu', $message)) {
+                $botman->reply('Las funciones de puesto sirven para listar las respectivas funciones que debe cumplir el empleado con el puesto asignado');
+            } elseif (preg_match('/donde agregar.*zona/iu', $message)) {
+                $botman->reply('Para agregar una zona solo tienes que ir al apartado de listado de zonas en el menú de Zonas, llenar los datos de la nueva zona en la parte superior y hacer clic en el botón agregar zona');
+            }
+            
+            
+            
+            
+            elseif (preg_match('/como agregar.*zona/iu', $message)) {
+                $botman->reply('Para agregar una zona solo tienes que ir al apartado de listado de zonas en el menú de Zonas, llenar los datos de la nueva zona en la parte superior y hacer clic en el botón agregar zona');
+            } elseif (preg_match('/puedo agregar.*zona/iu', $message)) {
+                $botman->reply('Para agregar una zona es necesario tener los permisos necesarios. Si no aparece la vista respectiva, consulta con tu superior el acceso a esta función');
+            }elseif (preg_match('/where to create.*zone/iu', $message)) {
+                $botman->reply('To create a zone, you just need to go to the zone listing section in the Zones menu, fill in the details of the new zone at the top, and click the add zone button.');
+            } elseif (preg_match('/how to create.*zone/iu', $message)) {
+                $botman->reply('To create a zone, you just need to go to the zone listing section in the Zones menu, fill in the details of the new zone at the top, and click the add zone button.');
+            } elseif (preg_match('/can I create.*zone/iu', $message)) {
+                $botman->reply('To create a zone, you need to have the necessary permissions. If the respective view does not appear, consult with your superior for access to this function.');
+            } elseif (preg_match('/where to add.*zone/iu', $message)) {
+                $botman->reply('To add a zone, you just need to go to the zone listing section in the Zones menu, fill in the details of the new zone at the top, and click the add zone button.');
+            } elseif (preg_match('/how to add.*zone/iu', $message)) {
+                $botman->reply('To add a zone, you just need to go to the zone listing section in the Zones menu, fill in the details of the new zone at the top, and click the add zone button.');
+            } elseif (preg_match('/can I add.*zone/iu', $message)) {
+                $botman->reply('To add a zone, you need to have the necessary permissions. If the respective view does not appear, consult with your superior for access to this function.');
+            } elseif (preg_match('/where to register.*zone/iu', $message)) {
+                $botman->reply('To register a zone, you just need to go to the zone listing section in the Zones menu, fill in the details of the new zone at the top, and click the add zone button.');
+            } elseif (preg_match('/how to register.*zone/iu', $message)) {
+                $botman->reply('To register a zone, you just need to go to the zone listing section in the Zones menu, fill in the details of the new zone at the top, and click the add zone button.');
+            } elseif (preg_match('/can I register.*zone/iu', $message)) {
+                $botman->reply('To register a zone, you need to have the necessary permissions. If the respective view does not appear, consult with your superior for access to this function.');
+            } elseif (preg_match('/where to modify.*zone/iu', $message)) {
+                $botman->reply('To modify a zone, you just need to go to the zone listing section in the Zones menu, find the respective zone in the list, and click the respective modify button. Then fill out the form with the new data and save.');
+            } elseif (preg_match('/how to modify.*zone/iu', $message)) {
+                $botman->reply('To modify a zone, you just need to go to the zone listing section in the Zones menu, find the respective zone in the list, and click the respective modify button. Then fill out the form with the new data and save.');
+            } elseif (preg_match('/can I modify.*zone/iu', $message)) {
+                $botman->reply('To modify a zone, you need to have the necessary permissions. If the respective view does not appear, consult with your superior for access to this function.');
+            } elseif (preg_match('/where to edit.*zone/iu', $message)) {
+                $botman->reply('To edit a zone, you just need to go to the zone listing section in the Zones menu, find the respective zone in the list, and click the respective modify button. Then fill out the form with the new data and save.');
+            } elseif (preg_match('/how to edit.*zone/iu', $message)) {
+                $botman->reply('To edit a zone, you just need to go to the zone listing section in the Zones menu, find the respective zone in the list, and click the respective modify button. Then fill out the form with the new data and save.');
+            } elseif (preg_match('/can I edit.*zone/iu', $message)) {
+                $botman->reply('To edit a zone, you need to have the necessary permissions. If the respective view does not appear, consult with your superior for access to this function.');
+            } elseif (preg_match('/where to delete.*zone/iu', $message)) {
+                $botman->reply('To delete a zone, you just need to go to the zone listing section in the Zones menu, find the respective zone in the list, and click the respective delete button.');
+            } elseif (preg_match('/how to delete.*zone/iu', $message)) {
+                $botman->reply('To delete a zone, you just need to go to the zone listing section in the Zones menu, find the respective zone in the list, and click the respective delete button.');
+            } elseif (preg_match('/can I delete.*zone/iu', $message)) {
+                $botman->reply('To delete a zone, you just need to go to the zone listing section in the Zones menu, find the respective zone in the list, and click the respective delete button.');
+            } elseif (preg_match('/where to remove.*zone/iu', $message)) {
+                $botman->reply('To remove a zone, you just need to go to the zone listing section in the Zones menu, find the respective zone in the list, and click the respective delete button.');
+            } elseif (preg_match('/how to remove.*zone/iu', $message)) {
+                $botman->reply('To remove a zone, you just need to go to the zone listing section in the Zones menu, find the respective zone in the list, and click the respective delete button.');
+            } elseif (preg_match('/can I remove.*zone/iu', $message)) {
+                $botman->reply('To remove a zone, you need to have the necessary permissions. If the respective view does not appear, consult with your superior for access to this function.');
+            } elseif (preg_match('/where to register.*contract/iu', $message)) {
+                $botman->reply('To register a contract, you just need to go to the contracts section in the Others menu, write the name of the new contract at the top, and click the Add contract button.');
+            } elseif (preg_match('/how to register.*contract/iu', $message)) {
+                $botman->reply('To register a contract, you just need to go to the contracts section in the Others menu, write the name of the new contract at the top, and click the Add contract button.');
+            }
+            
+            
+            
+            
+            elseif (preg_match('/can I register.*contract/iu', $message)) {
+                $botman->reply('To register a contract, you need to have the necessary permissions. If the respective view does not appear, consult with your superior for access to this function.');
+            } elseif (preg_match('/where to add.*contract/iu', $message)) {
+                $botman->reply('To add a contract, you just need to go to the contracts section in the Others menu, write the name of the new contract at the top, and click the Add contract button.');
+            } elseif (preg_match('/how to add.*contract/iu', $message)) {
+                $botman->reply('To add a contract, you just need to go to the contracts section in the Others menu, write the name of the new contract at the top, and click the Add contract button.');
+            } elseif (preg_match('/can I add.*contract/iu', $message)) {
+                $botman->reply('To add a contract, you need to have the necessary permissions. If the respective view does not appear, consult with your superior for access to this function.');
+            }elseif (preg_match('/how to add.*contract/iu', $message)) {
+                $botman->reply('To add a contract, you just need to go to the contracts section in the Others menu, write the name of the new contract at the top, and click the Add contract button.');
+            } elseif (preg_match('/can I add.*contract/iu', $message)) {
+                $botman->reply('To add a contract, you need to have the necessary permissions. If the respective view does not appear, consult with your superior for access to this function.');
+            } elseif (preg_match('/where to add.*contract/iu', $message)) {
+                $botman->reply('To add a contract, you just need to go to the contracts section in the Others menu, write the name of the new contract at the top, and click the Add contract button.');
+            } elseif (preg_match('/how to add.*contract/iu', $message)) {
+                $botman->reply('To add a contract, you just need to go to the contracts section in the Others menu, write the name of the new contract at the top, and click the Add contract button.');
+            } elseif (preg_match('/can I add.*contract/iu', $message)) {
+                $botman->reply('To add a contract, you need to have the necessary permissions. If the respective view does not appear, consult with your superior for access to this function.');
+            } elseif (preg_match('/where to create.*contract/iu', $message)) {
+                $botman->reply('To create a contract, you just need to go to the contracts section in the Others menu, write the name of the new contract at the top, and click the Add contract button.');
+            } elseif (preg_match('/how to create.*contract/iu', $message)) {
+                $botman->reply('To create a contract, you just need to go to the contracts section in the Others menu, write the name of the new contract at the top, and click the Add contract button.');
+            } elseif (preg_match('/can I create.*contract/iu', $message)) {
+                $botman->reply('To create a contract, you need to have the necessary permissions. If the respective view does not appear, consult with your superior for access to this function.');
+            } elseif (preg_match('/where to modify.*contract/iu', $message)) {
+                $botman->reply('Contracts cannot be modified once created.');
+            } elseif (preg_match('/how to modify.*contract/iu', $message)) {
+                $botman->reply('Contracts cannot be modified once created.');
+            } elseif (preg_match('/can I modify.*contract/iu', $message)) {
+                $botman->reply('Contracts cannot be modified once created.');
+            } elseif (preg_match('/where to edit.*contract/iu', $message)) {
+                $botman->reply('Contracts cannot be edited once created.');
+            } elseif (preg_match('/how to edit.*contract/iu', $message)) {
+                $botman->reply('Contracts cannot be edited once created.');
+            } elseif (preg_match('/can I edit.*contract/iu', $message)) {
+                $botman->reply('Contracts cannot be edited once created.');
+            } elseif (preg_match('/where to delete.*contract/iu', $message)) {
+                $botman->reply('To delete a contract, you just need to go to the contracts section in the Others menu and click the delete button on the respective contract.');
+            } elseif (preg_match('/how to delete.*contract/iu', $message)) {
+                $botman->reply('To delete a contract, you just need to go to the contracts section in the Others menu and click the delete button on the respective contract.');
+            } elseif (preg_match('/can I delete.*contract/iu', $message)) {
+                $botman->reply('To delete a contract, you need to have the necessary permissions. If the respective view does not appear, consult with your superior for access to this function.');
+            } elseif (preg_match('/where to remove.*contract/iu', $message)) {
+                $botman->reply('To remove a contract, you just need to go to the contracts section in the Others menu and click the delete button on the respective contract.');
+            } elseif (preg_match('/how to remove.*contract/iu', $message)) {
+                $botman->reply('To remove a contract, you just need to go to the contracts section in the Others menu and click the delete button on the respective contract.');
+            } elseif (preg_match('/can I remove.*contract/iu', $message)) {
+                $botman->reply('To remove a contract, you need to have the necessary permissions. If the respective view does not appear, consult with your superior for access to this function.');
+            } elseif (preg_match('/where to register.*role/iu', $message)) {
+                $botman->reply('To register a role, you just need to go to the role section in the Others menu, write the name, and click add role.');
+            }
+            
+            
+            
+            
+            elseif (preg_match('/how to register.*role/iu', $message)) {
+                $botman->reply('To register a role, you just need to go to the role section in the Others menu, write the name, and click add role.');
+            } elseif (preg_match('/can I register.*role/iu', $message)) {
+                $botman->reply('To register a role, you need to have the necessary permissions. If the respective view does not appear, consult with your superior for access to this function.');
+            } elseif (preg_match('/where to add.*role/iu', $message)) {
+                $botman->reply('To add a role, you just need to go to the role section in the Others menu, write the name, and click add role.');
+            } elseif (preg_match('/how to add.*role/iu', $message)) {
+                $botman->reply('To add a role, you just need to go to the role section in the Others menu, write the name, and click add role.');
+            } elseif (preg_match('/can I add.*role/iu', $message)) {
+                $botman->reply('To add a role, you need to have the necessary permissions. If the respective view does not appear, consult with your superior for access to this function.');
+            }elseif (preg_match('/where to add.*role/iu', $message)) {
+                $botman->reply('To add a role, you just need to go to the role section in the Others menu, write the name, and click add role.');
+            } elseif (preg_match('/how to add.*role/iu', $message)) {
+                $botman->reply('To add a role, you just need to go to the role section in the Others menu, write the name, and click add role.');
+            } elseif (preg_match('/can I add.*role/iu', $message)) {
+                $botman->reply('To add a role, you need to have the necessary permissions. If the respective view does not appear, consult with your superior for access to this function.');
+            } elseif (preg_match('/where to create.*role/iu', $message)) {
+                $botman->reply('To create a role, you just need to go to the role section in the Others menu, write the name, and click add role.');
+            } elseif (preg_match('/how to create.*role/iu', $message)) {
+                $botman->reply('To create a role, you just need to go to the role section in the Others menu, write the name, and click add role.');
+            } elseif (preg_match('/can I create.*role/iu', $message)) {
+                $botman->reply('To create a role, you need to have the necessary permissions. If the respective view does not appear, consult with your superior for access to this function.');
+            } elseif (preg_match('/where to modify.*role/iu', $message)) {
+                $botman->reply('Roles cannot be modified once created.');
+            } elseif (preg_match('/how to modify.*role/iu', $message)) {
+                $botman->reply('Roles cannot be modified once created.');
+            } elseif (preg_match('/can I modify.*role/iu', $message)) {
+                $botman->reply('Roles cannot be modified once created.');
+            } elseif (preg_match('/where to edit.*role/iu', $message)) {
+                $botman->reply('Roles cannot be edited once created.');
+            } elseif (preg_match('/how to edit.*role/iu', $message)) {
+                $botman->reply('Roles cannot be edited once created.');
+            } elseif (preg_match('/can I edit.*role/iu', $message)) {
+                $botman->reply('Roles cannot be edited once created.');
+            } elseif (preg_match('/where to delete.*role/iu', $message)) {
+                $botman->reply('To delete a role, you just need to go to the roles section in the Others menu and click the delete button on the respective role.');
+            } elseif (preg_match('/how to delete.*role/iu', $message)) {
+                $botman->reply('To delete a role, you just need to go to the roles section in the Others menu and click the delete button on the respective role.');
+            } elseif (preg_match('/can I delete.*role/iu', $message)) {
+                $botman->reply('To delete a role, you need to have the necessary permissions. If the respective view does not appear, consult with your superior for access to this function.');
+            } elseif (preg_match('/where to remove.*role/iu', $message)) {
+                $botman->reply('To remove a role, you just need to go to the roles section in the Others menu and click the delete button on the respective role.');
+            } elseif (preg_match('/how to remove.*role/iu', $message)) {
+                $botman->reply('To remove a role, you just need to go to the roles section in the Others menu and click the delete button on the respective role.');
+            } else {
             $botman->reply("Lo siento, no tengo información sobre eso en este momento. ¿Puedo ayudarte con algo más?");
         }
         });
