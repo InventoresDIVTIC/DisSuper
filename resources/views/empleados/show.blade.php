@@ -1,6 +1,6 @@
 @extends('layouts.nav')
   @section('content')
-  <style src="{{secure_asset('dist/css/hallazgosIndicadores.css')}}"></style>
+  <style src="{{asset('dist/css/hallazgosIndicadores.css')}}"></style>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Main content -->
     <section class="content">
