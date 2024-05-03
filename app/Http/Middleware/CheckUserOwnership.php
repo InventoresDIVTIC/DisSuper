@@ -21,10 +21,7 @@ class CheckUserOwnership
             return $next($request);
         }else{
             // Redireccionar con un mensaje de acceso no autorizado si el usuario no es el propietario del perfil
-        return redirect()->route('403')->with('error', 'Acceso no autorizado.'); 
-        }
-        else{
-            return redirect()->route('403')->with('error', 'Acceso no autorizado.');
+            return redirect()->route('403')->with('error', 'Acceso no autorizado.'); 
         }
 
         // Redireccionar con un mensaje de acceso no autorizado si el usuario no es el propietario del perfil
