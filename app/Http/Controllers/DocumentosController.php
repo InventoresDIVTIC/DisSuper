@@ -121,7 +121,7 @@ class DocumentosController extends Controller
             }
             
    
-   // Procesar las imágenes
+            // Procesar las imágenes
 
             // Procesar las imágenes
             $nombresImagenes = []; // Array para almacenar los nombres de las imágenes

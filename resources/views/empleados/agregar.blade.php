@@ -56,12 +56,10 @@
                         @if ($errors->has('id_zona'))
                             <span class="error-message">{{ $errors->first('id_zona') }}</span>
                         @endif
-
+                      </div>
+                      <div class="card-footer">
                         <button type="submit" class="btn btn-primary"><i class="fas fa-check"></i> Enviar</button>
                       </div>
-                      
-                        
-                      
                     </form>
                    <!-- JS de SweetAlert -->
                    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>

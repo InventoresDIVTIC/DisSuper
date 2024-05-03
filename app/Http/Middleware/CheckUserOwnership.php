@@ -19,10 +19,14 @@ class CheckUserOwnership
         if ($user && $user->id === auth()->id() || Auth::user()->roles[0]['nivel_permisos'] === 0 || Auth::user()->roles[0]['nivel_permisos'] === 1 || Auth::user()->roles[0]['nivel_permisos'] === 2) {
             
             return $next($request);
+        }else{
+            // Redireccionar con un mensaje de acceso no autorizado si el usuario no es el propietario del perfil
+        return redirect()->route('403')->with('error', 'Acceso no autorizado.'); 
         }
         else{
             return redirect()->route('403')->with('error', 'Acceso no autorizado.');
         }
+
 
         // Redireccionar con un mensaje de acceso no autorizado si el usuario no es el propietario del perfil
         return view('/index');
