@@ -47,15 +47,15 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
         Route::get('/reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
         Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
-        Route::resource('/usuario', UserController::class)->only(['edit', 'update', 'show','index'])
+        Route::resource('/usuario', UserController::class)->only(['edit', 'update', 'show'])
         ->middleware('check_user_ownership');
         
         Route::get('/404', function () {
             return view('404');
         })->name('404');
-        Route::get('/403', function () {
-            return view('403');
-        })->name('403');
+        Route::get('/contact', function () {
+            return view('contacto');
+        })->name('contacto');
         Route::match(['get','post'], 'botman',[BotManController::class , "handle"]);
         Route::post('/cambiar_estado/{id}', [DocumentosController::class, 'cambiarEstado'])->name('cambiar.estado');
         Route::post('/rechazar/documento/{id}', [DocumentosController::class, 'rechazarDocumento'])->name('rechazar.documento');
@@ -68,7 +68,7 @@ Route::middleware(['auth'])->group(function () {
     
 
     Route::middleware(['nivel_0'])->group(function () {
-        Route::resource('/usuario', UserController::class)->only(['destroy', 'create', 'store']);
+        Route::resource('/usuario', UserController::class)->only(['destroy', 'create', 'store','index']);
         Route::resource('/zonas', ZonasController::class);
         Route::resource('/roles', RoleController::class);
         Route::post('/cancelar/documento/{id}', [DocumentosController::class, 'cancelarDocumento'])->name('cancelar.documento');

@@ -115,7 +115,7 @@ class DocumentosController extends Controller
             $documento->nombre_indicador = $indicadores;
             $documento->subido_hecho = 1;
    
-   // Procesar las imágenes
+            // Procesar las imágenes
 
             // Procesar las imágenes
             $nombresImagenes = []; // Array para almacenar los nombres de las imágenes
