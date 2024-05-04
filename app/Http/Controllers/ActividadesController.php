@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Actividades;
 use App\Models\Indicadores;
+use App\Models\Puestos;
 
 use Illuminate\Http\Request;
 

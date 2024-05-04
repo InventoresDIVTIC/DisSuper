@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 
 use App\Models\Zona;
+use App\Models\Puestos;
 use Illuminate\Http\Request;
 
 class ZonasController extends Controller

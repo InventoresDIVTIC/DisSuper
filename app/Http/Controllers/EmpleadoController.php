@@ -13,6 +13,7 @@ use App\Models\Documentos;
 use App\Models\Actividades;
 use App\Models\Indicadores;
 use Carbon\Carbon;
+use App\Models\Puestos;
 
 class EmpleadoController extends Controller
 {
