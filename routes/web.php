@@ -86,7 +86,6 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('/contratos', ContratoController::class);
         Route::resource('puestos', PuestosController::class);
         Route::get('/puestos', [PuestosController::class, 'puestos']);
-        Route::resource('/funciones_puestos', FuncionesPuestosController::class);
         Route::resource('/indicadores', IndicadoresController::class);
         Route::resource('actividades', ActividadesController::class);
         Route::delete('/puestos/{puesto}/actividades/{actividad}', [PuestosController::class, 'detach'])->name('puestos.detach');
