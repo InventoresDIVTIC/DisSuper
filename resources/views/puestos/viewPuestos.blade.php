@@ -44,7 +44,7 @@
                     <td>{{ $puesto->area_responsabilidad }}</td>
                     <td>{{ $puesto->rama_actividad }}</td>
                     <td>{{ $puesto->especialidad }}</td>
-                    <td>{{ $puesto->zona->nombre_zona }}</td>
+                    <td>{{ $puesto->zona ? $puesto->zona->nombre_zona : 'N/A' }}</td>
                     <td class="text-center">
                         <div class="btn-group">
                             <a href="{{ route('puestos.show', $puesto->id) }}" type="button" class="btn btn-primary btn-sm">
