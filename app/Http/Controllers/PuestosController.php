@@ -58,17 +58,17 @@ class PuestosController extends Controller
      */
     public function show($id)
     {
-        $puestos = Puestos::find($id);
+           $puestos = puestos::find($id); // Encuentra el puesto por su ID
+        
+            if (!$puestos) {
+                return abort(404); // Devuelve un error 404 si el puesto no se encuentra
+            }
+            
+            $actividad = actividades::all(); // Obtén todas las actividades
+            $actividadesAsociadas = $puestos->actividades;
+            
+            return view('funciones_puestos.viewFuncionesPuestos', compact('puestos', 'actividad','actividadesAsociadas'));
 
-        if (!$puestos) {
-            // Si no se encontró el puesto, redirige o muestra un mensaje de error
-            return redirect()->route('puestos.index')->with('error', 'El puesto no fue encontrado.');
-        }
-
-        $actividad = Actividades::all();
-        $actividadesAsociadas = $puestos->actividades;
-
-        return view('funciones_puestos.viewFuncionesPuestos', compact('puestos', 'actividad', 'actividadesAsociadas'));
     }
 
     /**

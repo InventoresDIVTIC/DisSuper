@@ -5,7 +5,7 @@
     <div class="card-header">
         <div class="row">
             <div class="col-md-12 text-center text-info">
-                <h3>Actividades<h3>
+                <h3>Actividades</h3>
             </div>
         </div>
     </div>
