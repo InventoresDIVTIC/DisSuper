@@ -47,9 +47,11 @@
                     <td>{{ $puesto->zona ? $puesto->zona->nombre_zona : 'N/A' }}</td>
                     <td class="text-center">
                         <div class="btn-group">
+                            <!--
                             <a href="{{ route('puestos.show', $puesto->id) }}" type="button" class="btn btn-primary btn-sm">
                                 <i class="fas fa-eye"></i> Ver Funciones
                             </a>
+                            
                             <form action="{{ route('puestos.destroy', $puesto->id) }}" method="POST" style="display: inline-block;">
                                 @method('DELETE')
                                 @csrf
@@ -57,6 +59,7 @@
                                     <i class="fas fa-trash"></i> Eliminar
                                 </button>
                             </form>
+                        -->
                         </div>
                     </td>
                 </tr>
