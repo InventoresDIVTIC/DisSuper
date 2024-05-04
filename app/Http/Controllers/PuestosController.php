@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\puestos;
+use App\Models\Puestos;
 use Illuminate\Http\Request;
 use App\Models\Zona;
 use App\Models\actividades;
@@ -58,7 +58,7 @@ class PuestosController extends Controller
      */
     public function show($id)
     {
-           $puestos = puestos::find($id); // Encuentra el puesto por su ID
+           $puestos = Puestos::find($id); // Encuentra el puesto por su ID
         
             if (!$puestos) {
                 return abort(404); // Devuelve un error 404 si el puesto no se encuentra
@@ -74,7 +74,7 @@ class PuestosController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(puestos $puestos)
+    public function edit(Puestos $puestos)
     {
       //
     }

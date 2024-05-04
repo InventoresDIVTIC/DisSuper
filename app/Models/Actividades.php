@@ -13,7 +13,7 @@ class Actividades extends Model
 
     public function puestos()
     {
-        return $this->belongsToMany(puestos::class);
+        return $this->belongsToMany(Puestos::class);
     }
 
     public function indicadores()
