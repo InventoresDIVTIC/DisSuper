@@ -66,6 +66,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     });
     
+    
 
     Route::middleware(['nivel_0'])->group(function () {
         Route::resource('/usuario', UserController::class)->only(['destroy', 'create', 'store','index']);
