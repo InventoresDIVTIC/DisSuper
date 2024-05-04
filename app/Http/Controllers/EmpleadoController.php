@@ -10,7 +10,7 @@ use App\Models\Contrato;
 use App\Models\Zona;
 use App\Models\User;
 use App\Models\Documentos;
-use App\Models\actividades;
+use App\Models\Actividades;
 use App\Models\Indicadores;
 use Carbon\Carbon;
 

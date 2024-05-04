@@ -91,10 +91,6 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/registro', [RegisterController::class, 'showRegistrationForm'])->name('registro');
         Route::post('/registro', [RegisterController::class, 'register']);
     });
-
-   
-
-
 });
 
 
