@@ -438,7 +438,7 @@
         @endif
   
         <li class="nav-item">
-          <a href="/actividades" class="nav-link {{ Request::is('actividades') ? 'active' : '' }}">
+          <a href="/actividades/index" class="nav-link {{ Request::is('actividades') ? 'active' : '' }}">
             <i class="fas fa-list-ul nav-icon"></i>
             <p>Actividades</p>
           </a>

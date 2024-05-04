@@ -54,13 +54,17 @@ class ActividadesController extends Controller
      */
     public function show($id)
     {
+        $actividades = Actividades::find($id);
 
+        if (!$actividades) {
+            // Si no se encontró la actividad, redirige o muestra un mensaje de error
+            return redirect()->route('actividades.index')->with('error', 'La actividad no fue encontrada.');
+        }
 
-        $actividades = actividades::find($id);
-        $indicadores = Indicadores::all(); 
+        $indicadores = Indicadores::all();
         $indicadoresAsociados = $actividades->indicadores;
 
-        return view('actividades.viewIndicadores',compact('indicadores','actividades','indicadoresAsociados'));
+        return view('actividades.viewIndicadores', compact('indicadores', 'actividades', 'indicadoresAsociados'));
     }
 
     /**
