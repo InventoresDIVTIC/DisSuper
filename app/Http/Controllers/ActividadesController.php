@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\actividades;
 use App\Models\Indicadores;
+
 use Illuminate\Http\Request;
 
 class ActividadesController extends Controller
