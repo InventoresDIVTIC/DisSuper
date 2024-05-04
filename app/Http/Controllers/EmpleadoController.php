@@ -80,32 +80,39 @@ class EmpleadoController extends Controller
      * Display the specified resource.
      */
     public function show(Empleado $empleado)
-    {   
-        $Id_Empleado = $empleado->id;
-        $usuarios = User::all(); // Obtén todos los usuarios
-        $zonas = Zona::all();
-        $contratos = Contrato::all();
-        $actividades = actividades::all();
-        $indicadores = Indicadores::all();
-        $fechaActual = Carbon::now()->toDateString();
-        // Obtener el último número de llamada de atención del empleado actual
-        $ultimoNumeroLlamada = Documentos::where('Id_Empleado', $Id_Empleado)
-                                        ->where('Tipo_Documento', 'LLAMADA DE ATENCION')
-                                        ->max('N_Llamada');
-        
-        // Verificar si el último número de llamada es nulo
-        
-        
-        // Obtener los documentos del empleado actual
-        $documentos = Documentos::where('Id_Empleado', $Id_Empleado)->get();
-        
-        // Obtener los conteos de documentos por tipo para el empleado actual
-        $contadorRendicionCuentas = $documentos->where('Tipo_Documento', 'RENDICION DE CUENTAS')->count();
-        $contadorLlamadasAtencion = $documentos->where('Tipo_Documento', 'LLAMADA DE ATENCION')->count();
-        $contadorActasAdministrativas = $documentos->where('Tipo_Documento', 'ACTA ADMINISTRATIVA')->count();
-
-        return view('empleados.show', compact('empleado','indicadores','fechaActual', 'documentos', 'ultimoNumeroLlamada', 'contratos', 'zonas', 'actividades', 'usuarios', 'contadorRendicionCuentas', 'contadorLlamadasAtencion', 'contadorActasAdministrativas'));
+{   
+    // Verificar si el objeto Empleado es nulo
+    if (!$empleado) {
+        // Si el objeto Empleado es nulo, redirige o muestra un mensaje de error
+        return redirect()->route('empleados.index')->with('error', 'El empleado no fue encontrado.');
     }
+
+    // Si el objeto Empleado no es nulo, continúa con el proceso
+    $Id_Empleado = $empleado->id;
+    $usuarios = User::all(); // Obtén todos los usuarios
+    $zonas = Zona::all();
+    $contratos = Contrato::all();
+    $actividades = actividades::all();
+    $indicadores = Indicadores::all();
+    $fechaActual = Carbon::now()->toDateString();
+    // Obtener el último número de llamada de atención del empleado actual
+    $ultimoNumeroLlamada = Documentos::where('Id_Empleado', $Id_Empleado)
+                                    ->where('Tipo_Documento', 'LLAMADA DE ATENCION')
+                                    ->max('N_Llamada');
+    
+    // Verificar si el último número de llamada es nulo
+    
+    
+    // Obtener los documentos del empleado actual
+    $documentos = Documentos::where('Id_Empleado', $Id_Empleado)->get();
+    
+    // Obtener los conteos de documentos por tipo para el empleado actual
+    $contadorRendicionCuentas = $documentos->where('Tipo_Documento', 'RENDICION DE CUENTAS')->count();
+    $contadorLlamadasAtencion = $documentos->where('Tipo_Documento', 'LLAMADA DE ATENCION')->count();
+    $contadorActasAdministrativas = $documentos->where('Tipo_Documento', 'ACTA ADMINISTRATIVA')->count();
+
+    return view('empleados.show', compact('empleado','indicadores','fechaActual', 'documentos', 'ultimoNumeroLlamada', 'contratos', 'zonas', 'actividades', 'usuarios', 'contadorRendicionCuentas', 'contadorLlamadasAtencion', 'contadorActasAdministrativas'));
+}
 
 
     /**
