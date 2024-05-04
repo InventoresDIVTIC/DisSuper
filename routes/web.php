@@ -84,7 +84,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['nivel_1'])->group(function () {
         Route::resource('/contratos', ContratoController::class);
-        Route::resource('/puesto', PuestosController::class);
+        Route::resource('/puestos', PuestosController::class);
         Route::resource('/funciones_puestos', FuncionesPuestosController::class);
         Route::resource('/indicadores', IndicadoresController::class);
         Route::resource('/actividades', ActividadesController::class);
