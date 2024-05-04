@@ -76,7 +76,6 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/registro', [RegisterController::class, 'register']);
 
     });
-
     
     Route::middleware(['nivel_3'])->group(function () {
         // Rutas protegidas que requieren el rol 'JEFATURA ZONAL DE PROCESO'
