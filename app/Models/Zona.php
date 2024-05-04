@@ -26,7 +26,7 @@ class Zona extends Model
     }
     public function puestos()
     {
-        return $this->hasMany(Puesto::class);
+        return $this->hasMany(Puestos::class);
     }
 }
 

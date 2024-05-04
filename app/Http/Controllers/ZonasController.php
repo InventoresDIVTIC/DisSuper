@@ -52,7 +52,7 @@ class ZonasController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Zonas $zonas)
+    public function show(Zona $zonas)
     {
         $zonas = Zona::all();
         return view('zonas.modificarZonas', compact('zonas'));
