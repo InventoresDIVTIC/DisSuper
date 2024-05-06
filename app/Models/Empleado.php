@@ -33,7 +33,4 @@ class Empleado extends Model
         return $this->hasMany(Documentos::class, 'Id_Empleado', 'id');
     }
    
-   
-   
-
 }
