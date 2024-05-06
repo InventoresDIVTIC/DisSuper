@@ -360,7 +360,7 @@
       </a>
       <ul class="nav nav-treeview">
         <li class="nav-item">
-          <a href="/puestos/index" class="nav-link {{ Request::is('puestos') ? 'active' : '' }}">
+          <a href="/puestos" class="nav-link {{ Request::is('puestos') ? 'active' : '' }}">
             <i class="fas fa-list-ul nav-icon"></i>
             <p>Listado de Puestos</p>
           </a>
