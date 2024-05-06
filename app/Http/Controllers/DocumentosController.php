@@ -10,7 +10,7 @@ use App\Models\User;
 use App\Models\Empleado; 
 use App\Models\Notification; 
 use Illuminate\Support\Facades\Mail;
-use App\Models\IndicadorDocumento;
+use App\Models\IndicadorDocumentos;
 use App\Models\Zona;
 use App\Models\Actividades;
 use Illuminate\Support\Facades\Storage;
@@ -71,7 +71,7 @@ class DocumentosController extends Controller
             $datosFormulario = [
                 'nombre_archivo' => $request->input('nombre_archivo'),
                 'N_Llamada' => $request->input('N_Llamada'),
-                'Actividad' => Actividades::find($request->input('Actividad'))->name,
+                'Actividad' => $request->input('Actividad'),
                 'Fecha_Actividad' => $request->input('Fecha_Actividad'),
                 'Fecha_Supervision' => $request->input('Fecha_Supervision'),
                 'Introduccion' => $request->input('Introduccion'),

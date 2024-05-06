@@ -11,7 +11,7 @@ class Indicadores extends Model
 
     public function actividades()
     {
-        return $this->belongsToMany(Actividad::class, 'actividades_indicadores');
+        return $this->belongsToMany(Actividades::class, 'actividades_indicadores');
     }
 }
 

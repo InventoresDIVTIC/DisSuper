@@ -11,6 +11,6 @@ class IndicadorDocumentos extends Model
 
     public function documento()
     {
-        return $this->belongsTo(Documento::class, 'Id_Documento');
+        return $this->belongsTo(Documentos::class, 'Id_Documento');
     }
 }

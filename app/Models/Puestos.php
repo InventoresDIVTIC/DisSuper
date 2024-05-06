@@ -26,6 +26,6 @@ class Puestos extends Model
 
     public function actividades()
     {
-        return $this->belongsToMany(actividades::class);
+        return $this->belongsToMany(Actividades::class);
     }
 }

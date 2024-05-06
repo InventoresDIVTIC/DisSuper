@@ -12,7 +12,7 @@ class Documentos extends Model
   
     public function indicadores()
     {
-        return $this->hasMany(IndicadorDocumento::class, 'Id_Documento');
+        return $this->hasMany(IndicadorDocumentos::class, 'Id_Documento');
     }
     public function emisor()
     {
