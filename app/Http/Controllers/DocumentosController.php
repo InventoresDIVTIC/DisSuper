@@ -11,8 +11,6 @@ use App\Models\Empleado;
 use App\Models\Notification; 
 use Illuminate\Support\Facades\Mail;
 use App\Models\IndicadorDocumento;
-use App\Models\Zona;
-use App\Models\Actividades;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Response;
 use Carbon\Carbon;
@@ -54,24 +52,12 @@ class DocumentosController extends Controller
     
             // Obtener el ID del usuario que realiza el documento
             $Id_Usuario_Autor = auth()->id();
-            // Obtener el ID del usuario al que se envía a revisión desde el formulario
-       
-           
-            $zonas_usuario = user::find($Id_Usuario_Autor)->zonas[0]["nombre_zona"];
-            $puesto_usuario = user::find($Id_Usuario_Autor)->roles[0]['name'];
-
-            $usuario = [
-                'nombre' => user::find($Id_Usuario_Autor)->name,
-                'rpe' => user::find($Id_Usuario_Autor)->RPE_Empleado
-            ];
-            
-
-            
+    
             // Obtener los datos del formulario
             $datosFormulario = [
                 'nombre_archivo' => $request->input('nombre_archivo'),
                 'N_Llamada' => $request->input('N_Llamada'),
-                'Actividad' => actividades::find($request->input('Actividad'))->name,
+                'Actividad' => $request->input('Actividad'),
                 'Fecha_Actividad' => $request->input('Fecha_Actividad'),
                 'Fecha_Supervision' => $request->input('Fecha_Supervision'),
                 'Introduccion' => $request->input('Introduccion'),
@@ -83,13 +69,8 @@ class DocumentosController extends Controller
                 'nombre_indicador' => $request->input('nombre_indicador'),
              
                 // Otros campos del formulario según su estructura
-                'Zona_Autor' => $zonas_usuario,
-                'Puesto_Autor' => $puesto_usuario,
-                'nombre_usuario' =>user::find($Id_Usuario_Autor)->name,
-                'rpe_usuario' => user::find($Id_Usuario_Autor)->RPE_Empleado,
             ];
-            
-            
+    
             // Procesar los indicadores seleccionados y convertirlos en una cadena separada por comas
             $indicadores = implode(',', $datosFormulario['nombre_indicador']);
 
@@ -138,9 +119,6 @@ class DocumentosController extends Controller
                 }
             }
 
-            $datosFormulario['imagenes_documento'] = $nombresImagenes;
-
-
             // Convertir los nombres de las imágenes a una cadena separada por comas
             $cadenaImagenes = implode(',', $nombresImagenes);
 
@@ -160,8 +138,7 @@ class DocumentosController extends Controller
             
             $documento->notifications()->save($notification);
 
-            
-            try{
+
             // Generar el PDF a partir de la vista del formulario
             $html = view('pdf.formulario', compact('datosFormulario', 'empleado'))->render();
             $options = new Options();
@@ -177,11 +154,6 @@ class DocumentosController extends Controller
 
             // Ruta donde se guardará el archivo
             $rutaGuardado = public_path('dist/archivos/' . $nombreArchivo);
-            
-            if (!File::isDirectory(public_path('dist/archivos'))) {
-                dd("No existe el directorio");
-            }
-
             // Guardar el archivo PDF en la ruta especificada
             file_put_contents($rutaGuardado, $pdfOutput);
             $ruta = 'dist/archivos/' . $nombreArchivo;
@@ -189,11 +161,7 @@ class DocumentosController extends Controller
             // Actualizar el documento con la ruta del archivo PDF
             $documento->nombre_archivo = $ruta;
             $documento->save();
-            }catch(\Exception $e){
-                $mensaje = 'Error: ' . $e->getMessage();
-                dd($mensaje);
-            }
-            
+
             // Obtener el ID del usuario seleccionado en el formulario
             $Id_Usuario_Revisar = $request->input('Id_Usuario_Revisar');
             $Id_Usuario_Autor = $documento->Id_Usuario_Autor;
@@ -803,4 +771,3 @@ class DocumentosController extends Controller
         }
 
 }
-
