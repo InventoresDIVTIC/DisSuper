@@ -93,7 +93,7 @@ class EmpleadoController extends Controller
     $usuarios = User::all(); // Obtén todos los usuarios
     $zonas = Zona::all();
     $contratos = Contrato::all();
-    $actividades = actividades::all();
+    $actividades = Actividades::all();
     $indicadores = Indicadores::all();
     $fechaActual = Carbon::now()->toDateString();
     // Obtener el último número de llamada de atención del empleado actual
