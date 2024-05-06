@@ -10,9 +10,10 @@ use App\Models\Contrato;
 use App\Models\Zona;
 use App\Models\User;
 use App\Models\Documentos;
-use App\Models\actividades;
+use App\Models\Actividades;
 use App\Models\Indicadores;
 use Carbon\Carbon;
+use App\Models\Puestos;
 
 class EmpleadoController extends Controller
 {
@@ -131,7 +132,6 @@ class EmpleadoController extends Controller
 
         $request->validate([
             'nombre_Empleado' => 'required|string|max:255',
-            'contrato' => 'required|exists:contratos,id',
             'fecha_ingreso' => 'required|date',
         ]);
 
@@ -177,3 +177,4 @@ class EmpleadoController extends Controller
 
     
 }
+ 
