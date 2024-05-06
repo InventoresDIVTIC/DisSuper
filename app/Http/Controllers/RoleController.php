@@ -25,9 +25,10 @@ class RoleController extends Controller
     {
         $role = new Role();
         $role->name = $request->input('NombreNuevoRol');
+        $role->nivel_permisos = 5;
         $role->save();
 
-        return redirect()->route('roles.visualizarRol')->with('Exito', 'Role creado con Exito.');
+        return view('roles.visualizarRol');
         
     }
 

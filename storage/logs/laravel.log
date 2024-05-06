@@ -22598,3 +22598,21 @@ Did you mean this?
 #52 C:\\laragon\\www\\DisSuper\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\laragon\\\\www\\\\...')
 #53 {main}
 "} 
+[2024-05-05 21:13:56] local.ERROR: Command "migrate_refresh" is not defined.
+
+Did you mean one of these?
+    migrate:fresh
+    migrate:refresh
+    migrate:reset {"exception":"[object] (Symfony\\Component\\Console\\Exception\\CommandNotFoundException(code: 0): Command \"migrate_refresh\" is not defined.
+
+Did you mean one of these?
+    migrate:fresh
+    migrate:refresh
+    migrate:reset at C:\\laragon\\www\\DisSuper\\vendor\\symfony\\console\\Application.php:737)
+[stacktrace]
+#0 C:\\laragon\\www\\DisSuper\\vendor\\symfony\\console\\Application.php(266): Symfony\\Component\\Console\\Application->find('migrate_refresh')
+#1 C:\\laragon\\www\\DisSuper\\vendor\\symfony\\console\\Application.php(175): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#2 C:\\laragon\\www\\DisSuper\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(201): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#3 C:\\laragon\\www\\DisSuper\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#4 {main}
+"} 
