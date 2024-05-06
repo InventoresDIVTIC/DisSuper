@@ -20,7 +20,7 @@ class RoleController extends Controller
     {
         $role = new Role();
         $role->name = $request->input('NombreNuevoRol');
-        $role->nivel_permisos->input('Npermisos');
+        $role->nivel_permisos = $request->input('Npermisos');
         $role->save();
 
         return view('roles.visualizarRol');
