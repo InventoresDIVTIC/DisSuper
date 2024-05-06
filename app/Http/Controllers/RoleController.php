@@ -16,18 +16,19 @@ class RoleController extends Controller
         return view('roles.visualizarRol', compact('roles'));
     }
 
-    public function create()
-    {
-        return view('roles.visualizarRol');
-    }
-
-    public function store(Request $request)
+    public function create(Request $request, Role $role)
     {
         $role = new Role();
         $role->name = $request->input('NombreNuevoRol');
         $role->nivel_permisos->input('Npermisos');
         $role->save();
 
+        return view('roles.visualizarRol');
+    }
+
+    public function store(Request $request)
+    {
+        
         return view('roles.visualizarRol');
         
     }
