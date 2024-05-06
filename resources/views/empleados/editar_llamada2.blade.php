@@ -69,6 +69,9 @@
                         <label class="col-sm-12 text-center"><h3>Subir Documento</h3></label>
                     </div>
                 </div>
+                
+                <input type="hidden" class="form-control" id="Fecha_Actividad" name="Fecha_Actividad" placeholder="Fecha" value="{{ $documento->Fecha_Actividad }}">
+                
 
                 <div class="form-group row">
                 <label class="col-sm-1.8 col-form-label">Tipo de Documento: </label>
