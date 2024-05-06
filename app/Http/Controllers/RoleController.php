@@ -18,7 +18,7 @@ class RoleController extends Controller
 
     public function create()
     {
-        return view('roles.create');
+        return view('roles.visualizarRol');
     }
 
     public function store(Request $request)
@@ -27,7 +27,7 @@ class RoleController extends Controller
         $role->name = $request->input('NombreNuevoRol');
         $role->save();
 
-        return redirect()->route('roles.index')->with('Exito', 'Role creado con Exito.');
+        return redirect()->route('roles.visualizarRol')->with('Exito', 'Role creado con Exito.');
         
     }
 
