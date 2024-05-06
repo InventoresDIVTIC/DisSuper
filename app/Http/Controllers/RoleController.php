@@ -18,17 +18,15 @@ class RoleController extends Controller
 
     public function create(Request $request, Role $role)
     {
-        $role = new Role();
-        $role->name = $request->input('NombreNuevoRol');
-        $role->nivel_permisos = $request->input('Npermisos');
-        $role->save();
-
-        return view('roles.visualizarRol');
+        //
     }
 
     public function store(Request $request)
     {
-        
+        $role = new Role();
+        $role->name = $request->input('NombreNuevoRol');
+        $role->nivel_permisos = $request->input('Npermisos');
+        $role->save();
         return view('roles.visualizarRol');
         
     }

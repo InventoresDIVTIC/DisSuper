@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-md-6 offset-md-3 text-center">
                 <div class="text-center">
-                    <form action="{{ route('roles.create') }}" method="POST" class="form-inline">
+                    <form action="{{ route('roles.store') }}" method="POST" class="form-inline">
                         @csrf
                         <div class="input-group">
                             <input class="form-control" id="NombreNuevoRol" name="NombreNuevoRol" placeholder="Nombre del Nuevo Rol" style="width: 300px;">
