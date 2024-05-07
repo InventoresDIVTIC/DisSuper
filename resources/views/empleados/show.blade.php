@@ -429,9 +429,9 @@
                                   <td>{{ $documento->receptor->name }}</td>
                                   <td>{{ $documento->Status_Documento }}</td>
                                   <td>
-                                    <a href="{{ asset($documento->nombre_archivo) }}">Descargar</a>
+                                    <a href="{{ asset($documento->nombre_archivo) }}">Visualizar</a>
 
-                                                        </td>
+                                    </td>
                                                     </tr>
                                                     @endforeach
                                                 </tbody>
