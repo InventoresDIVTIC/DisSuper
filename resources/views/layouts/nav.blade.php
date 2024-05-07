@@ -303,10 +303,10 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link {{ Request::is('empleado/') && !Request::is('empleado/create') ? 'active' : '' }}">
-            <i class="fas fa-user nav-icon"></i>
-            <p>Perfil de empleado</p>
-          </a>
+            <a href="#" class="nav-link {{ Request::is('empleado/*') && !Request::is('empleado/create') ? 'active' : '' }}">
+                <i class="fas fa-user nav-icon"></i>
+                <p>Perfil de empleado</p>
+            </a>
         </li>
         <li class="nav-item">
           <a href="/empleado/create" class="nav-link {{ Request::is('empleado/create*') ? 'active' : '' }}">
