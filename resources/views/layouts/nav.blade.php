@@ -371,11 +371,11 @@
             <p>Añadir Puestos</p>
           </a>
         </li>
-        <li class="nav-item">
-        <a href="#" class="nav-link {{ Request::is('puestos/') && !Request::is('puestos/create') ? 'active' : '' }}">
-            <i class="fas fa-user-plus nav-icon"></i>
-            <p>Funciones de Puesto</p>
-          </a>
+         <li class="nav-item">
+            <a href="#" class="nav-link {{ Request::is('puestos/*') && !Request::is('puestos/create') ? 'active' : '' }}">
+                <i class="fas fa-user-plus nav-icon"></i>
+                <p>Funciones de Puesto</p>
+            </a>
         </li>
       </ul>
     </li>
