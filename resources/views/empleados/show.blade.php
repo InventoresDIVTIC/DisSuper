@@ -960,16 +960,16 @@ function iniciarContador(documentoId, fechaCreacion, duracionPredeterminada) {
     var fechaCreacion{{ $documento->id }} = new Date("{{ $documento->created_at }}").getTime();
     
     // Definir la duración predeterminada en milisegundos según el estado del documento
-    var duracionPredeterminada{{ $documento->id }} = 18 * 60 * 60 * 1000; // Duración predeterminada de 24 horas
+    var duracionPredeterminada{{ $documento->id }} = 23 * 60 * 60 * 1000; // Duración predeterminada de 24 horas
     
     // Ajustar la duración según el estado del documento
     if (estado{{ $documento->id }} === 'EN EDICION' ) {
         // Duración de 24 horas para documentos en edición o aceptados
-        duracionPredeterminada{{ $documento->id }} = 19 * 60 * 60 * 1000;
+        duracionPredeterminada{{ $documento->id }} = 23 * 60 * 60 * 1000;
     }
     if (estado{{ $documento->id }} === 'ACEPTADO' ) {
         // Duración de 24 horas para documentos en edición o aceptados
-        duracionPredeterminada{{ $documento->id }} = 20 * 60 * 60 * 1000;
+        duracionPredeterminada{{ $documento->id }} = 23 * 60 * 60 * 1000;
     }
     
     // Iniciar el contador para el documento actual si cumple con las condiciones
