@@ -64,7 +64,7 @@ class PuestosController extends Controller
                 return abort(404); // Devuelve un error 404 si el puesto no se encuentra
             }
             
-            $actividad = actividades::all(); // Obtén todas las actividades
+            $actividad = Actividades::all(); // Obtén todas las actividades
             $actividadesAsociadas = $puestos->actividades;
             
             return view('funciones_puestos.viewFuncionesPuestos', compact('puestos', 'actividad','actividadesAsociadas'));
