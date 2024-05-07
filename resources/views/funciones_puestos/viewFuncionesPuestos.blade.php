@@ -5,7 +5,7 @@
     <div class="card-header">
         <div class="row">
             <div class="col-md-12 text-center text-info">
-                <h3>Funciones de Puestos</h3>
+                <h3>Funciones de Puestos: {{ $puestos->nombre }}</h3> <!-- Aquí se agrega el nombre del puesto -->
             </div>
         </div>
     </div>
