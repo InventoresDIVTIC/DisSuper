@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Puestos;
 use Illuminate\Http\Request;
 use App\Models\Zona;
-use App\Models\actividades;
+use App\Models\Actividades;
 class PuestosController extends Controller
 {
     /**
