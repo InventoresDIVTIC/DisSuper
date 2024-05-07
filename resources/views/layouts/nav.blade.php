@@ -275,10 +275,10 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link {{ Request::is('usuario/') && !Request::is('usuario/create') ? 'active' : '' }}">
-            <i class="fas fa-edit nav-icon"></i>
-            <p>Modificar Usuario</p>
-          </a>
+            <a href="#" class="nav-link {{ Request::is('usuario/*') && !Request::is('usuario/create') ? 'active' : '' }}">
+                <i class="fas fa-edit nav-icon"></i>
+                <p>Modificar Usuario</p>
+            </a>
         </li>
       </ul>
     </li>
