@@ -385,7 +385,9 @@
                             <div class="tab-pane" id="Documentos">
                                 <div class="card bg-black color-palette">
                                     <ul class="nav navtabs" id="custom-content-below-tab" role="tablist">
+                                        <!--
                                         <li class="nav-item" style="width: 20%"><a class="nav-link text-center text-muted" href="#ListadoDocumentos" data-toggle="tab">Listado de Documentos</a></li>
+                                        -->
                                         <li class="nav-item" style="width: 20%"><a class="nav-link text-center text-muted" href="#Subir_Doc" data-toggle="tab">Subir Documento</a></li>
 
                                         @php
@@ -406,7 +408,7 @@
                                 </div>
 
                     <div class="tab-content" id="custom-below-tabContent">
-                      <div class="active tab-pane" id="ListadoDocumentos">
+                      <div class="tab-pane" id="ListadoDocumentos">
                         <div class="card-body p-0">
                           <table class="table">
                           <thead>
@@ -450,7 +452,7 @@
 
                                     </div>
 
-                                    <div class="tab-pane" id="Subir_Doc">
+                                    <div class="active tab-pane" id="Subir_Doc">
 
                                         <form method="POST" action="/guardar-documento"id="subirForm" enctype="multipart/form-data">
                                             @csrf
