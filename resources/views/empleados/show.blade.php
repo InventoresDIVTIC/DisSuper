@@ -117,8 +117,8 @@
                                                             <td>{{ $documento->id }}</td>
                                                             <td>{{ $documento->Fecha_Actividad }}</td>
                                                             <td>{{ $documento->Tipo_Documento }}</td>
-                                                            <td>{{ $documento->emisor->name }}</td>
-                                                            <td>{{ $documento->receptor->name }}</td>
+                                                            <td>{{ $documento->emisor->name ??'' }}</td>
+                                                            <td>{{ $documento->receptor->name ??'' }}</td>
                                                             <td>{{ $documento->Status_Documento }}</td>
                                                             <td id="contador_{{ $documento->id }}"></td>
                                                             <td>
@@ -427,8 +427,8 @@
                               <tr>
                                   <td>{{ $documento->Fecha_Actividad }}</td>
                                   <td>{{ $documento->Tipo_Documento }}</td>
-                                  <td>{{ $documento->emisor->name }}</td>
-                                  <td>{{ $documento->receptor->name }}</td>
+                                  <td>{{ $documento->emisor->name ??'' }}</td>
+                                  <td>{{ $documento->receptor->name ??'' }}</td>
                                   <td>{{ $documento->Status_Documento }}</td>
                                   <td>
                                     <a href="{{ asset($documento->nombre_archivo) }}">Visualizar</a>
