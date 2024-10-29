@@ -34,6 +34,10 @@ jobs:
           php artisan route:clear
           php artisan view:clear
 
+      - name: 📂 Copy files from public # ToDo: Remove this step
+        run: |
+          cp -r ./public/* ./
+
       - name: 📝 Create .env file
         run: |
           echo "APP_NAME=${{ vars.APP_NAME }}" >> .env
@@ -84,10 +88,6 @@ jobs:
           echo "VITE_PUSHER_HOST=${{ vars.VITE_PUSHER_HOST }}" >> .env
           echo "VITE_PUSHER_PORT=${{ vars.VITE_PUSHER_PORT }}" >> .env
           echo "VITE_PUSHER_SCHEME=${{ vars.VITE_PUSHER_SCHEME }}" >> .env
-
-      - name: 📂 Copy files from public
-        run: |
-          cp -r ./public/* ./
 
       - name: 🔑 Generate Key
         run: php artisan key:generate
