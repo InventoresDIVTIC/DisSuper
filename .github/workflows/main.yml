@@ -9,6 +9,7 @@ jobs:
   ftp-deploy:
     name: Deploy on FTP server
     runs-on: ubuntu-latest
+    environment: prod
 
     steps:
       - name: 🛒 Checkout code
@@ -81,7 +82,6 @@ jobs:
           echo "VITE_PUSHER_PORT=${{ vars.VITE_PUSHER_PORT }}" >> .env
           echo "VITE_PUSHER_SCHEME=${{ vars.VITE_PUSHER_SCHEME }}" >> .env
           echo "TESTQ=j" >> .env
-          echo "ACCES=${{ secrets.FTP_ACCESO }}" >> .env
 
       - name: 📂 Copy files from public
         run: |
