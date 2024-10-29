@@ -84,7 +84,6 @@ jobs:
           echo "VITE_PUSHER_HOST=${{ vars.VITE_PUSHER_HOST }}" >> .env
           echo "VITE_PUSHER_PORT=${{ vars.VITE_PUSHER_PORT }}" >> .env
           echo "VITE_PUSHER_SCHEME=${{ vars.VITE_PUSHER_SCHEME }}" >> .env
-          echo "TESTQ=j" >> .env
 
       - name: 📂 Copy files from public
         run: |
