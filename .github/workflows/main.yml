@@ -3,7 +3,7 @@ name: Laravel FTP Deploy
 on:
   push:
     branches:
-      - feature/update-workflow # Ajusta esto a tu rama por defecto si es necesario
+      - master # Ajusta esto a tu rama por defecto si es necesario
 
 jobs:
   ftp-deploy:
