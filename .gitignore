@@ -13,7 +13,6 @@
 .env.heroku
 .env.DisSuper
 .phpunit.result.cache
-.htaccess
 Homestead.json
 Homestead.yaml
 auth.json

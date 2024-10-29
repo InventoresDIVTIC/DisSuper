@@ -3,7 +3,7 @@ name: Laravel FTP Deploy
 on:
   push:
     branches:
-      - master # Ajusta esto a tu rama por defecto si es necesario
+      - feature/update-workflow # Ajusta esto a tu rama por defecto si es necesario
 
 jobs:
   ftp-deploy:
@@ -33,12 +33,58 @@ jobs:
           php artisan route:clear
           php artisan view:clear
 
-      - name: 📝 Addd files
+      - name: 📝 Create .env file
         run: |
-          cp -r .env.example .env  
+          echo "APP_NAME=${{ vars.APP_NAME }}" >> .env
+          echo "APP_ENV=${{ vars.APP_ENV }}" >> .env
+          echo "APP_KEY=${{ secrets.APP_KEY }}" >> .env
+          echo "APP_DEBUG=${{ vars.APP_DEBUG }}" >> .env
+          echo "APP_URL=${{ vars.APP_URL }}" >> .env
+          echo "LOG_CHANNEL=${{ vars.LOG_CHANNEL }}" >> .env
+          echo "DB_CONNECTION=${{ vars.DB_CONNECTION }}" >> .env
+          echo "DB_HOST=${{ vars.DB_HOST }}" >> .env
+          echo "DB_PORT=${{ vars.DB_PORT }}" >> .env
+          echo "DB_DATABASE=${{ vars.DB_DATABASE }}" >> .env
+          echo "DB_USERNAME=${{ secrets.DB_USERNAME }}" >> .env
+          echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
+          echo "BROADCAST_DRIVER=${{ vars.BROADCAST_DRIVER }}" >> .env
+          echo "CACHE_DRIVER=${{ vars.CACHE_DRIVER }}" >> .env
+          echo "QUEUE_CONNECTION=${{ vars.QUEUE_CONNECTION }}" >> .env
+          echo "SESSION_DRIVER=${{ vars.SESSION_DRIVER }}" >> .env
+          echo "SESSION_LIFETIME=${{ vars.SESSION_LIFETIME }}" >> .env
+          echo "MEMCACHED_HOST=${{ vars.MEMCACHED_HOST }}" >> .env
+          echo "REDIS_HOST=${{ vars.REDIS_HOST }}" >> .env
+          echo "REDIS_PASSWORD=${{ vars.REDIS_PASSWORD }}" >> .env
+          echo "REDIS_PORT=${{ vars.REDIS_PORT }}" >> .env
+          echo "MAIL_MAILER=${{ vars.MAIL_MAILER }}" >> .env
+          echo "MAIL_HOST=${{ vars.MAIL_HOST }}" >> .env
+          echo "MAIL_PORT=${{ vars.MAIL_PORT }}" >> .env
+          echo "MAIL_USERNAME=${{ vars.MAIL_USERNAME }}" >> .env
+          echo "MAIL_PASSWORD=${{ secrets.MAIL_PASSWORD }}" >> .env
+          echo "MAIL_ENCRYPTION=${{ vars.MAIL_ENCRYPTION }}" >> .env
+          echo "MAIL_FROM_ADDRESS=${{ vars.MAIL_FROM_ADDRESS }}" >> .env
+          echo "MAIL_FROM_NAME=${{ vars.MAIL_FROM_NAME }}" >> .env
+          echo "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}" >> .env
+          echo "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> .env
+          echo "AWS_DEFAULT_REGION=${{ vars.AWS_DEFAULT_REGION }}" >> .env
+          echo "AWS_BUCKET=${{ vars.AWS_BUCKET }}" >> .env
+          echo "PUSHER_APP_ID=${{ secrets.PUSHER_APP_ID }}" >> .env
+          echo "PUSHER_APP_KEY=${{ secrets.PUSHER_APP_KEY }}" >> .env
+          echo "PUSHER_APP_SECRET=${{ secrets.PUSHER_APP_SECRET }}" >> .env
+          echo "PUSHER_HOST=${{ vars.PUSHER_APP_HOST }}" >> .env
+          echo "PUSHER_PORT=${{ vars.PUSHER_APP_PORT }}" >> .env
+          echo "PUSHER_SCHEME=${{ vars.PUSHER_APP_SCHEME }}" >> .env
+          echo "PUSHER_APP_CLUSTER=${{ vars.PUSHER_APP_CLUSTER }}" >> .env
+          echo "VITE_PUSHER_APP_KEY=${{ secrets.VITE_PUSHER_APP_KEY }}" >> .env
+          echo "VITE_PUSHER_APP_CLUSTER=${{ vars.VITE_PUSHER_APP_CLUSTER }}" >> .env
+          echo "VITE_PUSHER_HOST=${{ vars.VITE_PUSHER_HOST }}" >> .env
+          echo "VITE_PUSHER_PORT=${{ vars.VITE_PUSHER_PORT }}" >> .env
+          echo "VITE_PUSHER_SCHEME=${{ vars.VITE_PUSHER_SCHEME }}" >> .env
+          echo "TESTQ=j" >> .env
+
+      - name: 📂 Copy files from public
+        run: |
           cp -r ./public/* ./
-          cp -r .htaccess.example .htaccess
-          cp -r index.php.example index.php
 
       - name: 🔑 Generate Key
         run: php artisan key:generate
@@ -46,8 +92,8 @@ jobs:
       - name: 🚀 FTP Deploy
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
-          server: 66.225.201.137
-          username: dissuper2@innovusweb.com
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_ACCESO }}
           local-dir: ./
           git-ftp-args: --insecure # Elimina --insecure si tu servidor FTP soporta conexiones seguras
