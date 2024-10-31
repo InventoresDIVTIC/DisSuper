@@ -400,7 +400,9 @@
             <i class="fas fa-list-ul nav-icon"></i>
             <p>Listado Zonas</p>
           </a>
-        </li>
+       </li>
+     </ul>
+  </li>
 
     @endif
   
