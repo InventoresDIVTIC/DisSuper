@@ -401,14 +401,7 @@
             <p>Listado Zonas</p>
           </a>
         </li>
-        <li class="nav-item">
-            <a href="#" class="nav-link {{ Request::is('zonas/*') && !Request::is('zonas/create') ? 'active' : '' }}">
-                <i class="fas fa-edit nav-icon"></i>
-                <p>Modificar Zonas</p>
-            </a>
-        </li>
-      </ul>
-    </li>
+
     @endif
   
 
